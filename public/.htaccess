@@ -1,4 +1,8 @@
+
 <IfModule mod_rewrite.c>
+
+    AddType application/javascript .js
+
     <IfModule mod_negotiation.c>
         Options -MultiViews -Indexes
     </IfModule>
