@@ -12,9 +12,11 @@
 @section('action-btn')
     @if(\Auth::user()->type == 'super admin')
         <div class="float-end">
-                <a href="#" data-size="lg" data-url="{{ route('event.create') }}" data-ajax-popup="true" data-bs-toggle="tooltip" title="{{__('Create')}}" data-title="{{__('Create New Event')}}" class="btn btn-sm btn-primary">
-                    <i class="ti ti-plus"></i>
-                </a>
+            <a href="#" data-size="lg" data-url="{{ route('event.create') }}" data-ajax-popup="true"
+               data-bs-toggle="tooltip" title="{{__('Create')}}" data-title="{{__('Create New Event')}}"
+               class="btn btn-sm btn-primary">
+                <i class="ti ti-plus"></i>
+            </a>
         </div>
     @endif
 @endsection
@@ -46,7 +48,11 @@
                                                     <div class="row align-items-center">
                                                         <div class="col ml-n2">
                                                             <h5 class="text-sm mb-0 fc-event-title-container">
-                                                                <a href="#" data-size="lg" data-url="{{ route('event.edit',$event->id) }}" data-ajax-popup="true" data-title="{{__('Edit Event')}}" class="fc-event-title text-primary">
+                                                                <a href="#" data-size="lg"
+                                                                   data-url="{{ route('event.edit',$event->id) }}"
+                                                                   data-ajax-popup="true"
+                                                                   data-title="{{__('Edit Event')}}"
+                                                                   class="fc-event-title text-primary">
                                                                     {{$event->title}}
                                                                 </a>
                                                             </h5><br>
@@ -59,20 +65,33 @@
                                                             </p>
 
                                                         </div>
-                                                        <div class="col-auto text-right">
+                                                        @if(Auth::user()->type == "super admin")
+                                                            <div class="col-auto text-right">
 
                                                                 <div class="action-btn bg-primary ms-2">
-                                                                    <a href="#" data-url="{{ route('event.edit',$event->id) }}" data-title="{{__('Edit Event')}}" data-ajax-popup="true" class="mx-3 btn btn-sm  align-items-center" data-bs-toggle="tooltip" title="{{__('Edit')}}" data-original-title="{{__('Edit')}}"><i class="ti ti-pencil text-white"></i></a>
+                                                                    <a href="#"
+                                                                       data-url="{{ route('event.edit',$event->id) }}"
+                                                                       data-title="{{__('Edit Event')}}"
+                                                                       data-ajax-popup="true"
+                                                                       class="mx-3 btn btn-sm  align-items-center"
+                                                                       data-bs-toggle="tooltip" title="{{__('Edit')}}"
+                                                                       data-original-title="{{__('Edit')}}"><i
+                                                                                class="ti ti-pencil text-white"></i></a>
                                                                 </div>
 
                                                                 <div class="action-btn bg-danger ms-2">
                                                                     {!! Form::open(['method' => 'DELETE', 'route' => ['event.destroy', $event->id],'id'=>'delete-form-'.$event->id]) !!}
-                                                                    <a href="#" class="mx-3 btn btn-sm  align-items-center bs-pass-para" data-bs-toggle="tooltip" title="{{__('Delete')}}" data-original-title="{{__('Delete')}}" data-confirm="{{__('Are You Sure?').'|'.__('This action can not be undone. Do you want to continue?')}}" data-confirm-yes="document.getElementById('delete-form-{{$event->id}}').submit();"><i class="ti ti-trash text-white"></i></a>
+                                                                    <a href="#"
+                                                                       class="mx-3 btn btn-sm  align-items-center bs-pass-para"
+                                                                       data-bs-toggle="tooltip" title="{{__('Delete')}}"
+                                                                       data-original-title="{{__('Delete')}}"
+                                                                       data-confirm="{{__('Are You Sure?').'|'.__('This action can not be undone. Do you want to continue?')}}"
+                                                                       data-confirm-yes="document.getElementById('delete-form-{{$event->id}}').submit();"><i
+                                                                                class="ti ti-trash text-white"></i></a>
                                                                     {!! Form::close() !!}
                                                                 </div>
-
-                                                        </div>
-
+                                                            </div>
+                                                        @endif
 
                                                     </div>
                                                 </div>
@@ -108,50 +127,64 @@
                             <div class="row align-items-center justify-content-between">
                                 <div class=" align-items-center">
                                     @if(!$events->isEmpty())
-                                    @foreach($expired_events as $event)
-                                    <div class="card mb-3 border shadow-none">
-                                        <div class="px-3">
-                                            <div class="row align-items-center">
-                                                <div class="col ml-n2">
-                                                    <h5 class="text-sm mb-0 fc-event-title-container">
-                                                        <a href="#" data-size="lg" data-url="{{ route('event.edit',$event->id) }}" data-ajax-popup="true" data-title="{{__('Edit Event')}}" class="fc-event-title text-primary">
-                                                            {{$event->title}}
-                                                        </a>
-                                                    </h5><br>
+                                        @foreach($expired_events as $event)
+                                            <div class="card mb-3 border shadow-none">
+                                                <div class="px-3">
+                                                    <div class="row align-items-center">
+                                                        <div class="col ml-n2">
+                                                            <h5 class="text-sm mb-0 fc-event-title-container">
+                                                                <a href="#" data-size="lg"
+                                                                   data-url="{{ route('event.edit',$event->id) }}"
+                                                                   data-ajax-popup="true"
+                                                                   data-title="{{__('Edit Event')}}"
+                                                                   class="fc-event-title text-primary">
+                                                                    {{$event->title}}
+                                                                </a>
+                                                            </h5><br>
 
-                                                    <p class="card-text small text-dark mt-0">
-                                                        @role('super admin')
-                                                        {{__('Company')}} :
-                                                        {{ $event->company->name }}<br>
-                                                        @endrole
-                                                        {{__('Start Date : ')}}
-                                                        {{ \Auth::user()->dateFormat($event->start_date)}}<br>
-                                                        {{__('End Date : ')}}
-                                                        {{ \Auth::user()->dateFormat($event->end_date) }}
-                                                    </p>
+                                                            <p class="card-text small text-dark mt-0">
+                                                                @role('super admin')
+                                                                {{__('Company')}} :
+                                                                {{ $event->company->name }}<br>
+                                                                @endrole
+                                                                {{__('Start Date : ')}}
+                                                                {{ \Auth::user()->dateFormat($event->start_date)}}<br>
+                                                                {{__('End Date : ')}}
+                                                                {{ \Auth::user()->dateFormat($event->end_date) }}
+                                                            </p>
 
-                                                </div>
-                                                <div class="col-auto text-right">
-
-                                                    <div class="action-btn bg-primary ms-2">
-                                                        <a href="#" data-url="{{ route('event.edit',$event->id) }}" data-title="{{__('Edit Event')}}" data-ajax-popup="true" class="mx-3 btn btn-sm  align-items-center" data-bs-toggle="tooltip" title="{{__('Edit')}}" data-original-title="{{__('Edit')}}"><i class="ti ti-pencil text-white"></i></a>
+                                                        </div>
+                                                        @if(Auth::user()->type == "super admin")
+                                                            <div class="col-auto text-right">
+                                                                <div class="action-btn bg-primary ms-2">
+                                                                    <a href="#"
+                                                                       data-url="{{ route('event.edit',$event->id) }}"
+                                                                       data-title="{{__('Edit Event')}}"
+                                                                       data-ajax-popup="true"
+                                                                       class="mx-3 btn btn-sm  align-items-center"
+                                                                       data-bs-toggle="tooltip" title="{{__('Edit')}}"
+                                                                       data-original-title="{{__('Edit')}}"><i
+                                                                                class="ti ti-pencil text-white"></i></a>
+                                                                </div>
+                                                                <div class="action-btn bg-danger ms-2">
+                                                                    {!! Form::open(['method' => 'DELETE', 'route' => ['event.destroy', $event->id],'id'=>'delete-form-'.$event->id]) !!}
+                                                                    <a href="#"
+                                                                       class="mx-3 btn btn-sm  align-items-center bs-pass-para"
+                                                                       data-bs-toggle="tooltip" title="{{__('Delete')}}"
+                                                                       data-original-title="{{__('Delete')}}"
+                                                                       data-confirm="{{__('Are You Sure?').'|'.__('This action can not be undone. Do you want to continue?')}}"
+                                                                       data-confirm-yes="document.getElementById('delete-form-{{$event->id}}').submit();"><i
+                                                                                class="ti ti-trash text-white"></i></a>
+                                                                    {!! Form::close() !!}
+                                                                </div>
+                                                            </div>
+                                                        @endif
                                                     </div>
-
-                                                    <div class="action-btn bg-danger ms-2">
-                                                        {!! Form::open(['method' => 'DELETE', 'route' => ['event.destroy', $event->id],'id'=>'delete-form-'.$event->id]) !!}
-                                                        <a href="#" class="mx-3 btn btn-sm  align-items-center bs-pass-para" data-bs-toggle="tooltip" title="{{__('Delete')}}" data-original-title="{{__('Delete')}}" data-confirm="{{__('Are You Sure?').'|'.__('This action can not be undone. Do you want to continue?')}}" data-confirm-yes="document.getElementById('delete-form-{{$event->id}}').submit();"><i class="ti ti-trash text-white"></i></a>
-                                                        {!! Form::close() !!}
-                                                    </div>
-
                                                 </div>
-
-
                                             </div>
-                                        </div>
-                                    </div>
-                                    @endforeach
+                                        @endforeach
                                     @else
-                                    <div class="text-center"></div>
+                                        <div class="text-center"></div>
                                     @endif
                                 </div>
                             </div>
@@ -170,7 +203,7 @@
 
 
     <script type="text/javascript">
-        (function() {
+        (function () {
             var etitle;
             var etype;
             var etypeclass;
@@ -206,11 +239,11 @@
 
 
     <script>
-        $(document).ready(function() {
+        $(document).ready(function () {
             var b_id = $('#branch_id').val();
             getDepartment(b_id);
         });
-        $(document).on('change', 'select[name=branch_id]', function() {
+        $(document).on('change', 'select[name=branch_id]', function () {
             var branch_id = $(this).val();
             getDepartment(branch_id);
         });
@@ -224,7 +257,7 @@
                     "branch_id": bid,
                     "_token": "{{ csrf_token() }}",
                 },
-                success: function(data) {
+                success: function (data) {
 
 
                     $('.department_id').empty();
@@ -234,7 +267,7 @@
                     $('.department_div').html(emp_selct);
 
                     $('.department_id').append('<option value="0"> {{ __('All') }} </option>');
-                    $.each(data, function(key, value) {
+                    $.each(data, function (key, value) {
                         $('.department_id').append('<option value="' + key + '">' + value +
                             '</option>');
                     });
@@ -247,7 +280,7 @@
             });
         }
 
-        $(document).on('change', '.department_id', function() {
+        $(document).on('change', '.department_id', function () {
             var department_id = $(this).val();
             getEmployee(department_id);
         });
@@ -260,7 +293,7 @@
                     "department_id": did,
                     "_token": "{{ csrf_token() }}",
                 },
-                success: function(data) {
+                success: function (data) {
 
                     $('.employee_id').empty();
                     var emp_selct = ` <select class="form-control  employee_id" name="employee_id[]" id="choices-multiple1"
@@ -269,7 +302,7 @@
                     $('.employee_div').html(emp_selct);
 
                     $('.employee_id').append('<option value="0"> {{ __('All') }} </option>');
-                    $.each(data, function(key, value) {
+                    $.each(data, function (key, value) {
                         $('.employee_id').append('<option value="' + key + '">' + value +
                             '</option>');
                     });

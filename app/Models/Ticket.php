@@ -15,6 +15,8 @@ class Ticket extends Model
         'ticket_code',
         'created_by',
         'ticket_created',
+        'company_name',
+        'employee_phone',
         'status',
     ];
 

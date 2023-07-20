@@ -14,22 +14,24 @@ use App\Models\Timemodule;
 use App\Models\Utility;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class EventController extends Controller
 {
     public function index()
     {
-        if (\Auth::user()->can('manage event')) {
+        if (Auth::user()->can('manage event')) {
             // echo ('hussam');
             $todaydate = date('Y-m-d');
-            $expired_events  = Event::where('start_date', '<', $todaydate)->where('created_by', '=', \Auth::user()->creatorId())->orderBy('start_date', 'desc')->get();
+            $expired_events  = Event::where('start_date', '<', $todaydate)->where('company_name', '=', Auth::user()->name)->orderBy('start_date', 'desc')->get();
 
-            $employees = Employee::where('created_by', '=', \Auth::user()->creatorId())->get();
-            $events    = Event::where('created_by', '=', \Auth::user()->creatorId())->get();
+            $employees = Employee::where('created_by', '=', Auth::user()->creatorId())->get();
+            $events    = Event::where('company_name', '=', Auth::user()->name)->get();
             $transdate = date('Y-m-d', time());
 
             $today_date = date('m');
             $current_month_event = Event::select('id', 'start_date', 'end_date', 'title', 'created_at', 'color')
+                ->where('company_name', '=', Auth::user()->name)
                 ->whereRaw('MONTH(start_date)=' . $today_date)->whereRaw('MONTH(end_date)=' . $today_date)->get();
             $arrEvents = [];
 
@@ -54,7 +56,7 @@ class EventController extends Controller
     public function create()
     {
         //if (\Auth::user()->can('create event')) {
-            if (\Auth::user()->type == "super admin") {
+            if (Auth::user()->type == "super admin") {
             $companyname = Timemodule::where('company_name', '!=', '')->get()->pluck('company_name', 'id');
             $employees   = Employee::where('created_by', '=', \Auth::user()->creatorId())->get()->pluck('name', 'id');
             $branch      = Branch::where('created_by', '=', \Auth::user()->creatorId())->get();
@@ -69,9 +71,9 @@ class EventController extends Controller
 
     public function store(Request $request)
     {
-        if (\Auth::user()->can('create event')) {
+        if (Auth::user()->can('create event')) {
 
-            $validator = \Validator::make(
+            $validator = Validator::make(
                 $request->all(),
                 [
                     'branch_id' => 'required',
@@ -101,7 +103,7 @@ class EventController extends Controller
             $event->end_date      = $request->end_date;
             $event->color         = $request->color;
             $event->description   = $request->description;
-            $event->created_by    = \Auth::user()->creatorId();
+            $event->created_by    = Auth::user()->creatorId();
             $event->save();
 
             //  slack

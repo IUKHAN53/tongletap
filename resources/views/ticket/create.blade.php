@@ -6,6 +6,7 @@
                 {{ Form::label('title', __('Subject'), ['class' => 'col-form-label']) }}
                 {{ Form::text('title', null, ['class' => 'form-control', 'placeholder' => __('Enter Ticket Subject')]) }}
             </div>
+
         <!--    <div class="col-md-6 col-sm-12 col-lg-6 col-xl-6">-->
         <!--    <div class="form-group">-->
         <!--        {{ Form::label('CompanyName', __('Company Name'), ['class' => 'col-form-label']) }}-->

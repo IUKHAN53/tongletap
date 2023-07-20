@@ -32,7 +32,7 @@ class ClientController extends Controller
 
     public function index()
     {
-        if(\Auth::user()->can('manage client'))
+        if(\Auth::user()->can('manage client') || \Auth::user()->type == 'super admin')
         {
             $user    = \Auth::user();
             $clients = User::where('created_by', '=', $user->creatorId())->where('type', '=', 'client')->get();
@@ -41,7 +41,6 @@ class ClientController extends Controller
         }
         else
         {
-
             return redirect()->back()->with('error', __('Permission Denied.'));
         }
     }

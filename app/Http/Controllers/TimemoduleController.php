@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Timemodule;
 use App\Models\Ticket;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class TimemoduleController extends Controller

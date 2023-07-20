@@ -27,7 +27,7 @@ $mode_setting = \App\Models\Utility::mode_layout();
 </li>
 @endsection
 @section('content')
-<img src="{{ asset('public/assets/images/butterfly-logo.png') }}" alt="logo" class="center" height="100px" width="100px" />
+<img src="{{ asset('assets/images/butterfly-logo.png') }}" alt="logo" class="center" height="100px" width="100px" />
 
 </a>
 <div class="">
@@ -74,7 +74,7 @@ $mode_setting = \App\Models\Utility::mode_layout();
 </div>
 {{Form::close()}}
 @endsection
-<script src="{{asset('public/js/jquery.min.js')}}"></script>
+<script src="{{asset('js/jquery.min.js')}}"></script>
 <script>
     $(document).ready(function() {
         $("#form_data").submit(function(e) {

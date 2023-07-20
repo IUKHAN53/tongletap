@@ -21,7 +21,7 @@ $SITE_RTL= isset($setting['SITE_RTL'])?$setting['SITE_RTL']:'off';
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="description" content="Dashboard Template Description" />
     <meta name="keywords" content="Dashboard Template" />
-    <meta name="author" content="Rajodiya Infotech" />
+    <meta name="author" content="IU KHAN" />
     <!-- Favicon icon -->
     <link rel="icon" href="{{$logo.'/'.(isset($company_favicon) && !empty($company_favicon)?$company_favicon:'favicon.png')}}" type="image/x-icon" />
     <!-- font css -->
@@ -42,7 +42,7 @@ $SITE_RTL= isset($setting['SITE_RTL'])?$setting['SITE_RTL']:'off';
 </head>
 
 <body class="{{ $color }}">
-    <div class="auth-wrapper auth-v3" style="background : url('public/assets/images/login-bg.png') no-repeat center; background-size: cover">
+    <div class="auth-wrapper auth-v3" style="background : url('assets/images/login-bg.png') no-repeat center; background-size: cover">
         <div class="auth-content" style="align-items: center;padding-top: 150px; border:1px solid transparent;">
             <div class="card" style="background: linear-gradient(132.09deg, rgba(255, 255, 255, 0) -5.63%, rgba(255, 255, 255, 0.7) 100%);border-radius:30px;">
                 <div class="row align-items-center text-start">

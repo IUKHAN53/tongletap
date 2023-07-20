@@ -13,11 +13,13 @@ class RoleController extends Controller
 
     public function index()
     {
-        if(\Auth::user()->can('manage role'))
+        if(\Auth::user()->can('manage role') || \Auth::user()->type == 'super admin')
         {
-
-            $roles = Role::where('created_by', '=', \Auth::user()->creatorId())->where('created_by', '=', \Auth::user()->creatorId())->get();
-
+            if (\Auth::user()->type == 'super admin') {
+                $roles = Role::all();
+            } else {
+                $roles = Role::where('created_by', '=', \Auth::user()->creatorId())->get();
+            }
             return view('role.index')->with('roles', $roles);
         }
         else
@@ -30,7 +32,7 @@ class RoleController extends Controller
 
     public function create()
     {
-        if(\Auth::user()->can('create role'))
+        if(\Auth::user()->can('create role')  || \Auth::user()->type == 'super admin')
         {
             $user = \Auth::user();
             if($user->type == 'super admin')
@@ -59,7 +61,7 @@ class RoleController extends Controller
 
     public function store(Request $request)
     {
-        if(\Auth::user()->can('create role'))
+        if(\Auth::user()->can('create role')  || \Auth::user()->type == 'super admin')
         {
             $validator = \Validator::make(
                 $request->all(), [
@@ -102,9 +104,8 @@ class RoleController extends Controller
 
     public function edit(Role $role)
     {
-        if(\Auth::user()->can('edit role'))
+        if(\Auth::user()->can('edit role')  || \Auth::user()->type == 'super admin')
         {
-
             $user = \Auth::user();
             if($user->type == 'super admin')
             {
@@ -132,7 +133,7 @@ class RoleController extends Controller
 
     public function update(Request $request, Role $role)
     {
-        if(\Auth::user()->can('edit role'))
+        if(\Auth::user()->can('edit role')  || \Auth::user()->type == 'super admin')
         {
             $validator = \Validator::make(
                 $request->all(), [
@@ -178,7 +179,7 @@ class RoleController extends Controller
 
     public function destroy(Role $role)
     {
-        if(\Auth::user()->can('delete role'))
+        if(\Auth::user()->can('delete role')  || \Auth::user()->type == 'super admin')
         {
             $role->delete();
 

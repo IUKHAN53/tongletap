@@ -98,7 +98,7 @@ class TicketController extends Controller
         $ticket        = new Ticket();
         $ticket->title = $request->title;
         $ticket->employee_phone = $request->EmployeePhone;
-        $ticket->company_name = $request->CompanyName;
+        $ticket->company_name = $request->CompanyName ?? auth()->user()->name;
         if (Auth::user()->type == "employee") {
             $ticket->employee_id = \Auth::user()->name;
         } else {
