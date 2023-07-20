@@ -2,10 +2,10 @@
 <div class="modal-body">
 
     <div class="row">
-            <div class="form-group">
-                {{ Form::label('title', __('Subject'), ['class' => 'col-form-label']) }}
-                {{ Form::text('title', null, ['class' => 'form-control', 'placeholder' => __('Enter Ticket Subject')]) }}
-            </div>
+        <div class="form-group">
+            {{ Form::label('title', __('Subject'), ['class' => 'col-form-label']) }}
+            {{ Form::text('title', null, ['class' => 'form-control', 'placeholder' => __('Enter Ticket Subject')]) }}
+        </div>
 
         <!--    <div class="col-md-6 col-sm-12 col-lg-6 col-xl-6">-->
         <!--    <div class="form-group">-->
@@ -15,29 +15,27 @@
         <!--</div>-->
     </div>
 
-    @if (\Auth::user()->type != 'employee')
     <div class="row">
-        <!--<div class="col-md-6 col-sm-12 col-lg-6 col-xl-6">-->
-        <!--    <div class="form-group">-->
-        <!--        {{ Form::label('employee_id', __('Ticket for Employee'), ['class' => 'col-form-label']) }}-->
-        <!--        {{ Form::select('employee_id', $employees, null, ['class' => 'form-control select2 employee_id','placeholder' => __('Select Employee')]) }}-->
-        <!--    </div>-->
-        <!--</div>-->
-        <div class="col-md-6 col-sm-12 col-lg-6 col-xl-6">
-            <div class="form-group">
-                {{ Form::label('time_slot', __('Appointment Time and Day'), ['class' => 'col-form-label']) }}
-                <input type="datetime-local" class="form-control" name="time_slot" id="datetimepicker">
+        @if (\Auth::user()->type != 'employee')
+            <div class="col-md-6 col-sm-12 col-lg-6 col-xl-6">
+                <div class="form-group">
+                    {{ Form::label('employee_id', __('Ticket for Employee'), ['class' => 'col-form-label']) }}
+                    {{ Form::select('employee_id', $employees, null, ['class' => 'form-control select2 employee_id','placeholder' => __('Select Employee')]) }}
+                </div>
             </div>
-        </div>
-        <div class="col-md-6 col-sm-12 col-lg-6 col-xl-6">
-            <div class="form-group">
-                {{ Form::label('EmployeePhone', __('Employee Phone'), ['class' => 'col-form-label']) }}
-                {{ Form::number('EmployeePhone', null, ['class' => 'form-control', 'placeholder' => __('Employee Phone')]) }}
+            <div class="col-md-6 col-sm-12 col-lg-6 col-xl-6">
+                <div class="form-group">
+                    {{ Form::label('time_slot', __('Appointment Time and Day'), ['class' => 'col-form-label']) }}
+                    <input type="datetime-local" class="form-control" name="time_slot" id="datetimepicker">
+                </div>
             </div>
-        </div>
-    </div>
-    @endif
-    <div class="row">
+            <div class="col-md-6 col-sm-12 col-lg-6 col-xl-6">
+                <div class="form-group">
+                    {{ Form::label('EmployeePhone', __('Employee Phone'), ['class' => 'col-form-label']) }}
+                    {{ Form::number('EmployeePhone', null, ['class' => 'form-control', 'placeholder' => __('Employee Phone')]) }}
+                </div>
+            </div>
+        @endif
         <div class="col-md-6 col-sm-12 col-lg-6 col-xl-6">
             <div class="form-group">
                 {{ Form::label('priority', __('Priority'), ['class' => 'col-form-label']) }}
