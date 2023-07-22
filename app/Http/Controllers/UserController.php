@@ -54,10 +54,10 @@ class UserController extends Controller
     public function create()
     {
 
-        $customFields = CustomField::where('created_by', '=', \Auth::user()->creatorId())->where('module', '=', 'user')->get();
-        $user  = \Auth::user();
+        $customFields = CustomField::where('created_by', '=', Auth::user()->creatorId())->where('module', '=', 'user')->get();
+        $user  = Auth::user();
         $roles = Role::where('created_by', '=', $user->creatorId())->where('name','!=','client')->get()->pluck('name', 'id');
-        if(\Auth::user()->can('create user'))
+        if(Auth::user()->can('create user'))
         {
             return view('user.create', compact('roles', 'customFields'));
         }

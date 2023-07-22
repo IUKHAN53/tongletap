@@ -215,7 +215,7 @@
                                                        || Request::segment(1) == 'job-category' || Request::segment(1) == 'terminationtype' || Request::segment(1) == 'awardtype' || Request::segment(1) == 'trainingtype' ||
                                                        Request::segment(1) == 'goaltype' || Request::segment(1) == 'paysliptype' || Request::segment(1) == 'allowanceoption' || Request::segment(1) == 'competencies' || Request::segment(1) == 'loanoption'
                                                        || Request::segment(1) == 'deductionoption')?'active dash-trigger':''}}">
-                                                            <a href="#!" class="dash-link "><span class="dash-micon"><i
+                                            <a href="#!" class="dash-link "><span class="dash-micon"><i
                                                             class="ti ti-user"></i></span><span
                                                         class="dash-mtext">{{__('HRM System')}}</span><span
                                                         class="dash-arrow">
@@ -897,17 +897,19 @@
                                 @endif
                                 <!--------------------- End Eap Managaement System----------------------------------->
 
-                                @can('manage health')
-                                    <li class="dash-item dash-hasmenu {{(Request::segment(1) == 'health' || Request::segment(1) == 'glucose' || Request::segment(1) == 'exercise' || Request::segment(1) == 'weight' || Request::segment(1) == 'sleep')? 'active dash-trigger' :''}}">
+                                @if(Auth::user()->type!='super admin')
+                                    @can('manage health')
+                                        <li class="dash-item dash-hasmenu {{(Request::segment(1) == 'health' || Request::segment(1) == 'glucose' || Request::segment(1) == 'exercise' || Request::segment(1) == 'weight' || Request::segment(1) == 'sleep')? 'active dash-trigger' :''}}">
 
-                                        <a href="{{ route('health.index') }}" class="dash-link">
+                                            <a href="{{ route('health.index') }}" class="dash-link">
 
-                                            <span class="dash-micon"><i
-                                                        class="ti ti-arrow-up-right-circle"></i></span><span
-                                                    class="dash-mtext">{{__('Health Journey')}}</span>
-                                        </a>
-                                    </li>
-                                @endcan
+                                                <span class="dash-micon"><i
+                                                            class="ti ti-arrow-up-right-circle"></i></span><span
+                                                        class="dash-mtext">{{__('Health Journey')}}</span>
+                                            </a>
+                                        </li>
+                                    @endcan
+                                @endif
 
                                 <!--------------------- Start Products System ----------------------------------->
 

@@ -239,12 +239,12 @@ class TicketController extends Controller
         $ticket->save();
 
 //        send notification to user for status change
-        $user = User::find($ticket->employee_id);
-        if($user)$user->notify(new CounsellorStatusChanged($request->status, $ticket->ticket_code));
+//        $user = User::find($ticket->employee_id);
+//        if($user)$user->notify(new CounsellorStatusChanged($request->status, $ticket->ticket_code));
 
-//        Notification::route('mail', [
-//            'iu.khan53@gmail.com' => 'IU Khan',
-//        ])->notify(new CounsellorStatusChanged($request->status, $ticket->ticket_code));
+        Notification::route('mail', [
+            'iu.khan53@gmail.com' => 'IU Khan',
+        ])->notify(new CounsellorStatusChanged($request->status, $ticket->ticket_code));
 
         return redirect()->route('ticket.index')->with('success', __('Ticket status successfully updated.'));
     }
