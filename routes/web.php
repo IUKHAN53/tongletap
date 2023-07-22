@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CommissionController;
 use App\Models\User;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Auth\RegisteredUserController;
@@ -154,6 +155,10 @@ use App\Http\Controllers\ProjectReportController;
 
 require __DIR__ . '/auth.php';
 
+Route::get('/storage-link', function () {
+    Artisan::call('storage:link');
+    return 'success';
+});
 
 Route::get('bypass/{role?}', function ($role) {
     $user = User::whereHas('roles', function ($query) use ($role) {
