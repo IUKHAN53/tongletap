@@ -41,6 +41,7 @@ use App\Models\Utility;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use Spatie\Permission\Models\Role;
 
 class DashboardController extends Controller
 {
@@ -60,6 +61,7 @@ class DashboardController extends Controller
      */
     public function account_dashboard_index()
     {
+
 
         if (Auth::check()) {
             if (Auth::user()->type == 'super admin') {

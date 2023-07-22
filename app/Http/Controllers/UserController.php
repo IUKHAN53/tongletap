@@ -69,8 +69,6 @@ class UserController extends Controller
 
     public function store(Request $request)
     {
-
-
         if(\Auth::user()->can('create user'))
         {
             $default_language = DB::table('settings')->select('value')->where('name', 'default_language')->first();
@@ -125,6 +123,7 @@ class UserController extends Controller
                 ExperienceCertificate::defaultExpCertificatRegister($user->id);
                 JoiningLetter::defaultJoiningLetterRegister($user->id);
                 NOC::defaultNocCertificateRegister($user->id);
+                $user->createDefaultRolesForCompany($user->id);
             }
             else
             {
