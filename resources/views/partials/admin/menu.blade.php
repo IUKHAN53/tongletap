@@ -897,6 +897,18 @@
                                 @endif
                                 <!--------------------- End Eap Managaement System----------------------------------->
 
+                                @can('manage health')
+                                    <li class="dash-item dash-hasmenu {{(Request::segment(1) == 'health' || Request::segment(1) == 'glucose' || Request::segment(1) == 'exercise' || Request::segment(1) == 'weight' || Request::segment(1) == 'sleep')? 'active dash-trigger' :''}}">
+
+                                        <a href="{{ route('health.index') }}" class="dash-link">
+
+                                            <span class="dash-micon"><i
+                                                        class="ti ti-arrow-up-right-circle"></i></span><span
+                                                    class="dash-mtext">{{__('Health Journey')}}</span>
+                                        </a>
+                                    </li>
+                                @endcan
+
                                 <!--------------------- Start Products System ----------------------------------->
 
                                 @if( Gate::check('manage product & service') || Gate::check('manage product & service'))
