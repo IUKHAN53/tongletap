@@ -10,6 +10,7 @@ use App\Notifications\ConsellerRequested;
 use App\Notifications\CounsellorRequested;
 use App\Notifications\CounsellorStatusChanged;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Notification;
 use IlluminateAuth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\FacadesAuth;
@@ -239,7 +240,11 @@ class TicketController extends Controller
 
 //        send notification to user for status change
         $user = User::find($ticket->employee_id);
-        $user->notify(new CounsellorStatusChanged($request->status, $ticket->ticket_code));
+        if($user)$user->notify(new CounsellorStatusChanged($request->status, $ticket->ticket_code));
+
+//        Notification::route('mail', [
+//            'iu.khan53@gmail.com' => 'IU Khan',
+//        ])->notify(new CounsellorStatusChanged($request->status, $ticket->ticket_code));
 
         return redirect()->route('ticket.index')->with('success', __('Ticket status successfully updated.'));
     }

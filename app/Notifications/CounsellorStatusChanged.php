@@ -33,7 +33,7 @@ class CounsellorStatusChanged extends Notification
     {
         return (new MailMessage)
             ->subject('Counsellor Request Status Changed')
-            ->greeting('Hello '.ucfirst($notifiable->name).',')
+            ->greeting('Hello '. ucfirst($notifiable->name ?? 'Employee').',')
             ->line('Your counsellor request status for Ticket Code: '.$this->code.' has been changed to  ' . ucfirst($this->status) . '.' )
             ->action('View Request', url('/ticket'))
             ->line('Thank you for using our application!');
