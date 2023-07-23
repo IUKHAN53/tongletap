@@ -2756,7 +2756,7 @@ class User extends Authenticatable
         $accountant = Role::where('name', 'accountant')->first();
         $permissions = $accountant->getAllPermissions()->pluck('id')->toArray();
         $newRole = new Role();
-        $newRole->name = 'accountant';
+        $newRole->name = 'HR';
         $newRole->created_by = $company;
         $newRole->save();
         $newRole->givePermissionTo($permissions);

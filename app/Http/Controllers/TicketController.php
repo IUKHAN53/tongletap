@@ -26,6 +26,11 @@ class TicketController extends Controller
                 $countPendingTicket = Ticket::where('status', '=', 'pending')->count();
                 $countApprovedTicket = Ticket::where('status', '=', 'approved')->count();
                 $countRejectedTicket = Ticket::where('status', '=', 'rejected')->count();
+            } else if (Auth::user()->type == 'employee') {
+                $countTicket = Ticket::where('company_name', Auth::user()->name)->count();
+                $countPendingTicket = Ticket::where('status', '=', 'pending')->where('company_name', Auth::user()->name)->count();
+                $countApprovedTicket = Ticket::where('status', '=', 'approved')->where('company_name', Auth::user()->name)->count();
+                $countRejectedTicket = Ticket::where('status', '=', 'rejected')->where('company_name', Auth::user()->name)->count();
             } else {
                 $countTicket = Ticket::where('created_by', '=', Auth::user()->creatorId())->count();
                 $countPendingTicket = Ticket::where('status', '=', 'pending')->where('created_by', '=', Auth::user()->creatorId())->count();
@@ -41,10 +46,10 @@ class TicketController extends Controller
                 $tickets = Ticket::all();
             } else if (Auth::user()->type == 'employee') {
                 $tickets = Ticket::where('ticket_created', Auth::user()->id)->get();
-            } else if (Auth::user()->type == 'accountant') {
+            } else if (Auth::user()->type == 'accountant' || Auth::user()->type == 'HR') {
                 $tickets = Ticket::where('ticket_created', Auth::user()->id)->get();
             } else if (Auth::user()->type == 'company') {
-                $tickets = Ticket::where('ticket_created', Auth::user()->id)->get();
+                $tickets = Ticket::where('company_name', Auth::user()->name)->get();
             } else if (Auth::user()->type == 'customer') {
                 $tickets = Ticket::where('ticket_created', Auth::user()->id)->get();
             } else if (Auth::user()->type == 'client') {
@@ -63,10 +68,13 @@ class TicketController extends Controller
     {
         if (Auth::user()->type == 'super admin') {
             $employees = Employee::all()->pluck('name', 'id');
-            $company = User::where('type', 'company')->get()->pluck('name');
+            $company = User::where('type', 'company')->get()->pluck('name','id');
+        } else if (strtolower(Auth::user()->type) == 'employee') {
+            $employees = User::where('id', Auth::user()->id)->get()->pluck('name', 'id');
+            $company = null;
         } else {
-            $employees = User::where('name', '=', Auth::user()->name)->get()->pluck('name', 'id');
-            $company = User::where('type', 'company')->where('name', Auth()->user()->name)->get()->pluck('name');
+            $employees = User::where('type', 'employee')->get()->pluck('name', 'id');
+            $company = null;
         }
         return view('ticket.create', compact('employees', 'company'));
     }
@@ -85,6 +93,7 @@ class TicketController extends Controller
                 // 'CompanyName' => 'required',
             ]
         );
+
         if ($validator->fails()) {
             $messages = $validator->getMessageBag();
 
@@ -105,11 +114,12 @@ class TicketController extends Controller
         $ticket = new Ticket();
         $ticket->title = $request->title;
         $ticket->employee_phone = $request->EmployeePhone;
-        $ticket->company_name = $request->CompanyName ?? auth()->user()->name;
         if (Auth::user()->type == "employee") {
             $ticket->employee_id = auth()->id();
+            $ticket->company_name = auth()->user()->ownerDetails()->name;
         } else {
             $ticket->employee_id = $request->employee_id;
+            $ticket->company_name = User::find($request->CompanyName)->name ?? auth()->user()->name;
         }
         $ticket->priority = $request->priority;
 
@@ -129,7 +139,7 @@ class TicketController extends Controller
         $ticket->save();
 
 //        Send email notification to super admin
-        if(Auth::user()->type != 'super admin'){
+        if (Auth::user()->type != 'super admin') {
             $admins = User::whereHas('roles', function ($query) {
                 $query->where('name', 'super admin');
             })->get();
@@ -148,26 +158,31 @@ class TicketController extends Controller
 
         if (Auth::user()->type == 'super admin') {
             $employees = User::all()->pluck('name', 'id');
+            $company = \App\Models\User::query()->where('type', 'company')->pluck('name', 'id');
+        } else if (strtolower(Auth::user()->type) == 'employee') {
+            $employees = User::where('id', Auth::user()->id)->get()->pluck('name', 'id');
+            $company = null;
         } else {
-            $employees = User::where('name', '=', Auth::user()->name)->get()->pluck('name', 'id');
+            $employees = User::where('type', 'employee')->where('created_by', Auth::user()->creatorId())->get()->pluck('name', 'id');
+            $company = null;
         }
 
-        return view('ticket.edit', compact('ticket', 'employees'));
+        return view('ticket.edit', compact('ticket', 'employees', 'company'));
     }
 
     public function update(Request $request, $ticket)
     {
         $ticket = Ticket::find($ticket);
 
-        $validator = \Validator::make(
+        $validator = Validator::make(
             $request->all(),
             [
                 'title' => 'required',
-                'employee_id' => 'required',
-                'EmployeePhone' => 'required',
+//                'employee_id' => 'required',
+//                'EmployeePhone' => 'required',
                 'time_slot' => 'required',
                 'description' => 'required',
-                'CompanyName' => 'required',
+//                'CompanyName' => 'required',
             ]
         );
         if ($validator->fails()) {
@@ -186,10 +201,10 @@ class TicketController extends Controller
             }
         }
         $ticket->title = $request->title;
-        $ticket->employee_phone = $request->EmployeePhone;
-        $ticket->company_name = $request->CompanyName;
+        $ticket->employee_phone = $request->EmployeePhone ?? $ticket->employee_phone;
+        $ticket->company_name = User::find($request->CompanyName)->name ?? $ticket->company_name;
         if (Auth::user()->type == "employee") {
-            $ticket->employee_id = Auth::user()->name;
+            $ticket->employee_id = Auth::user()->id;
         } else {
             $ticket->employee_id = $request->employee_id;
         }
@@ -240,7 +255,7 @@ class TicketController extends Controller
 
 //        send notification to user for status change
         $user = User::find($ticket->employee_id);
-        if($user)$user->notify(new CounsellorStatusChanged($request->status, $ticket->ticket_code));
+        if ($user) $user->notify(new CounsellorStatusChanged($request->status, $ticket->ticket_code));
         else
             return redirect()->route('ticket.index')->with('info', __('Ticket status successfully updated but email failed to send because of no employee.'));
 

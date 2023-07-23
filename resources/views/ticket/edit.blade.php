@@ -1,20 +1,19 @@
 {{ Form::model($ticket, ['route' => ['ticket.update', $ticket->id], 'method' => 'PUT']) }}
 <div class="modal-body">
     <div class="row">
-        <div class="col-md-6 col-sm-12 col-lg-6 col-xl-6">
             <div class="form-group">
                 {{ Form::label('title', __('Subject'), ['class' => 'col-form-label']) }}
                 {{ Form::text('title', null, ['class' => 'form-control', 'placeholder' => __('Enter Ticket Subject')]) }}
             </div>
-        </div>
-        <div class="col-md-6 col-sm-12 col-lg-6 col-xl-6">
-            <div class="form-group">
-                {{ Form::label('CompanyName', __('Company Name'), ['class' => 'col-form-label']) }}
-                <input type="text" class="form-control" name="CompanyName" id="CompanyName" value="{{$ticket->company_name}}">
+        @if(Auth::user()->type == 'super admin')
+            <div class="col-md-6 col-sm-12 col-lg-6 col-xl-6">
+                <div class="form-group">
+                    {{ Form::label('CompanyName', __('Company Name'), ['class' => 'col-form-label']) }}
+                    {{ Form::select('CompanyName', $company, null,['class' => 'form-control select2 company_name', 'placeholder' => __('Company Name')]) }}
+                </div>
             </div>
-        </div>
+        @endif
     </div>
-    @if (\Auth::user()->type != 'employee')
     <div class="row">
         <div class="col-md-6 col-sm-12 col-lg-6 col-xl-6">
             <div class="form-group">
@@ -25,11 +24,11 @@
         <div class="col-md-6 col-sm-12 col-lg-6 col-xl-6">
             <div class="form-group">
                 {{ Form::label('EmployeePhone', __('Employee Phone'), ['class' => 'col-form-label']) }}
-                <input type="number" class="form-control" name="EmployeePhone" id="EmployeePhone" value="{{$ticket->employee_phone}}">
+                <input type="number" class="form-control" name="EmployeePhone" id="EmployeePhone"
+                       value="{{$ticket->employee_phone}}">
             </div>
         </div>
     </div>
-    @endif
     <div class="row">
         <div class="col-md-6 col-sm-12 col-lg-6 col-xl-6">
             <div class="form-group">
@@ -50,7 +49,7 @@
         <div class="col-md-6 col-sm-12 col-lg-6 col-xl-6">
             <div class="form-group">
                 {{ Form::label('time_slot', __('Time Slot'), ['class' => 'col-form-label']) }}
-                <input type="datetime-local" class="form-control" name="time_slot" id="datetimepicker">
+                <input type="datetime-local" class="form-control" name="time_slot" value="{{$ticket->time_slot}}" id="datetimepicker">
             </div>
         </div>
     </div>

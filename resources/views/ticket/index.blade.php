@@ -164,7 +164,7 @@
                                     $user = \Auth::user();
                                     @endphp
 
-                                    <td>{{ $ticket->employee_name }}</td>
+                                    <td>{{ $ticket->employee->name ?? ''}}</td>
                                     <td>{{ $ticket->employee_phone }}</td>
                                     <td>{{ $ticket->company_name }}</td>
                                     @endif

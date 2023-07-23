@@ -34,4 +34,9 @@ class Ticket extends Model
     {
         return $this->hasOne('App\Models\User', 'id', 'ticket_created');
     }
+
+    public function employee()
+    {
+        return $this->hasOne('App\Models\User', 'id', 'employee_id');
+    }
 }
