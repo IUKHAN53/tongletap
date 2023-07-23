@@ -26,7 +26,7 @@ class TicketController extends Controller
                 $countPendingTicket = Ticket::where('status', '=', 'pending')->count();
                 $countApprovedTicket = Ticket::where('status', '=', 'approved')->count();
                 $countRejectedTicket = Ticket::where('status', '=', 'rejected')->count();
-            } else if (Auth::user()->type == 'employee') {
+            } else if (Auth::user()->type == 'company') {
                 $countTicket = Ticket::where('company_name', Auth::user()->name)->count();
                 $countPendingTicket = Ticket::where('status', '=', 'pending')->where('company_name', Auth::user()->name)->count();
                 $countApprovedTicket = Ticket::where('status', '=', 'approved')->where('company_name', Auth::user()->name)->count();

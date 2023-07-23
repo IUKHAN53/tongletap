@@ -56,8 +56,13 @@
                                                                     {{$event->title}}
                                                                 </a>
                                                             </h5><br>
-
                                                             <p class="card-text small text-dark mt-0">
+                                                                @role('super admin')
+                                                                @if($event->company_id)
+                                                                    {{__('Company')}} :
+                                                                    {{ $event->company->name ?? ''}}<br>
+                                                                @endif
+                                                                @endrole
                                                                 {{__('Start Date : ')}}
                                                                 {{  \Auth::user()->dateFormat($event->start_date)}}<br>
                                                                 {{__('End Date : ')}}
@@ -144,8 +149,10 @@
 
                                                             <p class="card-text small text-dark mt-0">
                                                                 @role('super admin')
-                                                                {{__('Company')}} :
-                                                                {{ $event->company->name }}<br>
+                                                                @if($event->company_id)
+                                                                    {{__('Company')}} :
+                                                                    {{ $event->company->name ?? ''}}<br>
+                                                                @endif
                                                                 @endrole
                                                                 {{__('Start Date : ')}}
                                                                 {{ \Auth::user()->dateFormat($event->start_date)}}<br>
