@@ -25,31 +25,31 @@
     <link rel="icon"
           href="{{ asset(Storage::url('uploads/logo/')) . '/' . (isset($companySettings['company_favicon']) && !empty($companySettings['company_favicon']) ? $companySettings['company_favicon']->value : 'favicon.png') }}"
           type="image" sizes="16x16">
-    <link rel="stylesheet" href="{{ asset('public/assets/fonts/tabler-icons.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('public/css/site.css') }}" id="stylesheet">
+    <link rel="stylesheet" href="{{ asset('assets/fonts/tabler-icons.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/site.css') }}" id="stylesheet">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <!-- font css -->
-    <link rel="stylesheet" href="{{ asset('public/assets/fonts/tabler-icons.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('public/assets/fonts/feather.css') }}">
-    <link rel="stylesheet" href="{{ asset('public/assets/fonts/fontawesome.css') }}">
-    <link rel="stylesheet" href="{{ asset('public/assets/fonts/material.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/fonts/tabler-icons.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/fonts/feather.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/fonts/fontawesome.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/fonts/material.css') }}">
 
     <!--bootstrap switch-->
-    <link rel="stylesheet" href="{{ asset('public/assets/css/plugins/bootstrap-switch-button.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/plugins/bootstrap-switch-button.min.css') }}">
 
     <!-- vendor css -->
     @if ($SITE_RTL == 'on')
-        <link rel="stylesheet" href="{{ asset('public/assets/css/style-rtl.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/css/style-rtl.css') }}">
     @endif
     @if ($setting['cust_darklayout'] == 'on')
-        <link rel="stylesheet" href="{{ asset('public/assets/css/style-dark.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/css/style-dark.css') }}">
     @else
-        <link rel="stylesheet" href="{{ asset('public/assets/css/style.css') }}" id="main-style-link">
+        <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}" id="main-style-link">
     @endif
 
-    <link rel="stylesheet" href="{{ asset('public/assets/css/customizer.css') }}">
-    <link rel="stylesheet" href="{{ asset('public/css/custom.css') }}" id="main-style-link">
+    <link rel="stylesheet" href="{{ asset('assets/css/customizer.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/custom.css') }}" id="main-style-link">
 
     <style>
 
@@ -277,29 +277,29 @@
 </div>
 
 <!-- Required Js -->
-<script src="{{ asset('public/js/jquery.min.js') }}"></script>
-<script src="{{ asset('public/assets/js/plugins/popper.min.js') }}"></script>
-<script src="{{ asset('public/assets/js/plugins/perfect-scrollbar.min.js') }}"></script>
-<script src="{{ asset('public/assets/js/plugins/bootstrap.min.js') }}"></script>
-<script src="{{ asset('public/assets/js/plugins/feather.min.js') }}"></script>
-<script src="{{ asset('public/assets/js/dash.js') }}"></script>
-<script src="{{ asset('public/js/moment.min.js') }}"></script>
+<script src="{{ asset('js/jquery.min.js') }}"></script>
+<script src="{{ asset('assets/js/plugins/popper.min.js') }}"></script>
+<script src="{{ asset('assets/js/plugins/perfect-scrollbar.min.js') }}"></script>
+<script src="{{ asset('assets/js/plugins/bootstrap.min.js') }}"></script>
+<script src="{{ asset('assets/js/plugins/feather.min.js') }}"></script>
+<script src="{{ asset('assets/js/dash.js') }}"></script>
+<script src="{{ asset('js/moment.min.js') }}"></script>
 
 
-<script src="{{ asset('public/assets/js/plugins/bootstrap-switch-button.min.js') }}"></script>
+<script src="{{ asset('assets/js/plugins/bootstrap-switch-button.min.js') }}"></script>
 
-<script src="{{ asset('public/assets/js/plugins/sweetalert2.all.min.js') }}"></script>
-<script src="{{ asset('public/assets/js/plugins/simple-datatables.js') }}"></script>
+<script src="{{ asset('assets/js/plugins/sweetalert2.all.min.js') }}"></script>
+<script src="{{ asset('assets/js/plugins/simple-datatables.js') }}"></script>
 
 <!-- Apex Chart -->
-<script src="{{ asset('public/assets/js/plugins/apexcharts.min.js') }}"></script>
-<script src="{{ asset('public/assets/js/plugins/main.min.js') }}"></script>
-<script src="{{ asset('public/assets/js/plugins/choices.min.js') }}"></script>
-<script src="{{ asset('public/assets/js/plugins/flatpickr.min.js') }}"></script>
+<script src="{{ asset('assets/js/plugins/apexcharts.min.js') }}"></script>
+<script src="{{ asset('assets/js/plugins/main.min.js') }}"></script>
+<script src="{{ asset('assets/js/plugins/choices.min.js') }}"></script>
+<script src="{{ asset('assets/js/plugins/flatpickr.min.js') }}"></script>
 
 
-<script src="{{ asset('public/js/jscolor.js') }}"></script>
-<script src="{{ asset('public/js/custom.js') }}"></script>
+<script src="{{ asset('js/jscolor.js') }}"></script>
+<script src="{{ asset('js/custom.js') }}"></script>
 
 @if($message = Session::get('success'))
     <script>

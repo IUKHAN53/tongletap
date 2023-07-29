@@ -10,9 +10,6 @@ class BloodPressure extends Model
 	use HasFactory;
 	protected $table = "blood_pressure";
 
-	protected $fillable = [
-		'sys',
-		'dia',
-		'datetime',
-	];
+    protected $guarded = [];
+
 }

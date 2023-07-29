@@ -10,9 +10,5 @@ class Exercise extends Model
 	use HasFactory;
 
 	protected $table = "exercise";
-	protected $fillable = [
-		'exercise_time',
-		'exercise_type',
-		'datetime',
-	];
+	protected $guarded = [];
 }

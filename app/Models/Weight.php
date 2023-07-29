@@ -10,8 +10,6 @@ class Weight extends Model
 	use HasFactory;
 
 	protected $table = "weight";
-	protected $fillable = [
-		'weight',
-		'datetime',
-	];
+    protected $guarded = [];
+
 }

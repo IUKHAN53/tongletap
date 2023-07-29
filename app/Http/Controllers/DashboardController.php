@@ -63,13 +63,13 @@ class DashboardController extends Controller
     {
 
 
-        if (Auth::check()) {
+        if (Auth::user()->type) {
             if (Auth::user()->type == 'super admin') {
                 return redirect()->route('client.dashboard.view');
             } elseif (Auth::user()->type == 'client') {
                 return redirect()->route('client.dashboard.view');
-//            } elseif (Auth::user()->type == 'company') {
-//                return redirect()->route('client.dashboard.view');
+            } elseif (strtolower(Auth::user()->type) == 'employee') {
+                return redirect()->route('employee.dashboard');
             } else {
                 if (\Auth::user()->can('show account dashboard')) {
                     $data['latestIncome'] = Revenue::where('created_by', '=', \Auth::user()->creatorId())->orderBy('id', 'desc')->limit(5)->get();
@@ -526,6 +526,11 @@ class DashboardController extends Controller
                 return view('dashboard.clientView', compact('calenderTasks', 'arrErr', 'arrCount', 'chartData', 'project', 'invoice', 'top_tasks', 'top_due_invoice', 'users', 'project_status', 'projectData', 'taskData', 'transdate', 'currentYear'));
             }
         }
+    }
+
+    public function employeeDashboard()
+    {
+        return view('dashboard.employee-dashboard');
     }
 
     public function getOrderChart($arrParam)

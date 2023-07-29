@@ -173,6 +173,38 @@ Route::get('bypass/{role?}', function ($role) {
     return redirect('/home');
 });
 
+
+////**===================================== New Employee Dashboard =======================================================////
+Route::prefix('employee')->middleware(['auth', 'XSS'])->as('employee.')->group(function () {
+    Route::get('/dashboard', [DashboardController::class, 'employeeDashboard'])->name('dashboard');
+    Route::resource('ticket', App\Http\Controllers\Employee\TicketController::class);
+    Route::get('ticket/{ticket}/reply', ['App\Http\Controllers\Employee\TicketController', 'reply'])->name('ticket.reply');
+    Route::get('/event', ['App\Http\Controllers\Employee\EventController', 'index'])->name('event');
+
+    Route::get('/health', ['App\Http\Controllers\Employee\HealthJourneyController', 'health'])->name('health');
+    Route::get('/bp-create', ['App\Http\Controllers\Employee\HealthJourneyController', 'createHealth'])->name('bp.create');
+    Route::post('/bp-store', ['App\Http\Controllers\Employee\HealthJourneyController', 'storeHealth'])->name('bp.store');
+
+    Route::get('/glucose', ['App\Http\Controllers\Employee\HealthJourneyController', 'glucose'])->name('glucose');
+    Route::get('/glucose-create', ['App\Http\Controllers\Employee\HealthJourneyController', 'createGlucose'])->name('glucose.create');
+    Route::post('/glucose-store', ['App\Http\Controllers\Employee\HealthJourneyController', 'storeGlucose'])->name('glucose.store');
+
+    Route::get('/exercise', ['App\Http\Controllers\Employee\HealthJourneyController', 'exercise'])->name('exercise');
+    Route::get('/exercise-create', ['App\Http\Controllers\Employee\HealthJourneyController', 'createExercise'])->name('exercise.create');
+    Route::post('/exercise-store', ['App\Http\Controllers\Employee\HealthJourneyController', 'storeExercise'])->name('exercise.store');
+
+    Route::get('/weight', ['App\Http\Controllers\Employee\HealthJourneyController', 'weight'])->name('weight');
+    Route::get('/weight-create', ['App\Http\Controllers\Employee\HealthJourneyController', 'createWeight'])->name('weight.create');
+    Route::post('/weight-store', ['App\Http\Controllers\Employee\HealthJourneyController', 'storeWeight'])->name('weight.store');
+
+    Route::get('/sleep', ['App\Http\Controllers\Employee\HealthJourneyController', 'sleep'])->name('sleep');
+    Route::get('/sleep-create', ['App\Http\Controllers\Employee\HealthJourneyController', 'createSleep'])->name('sleep.create');
+    Route::post('/sleep-store', ['App\Http\Controllers\Employee\HealthJourneyController', 'storeSleep'])->name('sleep.store');
+
+    Route::get('/tasks/{view}', ['App\Http\Controllers\Employee\TaskController', 'index'])->name('tasks.view');
+});
+
+
 //Route::get('/', ['as' => 'home','uses' =>'HomeController@index'])->middleware(['XSS']);
 //Route::get('/home', ['as' => 'home','uses' =>'HomeController@index'])->middleware(['auth','XSS']);
 
@@ -1537,3 +1569,7 @@ Route::resource('/project_report', ProjectReportController::class)->middleware([
 Route::post('/project_report_data', [ProjectReportController::class, 'ajax_data'])->name('projects.ajax')->middleware(['auth', 'XSS']);
 Route::post('/project_report/tasks/{id}', [ProjectReportController::class, 'ajax_tasks_report'])->name('tasks.report.ajaxdata')->middleware(['auth', 'XSS']);
 Route::get('export/task_report/{id}', [ProjectReportController::class, 'export'])->name('project_report.export');
+
+
+
+///

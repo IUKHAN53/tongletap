@@ -10,8 +10,6 @@ class Sleep extends Model
 	use HasFactory;
 
 	protected $table = "sleep";
-	protected $fillable = [
-		'sleep_hours',
-		'datetime',
-	];
+    protected $guarded = [];
+
 }

@@ -10,9 +10,6 @@ class Glucose extends Model
 	use HasFactory;
 
 	protected $table = "glucose";
-	protected $fillable = [
-		'mgdl',
-		'measure_type',
-		'datetime',
-	];
+    protected $guarded = [];
+
 }

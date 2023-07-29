@@ -35,7 +35,6 @@
     <!-- Favicon icon -->
 {{--    <link rel="icon" href="{{ asset('assets/images/favicon.svg') }}" type="image/x-icon"/>--}}
     <!-- Calendar-->
-    @stack('css-page')
     <link rel="stylesheet" href="{{ asset('assets/css/plugins/main.css') }}">
 
     <link rel="stylesheet" href="{{ asset('assets/css/plugins/style.css') }}">
