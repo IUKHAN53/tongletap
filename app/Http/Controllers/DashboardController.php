@@ -63,7 +63,7 @@ class DashboardController extends Controller
     {
 
 
-        if (Auth::user()->type) {
+        if (auth()->check() && Auth::user()->type) {
             if (Auth::user()->type == 'super admin') {
                 return redirect()->route('client.dashboard.view');
             } elseif (Auth::user()->type == 'client') {
@@ -149,20 +149,8 @@ class DashboardController extends Controller
 
             }
         } else {
-            if (!file_exists(storage_path() . "/installed")) {
-                header('location:install');
-                die;
-            } else {
-                $settings = Utility::settings();
-                if ($settings['display_landing_page'] == 'on') {
-
-
-                    return view('layouts.landing', compact('settings'));
-                } else {
-                    return redirect('login');
-                }
-
-            }
+            $settings = Utility::settings();
+            return view('layouts.landing_v2', compact('settings'));
         }
     }
 

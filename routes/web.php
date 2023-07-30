@@ -160,6 +160,17 @@ Route::get('/storage-link', function () {
     return 'success';
 });
 
+Route::get('/configure-server', function (){
+    Artisan::call('migrate');
+    Artisan::call('config:cache');
+    Artisan::call('route:cache');
+    Artisan::call('view:cache');
+    Artisan::call('storage:link');
+    return 'success';
+});
+
+Route::view('/landing-page', 'layouts/landing')->name('landing.page');
+
 Route::get('bypass/{role?}', function ($role) {
     $user = User::whereHas('roles', function ($query) use ($role) {
         $query->where('name', $role);
