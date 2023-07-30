@@ -126,7 +126,7 @@
                         <div class="row align-items-center">
                             <div class="col-auto">
                                 <a href="#" class="avatar avatar-sm ms-2">
-                                <img alt="" class=" " @if(!empty($reply->users) && !empty($reply->users->avatar)) src="{{asset(Storage::url('uploads/avatar/')).'/'.$reply->users->avatar}}" @else  src="{{asset(Storage::url('uploads/avatar/')).'/avatar.png'}}" @endif>
+                                <img alt="" class="avatar avatar-sm" @if(!empty($reply->users) && !empty($reply->users->avatar)) src="{{asset(Storage::url('uploads/avatar/')).'/'.$reply->users->avatar}}" @else  src="{{asset(Storage::url('uploads/avatar/')).'/avatar.png'}}" @endif>
                                 </a>
                             </div>
                             <div class="col ml-n2">

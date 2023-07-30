@@ -196,24 +196,6 @@
                                     </td>
 
                                     <td>{{$support->ticket_code}}</td>
-                                    {{--                                <td>--}}
-                                    {{--                                    @if(!empty($support->attachment))--}}
-                                    {{--                                        <div class="action-btn bg-primary ms-2">--}}
-
-                                    {{--                                        <a href="{{asset(Storage::url('uploads/supports')).'/'.$support->attachment}}" download="" class="mx-3 btn btn-sm align-items-center" target="_blank">--}}
-
-                                    {{--                                                <i class="ti ti-download text-white" data-bs-toggle="tooltip" data-bs-original-title="{{ __('Download') }}"></i></a>--}}
-                                    {{--                                        </div>--}}
-                                    {{--                                            <div class="action-btn bg-secondary ms-2">--}}
-                                    {{--                                            <a class="mx-3 btn btn-sm align-items-center" href="{{asset(Storage::url('uploads/supports')).'/'.$support->attachment}}" target="_blank"  >--}}
-                                    {{--                                                <i class="ti ti-crosshair text-white" data-bs-toggle="tooltip" data-bs-original-title="{{ __('Preview') }}"></i>--}}
-                                    {{--                                            </a>--}}
-                                    {{--                                        </div>--}}
-                                    {{--                                    @else--}}
-                                    {{--                                        ---}}
-                                    {{--                                    @endif--}}
-                                    {{--                                </td>--}}
-
                                     <td>
                                         @if(!empty($support->attachment))
                                             <a class="action-btn bg-primary ms-2 btn btn-sm align-items-center"
@@ -245,8 +227,8 @@
                                     <td>{{\Auth::user()->dateFormat($support->created_at)}}</td>
 
                                     <td class="Action">
-                                        <span>
-                                            <div class="action-btn bg-warning ms-2">
+                                        <span class="d-flex align-center justify-content-center">
+                                            <div class="action-btn bg-warning rounded btn-sm">
                                                 <a href="{{ route('employee.support.reply',\Crypt::encrypt($support->id)) }}"
                                                    data-title="{{__('Support Reply')}}"
                                                    class="mx-3 btn btn-sm align-items-center" data-bs-toggle="tooltip"
@@ -255,7 +237,7 @@
                                                 </a>
                                             </div>
                                             @if(\Auth::user()->type=='company' || \Auth::user()->id==$support->ticket_created)
-                                                <div class="action-btn bg-primary ms-2">
+                                                <div class="action-btn bg-primary rounded btn-sm">
                                                     <a href="#" data-size="lg"
                                                        data-url="{{ route('employee.support.edit',$support->id) }}"
                                                        data-ajax-popup="true" data-title="{{__('Edit Support')}}"
@@ -266,7 +248,7 @@
                                                     </a>
                                                 </div>
 
-                                                <div class="action-btn bg-danger ms-2">
+                                                <div class="action-btn bg-danger rounded btn-sm">
                                                     {!! Form::open(['method' => 'DELETE', 'route' => ['employee.support.destroy', $support->id],'id'=>'delete-form-'.$support->id]) !!}
 
                                                     <a href="#!"

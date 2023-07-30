@@ -13,11 +13,11 @@ class SupportController extends Controller
 {
     public function index()
     {
-        $supports = Support::where('user', auth()->user()->id)->orWhere('ticket_created', auth()->user()->id)->get();
-        $countTicket = Support::where('user', auth()->user()->id)->orWhere('ticket_created', auth()->user()->id)->count();
-        $countOpenTicket = Support::where('user', auth()->user()->id)->orWhere('ticket_created', auth()->user()->id)->count();
-        $countonholdTicket = Support::where('user', auth()->user()->id)->orWhere('ticket_created', auth()->user()->id)->count();
-        $countCloseTicket = Support::where('user', auth()->user()->id)->orWhere('ticket_created', auth()->user()->id)->count();
+        $supports = Support::where('user', auth()->user()->id)->get();
+        $countTicket = Support::where('user', auth()->user()->id)->count();
+        $countOpenTicket = Support::where('status','Open')->where('user', auth()->user()->id)->count();
+        $countonholdTicket = Support::where('status','On Hold')->where('user', auth()->user()->id)->count();
+        $countCloseTicket = Support::where('status','Close')->where('user', auth()->user()->id)->count();
         return view('employee.content.support.index', compact('supports', 'countTicket', 'countOpenTicket', 'countonholdTicket', 'countCloseTicket'));
     }
 
@@ -58,56 +58,26 @@ class SupportController extends Controller
         $support->ticket_code = date('hms');
         $support->status = 'Open';
 
-        if ($support->attachment) {
-            $path = storage_path('uploads/supports' . $support->attachment);
-            if (file_exists($path)) {
-                \File::delete($path);
+        if ($request->hasFile('attachment')) {
+            if ($support->attachment) {
+                $path = storage_path('uploads/supports' . $support->attachment);
+                if (file_exists($path)) {
+                    \File::delete($path);
+                }
             }
-        }
-        $fileName = time() . "_" . $request->attachment->getClientOriginalName();
-        $support->attachment = $fileName;
-        $dir = 'uploads/supports';
-        $path = Utility::upload_file($request, 'attachment', $fileName, $dir, []);
-        if ($path['flag'] == 0) {
-            return redirect()->back()->with('error', __($path['msg']));
+            $fileName = time() . "_" . $request->attachment->getClientOriginalName();
+            $support->attachment = $fileName;
+            $dir = 'uploads/supports';
+            $path = Utility::upload_file($request, 'attachment', $fileName, $dir, []);
+            if ($path['flag'] == 0) {
+                return redirect()->back()->with('error', __($path['msg']));
+            }
         }
         $support->description = $request->description;
         $support->created_by = auth()->user()->id;
         $support->ticket_created = auth()->user()->id;
         $request->user = auth()->user()->id;
         $support->save();
-
-//            //Slack Notification
-//            $setting = Utility::settings(auth()->user()->creatorId());
-//            $support_priority = \App\Models\Support::$priority[$support->priority];
-//            $user = User::find($request->user);
-//            if (isset($setting['support_notification']) && $setting['support_notification'] == 1) {
-//                $msg = __("New Support ticket created of") . ' ' . $support_priority . ' ' . __(" priority for") . ' ' . $user->name . '.';
-//                Utility::send_slack_msg($msg);
-//            }
-//
-//            //Telegram Notification
-//            $setting = Utility::settings(auth()->user()->creatorId());
-//            $support_priority = \App\Models\Support::$priority[$support->priority];
-//            $user = User::find($request->user);
-//            if (isset($setting['telegram_support_notification']) && $setting['telegram_support_notification'] == 1) {
-//                $msg = __("New Support ticket created of") . ' ' . $support_priority . ' ' . __(" priority for") . ' ' . $user->name . '.';
-//                Utility::send_telegram_msg($msg);
-//            }
-//
-//            // send mail
-//            $id = !empty($request->user) ? $request->user : auth()->user()->id;
-//            $employee = User::find($id);
-//            $support_priority = \App\Models\Support::$priority[$support->priority];
-//            $supportArr = [
-//                'support_name' => $employee->name,
-//                'support_title' => $support->subject,
-//                'support_priority' => $support_priority,
-//                'support_end_date' => $support->end_date,
-//                'support_description' => $support->description,
-//
-//            ];
-//            $resp = Utility::sendEmailTemplate('new_support_ticket', [$employee->id => $employee->email], $supportArr);
 
         return redirect()->route('employee.support.index')->with('success', __('Support successfully added.'));
     }
@@ -152,11 +122,11 @@ class SupportController extends Controller
         }
 
         $support->subject = $request->subject;
-        $support->user = $request->user;
+        $support->user = auth()->user()->id;
         $support->priority = $request->priority;
         $support->status = $request->status;
         $support->end_date = $request->end_date;
-        if (!empty($request->attachment)) {
+        if ($request->hasFile('attachment')) {
             if ($support->attachment) {
                 $path = storage_path('uploads/supports' . $support->attachment);
                 if (file_exists($path)) {
