@@ -43,17 +43,17 @@ class TicketController extends Controller
             $ticket_arr = json_encode($arr);
 
             if (Auth::user()->type == 'super admin') {
-                $tickets = Ticket::all();
+                $tickets = Ticket::query()->latest()->get();
             } else if (Auth::user()->type == 'employee') {
-                $tickets = Ticket::where('ticket_created', Auth::user()->id)->get();
+                $tickets = Ticket::where('ticket_created', Auth::user()->id)->latest()->get();
             } else if (Auth::user()->type == 'accountant' || Auth::user()->type == 'HR') {
-                $tickets = Ticket::where('ticket_created', Auth::user()->id)->get();
+                $tickets = Ticket::where('ticket_created', Auth::user()->id)->latest()->get();
             } else if (Auth::user()->type == 'company') {
-                $tickets = Ticket::where('company_name', Auth::user()->name)->get();
+                $tickets = Ticket::where('company_name', Auth::user()->name)->latest()->get();
             } else if (Auth::user()->type == 'customer') {
-                $tickets = Ticket::where('ticket_created', Auth::user()->id)->get();
+                $tickets = Ticket::where('ticket_created', Auth::user()->id)->latest()->get();
             } else if (Auth::user()->type == 'client') {
-                $tickets = Ticket::where('ticket_created', Auth::user()->id)->get();
+                $tickets = Ticket::where('ticket_created', Auth::user()->id)->latest()->get();
             } else {
                 $tickets = Ticket::select('tickets.*')->join('users', 'tickets.created_by', '=', 'users.id')->where('users.created_by', '=', Auth::user()->creatorId())->orWhere('tickets.created_by', Auth::user()->creatorId())->get();
             }

@@ -118,7 +118,7 @@
                         </a>
                     </li>
                     <li class="sidebar-item">
-                        <a class="sidebar-link" href="#" aria-expanded="false">
+                        <a class="sidebar-link" href="{{route('employee.support.index')}}" aria-expanded="false">
                             <span>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                      fill="none">
@@ -160,11 +160,14 @@
                         <h6 class="mb-0 fs-4 fw-semibold">{{auth()->user()->name}}</h6>
                         <span class="fs-2 text-dark">{{auth()->user()->type}}</span>
                     </div>
-                    <button class="border-0 bg-transparent text-primary ms-auto" tabindex="0" type="button"
-                            aria-label="logout" data-bs-toggle="tooltip" data-bs-placement="top"
-                            data-bs-title="logout">
-                        <i class="ti ti-power fs-6"></i>
-                    </button>
+                    <form action="{{route('logout')}}" method="POST">
+                        @csrf
+                        <button class="border-0 bg-transparent text-primary ms-auto" tabindex="0" type="submit"
+                                aria-label="logout" data-bs-toggle="tooltip" data-bs-placement="top"
+                                data-bs-title="logout">
+                            <i class="ti ti-power fs-6"></i>
+                        </button>
+                    </form>
                 </div>
             </div>
             <!-- End Sidebar navigation -->
@@ -356,15 +359,15 @@
                                                  class="rounded-circle"
                                                  width="80" height="80" alt="">
                                             <div class="ms-3">
-                                                <h5 class="mb-1 fs-3">Mathew Anderson</h5>
-                                                <span class="mb-1 d-block text-dark">Designer</span>
+                                                <h5 class="mb-1 fs-3">{{auth()->user()->name}}</h5>
+                                                <span class="mb-1 d-block text-dark">{{auth()->user()->type}}</span>
                                                 <p class="mb-0 d-flex text-dark align-items-center gap-2">
-                                                    <i class="ti ti-mail fs-4"></i> info@modernize.com
+                                                    <i class="ti ti-mail fs-4"></i> {{auth()->user()->email}}
                                                 </p>
                                             </div>
                                         </div>
                                         <div class="message-body">
-                                            <a href="page-user-profile.html"
+                                            <a href="#"
                                                class="py-8 px-7 mt-8 d-flex align-items-center">
                                                 <span class="d-flex align-items-center justify-content-center bg-light rounded-1 p-6">
                                                     <img src="{{asset('assets/emp/images/svgs/icon-account.svg')}}"
@@ -376,7 +379,7 @@
                                                     <span class="d-block text-dark">Account Settings</span>
                                                 </div>
                                             </a>
-                                            <a href="app-email.html" class="py-8 px-7 d-flex align-items-center">
+                                            <a href="#" class="py-8 px-7 d-flex align-items-center">
                                                 <span class="d-flex align-items-center justify-content-center bg-light rounded-1 p-6">
                                                     <img src="{{asset('assets/emp/images/svgs/icon-inbox.svg')}}"
                                                          alt="" width="24"
@@ -387,7 +390,7 @@
                                                     <span class="d-block text-dark">Messages & Emails</span>
                                                 </div>
                                             </a>
-                                            <a href="app-notes.html" class="py-8 px-7 d-flex align-items-center">
+                                            <a href="#" class="py-8 px-7 d-flex align-items-center">
                                                 <span class="d-flex align-items-center justify-content-center bg-light rounded-1 p-6">
                                                     <img src="{{asset('assets/emp/images/svgs/icon-tasks.svg')}}"
                                                          alt="" width="24"
@@ -400,8 +403,12 @@
                                             </a>
                                         </div>
                                         <div class="d-grid py-4 px-7 pt-8">
-                                            <a href="authentication-login.html" class="btn btn-outline-primary">Log
-                                                Out</a>
+                                            <form action="{{route('logout')}}" method="POST">
+                                                @csrf
+                                                <button class="btn btn-outline-primary" style="width: 100%" type="submit">
+                                                    Log Out
+                                                </button>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
@@ -442,7 +449,7 @@
             <img src="{{asset('assets/emp/images/logos/dark-logo.svg')}}" alt="" class="img-fluid">
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
-        <div class="offcanvas-body profile-dropdown mobile-navbar" data-simplebar="" data-simplebar="">
+        <div class="offcanvas-body profile-dropdown mobile-navbar">
             <ul id="sidebarnav">
                 <li class="sidebar-item selected">
                     <a class="sidebar-link active" href="#" aria-expanded="false">
@@ -508,7 +515,7 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="#" aria-expanded="false">
+                    <a class="sidebar-link" href="{{route('employee.support.index')}}" aria-expanded="false">
                         <span>
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                  fill="none">

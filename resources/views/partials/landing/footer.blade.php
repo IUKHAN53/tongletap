@@ -72,7 +72,38 @@
 <script src='{{asset('assets/landing/js/dist/vendor/wp-polyfill.min.js?ver=3.15.0')}}'></script>
 <script src='{{asset('assets/landing/js/dist/hooks.min.js?ver=4169d3cf8e8d95a3d6d5')}}'></script>
 <script src='{{asset('assets/landing/js/dist/i18n.min.js?ver=9e794f35a71bb98672ae')}}'></script>
-
+<script id='elementor-pro-frontend-js-before'>
+    var ElementorProFrontendConfig = {
+        "ajaxurl": "https:\/\/tongleclubhouse.com\/EAPsoftware\/wp-admin\/admin-ajax.php",
+        "nonce": "b8ff22cd64",
+        "urls": {
+            "assets": "https:\/\/tongleclubhouse.com\/EAPsoftware\/wp-content\/plugins\/elementor-pro\/assets\/",
+            "rest": "https:\/\/tongleclubhouse.com\/EAPsoftware\/wp-json\/"
+        },
+        "shareButtonsNetworks": {
+            "facebook": {"title": "Facebook", "has_counter": true},
+            "twitter": {"title": "Twitter"},
+            "linkedin": {"title": "LinkedIn", "has_counter": true},
+            "pinterest": {"title": "Pinterest", "has_counter": true},
+            "reddit": {"title": "Reddit", "has_counter": true},
+            "vk": {"title": "VK", "has_counter": true},
+            "odnoklassniki": {"title": "OK", "has_counter": true},
+            "tumblr": {"title": "Tumblr"},
+            "digg": {"title": "Digg"},
+            "skype": {"title": "Skype"},
+            "stumbleupon": {"title": "StumbleUpon", "has_counter": true},
+            "mix": {"title": "Mix"},
+            "telegram": {"title": "Telegram"},
+            "pocket": {"title": "Pocket", "has_counter": true},
+            "xing": {"title": "XING", "has_counter": true},
+            "whatsapp": {"title": "WhatsApp"},
+            "email": {"title": "Email"},
+            "print": {"title": "Print"}
+        },
+        "facebook_sdk": {"lang": "en_US", "app_id": ""},
+        "lottie": {"defaultAnimationUrl": "{{asset('assets/landing/plugins/elementor-pro/modules/lottie/assets/animations/default.json')}}" }
+    };
+</script>
 <script src='{{asset('assets/landing/plugins/elementor-pro/assets/js/frontend.min.js?ver=3.12.0')}}'></script>
 <script src='{{asset('assets/landing/plugins/elementor/assets/lib/waypoints/waypoints.min.js?ver=4.0.2')}}'></script>
 <script src='{{asset('assets/landing/js/jquery/ui/core.min.js?ver=1.13.2')}}'></script>

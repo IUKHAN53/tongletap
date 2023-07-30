@@ -54,15 +54,8 @@ class DashboardController extends Controller
     {
     }
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
     public function account_dashboard_index()
     {
-
-
         if (auth()->check() && Auth::user()->type) {
             if (Auth::user()->type == 'super admin') {
                 return redirect()->route('client.dashboard.view');
@@ -70,83 +63,77 @@ class DashboardController extends Controller
                 return redirect()->route('client.dashboard.view');
             } elseif (strtolower(Auth::user()->type) == 'employee') {
                 return redirect()->route('employee.dashboard');
-            } else {
-                if (\Auth::user()->can('show account dashboard')) {
-                    $data['latestIncome'] = Revenue::where('created_by', '=', \Auth::user()->creatorId())->orderBy('id', 'desc')->limit(5)->get();
-                    $data['latestExpense'] = Payment::where('created_by', '=', \Auth::user()->creatorId())->orderBy('id', 'desc')->limit(5)->get();
-                    $currentYer = date('Y');
-
-
-                    $incomeCategory = ProductServiceCategory::where('created_by', '=', \Auth::user()->creatorId())->where('type', '=', 1)->get();
-                    $inColor = array();
-                    $inCategory = array();
-                    $inAmount = array();
-                    for ($i = 0; $i < count($incomeCategory); $i++) {
-                        $inColor[] = '#' . $incomeCategory[$i]->color;
-                        $inCategory[] = $incomeCategory[$i]->name;
-                        $inAmount[] = $incomeCategory[$i]->incomeCategoryRevenueAmount();
-                    }
-
-
-                    $data['incomeCategoryColor'] = $inColor;
-                    $data['incomeCategory'] = $inCategory;
-                    $data['incomeCatAmount'] = $inAmount;
-
-
-                    $expenseCategory = ProductServiceCategory::where('created_by', '=', \Auth::user()->creatorId())->where('type', '=', 2)->get();
-                    $exColor = array();
-                    $exCategory = array();
-                    $exAmount = array();
-                    for ($i = 0; $i < count($expenseCategory); $i++) {
-                        $exColor[] = '#' . $expenseCategory[$i]->color;
-                        $exCategory[] = $expenseCategory[$i]->name;
-                        $exAmount[] = $expenseCategory[$i]->expenseCategoryAmount();
-                    }
-
-                    $data['expenseCategoryColor'] = $exColor;
-                    $data['expenseCategory'] = $exCategory;
-                    $data['expenseCatAmount'] = $exAmount;
-
-                    $data['incExpBarChartData'] = \Auth::user()->getincExpBarChartData();
-                    $data['incExpLineChartData'] = \Auth::user()->getIncExpLineChartDate();
-
-                    $data['currentYear'] = date('Y');
-                    $data['currentMonth'] = date('M');
-
-                    $constant['taxes'] = Tax::where('created_by', \Auth::user()->creatorId())->count();
-                    $constant['category'] = ProductServiceCategory::where('created_by', \Auth::user()->creatorId())->count();
-                    $constant['units'] = ProductServiceUnit::where('created_by', \Auth::user()->creatorId())->count();
-                    $constant['bankAccount'] = BankAccount::where('created_by', \Auth::user()->creatorId())->count();
-                    $data['constant'] = $constant;
-                    $data['bankAccountDetail'] = BankAccount::where('created_by', '=', \Auth::user()->creatorId())->get();
-                    $data['recentInvoice'] = Invoice::where('created_by', '=', \Auth::user()->creatorId())->orderBy('id', 'desc')->limit(5)->get();
-                    $data['weeklyInvoice'] = \Auth::user()->weeklyInvoice();
-                    $data['monthlyInvoice'] = \Auth::user()->monthlyInvoice();
-                    $data['recentBill'] = Bill::where('created_by', '=', \Auth::user()->creatorId())->orderBy('id', 'desc')->limit(5)->get();
-                    $data['weeklyBill'] = \Auth::user()->weeklyBill();
-                    $data['monthlyBill'] = \Auth::user()->monthlyBill();
-                    $data['goals'] = Goal::where('created_by', '=', \Auth::user()->creatorId())->where('is_display', 1)->get();
-                    $remainingHours = Timemodule::where('company_name', \Auth::user()->name)->first();
-                    //     if ($remainingHours->remaining_hours == '' && $remainingHours->remaining_hours == null) {
-                    //         $data['remainingHours'] = $remainingHours->total_hours_purchase;
-                    //     } else {
-                    //         $data['remainingHours'] = $remainingHours['remaining_hours'];
-                    //     }
-                    //     return view('dashboard.account-dashboard', $data);
-                    // }
-                    if ($remainingHours && $remainingHours->remaining_hours === '') {
-                        $data['remainingHours'] = $remainingHours->total_hours_purchase;
-                    } else if ($remainingHours && isset($remainingHours->remaining_hours)) {
-                        $data['remainingHours'] = $remainingHours->remaining_hours;
-                    } else {
-                        $data['remainingHours'] = 0; // or any default value you prefer
-                    }
-
-                    return view('dashboard.account-dashboard', $data);
-                } else {
-                    return $this->hrm_dashboard_index();
+            } elseif (strtolower(Auth::user()->type) == 'accountant') {
+                $data['latestIncome'] = Revenue::where('created_by', '=', \Auth::user()->creatorId())->orderBy('id', 'desc')->limit(5)->get();
+                $data['latestExpense'] = Payment::where('created_by', '=', \Auth::user()->creatorId())->orderBy('id', 'desc')->limit(5)->get();
+                $currentYer = date('Y');
+                $incomeCategory = ProductServiceCategory::where('created_by', '=', \Auth::user()->creatorId())->where('type', '=', 1)->get();
+                $inColor = array();
+                $inCategory = array();
+                $inAmount = array();
+                for ($i = 0; $i < count($incomeCategory); $i++) {
+                    $inColor[] = '#' . $incomeCategory[$i]->color;
+                    $inCategory[] = $incomeCategory[$i]->name;
+                    $inAmount[] = $incomeCategory[$i]->incomeCategoryRevenueAmount();
                 }
 
+
+                $data['incomeCategoryColor'] = $inColor;
+                $data['incomeCategory'] = $inCategory;
+                $data['incomeCatAmount'] = $inAmount;
+
+
+                $expenseCategory = ProductServiceCategory::where('created_by', '=', \Auth::user()->creatorId())->where('type', '=', 2)->get();
+                $exColor = array();
+                $exCategory = array();
+                $exAmount = array();
+                for ($i = 0; $i < count($expenseCategory); $i++) {
+                    $exColor[] = '#' . $expenseCategory[$i]->color;
+                    $exCategory[] = $expenseCategory[$i]->name;
+                    $exAmount[] = $expenseCategory[$i]->expenseCategoryAmount();
+                }
+
+                $data['expenseCategoryColor'] = $exColor;
+                $data['expenseCategory'] = $exCategory;
+                $data['expenseCatAmount'] = $exAmount;
+
+                $data['incExpBarChartData'] = \Auth::user()->getincExpBarChartData();
+                $data['incExpLineChartData'] = \Auth::user()->getIncExpLineChartDate();
+
+                $data['currentYear'] = date('Y');
+                $data['currentMonth'] = date('M');
+
+                $constant['taxes'] = Tax::where('created_by', \Auth::user()->creatorId())->count();
+                $constant['category'] = ProductServiceCategory::where('created_by', \Auth::user()->creatorId())->count();
+                $constant['units'] = ProductServiceUnit::where('created_by', \Auth::user()->creatorId())->count();
+                $constant['bankAccount'] = BankAccount::where('created_by', \Auth::user()->creatorId())->count();
+                $data['constant'] = $constant;
+                $data['bankAccountDetail'] = BankAccount::where('created_by', '=', \Auth::user()->creatorId())->get();
+                $data['recentInvoice'] = Invoice::where('created_by', '=', \Auth::user()->creatorId())->orderBy('id', 'desc')->limit(5)->get();
+                $data['weeklyInvoice'] = \Auth::user()->weeklyInvoice();
+                $data['monthlyInvoice'] = \Auth::user()->monthlyInvoice();
+                $data['recentBill'] = Bill::where('created_by', '=', \Auth::user()->creatorId())->orderBy('id', 'desc')->limit(5)->get();
+                $data['weeklyBill'] = \Auth::user()->weeklyBill();
+                $data['monthlyBill'] = \Auth::user()->monthlyBill();
+                $data['goals'] = Goal::where('created_by', '=', \Auth::user()->creatorId())->where('is_display', 1)->get();
+                $remainingHours = Timemodule::where('company_name', \Auth::user()->name)->first();
+                //     if ($remainingHours->remaining_hours == '' && $remainingHours->remaining_hours == null) {
+                //         $data['remainingHours'] = $remainingHours->total_hours_purchase;
+                //     } else {
+                //         $data['remainingHours'] = $remainingHours['remaining_hours'];
+                //     }
+                //     return view('dashboard.account-dashboard', $data);
+                // }
+                if ($remainingHours && $remainingHours->remaining_hours === '') {
+                    $data['remainingHours'] = $remainingHours->total_hours_purchase;
+                } else if ($remainingHours && isset($remainingHours->remaining_hours)) {
+                    $data['remainingHours'] = $remainingHours->remaining_hours;
+                } else {
+                    $data['remainingHours'] = 0; // or any default value you prefer
+                }
+                return view('dashboard.account-dashboard', $data);
+            } else {
+                return $this->hrm_dashboard_index();
             }
         } else {
             $settings = Utility::settings();

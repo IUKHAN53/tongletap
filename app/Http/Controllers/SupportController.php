@@ -35,8 +35,7 @@ class SupportController extends Controller
         }
         else
         {
-
-            $supports = Support::where('user', \Auth::user()->id)->orWhere('ticket_created', \Auth::user()->id)->get();
+            $supports = Support::get();
             $countTicket      = Support::where('created_by', '=', \Auth::user()->creatorId())->count();
             $countOpenTicket  = Support::where('status', '=', 'open')->where('created_by', '=', \Auth::user()->creatorId())->count();
             $countonholdTicket  = Support::where('status', '=', 'on hold')->where('created_by', '=', \Auth::user()->creatorId())->count();

@@ -21,7 +21,7 @@ class TicketController extends Controller
         $countTicket = Ticket::where('created_by', '=', Auth::user()->creatorId())->count();
         $countApprovedTicket = Ticket::where('status', '=', 'approved')->where('created_by', '=', Auth::user()->creatorId())->count();
         $countRejectedTicket = Ticket::where('status', '=', 'rejected')->where('created_by', '=', Auth::user()->creatorId())->count();
-        $tickets = Ticket::where('ticket_created', Auth::user()->id)->get();
+        $tickets = Ticket::where('ticket_created', Auth::user()->id)->latest()->get();
         return view('employee.content.ticket.index', compact('tickets', 'countTicket', 'countPendingTicket', 'countApprovedTicket', 'countRejectedTicket'));
     }
 

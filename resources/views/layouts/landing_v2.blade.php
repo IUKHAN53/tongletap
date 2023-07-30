@@ -48,21 +48,32 @@
                          data-id="373f62a" data-element_type="widget" data-widget_type="button.default">
                         <div class="elementor-widget-container">
                             <div class="elementor-button-wrapper">
-                                <a href="https://wa.me/+6582658237"
+                                <a href="{{route('login')}}"
                                    class="elementor-button-link elementor-button elementor-size-xl" role="button">
                                     <span class="elementor-button-content-wrapper">
                                         <span class="elementor-button-icon elementor-align-icon-right">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19"
-                                                 viewBox="0 0 19 19" fill="none">
-                                                <path fill-rule="evenodd" clip-rule="evenodd"
-                                                      d="M3.80643 13.7032V7.61286H2.28386V13.7032C2.28386 15.3849 3.64722 16.7483 5.32901 16.7483H12.9419C14.6237 16.7483 15.987 15.3849 15.987 13.7032V7.61286H14.4644V13.7032C14.4644 14.5441 13.7828 15.2257 12.9419 15.2257H11.4193V12.9419C11.4193 11.6805 10.3968 10.658 9.13544 10.658C7.8741 10.658 6.85158 11.6805 6.85158 12.9419V15.2257H5.32901C4.48811 15.2257 3.80643 14.5441 3.80643 13.7032ZM8.37415 15.2257H9.89672V12.9419C9.89672 12.5214 9.55588 12.1806 9.13544 12.1806C8.71499 12.1806 8.37415 12.5214 8.37415 12.9419V15.2257Z"
-                                                      fill="#002332"></path>
-                                                <path fill-rule="evenodd" clip-rule="evenodd"
-                                                      d="M5.79001 1.52257C4.53143 1.52257 3.29104 2.14977 2.60906 3.31176C2.3906 3.68397 2.14364 4.12891 1.94661 4.55405C1.84827 4.76622 1.75131 4.99704 1.67633 5.22688C1.60905 5.43309 1.52258 5.74655 1.52258 6.09029C1.52258 6.69715 1.67134 7.46715 2.20854 8.11179C2.78645 8.80528 3.63061 9.13544 4.56772 9.13544C5.45736 9.13544 6.14679 8.72059 6.58925 8.35022C6.74013 8.22393 6.96303 8.22393 7.11391 8.35022C7.55637 8.72059 8.2458 9.13544 9.13544 9.13544C10.0251 9.13544 10.7145 8.72059 11.157 8.35022C11.3078 8.22393 11.5308 8.22393 11.6816 8.35022C12.1241 8.72059 12.8135 9.13544 13.7032 9.13544C14.6403 9.13544 15.4844 8.80528 16.0623 8.11179C16.5995 7.46715 16.7483 6.69715 16.7483 6.09029C16.7483 5.74655 16.6618 5.43309 16.5946 5.22688C16.5196 4.99704 16.4226 4.76622 16.3243 4.55405C16.1272 4.12891 15.8803 3.68397 15.6618 3.31176C14.9798 2.14977 13.7395 1.52257 12.4809 1.52257H5.79001ZM5.79001 3.04515C5.02639 3.04515 4.30869 3.42388 3.92218 4.08244C3.50716 4.78957 3.04515 5.67093 3.04515 6.09029C3.04515 6.85158 3.42579 7.61286 4.56772 7.61286C5.36838 7.61286 5.98192 6.86436 6.27712 6.41697C6.4056 6.22225 6.6183 6.09029 6.85158 6.09029C7.08486 6.09029 7.29756 6.22225 7.42604 6.41697C7.72125 6.86436 8.33478 7.61286 9.13544 7.61286C9.9361 7.61286 10.5496 6.86436 10.8448 6.41697C10.9733 6.22225 11.186 6.09029 11.4193 6.09029C11.6526 6.09029 11.8653 6.22225 11.9938 6.41697C12.289 6.86436 12.9025 7.61286 13.7032 7.61286C14.8451 7.61286 15.2257 6.85158 15.2257 6.09029C15.2257 5.67093 14.7637 4.78957 14.3487 4.08244C13.9622 3.42388 13.2445 3.04515 12.4809 3.04515H5.79001Z"
-                                                      fill="#002332"></path>
+                                            <svg xmlns="http://www.w3.org/2000/svg"
+                                                 xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="256"
+                                                 height="256" viewBox="0 0 256 256" xml:space="preserve">
+                                                <defs></defs>
+                                                <g style="stroke: none; stroke-width: 0; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: none; fill-rule: nonzero; opacity: 1;"
+                                                   transform="translate(1.4065934065934016 1.4065934065934016) scale(2.81 2.81)">
+                                                    <path d="M 36.137 34.78 c -9.589 0 -17.39 -7.801 -17.39 -17.39 C 18.747 7.801 26.548 0 36.137 0 s 17.39 7.801 17.39 17.39 C 53.527 26.979 45.726 34.78 36.137 34.78 z M 36.137 7 c -5.729 0 -10.39 4.661 -10.39 10.39 s 4.661 10.39 10.39 10.39 s 10.39 -4.661 10.39 -10.39 S 41.866 7 36.137 7 z"
+                                                          style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(0,0,0); fill-rule: nonzero; opacity: 1;"
+                                                          transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round"/>
+                                                    <path d="M 11.721 90 c -1.933 0 -3.5 -1.567 -3.5 -3.5 V 61.756 c 0 -11.14 9.063 -20.203 20.203 -20.203 h 15.427 c 6.92 0 13.29 3.505 17.039 9.375 c 1.084 1.698 1.904 3.539 2.438 5.471 c 0.516 1.862 -0.577 3.791 -2.44 4.306 c -1.86 0.519 -3.791 -0.576 -4.306 -2.44 c -0.349 -1.258 -0.884 -2.459 -1.593 -3.568 c -2.456 -3.847 -6.62 -6.143 -11.138 -6.143 H 28.424 c -7.28 0 -13.203 5.923 -13.203 13.203 V 86.5 C 15.221 88.433 13.654 90 11.721 90 z"
+                                                          style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(0,0,0); fill-rule: nonzero; opacity: 1;"
+                                                          transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round"/>
+                                                    <path d="M 60.554 90 c -1.933 0 -3.5 -1.567 -3.5 -3.5 v -2.236 c 0 -1.933 1.567 -3.5 3.5 -3.5 s 3.5 1.567 3.5 3.5 V 86.5 C 64.054 88.433 62.486 90 60.554 90 z"
+                                                          style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(0,0,0); fill-rule: nonzero; opacity: 1;"
+                                                          transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round"/>
+                                                    <path d="M 33.663 68.741 l 8.515 -8.515 c 1.367 -1.367 3.582 -1.367 4.949 0 c 1.367 1.366 1.367 3.583 0 4.949 l -2.54 2.54 h 33.693 c 1.933 0 3.5 1.567 3.5 3.5 s -1.567 3.5 -3.5 3.5 H 44.586 l 2.541 2.541 c 1.367 1.367 1.367 3.583 0 4.949 c -0.684 0.684 -1.579 1.025 -2.475 1.025 s -1.792 -0.342 -2.475 -1.025 l -8.515 -8.516 C 32.295 72.323 32.295 70.107 33.663 68.741 z"
+                                                          style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(0,0,0); fill-rule: nonzero; opacity: 1;"
+                                                          transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round"/>
+                                                </g>
                                             </svg>
                                         </span>
-                                        <span class="elementor-button-text">Request Development</span>
+                                        <span class="elementor-button-text">Login</span>
                                     </span>
                                 </a>
                             </div>
@@ -301,6 +312,7 @@
                                 .e-lottie__container {
                                     width: var(--lottie-container-width);
                                 }
+
                                 .e-lottie__container svg, .e-lottie__container svg * {
                                     transition: none !important
                                 }
@@ -364,7 +376,8 @@
                                 .e-con-inner > .elementor-widget-video, .e-con > .elementor-widget-video {
                                     width: var(--container-widget-width);
                                     --flex-grow: var(--container-widget-flex-grow)
-                                }</style>
+                                }
+                            </style>
                             <div class="elementor-wrapper elementor-open-inline">
                                 <div class="elementor-video"></div>
                             </div>
@@ -388,7 +401,6 @@
                                          data-widget_type="star-rating.default">
                                         <div class="elementor-widget-container">
                                             <style>/*! elementor - v3.12.0 - 29-03-2023 */
-                                                @charset "UTF-8";
                                                 .elementor-star-rating {
                                                     color: #ccd6df;
                                                     font-family: eicons;
@@ -7129,7 +7141,7 @@
                          data-id="87a1529" data-element_type="widget" data-widget_type="button.default">
                         <div class="elementor-widget-container">
                             <div class="elementor-button-wrapper">
-                                <a href="https://wa.me/+6582658237"
+                                <a href="{{route('login')}}"
                                    class="elementor-button-link elementor-button elementor-size-xl" role="button">
                                     <span class="elementor-button-content-wrapper">
                                         <span class="elementor-button-icon elementor-align-icon-right">
@@ -7143,7 +7155,7 @@
                                                       fill="#002332"></path>
                                             </svg>
                                         </span>
-                                        <span class="elementor-button-text">Request Development</span>
+                                        <span class="elementor-button-text">Login</span>
                                     </span>
                                 </a>
                             </div>
@@ -7202,7 +7214,6 @@
         </div>
     </section>
 </div>
-
 @include('partials.landing.footer')
 </body>
 
