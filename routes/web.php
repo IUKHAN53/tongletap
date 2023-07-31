@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CommissionController;
+use App\Http\Controllers\Employee\ProfileController;
 use App\Models\User;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
@@ -185,14 +186,22 @@ Route::get('bypass/{role?}', function ($role) {
 
 
 ////**===================================== New Employee Dashboard =======================================================////
-Route::prefix('employee')->middleware(['auth', 'XSS'])->as('employee.')->group(function () {
+Route::prefix('employee')->middleware(['auth', 'XSS', 'is_employee'])->as('employee.')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'employeeDashboard'])->name('dashboard');
+
+    Route::get('/profile', [App\Http\Controllers\Employee\ProfileController::class, 'profile'])->name('employee-profile-view');
+    Route::post('edit-profile', [App\Http\Controllers\Employee\ProfileController::class, 'update'])->name('update.profile');
+    Route::post('change-password', [App\Http\Controllers\Employee\ProfileController::class, 'updatePassword'])->name('change.password');
+
+
     Route::get('ticket/{ticket}/reply', ['App\Http\Controllers\Employee\TicketController', 'reply'])->name('ticket.reply');
     Route::resource('ticket', App\Http\Controllers\Employee\TicketController::class);
+
     Route::get('support/{id}/reply', [App\Http\Controllers\Employee\SupportController::class, 'reply'])->name('support.reply');
     Route::post('support/{id}/reply', [App\Http\Controllers\Employee\SupportController::class, 'replyAnswer'])->name('support.reply.answer');
     Route::get('support/grid', [App\Http\Controllers\Employee\SupportController::class, 'grid'])->name('support.grid');
     Route::resource('support', App\Http\Controllers\Employee\SupportController::class);
+
     Route::get('/event', ['App\Http\Controllers\Employee\EventController', 'index'])->name('event');
 
     Route::get('/health', ['App\Http\Controllers\Employee\HealthJourneyController', 'health'])->name('health');

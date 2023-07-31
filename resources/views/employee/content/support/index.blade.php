@@ -40,8 +40,8 @@
                     <div class="row align-items-center justify-content-between">
                         <div class="col-auto mb-3 mb-sm-0">
                             <div class="d-flex align-items-center">
-                                <div class="theme-avtar bg-primary">
-                                    <i class="ti ti-cast"></i>
+                                <div class="theme-avtar bg-success py-2 px-3 rounded">
+                                    <i class="ti ti-cast text-white fw-bold fs-4"></i>
                                 </div>
                                 <div class="ms-3">
                                     <small class="text-muted">{{__('Total')}}</small>
@@ -64,10 +64,10 @@
                     <div class="row align-items-center justify-content-between">
                         <div class="col-auto mb-3 mb-sm-0">
                             <div class="d-flex align-items-center">
-                                <div class="theme-avtar bg-info">
-                                    <i class="ti ti-cast"></i>
+                                <div class="theme-avtar bg-primary py-2 px-3 rounded">
+                                    <i class="ti ti-cast text-white fw-bold fs-4"></i>
                                 </div>
-                                <div class="ms-3">
+                                <div class="ms-3 ">
                                     <small class="text-muted">{{__('Open')}}</small>
                                     <h6 class="m-0">{{__('Ticket')}}</h6>
                                 </div>
@@ -88,8 +88,8 @@
                     <div class="row align-items-center justify-content-between">
                         <div class="col-auto mb-3 mb-sm-0">
                             <div class="d-flex align-items-center">
-                                <div class="theme-avtar bg-warning">
-                                    <i class="ti ti-cast"></i>
+                                <div class="theme-avtar bg-info py-2 px-3 rounded">
+                                    <i class="ti ti-cast text-white fw-bold fs-4"></i>
                                 </div>
                                 <div class="ms-3">
                                     <small class="text-muted">{{__('On Hold')}}</small>
@@ -111,8 +111,8 @@
                     <div class="row align-items-center justify-content-between">
                         <div class="col-auto mb-3 mb-sm-0">
                             <div class="d-flex align-items-center">
-                                <div class="theme-avtar bg-danger">
-                                    <i class="ti ti-cast"></i>
+                                <div class="theme-avtar bg-danger py-2 px-3 rounded">
+                                    <i class="ti ti-cast text-white fw-bold fs-4"></i>
                                 </div>
                                 <div class="ms-3">
                                     <small class="text-muted">{{__('Close')}}</small>

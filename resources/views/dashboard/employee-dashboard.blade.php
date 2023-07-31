@@ -70,15 +70,15 @@
                 <div class="position-relative">
                     <img src="{{asset('assets/emp/images/svgs/card-header.svg')}}" class="w-100" alt="">
                     <div class="circle position-absolute avatar-div shadow">
-                        <img width="114" height="81"
-                             src="{{asset('assets/emp/images/avatar.png')}}"
+                        <img width="120" height="120"
+                             src="{{auth()->user()->image}}"
                              alt="Avatar">
                     </div>
                 </div>
                 <div class="card-body mt-5">
                     <div class="d-flex justify-content-center align-items-center flex-column my-3">
-                        <h2 class="fw-bold">Linda Wong</h2>
-                        <p class="fw-bold">Sale Manager</p>
+                        <h2 class="fw-bold">{{auth()->user()->name}}</h2>
+                        <p class="fw-bold">{{auth()->user()->designation}}</p>
                     </div>
 
                     <div class="d-flex just-content-between align-items-center gap-3 flex-column flex-sm-row">

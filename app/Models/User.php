@@ -22,7 +22,7 @@ class User extends Authenticatable
     use HasApiTokens;
 
 
-    protected $appends = ['profile'];
+    protected $appends = ['profile', 'image'];
 
     protected $fillable = [
         'name',
@@ -54,13 +54,22 @@ class User extends Authenticatable
 
     public function getProfileAttribute()
     {
-
         if (!empty($this->avatar) && \Storage::exists($this->avatar)) {
             return $this->attributes['avatar'] = asset(\Storage::url($this->avatar));
         } else {
             return $this->attributes['avatar'] = asset(\Storage::url('avatar.png'));
         }
     }
+
+    public function getImageAttribute()
+    {
+        if (!empty($this->avatar)) {
+            return Utility::get_file('uploads/avatar/' . $this->avatar);
+        } else {
+            return Utility::get_file('uploads/avatar/avatar.png');
+        }
+    }
+
 
     public function authId()
     {

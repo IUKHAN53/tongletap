@@ -6,16 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Support extends Model
 {
-    protected $fillable = [
-        'subject',
-        'user',
-        'priority',
-        'end_date',
-        'ticket_code',
-        'ticket_created',
-        'status',
-        'created_by',
-    ];
+    protected $guarded = [];
 
     public static $priority = [
         'Low',

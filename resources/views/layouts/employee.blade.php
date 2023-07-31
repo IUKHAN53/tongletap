@@ -131,7 +131,7 @@
                         </a>
                     </li>
                     <li class="sidebar-item">
-                        <a class="sidebar-link" href="#" aria-expanded="false">
+                        <a class="sidebar-link" href="{{route('employee.employee-profile-view')}}" aria-expanded="false">
                             <span>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                      fill="none">
@@ -152,7 +152,7 @@
             <div class="fixed-profile p-3 bg-light-secondary rounded sidebar-ad mt-3">
                 <div class="hstack gap-3">
                     <div class="john-img">
-                        <img src="{{asset('assets/emp/images/profile/user-1.jpg')}}" class="rounded-circle"
+                        <img src="{{auth()->user()->image}}" class="rounded-circle"
                              width="40" height="40"
                              alt="">
                     </div>
@@ -248,7 +248,7 @@
                                             </linearGradient>
                                         </defs>
                                     </svg>
-                                    <span class="badge rounded-pill bg-danger fs-2">2</span>
+{{--                                    <span class="badge rounded-pill bg-danger fs-2">2</span>--}}
                                 </a>
                                 <div class="dropdown-menu content-dd dropdown-menu-end dropdown-menu-animate-up"
                                      aria-labelledby="drop2">
@@ -260,72 +260,12 @@
                                         <a href="javascript:void(0)"
                                            class="py-6 px-7 d-flex align-items-center dropdown-item">
                                             <span class="me-3">
-                                                <img src="{{asset('assets/emp/images/profile/user-1.jpg')}}"
+                                                <img src="{{auth()->user()->image}}"
                                                      alt="user"
                                                      class="rounded-circle" width="48" height="48">
                                             </span>
                                             <div class="w-75 d-inline-block v-middle">
-                                                <h6 class="mb-1 fw-semibold">Roman Joined the Team!</h6>
-                                                <span class="d-block">Congratulate him</span>
-                                            </div>
-                                        </a>
-                                        <a href="javascript:void(0)"
-                                           class="py-6 px-7 d-flex align-items-center dropdown-item">
-                                            <span class="me-3">
-                                                <img src="{{asset('assets/emp/images/profile/user-2.jpg')}}"
-                                                     alt="user"
-                                                     class="rounded-circle" width="48" height="48">
-                                            </span>
-                                            <div class="w-75 d-inline-block v-middle">
-                                                <h6 class="mb-1 fw-semibold">New message</h6>
-                                                <span class="d-block">Salma sent you new message</span>
-                                            </div>
-                                        </a>
-                                        <a href="javascript:void(0)"
-                                           class="py-6 px-7 d-flex align-items-center dropdown-item">
-                                            <span class="me-3">
-                                                <img src="{{asset('assets/emp/images/profile/user-3.jpg')}}"
-                                                     alt="user"
-                                                     class="rounded-circle" width="48" height="48">
-                                            </span>
-                                            <div class="w-75 d-inline-block v-middle">
-                                                <h6 class="mb-1 fw-semibold">Bianca sent payment</h6>
-                                                <span class="d-block">Check your earnings</span>
-                                            </div>
-                                        </a>
-                                        <a href="javascript:void(0)"
-                                           class="py-6 px-7 d-flex align-items-center dropdown-item">
-                                            <span class="me-3">
-                                                <img src="{{asset('assets/emp/images/profile/user-4.jpg')}}"
-                                                     alt="user"
-                                                     class="rounded-circle" width="48" height="48">
-                                            </span>
-                                            <div class="w-75 d-inline-block v-middle">
-                                                <h6 class="mb-1 fw-semibold">Jolly completed tasks</h6>
-                                                <span class="d-block">Assign her new tasks</span>
-                                            </div>
-                                        </a>
-                                        <a href="javascript:void(0)"
-                                           class="py-6 px-7 d-flex align-items-center dropdown-item">
-                                            <span class="me-3">
-                                                <img src="{{asset('assets/emp/images/profile/user-5.jpg')}}"
-                                                     alt="user"
-                                                     class="rounded-circle" width="48" height="48">
-                                            </span>
-                                            <div class="w-75 d-inline-block v-middle">
-                                                <h6 class="mb-1 fw-semibold">John received payment</h6>
-                                                <span class="d-block">$230 deducted from account</span>
-                                            </div>
-                                        </a>
-                                        <a href="javascript:void(0)"
-                                           class="py-6 px-7 d-flex align-items-center dropdown-item">
-                                            <span class="me-3">
-                                                <img src="{{asset('assets/emp/images/profile/user-1.jpg')}}"
-                                                     alt="user"
-                                                     class="rounded-circle" width="48" height="48">
-                                            </span>
-                                            <div class="w-75 d-inline-block v-middle">
-                                                <h6 class="mb-1 fw-semibold">Roman Joined the Team!</h6>
+                                                <h6 class="mb-1 fw-semibold">{{auth()->user()->name}} signed up!</h6>
                                                 <span class="d-block">Congratulate him</span>
                                             </div>
                                         </a>
@@ -342,7 +282,7 @@
                                    aria-expanded="false">
                                     <div class="d-flex align-items-center">
                                         <div class="user-profile-img">
-                                            <img src="{{asset('assets/emp/images/profile/user-1.jpg')}}"
+                                            <img src="{{auth()->user()->image}}"
                                                  class="rounded-circle"
                                                  width="35" height="35" alt="">
                                         </div>
@@ -355,7 +295,7 @@
                                             <h5 class="mb-0 fs-5 fw-semibold">User Profile</h5>
                                         </div>
                                         <div class="d-flex align-items-center py-9 mx-7 border-bottom">
-                                            <img src="{{asset('assets/emp/images/profile/user-1.jpg')}}"
+                                            <img src="{{auth()->user()->image}}"
                                                  class="rounded-circle"
                                                  width="80" height="80" alt="">
                                             <div class="ms-3">
@@ -367,7 +307,7 @@
                                             </div>
                                         </div>
                                         <div class="message-body">
-                                            <a href="#"
+                                            <a href="{{route('employee.employee-profile-view')}}"
                                                class="py-8 px-7 mt-8 d-flex align-items-center">
                                                 <span class="d-flex align-items-center justify-content-center bg-light rounded-1 p-6">
                                                     <img src="{{asset('assets/emp/images/svgs/icon-account.svg')}}"
@@ -528,7 +468,7 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="#" aria-expanded="false">
+                    <a class="sidebar-link" href="{{route('employee.employee-profile-view')}}" aria-expanded="false">
                         <span>
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                  fill="none">

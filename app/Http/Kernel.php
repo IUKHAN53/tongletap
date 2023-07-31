@@ -65,5 +65,6 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'XSS' => \App\Http\Middleware\XSS::class,
         'revalidate' => \App\Http\Middleware\RevalidateBackHistory::class,
+        'is_employee' => \App\Http\Middleware\IsEmployee::class,
     ];
 }

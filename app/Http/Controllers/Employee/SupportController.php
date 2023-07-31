@@ -13,11 +13,11 @@ class SupportController extends Controller
 {
     public function index()
     {
-        $supports = Support::where('user', auth()->user()->id)->get();
-        $countTicket = Support::where('user', auth()->user()->id)->count();
-        $countOpenTicket = Support::where('status','Open')->where('user', auth()->user()->id)->count();
-        $countonholdTicket = Support::where('status','On Hold')->where('user', auth()->user()->id)->count();
-        $countCloseTicket = Support::where('status','Close')->where('user', auth()->user()->id)->count();
+        $supports = Support::where('created_by', auth()->user()->id)->get();
+        $countTicket = Support::where('created_by', auth()->user()->id)->count();
+        $countOpenTicket = Support::where('status','Open')->where('created_by', auth()->user()->id)->count();
+        $countonholdTicket = Support::where('status','On Hold')->where('created_by', auth()->user()->id)->count();
+        $countCloseTicket = Support::where('status','Close')->where('created_by', auth()->user()->id)->count();
         return view('employee.content.support.index', compact('supports', 'countTicket', 'countOpenTicket', 'countonholdTicket', 'countCloseTicket'));
     }
 
@@ -30,7 +30,6 @@ class SupportController extends Controller
             __('High'),
             __('Critical'),
         ];
-        //$status = Support::$status;
         $status = Support::status();
         $users = User::where('created_by', auth()->user()->creatorId())->get()->pluck('name', 'id');
         return view('employee.content.support.create', compact('priority', 'users', 'status'));
@@ -39,7 +38,6 @@ class SupportController extends Controller
 
     public function store(Request $request)
     {
-
         $validator = \Validator::make(
             $request->all(), [
                 'subject' => 'required',
@@ -76,9 +74,7 @@ class SupportController extends Controller
         $support->description = $request->description;
         $support->created_by = auth()->user()->id;
         $support->ticket_created = auth()->user()->id;
-        $request->user = auth()->user()->id;
         $support->save();
-
         return redirect()->route('employee.support.index')->with('success', __('Support successfully added.'));
     }
 
