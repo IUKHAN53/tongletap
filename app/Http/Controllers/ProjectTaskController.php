@@ -38,7 +38,6 @@ class ProjectTaskController extends Controller
                 $task->orderBy('order');
                 $status['tasks'] = $task->where('stage_id', '=', $status->id)->get();
             }
-
             return view('project_task.index', compact('stages', 'stageClass', 'project'));
         }
         else

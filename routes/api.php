@@ -13,6 +13,7 @@ use App\Http\Controllers\ApiController;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+Route::post('store-health-stats', [\App\Http\Controllers\Api\GeneralController::class, 'storeHealthStats']);
 Route::post('login', 'ApiController@login');
 Route::get('getuserdata', [ApiController::class, 'getuserdata']);
 Route::post('filteruser', [ApiController::class, 'filteruser']);
