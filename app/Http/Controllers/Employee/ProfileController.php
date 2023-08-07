@@ -52,6 +52,10 @@ class ProfileController extends Controller
         }
         $user['name'] = $request['name'];
         $user['email'] = $request['email'];
+        $user['mood'] = $request['mood'];
+        $user['activity'] = $request['activity'];
+        $user['location'] = $request['location'];
+        $user['biography'] = $request['biography'];
         $user->save();
         CustomField::saveData($user, $request->customField);
 

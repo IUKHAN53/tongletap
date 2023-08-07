@@ -82,8 +82,8 @@
                     </div>
 
                     <div class="d-flex just-content-between align-items-center gap-3 flex-column flex-sm-row">
-                        <div class="card w-100">
-                            <div class="sleep-card">
+                        <div class="card w-100" >
+                            <div class="sleep-card" style="max-height: 80px">
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div class="text-white">Sleep</div>
                                     <div>
@@ -95,12 +95,11 @@
                                         </svg>
                                     </div>
                                 </div>
-                                <h2 class="mt-3">70 hours</h2>
+                                <span class="text-white mt-3">{{auth()->user()->sleepHours()}} hours</span>
                             </div>
                         </div>
-
-                        <div class="card w-100">
-                            <div class="activity-card">
+                        <div class="card w-100" >
+                            <div class="activity-card" style="max-height: 80px">
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div class="text-white">Activity</div>
                                     <div>
@@ -112,32 +111,15 @@
                                         </svg>
                                     </div>
                                 </div>
-                                <h2 class="mt-3">12 hours</h2>
+                                <span class="text-white mt-3">{{auth()->user()->activity}} hours</span>
                             </div>
                         </div>
                     </div>
 
                     <div class="mood-div">
                         <h4 class="fw-bolder">Your mood today</h4>
-                        <div class="d-flex justify-content-end align-items-center gap-3 my-4">
-                            <div class="mood d-flex justify-content-between w-100 align-items-center">
-                                <div class="icon">
-                                    <img src="{{asset('assets/emp/assets/images/fine.png')}}" alt="">
-                                </div>
-                                <span>Fine</span>
-                            </div>
-                            <div class="active-mood d-flex justify-content-between w-100 align-items-center">
-                                <div class="icon">
-                                    <img src="{{asset('assets/emp/assets/images/normal.png')}}" alt="">
-                                </div>
-                                <span>Normal</span>
-                            </div>
-                            <div class="mood d-flex justify-content-between w-100 align-items-center">
-                                <div class="icon">
-                                    <img src="{{asset('assets/emp/assets/images/sleeping.png')}}" alt="">
-                                </div>
-                                <span>Fine</span>
-                            </div>
+                        <div class="d-flex align-items-center my-4 ">
+                            {!! auth()->user()->getMoodDiv() !!}
                         </div>
                     </div>
 
@@ -151,7 +133,7 @@
                                     <path d="M3.61995 8.49C5.58995 -0.169998 18.42 -0.159997 20.38 8.5C21.53 13.58 18.37 17.88 15.6 20.54C14.632 21.4735 13.3397 21.9952 11.995 21.9952C10.6502 21.9952 9.35788 21.4735 8.38995 20.54C5.62995 17.88 2.46995 13.57 3.61995 8.49Z"
                                           stroke="#4D5558" stroke-width="1.5"/>
                                 </svg>
-                                <span>Petailing Jaya, Malaysia</span>
+                                <span>{{auth()->user()->location}}</span>
                             </li>
                             <li class="d-flex justify-content-start gap-2 mb-3">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -162,7 +144,7 @@
                                     <path d="M10.095 10H10.104M7.09497 10H7.10397" stroke="#4D5558"
                                           stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                                 </svg>
-                                <span>Since May 2021</span>
+                                <span>Since {{\Carbon\Carbon::parse(auth()->user()->created_at)->format('M Y')}}</span>
                             </li>
                         </ul>
                     </div>
@@ -170,12 +152,10 @@
                     <div class="biography-div mb-5">
                         <h4 class="fw-bolder">Biography</h4>
                         <p class="my-4">
-                            The first education is a historian, after
-                            some time I felt that this did not suit me
-                            and decided to retrain and get a second.
+                            {{auth()->user()->biography}}
                         </p>
                     </div>
-                    <button class="btn custom-btn w-100 border-0 py-3 text-white">Schedule Meeting</button>
+                    <a href="{{route('employee.ticket.index')}}" class="btn custom-btn w-100 border-0 py-3 text-white">Schedule Meeting</a>
                 </div>
             </div>
         </div>

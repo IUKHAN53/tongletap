@@ -18,4 +18,6 @@ class TaskController extends Controller
             return view('employee.content.task.grid', compact('tasks', 'view'));
         }
     }
+
+
 }

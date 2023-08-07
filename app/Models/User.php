@@ -38,6 +38,10 @@ class User extends Authenticatable
         'requested_plan',
         'last_login_at',
         'created_by',
+        'mood',
+        'activity',
+        'location',
+        'biography',
     ];
 
     protected $hidden = [
@@ -74,6 +78,59 @@ class User extends Authenticatable
     public function authId()
     {
         return $this->id;
+    }
+
+    public function sleepHours()
+    {
+        return Sleep::query()
+            ->where('employee_name', $this->name)
+            ->sum('sleep_hours');
+    }
+
+    public function getMoodDiv()
+    {
+        $mood = $this->mood;
+        $mood_images = [
+            'Tired' => asset('assets/emp/images/sleeping.png'),
+            'Fine' => asset('assets/emp/images/fine.png'),
+            'Normal' => asset('assets/emp/images/normal.png'),
+        ];
+        $moods = ['Tired', 'Fine', 'Normal'];
+        if (($key = array_search($this->mood, $moods)) !== false) {
+            unset($moods[$key]);
+        }
+        $moods = array_values($moods);
+        $inactive_mood = $moods[0];
+        $active_mood = $this->mood;
+        $next_mood = $moods[1];
+        $inactive =
+            "
+        <div class='mood d-flex justify-content-between w-100 align-items-center'>
+            <div class='icon'>
+                <img src='$mood_images[$inactive_mood]' alt=''>
+            </div>
+            <span>$inactive_mood</span>
+        </div>
+        ";
+        $active =
+            "
+        <div class='active-mood d-flex justify-content-between w-100 align-items-center'>
+            <div class='icon'>
+                <img src='$mood_images[$active_mood]' alt=''>
+            </div>
+            <span>$active_mood</span>
+        </div>
+        ";
+        $next = "
+        <div class='mood d-flex justify-content-between w-100 align-items-center'>
+            <div class='icon'>
+                <img src='$mood_images[$next_mood]' alt=''>
+            </div>
+            <span>$next_mood</span>
+        </div>
+        ";
+
+        return $inactive . $active . $next;
     }
 
     public function creatorId()

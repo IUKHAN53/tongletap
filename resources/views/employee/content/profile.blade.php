@@ -78,6 +78,56 @@
                                 @enderror
                             </div>
                         </div>
+                        <div class="col-lg-6 col-sm-6">
+                            <div class="form-group">
+                                <label class="col-form-label text-dark">{{__('Mood')}}</label>
+                                <select class="form-control @error('mood') is-invalid @enderror" name="mood" id="mood" required>
+                                    <option value="">-- Select Mood --</option>
+                                    <option value="Tired" {{$userDetail->mood=='Tired'?'selected':''}}>Tired</option>
+                                    <option value="Fine" {{$userDetail->mood=='Fine'?'selected':''}}>Fine</option>
+                                    <option value="Normal" {{$userDetail->mood=='Normal'?'selected':''}}>Normal</option>
+                                </select>
+                                @error('mood')
+                                <span class="invalid-feedback text-danger text-xs" role="alert">{{ $message }}</span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6 col-sm-6">
+                            <div class="form-group">
+                                <label class="col-form-label text-dark">{{__('Activity')}}</label>
+                                <input class="form-control @error('activity') is-invalid @enderror" name="activity" type="number"
+                                       value="{{ $userDetail->activity }}"
+                                       id="activity" placeholder="{{ __('Enter Your Activity') }}" required>
+                                @error('activity')
+                                <span class="invalid-feedback text-danger text-xs" role="alert">{{ $message }}</span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6 col-sm-6">
+                            <div class="form-group">
+                                <label class="col-form-label text-dark">{{__('Location')}}</label>
+                                <input class="form-control @error('location') is-invalid @enderror" name="location" type="text"
+                                       value="{{ $userDetail->location }}"
+                                       id="location" placeholder="{{ __('Enter Your Location') }}" required>
+                                @error('location')
+                                <span class="invalid-feedback text-danger text-xs" role="alert">{{ $message }}</span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6 col-sm-6">
+                            <div class="form-group">
+                                <label class="col-form-label text-dark">{{__('Biography')}}</label>
+                                <textarea class="form-control @error('biography') is-invalid @enderror" name="biography" id="biography"
+                                          placeholder="{{ __('Enter Your Biography') }}" required>{{$userDetail->biography}}</textarea>
+                                @error('biography')
+                                <span class="invalid-feedback text-danger text-xs" role="alert">{{ $message }}</span>
+                                @enderror
+                            </div>
+                        </div>
+
                         <div class="col-lg-6 col-md-6 mt-4">
                             <div class="form-group">
                                 <div class="choose-files">
