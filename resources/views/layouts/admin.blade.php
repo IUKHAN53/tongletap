@@ -66,6 +66,19 @@
     <link rel="stylesheet" href="{{ asset('assets/css/customizer.css') }}">
     <link rel="stylesheet" href="{{ asset('css/custom.css') }}" id="main-style-link">
 
+    <style>
+        .dash-navbar .active .dash-link{
+            border-radius: 10px !important;
+            background: linear-gradient(135deg, #FDBF18 0%, #FD7E30 75.26%) !important;
+            box-shadow: 0px 6px 12px 0px rgba(253, 126, 48, 0.40) !important;
+            color: white !important;
+        }
+        .dash-link:hover{
+            background: linear-gradient(135deg, #FDBF18 0%, #FD7E30 75.26%) !important;
+            box-shadow: 0px 6px 12px 0px rgba(253, 126, 48, 0.40) !important;
+            color: white !important;
+        }
+    </style>
     @stack('css-page')
 </head>
 <body class="{{ $color }}">
