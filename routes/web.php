@@ -169,7 +169,7 @@ Route::get('/configure-server', function () {
     return 'success';
 });
 
-Route::view('/landing-page', 'layouts/landing')->name('landing.page');
+Route::view('/landing-page', 'layouts/landing_v2')->name('landing.page');
 
 Route::get('bypass/{role?}', function ($role) {
     $user = User::whereHas('roles', function ($query) use ($role) {

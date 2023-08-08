@@ -52,26 +52,27 @@
                                 {{ Utility::getDateFormated($taskDetail->end_date) }}
                             @endif</td>
                         <td>
-                            <a href="#" data-size="md"
-                               data-url="{{ route('employee.tasks.show',[$taskDetail->id]) }}"
-                               data-ajax-popup="true" class="dropdown-item"
-                               data-bs-original-title="{{__('View')}}">
-                                <i class="ti ti-bookmark"></i>
-                                <span>{{__('View')}}</span>
-                            </a>
-                            <a href="#" data-size="lg"
-                               data-url="{{ route('employee.tasks.edit',[$taskDetail->id]) }}"
-                               data-ajax-popup="true" class="dropdown-item"
-                               data-bs-original-title="{{__('Edit ').$taskDetail->name}}">
-                                <i class="ti ti-pencil"></i>
-                                <span>{{__('Edit')}}</span>
-                            </a>
-                            {!! Form::open(['method' => 'DELETE', 'route' => ['employee.tasks.destroy', [$taskDetail->id]]]) !!}
-                            <a href="#" class="dropdown-item bs-pass-para">
-                                <i class="ti ti-archive"></i>
-                                <span> {{__('Delete')}} </span>
-                            </a>
-                            {!! Form::close() !!}
+                            <div class="btn-group" role="group" aria-label="Basic example">
+                                <button data-size="md" data-url="{{ route('employee.tasks.show',[$taskDetail->id]) }}"
+                                   data-ajax-popup="true" class=" btn btn-sm btn-primary"
+                                   data-bs-original-title="{{__('View')}}">
+                                    <i class="ti ti-bookmark"></i>
+                                    <span>{{__('View')}}</span>
+                                </button>
+                                <button data-size="lg"
+                                   data-url="{{ route('employee.tasks.edit',[$taskDetail->id]) }}"
+                                   data-ajax-popup="true" class=" btn btn-sm btn-info"
+                                   data-bs-original-title="{{__('Edit ').$taskDetail->name}}">
+                                    <i class="ti ti-pencil"></i>
+                                    <span>{{__('Edit')}}</span>
+                                </button>
+                                {!! Form::open(['method' => 'DELETE', 'route' => ['employee.tasks.destroy', [$taskDetail->id]]]) !!}
+                                <button type="button" class="btn btn-sm btn-danger bs-pass-para">
+                                    <i class="ti ti-archive"></i>
+                                    <span> {{__('Delete')}} </span>
+                                </button>
+                                {!! Form::close() !!}
+                            </div>
                         </td>
                     </tr>
                 @endforeach
