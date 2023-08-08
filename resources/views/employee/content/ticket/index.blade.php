@@ -179,12 +179,6 @@
                                                 <i class="ti ti-arrow-back-up text-white"></i>
                                             </a>
                                         </div>
-
-                                        <!-- @if (\Auth::user()->type == 'company' || $ticket->ticket_created == \Auth::user()->id)
-                                            below code
-
-                                        @endif -->
-
                                         <div class="action-btn bg-info rounded">
                                             <a href="#" data-url="{{ route('employee.ticket.edit', $ticket->id) }}"
                                                data-ajax-popup="true" data-title="{{ __('Edit Ticket') }}"

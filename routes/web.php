@@ -224,7 +224,14 @@ Route::prefix('employee')->middleware(['auth', 'XSS', 'is_employee'])->as('emplo
     Route::get('/sleep-create', ['App\Http\Controllers\Employee\HealthJourneyController', 'createSleep'])->name('sleep.create');
     Route::post('/sleep-store', ['App\Http\Controllers\Employee\HealthJourneyController', 'storeSleep'])->name('sleep.store');
 
-    Route::get('/tasks/{view}', ['App\Http\Controllers\Employee\TaskController', 'index'])->name('tasks.view');
+    Route::get('tasks', [App\Http\Controllers\Employee\TaskController::class, 'index'])->name('tasks.index');
+    Route::get('tasks/create', [App\Http\Controllers\Employee\TaskController::class, 'create'])->name('tasks.create');
+    Route::post('tasks/store', [App\Http\Controllers\Employee\TaskController::class, 'store'])->name('tasks.store');
+    Route::get('tasks/{tid}/show', [App\Http\Controllers\Employee\TaskController::class, 'show'])->name('tasks.show');
+    Route::get('tasks/{tid}/edit', [App\Http\Controllers\Employee\TaskController::class, 'edit'])->name('tasks.edit');
+    Route::post('tasks/update/{tid}', [App\Http\Controllers\Employee\TaskController::class, 'update'])->name('tasks.update');
+    Route::delete('tasks/{tid}', [App\Http\Controllers\Employee\TaskController::class, 'destroy'])->name('tasks.destroy');
+    Route::get('task-board-view', [App\Http\Controllers\Employee\TaskController::class, 'taskBoardView'])->name('tasks.task-board.view');
 });
 
 

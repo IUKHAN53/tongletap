@@ -13,9 +13,9 @@
 
     {{--    plugins--}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/choices.js/1.1.6/styles/css/choices.min.css"/>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.20/dist/sweetalert2.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/dataTables.bootstrap5.min.css">
     <link rel="stylesheet" href="{{ asset('assets/fonts/fontawesome.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/plugins/flatpickr.min.css') }}">
     <link rel="stylesheet" href="{{asset('assets/emp/css/style.min.css')}}">
@@ -102,7 +102,7 @@
                         </a>
                     </li>
                     <li class="sidebar-item">
-                        <a class="sidebar-link" href="{{ route('employee.tasks.view','list') }}" aria-expanded="false">
+                        <a class="sidebar-link" href="{{ route('employee.tasks.index') }}" aria-expanded="false">
                             <span>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                      fill="none">
@@ -131,7 +131,8 @@
                         </a>
                     </li>
                     <li class="sidebar-item">
-                        <a class="sidebar-link" href="{{route('employee.employee-profile-view')}}" aria-expanded="false">
+                        <a class="sidebar-link" href="{{route('employee.employee-profile-view')}}"
+                           aria-expanded="false">
                             <span>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                      fill="none">
@@ -248,7 +249,7 @@
                                             </linearGradient>
                                         </defs>
                                     </svg>
-{{--                                    <span class="badge rounded-pill bg-danger fs-2">2</span>--}}
+                                    {{--                                    <span class="badge rounded-pill bg-danger fs-2">2</span>--}}
                                 </a>
                                 <div class="dropdown-menu content-dd dropdown-menu-end dropdown-menu-animate-up"
                                      aria-labelledby="drop2">
@@ -345,7 +346,8 @@
                                         <div class="d-grid py-4 px-7 pt-8">
                                             <form action="{{route('logout')}}" method="POST">
                                                 @csrf
-                                                <button class="btn btn-outline-primary" style="width: 100%" type="submit">
+                                                <button class="btn btn-outline-primary" style="width: 100%"
+                                                        type="submit">
                                                     Log Out
                                                 </button>
                                             </form>
@@ -439,7 +441,7 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="{{ route('employee.tasks.view','list') }}" aria-expanded="false">
+                    <a class="sidebar-link" href="{{ route('employee.tasks.index') }}" aria-expanded="false">
                         <span>
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                  fill="none">
@@ -561,11 +563,12 @@
 
 {{--plugins--}}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/choices.js/1.1.6/choices.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" type="text/javascript"></script>
 <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.20/dist/sweetalert2.all.min.js"></script>
 <script src="{{ asset('assets/js/plugins/flatpickr.min.js') }}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap5.min.js"></script>
 <script src="{{ asset('js/custom.js') }}"></script>
 
 @stack('script-page')
@@ -579,8 +582,11 @@
         show_toastr('error', '{!! $message !!}');
     </script>
 @endif
-<script>
 
+<script>
+    $(document).ready(function () {
+        $('.table').DataTable();
+    });
     $(document).ready(function () {
         const sidebarLink = $('.sidebar-link');
 

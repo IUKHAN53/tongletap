@@ -28,6 +28,7 @@ class ProjectTaskController extends Controller
         {
             $project = Project::find($project_id);
             $stages  = TaskStage::orderBy('order')->where('created_by',\Auth::user()->creatorId())->get();
+            $stageClass = [];
             foreach($stages as $status)
             {
                 $stageClass[] = 'task-list-' . $status->id;
