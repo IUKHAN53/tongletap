@@ -1,4 +1,36 @@
 @extends('layouts.employee')
+@push('css-page')
+    <style>
+        .card-header h5 {
+            color: #fff !important;
+        }
+
+        .fc-h-event {
+            color: #fff !important;
+            background: linear-gradient(135deg, #FD7E30 0%, #FDBF18 77.08%) !important;
+            box-shadow: 0px 6px 12px 0px rgba(253, 126, 48, 0.40) !important;
+            padding: 4px;
+            border-style: none !important;
+        }
+
+        .fc-toolbar-chunk .btn-group button {
+            border-radius: 100px !important;
+            background: #F6F6F6 !important;
+            border: none !important;
+            color: black;
+        }
+
+        .fc-toolbar-chunk .btn-group .active {
+            border-radius: 100px !important;
+            background: linear-gradient(135deg, #FDBF18 0%, #FD7E30 75.26%) !important;
+            box-shadow: 0px 5px 10px 0px rgba(253, 126, 48, 0.35) !important;
+            border: none !important;
+            color: white !important;
+        }
+
+
+    </style>
+@endpush
 @section('content')
     <!--  Row 1 -->
     <div class="row m-5">
@@ -57,7 +89,7 @@
                         </div>
                         <div class="card-body">
                             <div class="d-flex justify-content-center align-items-center">
-                                <div id="round-range-chart"></div>
+                                <div id="booking_calendar"></div>
                             </div>
                         </div>
                     </div>
@@ -82,7 +114,7 @@
                     </div>
 
                     <div class="d-flex just-content-between align-items-center gap-3 flex-column flex-sm-row">
-                        <div class="card w-100" >
+                        <div class="card w-100">
                             <div class="sleep-card" style="max-height: 80px">
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div class="text-white">Sleep</div>
@@ -98,7 +130,7 @@
                                 <span class="text-white mt-3">{{auth()->user()->sleepHours()}} hours</span>
                             </div>
                         </div>
-                        <div class="card w-100" >
+                        <div class="card w-100">
                             <div class="activity-card" style="max-height: 80px">
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div class="text-white">Activity</div>
@@ -155,7 +187,8 @@
                             {{auth()->user()->biography}}
                         </p>
                     </div>
-                    <a href="{{route('employee.ticket.index')}}" class="btn custom-btn w-100 border-0 py-3 text-white">Schedule Meeting</a>
+                    <a href="{{route('employee.ticket.index')}}" class="btn custom-btn w-100 border-0 py-3 text-white">Schedule
+                        Meeting</a>
                 </div>
             </div>
         </div>
@@ -167,11 +200,65 @@
                     <div class="card-title text-white fw-bold">Upcoming Workshop & Mental Health Day</div>
                 </div>
                 <div class="card-body">
-                    <div class="d-flex justify-content-center align-items-center">
-                        <div id="calender"></div>
+                    <div class="col-md-12">
+                        <div id="events_calender"></div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 @endsection
+@push('script-page')
+    <script src="{{ asset('assets/js/plugins/main.min.js') }}"></script>
+    <script type="text/javascript">
+        (function () {
+                var calendar = new FullCalendar.Calendar(document.getElementById('events_calender'), {
+                    headerToolbar: {
+                        left: 'prev,next',
+                        center: 'title',
+                        right: 'timeGridDay,timeGridWeek,dayGridMonth'
+                    },
+                    buttonText: {
+                        timeGridDay: "{{__('Day')}}",
+                        timeGridWeek: "{{__('Week')}}",
+                        dayGridMonth: "{{__('Month')}}"
+                    },
+                    themeSystem: 'bootstrap',
+
+                    slotDuration: '00:10:00',
+                    navLinks: false,
+                    droppable: true,
+                    selectable: true,
+                    selectMirror: true,
+                    editable: false,
+                    dayMaxEvents: true,
+                    handleWindowResize: true,
+                    contentHeight: "auto",
+                    events: {!! $arrEvents !!},
+                    viewDidMount: function () {
+                        $('.fc-scrollgrid').removeClass('table-bordered')
+                    }
+                });
+                calendar.render();
+
+                //     booking calendar
+                var booking_calendar = new FullCalendar.Calendar(document.getElementById('booking_calendar'), {
+                    headerToolbar: {
+                        left: 'title',
+                        right: 'prev,next'
+                    },
+                    themeSystem: 'bootstrap',
+                    navLinks: false,
+                    handleWindowResize: true,
+                    contentHeight: "auto",
+                    contentWidth: "auto",
+                    events: {!! $bookings !!},
+                    viewDidMount: function () {
+                        $('.fc-scrollgrid').removeClass('table-bordered')
+                    }
+                });
+                booking_calendar.render();
+            }
+        )();
+    </script>
+@endpush

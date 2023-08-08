@@ -20,6 +20,11 @@
     <link rel="stylesheet" href="{{ asset('assets/css/plugins/flatpickr.min.css') }}">
     <link rel="stylesheet" href="{{asset('assets/emp/css/style.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/emp/css/custom.css')}}">
+    <style>
+        .sidebar-item:hover .sidebar-link span svg path {
+            stroke: #fff !important;
+        }
+    </style>
 </head>
 <body>
 <!-- Preloader -->

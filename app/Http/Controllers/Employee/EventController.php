@@ -30,7 +30,7 @@ class EventController extends Controller
             $arr['title'] = $event['title'];
             $arr['start'] = $event['start_date'];
             $arr['end'] = $event['end_date'];
-            $arr['className'] = $event['color'];
+            $arr['className'] = 'custom-btn';
             $arr['url'] = route('event.edit', $event['id']);
             $arrEvents[] = $arr;
         }

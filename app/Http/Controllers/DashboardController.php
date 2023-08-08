@@ -15,6 +15,7 @@ use App\Models\Employee;
 use App\Models\Event;
 use App\Models\Expense;
 use App\Models\Goal;
+use App\Models\HealthStat;
 use App\Models\Invoice;
 use App\Models\Job;
 use App\Models\LandingPageSection;
@@ -38,6 +39,7 @@ use App\Models\Trainer;
 use App\Models\Training;
 use App\Models\User;
 use App\Models\Utility;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -505,7 +507,38 @@ class DashboardController extends Controller
 
     public function employeeDashboard()
     {
-        return view('dashboard.employee-dashboard');
+        $stats = HealthStat::query()->where('user_id', Auth::user()->id)->latest()->first()->toArray();
+//        Events for calendar
+        $eventsData = Event::query()->where('company_name', '=', Auth::user()->ownerDetails()->name)->get();
+        $arrEvents = [];
+        foreach ($eventsData as $event) {
+            $arr['id'] = $event['id'];
+            $arr['title'] = $event['title'];
+            $arr['start'] = $event['start_date'];
+            $arr['end'] = $event['end_date'];
+            $arr['url'] = #;
+            $arr['className'] = 'custom-btn';
+            $arrEvents[] = $arr;
+        }
+        $arrEvents = str_replace('"[', '[', str_replace(']"', ']', json_encode($arrEvents)));
+//        End Events for calendar
+
+//        Schedule for calendar
+        $bookingData = Event::query()->where('company_name', '=', Auth::user()->ownerDetails()->name)->get();
+        $bookings = [];
+        foreach ($bookingData as $booking) {
+            $arr['id'] = $booking['id'];
+            $arr['title'] = $booking['title'];
+            $arr['start'] = Carbon::parse($booking['time_slot'])->startOfDay()->toDateTimeString();
+            $arr['end'] = Carbon::parse($booking['time_slot'])->startOfDay()->toDateTimeString();
+            $arr['url'] = route('employee.ticket.edit', $booking['id']);
+            $arr['className'] = 'custom-btn';
+            $bookings[] = $arr;
+        }
+        $bookings = str_replace('"[', '[', str_replace(']"', ']', json_encode($bookings)));
+
+
+        return view('dashboard.employee-dashboard', compact('stats', 'arrEvents', 'bookings'));
     }
 
     public function getOrderChart($arrParam)

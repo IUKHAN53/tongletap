@@ -251,8 +251,12 @@
                 dayMaxEvents: true,
                 handleWindowResize: true,
                 events: {!! $arrEvents !!},
+                viewDidMount: function () {
+                    $('.fc-scrollgrid').removeClass('table-bordered')
+                }
             });
             calendar.render();
         })();
+
     </script>
 @endpush
