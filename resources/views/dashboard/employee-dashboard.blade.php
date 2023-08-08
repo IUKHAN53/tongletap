@@ -1,5 +1,6 @@
 @extends('layouts.employee')
 @push('css-page')
+    <link href="{{asset('assets/emp/evo-calendar/css/evo-calendar.css')}}" rel="stylesheet" />
     <style>
         .card-header h5 {
             color: #fff !important;
@@ -27,13 +28,33 @@
             border: none !important;
             color: white !important;
         }
+        .evo-calendar {
+            box-shadow: none !important;
+            -webkit-box-shadow: none !important;
+        }
+        #sidebarToggler, #eventListToggler {
+            border-radius: 100px !important;
+            background: linear-gradient(135deg, #FDBF18 0%, #FD7E30 75.26%) !important;
+        }
 
+        .calendar-sidebar > span#sidebarToggler, #eventListToggler{
+            width: 50px;
+            height: 50px;
+            -webkit-box-shadow: 5px 0 18px -3px #FD7E30;
+            box-shadow: 5px 0 18px -3px #FD7E30;
+        }
 
+        .calendar-sidebar {
+            background: linear-gradient(135deg, #FDBF18 0%, #FD7E30 75.26%) !important;
+        }
+        .calendar-months>.active-month, .calendar-months>li:hover {
+            background: #FF0080 !important;
+        }
     </style>
 @endpush
 @section('content')
     <!--  Row 1 -->
-    <div class="row m-5">
+    <div class="row">
         <div class="col-lg-8 d-flex align-items-stretch">
             <div class="row w-100">
                 <div class="col-md-6">
@@ -42,10 +63,8 @@
                             <div class="card-title text-white fw-bold">Stress</div>
                         </div>
                         <div class="card-body">
-                            <div class="d-flex flex-colum justify-content-center align-items-center">
-                                <div>
-
-                                </div>
+                            <div class="d-flex flex-column justify-content-center align-items-center">
+                                <div id="stressChart" style="width: 100%; height: 200px"></div>
                                 <div class="stress-indicator w-100 px-4 py-2 d-flex justify-content-center align-items-center">
                                     <p class="m-0">Normal</p>
                                 </div>
@@ -60,7 +79,7 @@
                         </div>
                         <div class="card-body">
                             <div class="d-flex justify-content-center align-items-center">
-                                <div id="round-range-chart"></div>
+                                <div id="anxiety-chart"></div>
                             </div>
                         </div>
                     </div>
@@ -69,15 +88,16 @@
                     <div class="card">
                         <div class="card-header shadow d-flex justify-content-between align-items-center">
                             <div class="card-title text-white fw-bold">Depression</div>
-                            <div class="form-group">
-                                <select name="" id="" class="form-select border-0 text-white">
-                                    <option value="">Weekly</option>
-                                </select>
-                            </div>
+{{--                            <div class="card-title text-white fw-bold">Depression</div>--}}
+{{--                            <div class="form-group">--}}
+{{--                                <select name="" id="" class="form-select border-0 text-white">--}}
+{{--                                    <option value="">Weekly</option>--}}
+{{--                                </select>--}}
+{{--                            </div>--}}
                         </div>
                         <div class="card-body">
                             <div class="d-flex justify-content-center align-items-center">
-                                <div id="round-range-chart"></div>
+                                <div id="depression-chart"></div>
                             </div>
                         </div>
                     </div>
@@ -88,9 +108,7 @@
                             <div class="card-title text-white fw-bold">Booked Schedule</div>
                         </div>
                         <div class="card-body">
-                            <div class="d-flex justify-content-center align-items-center">
-                                <div id="booking_calendar"></div>
-                            </div>
+                            <div id="calendar"></div>
                         </div>
                     </div>
                 </div>
@@ -193,7 +211,7 @@
             </div>
         </div>
     </div>
-    <div class="row m-5">
+    <div class="row">
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header shadow">
@@ -210,6 +228,13 @@
 @endsection
 @push('script-page')
     <script src="{{ asset('assets/js/plugins/main.min.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <script src="https://cdn.amcharts.com/lib/5/index.js"></script>
+    <script src="https://cdn.amcharts.com/lib/5/xy.js"></script>
+    <script src="https://cdn.amcharts.com/lib/5/radar.js"></script>
+    <script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
+
+    <script src="{{asset('assets/emp/evo-calendar/js/evo-calendar.js')}}"></script>
     <script type="text/javascript">
         (function () {
                 var calendar = new FullCalendar.Calendar(document.getElementById('events_calender'), {
@@ -242,23 +267,293 @@
                 calendar.render();
 
                 //     booking calendar
-                var booking_calendar = new FullCalendar.Calendar(document.getElementById('booking_calendar'), {
-                    headerToolbar: {
-                        left: 'title',
-                        right: 'prev,next'
-                    },
-                    themeSystem: 'bootstrap',
-                    navLinks: false,
-                    handleWindowResize: true,
-                    contentHeight: "auto",
-                    contentWidth: "auto",
-                    events: {!! $bookings !!},
-                    viewDidMount: function () {
-                        $('.fc-scrollgrid').removeClass('table-bordered')
-                    }
-                });
-                booking_calendar.render();
+                {{--var booking_calendar = new FullCalendar.Calendar(document.getElementById('booking_calendar'), {--}}
+                {{--    headerToolbar: {--}}
+                {{--        left: 'title',--}}
+                {{--        right: 'prev,next'--}}
+                {{--    },--}}
+                {{--    themeSystem: 'bootstrap',--}}
+                {{--    navLinks: false,--}}
+                {{--    handleWindowResize: true,--}}
+                {{--    contentHeight: "auto",--}}
+                {{--    contentWidth: "auto",--}}
+                {{--    events: {!! $bookings !!},--}}
+                {{--    viewDidMount: function () {--}}
+                {{--        $('.fc-scrollgrid').removeClass('table-bordered')--}}
+                {{--    }--}}
+                {{--});--}}
+                {{--booking_calendar.render();--}}
+
+                $('.fc-header-toolbar').addClass('flex-column flex-sm-row')
             }
         )();
+
+        $(document).ready(function () {
+
+            const bookedCalendar = $('#calendar').evoCalendar({
+                'sidebarDisplayDefault': false,
+                'sidebarToggler': true,
+                'eventDisplayDefault': false,
+                'eventListToggler': true,
+                'calendarEvents': @json($bookings)
+            }, 'getActiveEvents');
+
+            // Anxiety Chart
+            const anxietyChartOption = {
+                series: [{{$stats['anxiety']}}],
+                chart: {
+                    height: 275,
+                    type: 'radialBar',
+                },
+                colors: ['#FF8C00'],  // Starting color
+                plotOptions: {
+                    radialBar: {
+                        startAngle: 0,
+                        endAngle: 360,
+                        hollow: {
+                            margin: 0,
+                            size: '70%',
+                            background: '#fff',
+                            image: undefined,
+                            imageOffsetX: 0,
+                            imageOffsetY: 0,
+                            position: 'front',
+                            dropShadow: {
+                                enabled: true,
+                                top: 3,
+                                left: 0,
+                                blur: 4,
+                                opacity: 0.24,
+                                color: '#FF8C00FF'
+                            }
+                        },
+                        track: {
+                            background: '#fff',
+                            strokeWidth: '67%',
+                            margin: 0,
+                            dropShadow: {
+                                enabled: true,
+                                top: -3,
+                                left: 0,
+                                blur: 4,
+                                opacity: 0.35,
+                                color: '#d07300'
+                            }
+                        },
+                        dataLabels: {
+                            showOn: 'always',
+                            name: {
+                                offsetY: -10,
+                                show: true,
+                                color: '#888',
+                                fontSize: '17px'
+                            },
+                            value: {
+                                formatter: function (val) {
+                                    return parseInt(val)+'%';
+                                },
+                                color: '#111',
+                                fontSize: '36px',
+                                show: true,
+                                fontWeight: '600'
+                            }
+                        }
+                    }
+                },
+                fill: {
+                    type: 'gradient',
+                    gradient: {
+                        shade: 'dark',
+                        type: 'horizontal',
+                        shadeIntensity: 0.5,
+                        gradientToColors: ['#9b5300'],
+                        inverseColors: false,
+                        opacityFrom: 1,
+                        opacityTo: 1,
+                        stops: [0, 100]
+                    }
+                },
+                stroke: {
+                    lineCap: 'round'
+                },
+                labels: ['Mild'],
+            };
+
+            const anxietyChart = new ApexCharts(document.querySelector("#anxiety-chart"), anxietyChartOption);
+            anxietyChart.render();
+
+
+            // Stress Chart
+            var root = am5.Root.new("stressChart");
+            root._logo.dispose()
+            root.setThemes([
+                am5themes_Animated.new(root)
+            ]);
+
+            var chart = root.container.children.push(am5radar.RadarChart.new(root, {
+                panX: false,
+                panY: false,
+                startAngle: 160,
+                endAngle: 380
+            }));
+
+            var axisRenderer = am5radar.AxisRendererCircular.new(root, {
+                innerRadius: 50,
+                minGridDistance: false,
+            });
+
+            var xAxis = chart.xAxes.push(am5xy.ValueAxis.new(root, {
+                maxDeviation: 0,
+                min: 0,
+                max: 100,
+                strictMinMax: true,
+                renderer: axisRenderer
+            }));
+            var axisDataItem = xAxis.makeDataItem({});
+
+            var clockHand = am5radar.ClockHand.new(root, {
+                pinRadius: am5.percent(20),
+                radius: am5.percent(40),
+                bottomWidth: 10,
+            })
+
+            var bullet = axisDataItem.set("bullet", am5xy.AxisBullet.new(root, {
+                sprite: clockHand
+            }));
+
+            xAxis.createAxisRange(axisDataItem);
+
+            axisDataItem.set("value", {{$stats['stress']}});
+            bullet.get("sprite").on("rotation", function () {
+                var value = axisDataItem.get("value");
+                var fill = am5.color(0x000000);
+                xAxis.axisRanges.each(function (axisRange) {
+                    if (value >= axisRange.get("value") && value <= axisRange.get("endValue")) {
+                        fill = axisRange.get("axisFill").get("fill");
+                    }
+                })
+
+                // label.set("text", Math.round(value).toString());
+
+                clockHand.pin.animate({ key: "fill", to: fill, duration: 500, easing: am5.ease.out(am5.ease.cubic) })
+                clockHand.hand.animate({ key: "fill", to: fill, duration: 500, easing: am5.ease.out(am5.ease.cubic) })
+            });
+
+            chart.bulletsContainer.set("mask", undefined);
+
+            var bandsData = [{
+                color: "#70c2a7",
+                lowScore: 0,
+                highScore: 16.6,
+                title: `Normal`,
+                href: `{{asset('assets/emp/images/svgs/chart/outline/happy-100.svg')}}`
+            }, {
+                color: "#81c984",
+                lowScore: 16.6,
+                highScore: 33.2,
+                title: `Low`,
+                href: `{{asset('assets/emp/images/svgs/chart/outline/happy-80.svg')}}`
+            }, {
+                color: "#fbbe18",
+                lowScore: 33.2,
+                highScore: 49.8,
+                title: `Moderate`,
+                href: `{{asset('assets/emp/images/svgs/chart/outline/happy-60.svg')}}`
+            }, {
+                color: "#fb822e",
+                lowScore: 49.8,
+                highScore: 66.4,
+                title: `Intermediate`,
+                href: `{{asset('assets/emp/images/svgs/chart/outline/happy-40.svg')}}`
+            }, {
+                color: "#c34b20",
+                lowScore: 66.4,
+                highScore: 83,
+                title: `High`,
+                href: `{{asset('assets/emp/images/svgs/chart/outline/happy-20.svg')}}`
+            }, {
+                color: "#b61f1c",
+                lowScore: 83,
+                highScore: 100,
+                title: `Very High`,
+                href: `{{asset('assets/emp/images/svgs/chart/outline/happy-0.svg')}}`
+            }];
+
+            am5.array.each(bandsData, function (data) {
+                var axisRange = xAxis.createAxisRange(xAxis.makeDataItem({}));
+
+                axisRange.setAll({
+                    value: data.lowScore,
+                    endValue: data.highScore
+                });
+
+                axisRange.get("axisFill").setAll({
+                    visible: true,
+                    fill: am5.color(data.color),
+                    fillOpacity: 0.8
+                });
+
+                axisRange.get("label").setAll({
+                    text: data.title,
+                    inside: false,
+                    radius: 15,
+                    fontSize: "0.9em",
+                    fontWeight: "bold",
+                });
+            });
+            chart.appear(1000, 100);
+
+
+
+            // Depression Chart finalized
+            const depressionChartOptions = {
+                series: [67],
+                chart: {
+                    height: 350,
+                    type: 'radialBar',
+                    offsetY: -10
+                },
+                colors: ['#ff8f00'],
+                plotOptions: {
+                    radialBar: {
+                        startAngle: -135,
+                        endAngle: 135,
+                        dataLabels: {
+                            name: {
+                                fontSize: '16px',
+                                color: undefined,
+                                offsetY: 120
+                            },
+                            value: {
+                                offsetY: 76,
+                                fontSize: '22px',
+                                color: undefined,
+                                formatter: function (val) {
+                                    return val + "%";
+                                }
+                            }
+                        }
+                    }
+                },
+                fill: {
+                    type: 'gradient',
+                    gradient: {
+                        shade: 'dark',
+                        shadeIntensity: 0.15,
+                        gradientToColors: ['#9b5300'],
+                        inverseColors: false,
+                        opacityFrom: 1,
+                        opacityTo: 1,
+                        stops: [0, 50, 65, 91]
+                    },
+                },
+                stroke: {
+                    dashArray: 4
+                },
+                labels: ['Depression'],
+            };
+            var depressionChart = new ApexCharts(document.querySelector("#depression-chart"), depressionChartOptions);
+            depressionChart.render();
+        });
     </script>
 @endpush

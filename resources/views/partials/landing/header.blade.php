@@ -145,6 +145,15 @@
             grid-row-gap: 30px;
         }
 
+        .review-divs {
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-auto-rows: 1fr;
+            grid-column-gap: 30px;
+            grid-row-gap: 30px;
+        }
+
         .all-divs div {
             min-height: 120px;
         }
@@ -157,6 +166,22 @@
             /*left: 0;*/
             /*top: 50%;*/
             transform: translateY(-50%) rotate(13deg);
+        }
+        .review-card {
+            border-radius: 30px;border-color: #ffa12c;border-style: solid;
+            border-width: 1px 1px 1px 1px;
+            transition: background 0.3s, border 0.3s, border-radius 0.3s, box-shadow 0.3s;
+            padding: 51px 29px 33px 32px;
+            z-index: -1;
+        }
+        .quotes-img {
+            height: auto;
+            width: 45px !important;
+            position: absolute;
+            top: -10%;
+            left: 12%;
+            z-index: 999;
+            transform: translate(-50%, 0%);
         }
     </style>
 </head>

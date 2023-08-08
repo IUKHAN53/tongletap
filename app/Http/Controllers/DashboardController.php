@@ -526,16 +526,26 @@ class DashboardController extends Controller
 //        Schedule for calendar
         $bookingData = Event::query()->where('company_name', '=', Auth::user()->ownerDetails()->name)->get();
         $bookings = [];
+
+//        id: '4hducye', // Event's id (required, for removing event)
+//        description: 'Lorem ipsum dolor sit amet.', // Description of event (optional)
+//        badge: '1-day event', // Event badge (optional)
+//        date: new Date(), // Date of event
+//        type: 'holiday', // Type of event (event|holiday|birthday)
+//        color: '#63d867', // Event custom color (optional)
+//        everyYear: true // Event is every year (optional)
         foreach ($bookingData as $booking) {
-            $arr['id'] = $booking['id'];
-            $arr['title'] = $booking['title'];
-            $arr['start'] = Carbon::parse($booking['time_slot'])->startOfDay()->toDateTimeString();
-            $arr['end'] = Carbon::parse($booking['time_slot'])->startOfDay()->toDateTimeString();
-            $arr['url'] = route('employee.ticket.edit', $booking['id']);
-            $arr['className'] = 'custom-btn';
-            $bookings[] = $arr;
+            $arr2['id'] = $booking['id'];
+            $arr2['description'] = $booking['title'];
+            $arr2['badge'] = '1-day event';
+            $arr2['date'] = Carbon::parse($booking['time_slot'])->startOfDay()->toDateTimeString();
+            $arr2['type'] = 'event';
+            $arr2['color'] = '#63d867';
+//            $arr2['url'] = route('employee.ticket.edit', $booking['id']);
+//            $arr2['className'] = 'custom-btn';
+            $bookings[] = $arr2;
         }
-        $bookings = str_replace('"[', '[', str_replace(']"', ']', json_encode($bookings)));
+//        $bookings = str_replace('"[', '[', str_replace(']"', ']', json_encode($bookings)));
 
 
         return view('dashboard.employee-dashboard', compact('stats', 'arrEvents', 'bookings'));

@@ -227,73 +227,42 @@
     <!-- ======= Skills Section ======= -->
     <section id="skills" class="skills">
         <div class="container" data-aos="fade-up">
-            <div class="row">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-12 text-center">
-                            <h2 class="heading-section mb-5">Carousel #03</h2>
+            <div class="text-center my-5">
+                <h1 class="fw-bold" style="color: #002332;">
+                    What Our Customers Say<br>About <span class="text-yellow">Our Solutions</span>
+                </h1>
+            </div>
+            <div class="featured-carousel owl-carousel">
+                <!--First Slide-->
+                <div class="item w-100">
+                    <div class="d-flex justify-content-center align-items-center gap-3">
+
+                        <div class="card review-card">
+                            <img src="{{asset('landing/images/quotes.png')}}" width="36" height="29" class="quotes-img" alt="">
+                            <div class="card-body">
+                                <h2 class="custom-card-header">Staff<br>Management</h2>
+                                <div class="card-body-text">
+                                    Keep track of employee information easily and conveniently. Search for staff
+                                    through simple filter options, and edit and manage their information as you
+                                    please.
+                                </div>
+                            </div>
                         </div>
-                        <div class="col-md-12">
-                            <div class="featured-carousel owl-carousel">
-                                <div class="item">
-                                    <div class="work">
-                                        <div class="img d-flex align-items-end justify-content-center"
-                                             style="background-image: url('{{asset('assets/landing/img/work-1.jpg.webp')}}');">
-                                            <div class="text w-100">
-                                                <span class="cat">Web Design</span>
-                                                <h3><a href="#">Working Spaces for Startups Freelancer</a></h3>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="item">
-                                    <div class="work">
-                                        <div class="img d-flex align-items-end justify-content-center"
-                                             style="background-image: url('{{'assets/landing/img/work-1.jpg.webp'}}');">
-                                            <div class="text w-100">
-                                                <span class="cat">Web Design</span>
-                                                <h3><a href="#">Working Spaces for Startups Freelancer</a></h3>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="item">
-                                    <div class="work">
-                                        <div class="img d-flex align-items-end justify-content-center"
-                                             style="background-image: url('{{asset('assets/landing/img/work-1.jpg.webp')}}');">
-                                            <div class="text w-100">
-                                                <span class="cat">Web Design</span>
-                                                <h3><a href="#">Working Spaces for Startups Freelancer</a></h3>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="item">
-                                    <div class="work">
-                                        <div class="img d-flex align-items-end justify-content-center"
-                                             style="background-image: url('{{asset('assets/landing/img/work-1.jpg.webp')}}');">
-                                            <div class="text w-100">
-                                                <span class="cat">Web Design</span>
-                                                <h3><a href="#">Working Spaces for Startups Freelancer</a></h3>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="item">
-                                    <div class="work">
-                                        <div class="img d-flex align-items-end justify-content-center"
-                                             style="background-image: url('{{asset('assets/landing/img/work-1.jpg.webp')}}');">
-                                            <div class="text w-100">
-                                                <span class="cat">Web Design</span>
-                                                <h3><a href="#">Working Spaces for Startups Freelancer</a></h3>
-                                            </div>
-                                        </div>
-                                    </div>
+                        <div class="card review-card">
+                            <div class="card-body">
+                                <h2 class="custom-card-header">Staff<br>Management</h2>
+                                <div class="card-body-text">
+                                    Keep track of employee information easily and conveniently. Search for staff
+                                    through simple filter options, and edit and manage their information as you
+                                    please.
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
+            <div class="d-flex justify-content-center my-5">
+                <button class="btn custom-header-btn text-uppercase py-3">Check Our Reviews</button>
             </div>
         </div>
     </section><!-- End Skills Section -->

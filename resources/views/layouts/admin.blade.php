@@ -14,26 +14,29 @@
 
 
 @endphp
-    <!DOCTYPE html>
+        <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}" dir="{{$SITE_RTL == 'on' ? 'rtl' : '' }}">
 
 
 <meta name="csrf-token" id="csrf-token" content="{{ csrf_token() }}">
 <head>
-    <title>{{(Utility::getValByName('title_text')) ? Utility::getValByName('title_text') : config('app.name', 'TongleTap')}} - @yield('page-title')</title>
+    <title>{{(Utility::getValByName('title_text')) ? Utility::getValByName('title_text') : config('app.name', 'TongleTap')}}
+        - @yield('page-title')</title>
     <script src="{{ asset('js/html5shiv.js') }}"></script>
-{{--    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>--}}
-{{--    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>--}}
+    {{--    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>--}}
+    {{--    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>--}}
 
     <!-- Meta -->
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="url" content="{{ url('').'/'.config('chatify.path') }}" data-user="{{ Auth::user()->id }}">
-    <link rel="icon" href="{{$logo.'/'.(isset($company_favicon) && !empty($company_favicon)?$company_favicon:'favicon.png')}}" type="image" sizes="16x16">
+    <link rel="icon"
+          href="{{$logo.'/'.(isset($company_favicon) && !empty($company_favicon)?$company_favicon:'favicon.png')}}"
+          type="image" sizes="16x16">
 
     <!-- Favicon icon -->
-{{--    <link rel="icon" href="{{ asset('assets/images/favicon.svg') }}" type="image/x-icon"/>--}}
+    {{--    <link rel="icon" href="{{ asset('assets/images/favicon.svg') }}" type="image/x-icon"/>--}}
     <!-- Calendar-->
     <link rel="stylesheet" href="{{ asset('assets/css/plugins/main.css') }}">
 
@@ -41,7 +44,6 @@
     <link rel="stylesheet" href="{{ asset('assets/css/plugins/flatpickr.min.css') }}">
 
     <link rel="stylesheet" href="{{ asset('assets/css/plugins/animate.min.css') }}">
-
 
 
     <!-- font css -->
@@ -67,16 +69,35 @@
     <link rel="stylesheet" href="{{ asset('css/custom.css') }}" id="main-style-link">
 
     <style>
-        .dash-navbar .active .dash-link{
+        .dash-navbar .active .dash-link {
             border-radius: 10px !important;
             background: linear-gradient(135deg, #FDBF18 0%, #FD7E30 75.26%) !important;
             box-shadow: 0px 6px 12px 0px rgba(253, 126, 48, 0.40) !important;
             color: white !important;
         }
-        .dash-link:hover{
+
+        .dash-navbar .active .dash-link > .dash-micon > i {
+            color: #FD7E30 !important;
+        }
+
+        .dash-hasmenu > .dash-link:hover {
             background: linear-gradient(135deg, #FDBF18 0%, #FD7E30 75.26%) !important;
             box-shadow: 0px 6px 12px 0px rgba(253, 126, 48, 0.40) !important;
             color: white !important;
+        }
+
+        .dash-link:hover > .dash-micon > i {
+            color: #FD7E30 !important;
+        }
+
+        .dash-submenu > .dash-item > .dash-link:hover {
+            color: #FD7E30 !important;
+        }
+
+        .dash-submenu > .dash-item > .dash-link:hover .dash-item > .dash-link {
+            /*.dash-item > .dash-submenu > dash-item > dash-link:hover {*/
+            background: linear-gradient(135deg, #FDBF18 0%, #FD7E30 75.26%) !important;
+            box-shadow: 0px 6px 12px 0px rgba(253, 126, 48, 0.40) !important;
         }
     </style>
     @stack('css-page')
@@ -106,10 +127,10 @@
         <div class="modal-content">
             <div class="modal-body">
                 <button
-                    type="button"
-                    class="btn-close float-end"
-                    data-bs-dismiss="modal"
-                    aria-label="Close"
+                        type="button"
+                        class="btn-close float-end"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"
                 ></button>
                 <h6 class="mt-2">
                     <i data-feather="monitor" class="me-2"></i>Desktop settings
@@ -117,10 +138,10 @@
                 <hr/>
                 <div class="form-check form-switch">
                     <input
-                        type="checkbox"
-                        class="form-check-input"
-                        id="pcsetting1"
-                        checked
+                            type="checkbox"
+                            class="form-check-input"
+                            id="pcsetting1"
+                            checked
                     />
                     <label class="form-check-label f-w-600 pl-1" for="pcsetting1"
                     >Allow desktop notification</label
@@ -160,10 +181,10 @@
                 <hr/>
                 <div class="form-check form-switch">
                     <input
-                        type="checkbox"
-                        class="form-check-input"
-                        id="pcsetting5"
-                        checked
+                            type="checkbox"
+                            class="form-check-input"
+                            id="pcsetting5"
+                            checked
                     />
                     <label class="form-check-label f-w-600 pl-1" for="pcsetting5"
                     >View other user chat</label
@@ -173,9 +194,9 @@
             </div>
             <div class="modal-footer">
                 <button
-                    type="button"
-                    class="btn btn-light-danger btn-sm"
-                    data-bs-dismiss="modal"
+                        type="button"
+                        class="btn btn-light-danger btn-sm"
+                        data-bs-dismiss="modal"
                 >
                     Close
                 </button>
@@ -208,8 +229,8 @@
                 </div>
             </div>
         </div>
-    @yield('content')
-    <!-- [ Main Content ] end -->
+        @yield('content')
+        <!-- [ Main Content ] end -->
     </div>
 </div>
 <div class="modal fade" id="commonModal" tabindex="-1" role="dialog"
@@ -228,12 +249,14 @@
 <div class="position-fixed top-0 end-0 p-3" style="z-index: 99999">
     <div id="liveToast" class="toast text-white fade" role="alert" aria-live="assertive" aria-atomic="true">
         <div class="d-flex">
-            <div class="toast-body"> </div>
-            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+            <div class="toast-body"></div>
+            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
+                    aria-label="Close"></button>
         </div>
     </div>
 </div>
 @include('partials.admin.footer')
 @include('Chatify::layouts.footerLinks')
+
 </body>
 </html>
