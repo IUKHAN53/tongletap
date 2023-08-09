@@ -1,12 +1,11 @@
 @extends('layouts.employee')
 @push('css-page')
-    <link href="{{asset('assets/emp/evo-calendar/css/evo-calendar.css')}}" rel="stylesheet" />
     <style>
         .card-header h5 {
             color: #fff !important;
         }
 
-        .fc-h-event {
+        .fc-h-event, .custom-btn {
             color: #fff !important;
             background: linear-gradient(135deg, #FD7E30 0%, #FDBF18 77.08%) !important;
             box-shadow: 0px 6px 12px 0px rgba(253, 126, 48, 0.40) !important;
@@ -28,28 +27,6 @@
             border: none !important;
             color: white !important;
         }
-        .evo-calendar {
-            box-shadow: none !important;
-            -webkit-box-shadow: none !important;
-        }
-        #sidebarToggler, #eventListToggler {
-            border-radius: 100px !important;
-            background: linear-gradient(135deg, #FDBF18 0%, #FD7E30 75.26%) !important;
-        }
-
-        .calendar-sidebar > span#sidebarToggler, #eventListToggler{
-            width: 50px;
-            height: 50px;
-            -webkit-box-shadow: 5px 0 18px -3px #FD7E30;
-            box-shadow: 5px 0 18px -3px #FD7E30;
-        }
-
-        .calendar-sidebar {
-            background: linear-gradient(135deg, #FDBF18 0%, #FD7E30 75.26%) !important;
-        }
-        .calendar-months>.active-month, .calendar-months>li:hover {
-            background: #FF0080 !important;
-        }
     </style>
 @endpush
 @section('content')
@@ -66,7 +43,7 @@
                             <div class="d-flex flex-column justify-content-center align-items-center">
                                 <div id="stressChart" style="width: 100%; height: 200px"></div>
                                 <div class="stress-indicator w-100 px-4 py-2 d-flex justify-content-center align-items-center">
-                                    <p class="m-0">Normal</p>
+                                    <p class="m-0">{{$stats['stress']['status']}}</p>
                                 </div>
                             </div>
                         </div>
@@ -85,30 +62,27 @@
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <div class="card">
+                    <div class="card" style="min-height: 600px">
                         <div class="card-header shadow d-flex justify-content-between align-items-center">
                             <div class="card-title text-white fw-bold">Depression</div>
-{{--                            <div class="card-title text-white fw-bold">Depression</div>--}}
-{{--                            <div class="form-group">--}}
-{{--                                <select name="" id="" class="form-select border-0 text-white">--}}
-{{--                                    <option value="">Weekly</option>--}}
-{{--                                </select>--}}
-{{--                            </div>--}}
                         </div>
                         <div class="card-body">
                             <div class="d-flex justify-content-center align-items-center">
                                 <div id="depression-chart"></div>
                             </div>
+                            <div class="stress-indicator w-100 px-4 py-2 d-flex justify-content-center align-items-center mt-4">
+                                <p class="m-0">{{$stats['depression']['status']}}</p>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <div class="card">
+                    <div class="card" style="max-height: 600px">
                         <div class="card-header shadow">
                             <div class="card-title text-white fw-bold">Booked Schedule</div>
                         </div>
                         <div class="card-body">
-                            <div id="calendar"></div>
+                            <div id="booking_calendar"></div>
                         </div>
                     </div>
                 </div>
@@ -233,8 +207,6 @@
     <script src="https://cdn.amcharts.com/lib/5/xy.js"></script>
     <script src="https://cdn.amcharts.com/lib/5/radar.js"></script>
     <script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
-
-    <script src="{{asset('assets/emp/evo-calendar/js/evo-calendar.js')}}"></script>
     <script type="text/javascript">
         (function () {
                 var calendar = new FullCalendar.Calendar(document.getElementById('events_calender'), {
@@ -258,49 +230,50 @@
                     editable: false,
                     dayMaxEvents: true,
                     handleWindowResize: true,
-                    contentHeight: "auto",
                     events: {!! $arrEvents !!},
+                    eventClick: function (calEvent, jsEvent, view) {
+                        calEvent.preventDefault();
+                        jsEvent.preventDefault();
+                        return false;
+                    },
                     viewDidMount: function () {
                         $('.fc-scrollgrid').removeClass('table-bordered')
                     }
                 });
                 calendar.render();
+                $('.fc-header-toolbar').addClass('flex-column flex-sm-row')
 
                 //     booking calendar
-                {{--var booking_calendar = new FullCalendar.Calendar(document.getElementById('booking_calendar'), {--}}
-                {{--    headerToolbar: {--}}
-                {{--        left: 'title',--}}
-                {{--        right: 'prev,next'--}}
-                {{--    },--}}
-                {{--    themeSystem: 'bootstrap',--}}
-                {{--    navLinks: false,--}}
-                {{--    handleWindowResize: true,--}}
-                {{--    contentHeight: "auto",--}}
-                {{--    contentWidth: "auto",--}}
-                {{--    events: {!! $bookings !!},--}}
-                {{--    viewDidMount: function () {--}}
-                {{--        $('.fc-scrollgrid').removeClass('table-bordered')--}}
-                {{--    }--}}
-                {{--});--}}
-                {{--booking_calendar.render();--}}
+                var booking_calendar = new FullCalendar.Calendar(document.getElementById('booking_calendar'), {
+                    height: 500,
+                    displayEventTime : false,
+                    headerToolbar: {
+                        left: 'title',
+                        right: 'prev,next'
+                    },
+                    themeSystem: 'bootstrap',
+                    navLinks: false,
+                    handleWindowResize: true,
+                    events: {!! $bookings !!},
+                    eventClick: function (calEvent, jsEvent, view) {
+                        calEvent.preventDefault();
+                        jsEvent.preventDefault();
+                        return false;
+                    },
+                    viewDidMount: function () {
+                        $('.fc-scrollgrid').removeClass('table-bordered')
+                    }
+                });
+                booking_calendar.render();
 
-                $('.fc-header-toolbar').addClass('flex-column flex-sm-row')
             }
         )();
 
         $(document).ready(function () {
 
-            const bookedCalendar = $('#calendar').evoCalendar({
-                'sidebarDisplayDefault': false,
-                'sidebarToggler': true,
-                'eventDisplayDefault': false,
-                'eventListToggler': true,
-                'calendarEvents': @json($bookings)
-            }, 'getActiveEvents');
-
             // Anxiety Chart
             const anxietyChartOption = {
-                series: [{{$stats['anxiety']}}],
+                series: [{{$stats['anxiety']['percentage']}}],
                 chart: {
                     height: 275,
                     type: 'radialBar',
@@ -313,32 +286,13 @@
                         hollow: {
                             margin: 0,
                             size: '70%',
-                            background: '#fff',
-                            image: undefined,
                             imageOffsetX: 0,
                             imageOffsetY: 0,
                             position: 'front',
-                            dropShadow: {
-                                enabled: true,
-                                top: 3,
-                                left: 0,
-                                blur: 4,
-                                opacity: 0.24,
-                                color: '#FF8C00FF'
-                            }
                         },
                         track: {
-                            background: '#fff',
-                            strokeWidth: '67%',
-                            margin: 0,
-                            dropShadow: {
-                                enabled: true,
-                                top: -3,
-                                left: 0,
-                                blur: 4,
-                                opacity: 0.35,
-                                color: '#d07300'
-                            }
+                            background: 'rgb(246,246,246)',
+                            strokeWidth: '50%',
                         },
                         dataLabels: {
                             showOn: 'always',
@@ -350,10 +304,10 @@
                             },
                             value: {
                                 formatter: function (val) {
-                                    return parseInt(val)+'%';
+                                    return parseInt(val) + '%';
                                 },
                                 color: '#111',
-                                fontSize: '36px',
+                                fontSize: '35px',
                                 show: true,
                                 fontWeight: '600'
                             }
@@ -376,7 +330,7 @@
                 stroke: {
                     lineCap: 'round'
                 },
-                labels: ['Mild'],
+                labels: ['{{$stats['anxiety']['status']}}'],
             };
 
             const anxietyChart = new ApexCharts(document.querySelector("#anxiety-chart"), anxietyChartOption);
@@ -423,7 +377,7 @@
 
             xAxis.createAxisRange(axisDataItem);
 
-            axisDataItem.set("value", {{$stats['stress']}});
+            axisDataItem.set("value", {{$stats['stress']['percentage']}});
             bullet.get("sprite").on("rotation", function () {
                 var value = axisDataItem.get("value");
                 var fill = am5.color(0x000000);
@@ -435,48 +389,42 @@
 
                 // label.set("text", Math.round(value).toString());
 
-                clockHand.pin.animate({ key: "fill", to: fill, duration: 500, easing: am5.ease.out(am5.ease.cubic) })
-                clockHand.hand.animate({ key: "fill", to: fill, duration: 500, easing: am5.ease.out(am5.ease.cubic) })
+                clockHand.pin.animate({key: "fill", to: fill, duration: 500, easing: am5.ease.out(am5.ease.cubic)})
+                clockHand.hand.animate({key: "fill", to: fill, duration: 500, easing: am5.ease.out(am5.ease.cubic)})
             });
 
             chart.bulletsContainer.set("mask", undefined);
 
             var bandsData = [{
-                color: "#70c2a7",
-                lowScore: 0,
-                highScore: 16.6,
-                title: `Normal`,
-                href: `{{asset('assets/emp/images/svgs/chart/outline/happy-100.svg')}}`
-            }, {
                 color: "#81c984",
-                lowScore: 16.6,
-                highScore: 33.2,
-                title: `Low`,
-                href: `{{asset('assets/emp/images/svgs/chart/outline/happy-80.svg')}}`
+                lowScore: 0,
+                highScore: 20,
+                title: `Healthy`,
+                icon: `{{asset('assets/emp/images/svgs/chart/outline/happy-80.svg')}}`
             }, {
                 color: "#fbbe18",
-                lowScore: 33.2,
-                highScore: 49.8,
-                title: `Moderate`,
-                href: `{{asset('assets/emp/images/svgs/chart/outline/happy-60.svg')}}`
+                lowScore: 20,
+                highScore: 40,
+                title: `Mild`,
+                icon: `{{asset('assets/emp/images/svgs/chart/outline/happy-60.svg')}}`
             }, {
                 color: "#fb822e",
-                lowScore: 49.8,
-                highScore: 66.4,
-                title: `Intermediate`,
-                href: `{{asset('assets/emp/images/svgs/chart/outline/happy-40.svg')}}`
+                lowScore: 40,
+                highScore: 60,
+                title: `Moderate`,
+                icon: `{{asset('assets/emp/images/svgs/chart/outline/happy-40.svg')}}`
             }, {
                 color: "#c34b20",
-                lowScore: 66.4,
-                highScore: 83,
-                title: `High`,
-                href: `{{asset('assets/emp/images/svgs/chart/outline/happy-20.svg')}}`
+                lowScore: 60,
+                highScore: 80,
+                title: `Unhealthy`,
+                icon: `{{asset('assets/emp/images/svgs/chart/outline/happy-20.svg')}}`
             }, {
                 color: "#b61f1c",
-                lowScore: 83,
+                lowScore: 80,
                 highScore: 100,
-                title: `Very High`,
-                href: `{{asset('assets/emp/images/svgs/chart/outline/happy-0.svg')}}`
+                title: `Concerning`,
+                icon: `{{asset('assets/emp/images/svgs/chart/outline/happy-0.svg')}}`
             }];
 
             am5.array.each(bandsData, function (data) {
@@ -504,16 +452,17 @@
             chart.appear(1000, 100);
 
 
-
             // Depression Chart finalized
             const depressionChartOptions = {
-                series: [67],
+                series: [{{$stats['depression']['percentage']}}],
                 chart: {
                     height: 350,
                     type: 'radialBar',
                     offsetY: -10
                 },
-                colors: ['#ff8f00'],
+                colors: [
+                    '{{$stats['depression']['color']}}',
+                ],
                 plotOptions: {
                     radialBar: {
                         startAngle: -135,
@@ -550,7 +499,7 @@
                 stroke: {
                     dashArray: 4
                 },
-                labels: ['Depression'],
+                labels: ['{{$stats['depression']['status']}}'],
             };
             var depressionChart = new ApexCharts(document.querySelector("#depression-chart"), depressionChartOptions);
             depressionChart.render();

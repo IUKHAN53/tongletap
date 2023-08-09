@@ -507,7 +507,7 @@ class DashboardController extends Controller
 
     public function employeeDashboard()
     {
-        $stats = HealthStat::query()->where('user_id', Auth::user()->id)->latest()->first()->toArray();
+        $stats = HealthStat::query()->where('user_id', Auth::user()->id)->latest()->first()->getStats();
 //        Events for calendar
         $eventsData = Event::query()->where('company_name', '=', Auth::user()->ownerDetails()->name)->get();
         $arrEvents = [];
@@ -516,38 +516,25 @@ class DashboardController extends Controller
             $arr['title'] = $event['title'];
             $arr['start'] = $event['start_date'];
             $arr['end'] = $event['end_date'];
-            $arr['url'] = #;
             $arr['className'] = 'custom-btn';
+            $arr['url'] = 'javascript:void(0)';
             $arrEvents[] = $arr;
         }
         $arrEvents = str_replace('"[', '[', str_replace(']"', ']', json_encode($arrEvents)));
-//        End Events for calendar
 
 //        Schedule for calendar
-        $bookingData = Event::query()->where('company_name', '=', Auth::user()->ownerDetails()->name)->get();
+        $bookingData = Ticket::query()->where('employee_id', '=', auth()->id())->get();
         $bookings = [];
-
-//        id: '4hducye', // Event's id (required, for removing event)
-//        description: 'Lorem ipsum dolor sit amet.', // Description of event (optional)
-//        badge: '1-day event', // Event badge (optional)
-//        date: new Date(), // Date of event
-//        type: 'holiday', // Type of event (event|holiday|birthday)
-//        color: '#63d867', // Event custom color (optional)
-//        everyYear: true // Event is every year (optional)
         foreach ($bookingData as $booking) {
-            $arr2['id'] = $booking['id'];
-            $arr2['description'] = $booking['title'];
-            $arr2['badge'] = '1-day event';
-            $arr2['date'] = Carbon::parse($booking['time_slot'])->startOfDay()->toDateTimeString();
-            $arr2['type'] = 'event';
-            $arr2['color'] = '#63d867';
-//            $arr2['url'] = route('employee.ticket.edit', $booking['id']);
-//            $arr2['className'] = 'custom-btn';
+            $arr2['id'] = $booking->id;
+            $arr2['title'] = $booking->title;
+            $arr2['description'] = $booking->description;
+            $arr2['date'] = Carbon::parse($booking->time_slot)->startOfDay()->toDateTimeString();
+            $arr2['className'] = 'custom-btn';
+            $arr2['url'] = 'javascript:void(0)';
             $bookings[] = $arr2;
         }
-//        $bookings = str_replace('"[', '[', str_replace(']"', ']', json_encode($bookings)));
-
-
+        $bookings = str_replace('"[', '[', str_replace(']"', ']', json_encode($bookings)));
         return view('dashboard.employee-dashboard', compact('stats', 'arrEvents', 'bookings'));
     }
 

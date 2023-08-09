@@ -227,45 +227,153 @@
     <!-- ======= Skills Section ======= -->
     <section id="skills" class="skills">
         <div class="container" data-aos="fade-up">
-            <div class="text-center my-5">
-                <h1 class="fw-bold" style="color: #002332;">
-                    What Our Customers Say<br>About <span class="text-yellow">Our Solutions</span>
-                </h1>
-            </div>
-            <div class="featured-carousel owl-carousel">
-                <!--First Slide-->
-                <div class="item w-100">
-                    <div class="d-flex justify-content-center align-items-center gap-3">
+            <div class="row">
+                <div class="container">
+                    <div class="row">
+                        <div class="text-center">
+                            <h1 style="color: #002332">What Our Customers Say
+                                <br>
+                                About <span style="color:#FFA12C;">Our Solutions</span></h1>
+                        </div>
+                        <div class="col-md-12 my-5">
+                            <div class="swiper-container">
+                                <div class="swiper-wrapper">
+                                    <!-- Slide 1 -->
+                                    <div class="swiper-slide">
+                                        <div class="quote-card">
+                                            <img src="{{asset('assets/landing/img/quotes.png')}}" class="card-quotes-img" alt="">
+                                            <div class="d-flex justify-content-between align-items-center my-3">
+                                                <h2 class="review-slide-title">Fantastic</h2>
+                                                <div class="d-flex justify-content-start">
+                                                    <i class="bx bxs-star" style="color: #ffa12c"></i>
+                                                    <i class="bx bxs-star" style="color: #ffa12c"></i>
+                                                    <i class="bx bxs-star" style="color: #ffa12c"></i>
+                                                    <i class="bx bxs-star" style="color: #ffa12c"></i>
+                                                    <i class="bx bxs-star" style="color: #ffa12c"></i>
+                                                </div>
+                                            </div>
+                                            <div class="review-text">
+                                                This is actually a complete ERP system with a very stunning look
+                                                and VERY FAST SUPPORT
+                                            </div>
+                                            <div class="d-flex flex-column mt-4 justify-content-start review-user">
+                                                <span><strong>@ Dawnysuccess</strong></span>
+                                                <span>from codecanyon</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Slide 2 -->
+                                    <div class="swiper-slide">
+                                        <div class="quote-card">
+                                            <img src="{{asset('assets/landing/img/quotes.png')}}" class="card-quotes-img" alt="">
+                                            <div class="d-flex justify-content-between align-items-center my-3">
+                                                <h2 class="review-slide-title">Fantastic</h2>
+                                                <div class="d-flex justify-content-start">
+                                                    <i class="bx bxs-star" style="color: #ffa12c"></i>
+                                                    <i class="bx bxs-star" style="color: #ffa12c"></i>
+                                                    <i class="bx bxs-star" style="color: #ffa12c"></i>
+                                                    <i class="bx bxs-star" style="color: #ffa12c"></i>
+                                                    <i class="bx bxs-star" style="color: #ffa12c"></i>
+                                                </div>
+                                            </div>
+                                            <div class="review-text">
+                                                Thanks for Great Customer Support and Good Quality Code.
+                                            </div>
+                                            <div class="d-flex flex-column mt-4 justify-content-start review-user">
+                                                <span><strong>@ zamipl</strong></span>
+                                                <span>from codecanyon</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Slide 3 -->
+                                    <div class="swiper-slide">
+                                        <div class="quote-card">
+                                            <img src="{{asset('assets/landing/img/quotes.png')}}" class="card-quotes-img" alt="">
+                                            <div class="d-flex justify-content-between align-items-center my-3">
+                                                <h2 class="review-slide-title">Fantastic</h2>
+                                                <div class="d-flex justify-content-start">
+                                                    <i class="bx bxs-star" style="color: #ffa12c"></i>
+                                                    <i class="bx bxs-star" style="color: #ffa12c"></i>
+                                                    <i class="bx bxs-star" style="color: #ffa12c"></i>
+                                                    <i class="bx bxs-star" style="color: #ffa12c"></i>
+                                                    <i class="bx bxs-star" style="color: #ffa12c"></i>
+                                                </div>
+                                            </div>
+                                            <div class="review-text">
+                                                Excellent support and amazing ERP
+                                            </div>
+                                            <div class="d-flex flex-column mt-4 justify-content-start review-user">
+                                                <span><strong>@ mrblue9876</strong></span>
+                                                <span>from codecanyon</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Slide 4 -->
+                                    <div class="swiper-slide">
+                                        <div class="quote-card">
+                                            <img src="{{asset('assets/landing/img/quotes.png')}}" class="card-quotes-img" alt="">
+                                            <div class="d-flex justify-content-between align-items-center my-3">
+                                                <h2 class="review-slide-title">Fantastic</h2>
+                                                <div class="d-flex justify-content-start">
+                                                    <i class="bx bxs-star" style="color: #ffa12c"></i>
+                                                    <i class="bx bxs-star" style="color: #ffa12c"></i>
+                                                    <i class="bx bxs-star" style="color: #ffa12c"></i>
+                                                    <i class="bx bxs-star" style="color: #ffa12c"></i>
+                                                    <i class="bx bxs-star" style="color: #ffa12c"></i>
+                                                </div>
+                                            </div>
+                                            <div class="review-text">
+                                                Support and Code 100%
+                                            </div>
+                                            <div class="d-flex flex-column mt-4 justify-content-start review-user">
+                                                <span><strong>@ fatecmais 2</strong></span>
+                                                <span>from codecanyon</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Slide 5 -->
+                                    <div class="swiper-slide">
+                                        <div class="quote-card">
+                                            <img src="{{asset('assets/landing/img/quotes.png')}}" class="card-quotes-img" alt="">
+                                            <div class="d-flex justify-content-between align-items-center my-3">
+                                                <h2 class="review-slide-title">Fantastic</h2>
+                                                <div class="d-flex justify-content-start">
+                                                    <i class="bx bxs-star" style="color: #ffa12c"></i>
+                                                    <i class="bx bxs-star" style="color: #ffa12c"></i>
+                                                    <i class="bx bxs-star" style="color: #ffa12c"></i>
+                                                    <i class="bx bxs-star" style="color: #ffa12c"></i>
+                                                    <i class="bx bxs-star" style="color: #ffa12c"></i>
+                                                </div>
+                                            </div>
+                                            <div class="review-text">
+                                                Brilliant and well-thought CRM/PRM/HRM! A real value for money!…
+                                            </div>
+                                            <div class="d-flex flex-column mt-4 justify-content-start review-user">
+                                                <span><strong>@ attunist</strong></span>
+                                                <span>from codecanyon</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Add more slides as needed -->
+                                </div>
+                                <!-- Pagination -->
+                                <div class="swiper-pagination"></div>
+                                <!-- Navigation -->
+                                <div class="swiper-button-next"></div>
+                                <div class="swiper-button-prev"></div>
+                            </div>
 
-                        <div class="card review-card">
-                            <img src="{{asset('landing/images/quotes.png')}}" width="36" height="29" class="quotes-img" alt="">
-                            <div class="card-body">
-                                <h2 class="custom-card-header">Staff<br>Management</h2>
-                                <div class="card-body-text">
-                                    Keep track of employee information easily and conveniently. Search for staff
-                                    through simple filter options, and edit and manage their information as you
-                                    please.
-                                </div>
-                            </div>
                         </div>
-                        <div class="card review-card">
-                            <div class="card-body">
-                                <h2 class="custom-card-header">Staff<br>Management</h2>
-                                <div class="card-body-text">
-                                    Keep track of employee information easily and conveniently. Search for staff
-                                    through simple filter options, and edit and manage their information as you
-                                    please.
-                                </div>
-                            </div>
-                        </div>
+
+                    </div>
+                    <div class="d-flex justify-content-center align-items-center my-5">
+                        <a href="" class="btn custom-header-btn text-uppercase py-3">Check Our Reviews</a>
                     </div>
                 </div>
             </div>
-            <div class="d-flex justify-content-center my-5">
-                <button class="btn custom-header-btn text-uppercase py-3">Check Our Reviews</button>
-            </div>
         </div>
-    </section><!-- End Skills Section -->
+    </section>
+    <!-- End Skills Section-->
 
 
     <!-- ======= What Our Customers Say About Our Solutions ======= -->
@@ -1715,7 +1823,29 @@
 
 
 @include('partials.landing.footer')
+<script>
+    var swiper = new Swiper('.swiper-container', {
+        slidesPerView: 2, // Display two slides at a time
+        speed: 400,
+        autoplay: true,
+        spaceBetween: 20,
+        // Enable pagination
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true, // Make pagination bullets clickable
+            type: 'custom', // Use custom pagination rendering
+            renderCustom: function (swiper, current, total) {
+                return `<span class="text-yellow">${current}</span>/<span>${total}</span>`; // Display current slide number and total
+            },
+        },
 
+        // Enable navigation arrows
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+    });
+</script>
 </body>
 
 </html>
