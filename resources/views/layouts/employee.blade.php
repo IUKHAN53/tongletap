@@ -20,6 +20,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css/plugins/flatpickr.min.css') }}">
     <link rel="stylesheet" href="{{asset('assets/emp/css/style.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/emp/css/custom.css')}}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tabler-icons/1.35.0/iconfont/tabler-icons.min.css"/>
     <style>
         .sidebar-item:hover .sidebar-link span svg path {
             stroke: #fff !important;
@@ -516,16 +517,6 @@
                             <span class="fs-3 text-black fw-normal d-block">Search result 1</span>
                         </a>
                     </li>
-                    <li class="p-1 mb-1 bg-hover-light-black">
-                        <a href="#">
-                            <span class="fs-3 text-black fw-normal d-block">Search result 2</span>
-                        </a>
-                    </li>
-                    <li class="p-1 mb-1 bg-hover-light-black">
-                        <a href="#">
-                            <span class="fs-3 text-black fw-normal d-block">Search result 3</span>
-                        </a>
-                    </li>
                 </ul>
             </div>
         </div>
@@ -574,7 +565,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap5.min.js"></script>
-<script src="{{ asset('js/custom.js') }}"></script>
+<script src="{{ asset('assets/emp/js/custom_js.js') }}"></script>
 
 @stack('script-page')
 @if($message = Session::get('success'))
@@ -598,8 +589,6 @@
         function setSvgPathColor() {
             for (let i = 0; i < sidebarLink.length; i++) {
                 let svg = sidebarLink[i].getElementsByTagName('span')[0].getElementsByTagName('svg')[0];
-                // sidebarLink[i].addEventListener('mouseover', handleMouseOver);
-                // sidebarLink[i].addEventListener('mouseout', handleMouseOut);
                 if (sidebarLink[i].classList.contains('active')) {
                     let paths = svg.getElementsByTagName('path');
                     for (let j = 0; j < paths.length; j++) {
@@ -610,24 +599,7 @@
         }
 
         setSvgPathColor()
-        // function handleMouseOver(path) {
-        //     const link = path.target;
-        //     let svg = link.getElementsByTagName('span')[0].getElementsByTagName('svg')[0].getElementsByTagName('path');
-        //     for (let j = 0; j < svg.length; j++) {
-        //         svg[j].setAttribute('stroke', '#ffffff');
-        //     }
-        //     setSvgPathColor()
-        // }
-        //
-        // // Function to be executed when mouse leaves the anchor
-        // function handleMouseOut(path) {
-        //     const link = path.target;
-        //     let svg = link.getElementsByTagName('span')[0].getElementsByTagName('svg')[0].getElementsByTagName('path');
-        //     for (let j = 0; j < svg.length; j++) {
-        //         svg[j].setAttribute('stroke', '#6A7073');
-        //     }
-        //     setSvgPathColor()
-        // }
+
 
     })
 </script>
