@@ -511,7 +511,8 @@ class DashboardController extends Controller
         if ($stats){
             $stats = $stats->getStats();
         }else{
-            $stats = [];
+            $stats = new HealthStat();
+            $stats = $stats->getStats();
         }
 //        Events for calendar
         $eventsData = Event::query()->where('company_name', '=', Auth::user()->ownerDetails()->name)->get();
