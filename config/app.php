@@ -125,7 +125,7 @@ return [
 
     'cipher' => 'AES-256-CBC',
 
-    'api_secret' => env('API_SECRET', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoicmVxdWVzdC1zZXJldCIsImlhdCI6MTUxNjIzOTAyMn0.Z9YzaUrARA2Dnit5wUPEAOMX5o5RV132NZ9Liw2RXtE'),
+    'api_secret' => env('API_SECRET', ''),
 
     /*
     |--------------------------------------------------------------------------
