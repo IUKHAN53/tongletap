@@ -1,6 +1,5 @@
 @extends('layouts.admin')
-@push('css-page')
-@endpush
+@section('page-title','Company Dashboard')
 @section('content')
     <div class="row">
         <div class="col-xxl-12">

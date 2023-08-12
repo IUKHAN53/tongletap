@@ -104,7 +104,7 @@
                                           stroke-linejoin="round"/>
                                 </svg>
                             </span>
-                            <span class="hide-menu">Events & Team</span>
+                            <span class="hide-menu">Team & Events</span>
                         </a>
                     </li>
                     <li class="sidebar-item">
@@ -216,80 +216,26 @@
                             <i class="ti ti-align-justified fs-7"></i>
                         </a>
                         <ul class="navbar-nav flex-row ms-auto align-items-center justify-content-center">
-                            <li class="nav-item">
-                                <a class="nav-link nav-icon-hover" href="javascript:void(0)" data-bs-toggle="modal"
-                                   data-bs-target="#searchModal">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                         viewBox="0 0 24 24"
-                                         fill="none">
-                                        <circle cx="11" cy="11" r="8" stroke="#6A7073" stroke-width="1.5"
-                                                stroke-linecap="round" stroke-linejoin="round"/>
-                                        <path d="M16.5 16.9579L21.5 21.958" stroke="#6A7073" stroke-width="1.5"
-                                              stroke-linecap="round" stroke-linejoin="round"/>
-                                    </svg>
-                                </a>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link notify-badge nav-icon-hover" href="javascript:void(0)" id="drop2"
-                                   data-bs-toggle="dropdown" aria-expanded="false">
-                                    <svg
-                                            xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                            viewBox="0 0 24 24"
-                                            fill="none">
-                                        <path d="M4 14.8851H3.2H4ZM6.73291 18.0834L6.84279 17.291H6.84279L6.73291 18.0834ZM16.9193 18.0834L16.8094 17.291H16.8094L16.9193 18.0834ZM4.46647 13.1872L3.77937 12.7775L4.46647 13.1872ZM6.53914 8.08696C6.53914 5.16705 8.90619 2.8 11.8261 2.8V1.2C8.02253 1.2 4.93914 4.28339 4.93914 8.08696H6.53914ZM6.53914 10.1795V8.08696H4.93914V10.1795H6.53914ZM4.8 14.8851C4.8 14.4129 4.92914 13.9733 5.15356 13.597L3.77937 12.7775C3.41127 13.3947 3.2 14.1165 3.2 14.8851H4.8ZM6.84279 17.291C5.66903 17.1283 4.8 16.1075 4.8 14.8851H3.2C3.2 16.8686 4.62137 18.5983 6.62303 18.8759L6.84279 17.291ZM11.8261 17.722C10.3377 17.722 8.41298 17.5087 6.84279 17.291L6.62303 18.8759C8.20621 19.0954 10.2217 19.322 11.8261 19.322V17.722ZM16.8094 17.291C15.2392 17.5087 13.3144 17.722 11.8261 17.722V19.322C13.4304 19.322 15.446 19.0954 17.0291 18.8759L16.8094 17.291ZM18.8522 14.8851C18.8522 16.1075 17.9831 17.1283 16.8094 17.291L17.0291 18.8759C19.0308 18.5983 20.4522 16.8686 20.4522 14.8851H18.8522ZM18.4986 13.597C18.723 13.9733 18.8522 14.4129 18.8522 14.8851H20.4522C20.4522 14.1165 20.2409 13.3947 19.8728 12.7775L18.4986 13.597ZM17.1131 8.08696V10.1795H18.713V8.08696H17.1131ZM11.8261 2.8C14.746 2.8 17.1131 5.16705 17.1131 8.08696H18.713C18.713 4.2834 15.6297 1.2 11.8261 1.2V2.8ZM19.8728 12.7775C19.5621 12.2565 19.2841 11.8456 19.0538 11.3843C18.8341 10.9441 18.713 10.5562 18.713 10.1795H17.1131C17.1131 10.9032 17.3466 11.5466 17.6223 12.0989C17.8874 12.6302 18.2457 13.1729 18.4986 13.597L19.8728 12.7775ZM4.93914 10.1795C4.93914 10.5561 4.81813 10.944 4.59837 11.3843C4.36812 11.8456 4.09007 12.2565 3.77937 12.7775L5.15356 13.597C5.40645 13.1729 5.76474 12.6301 6.02993 12.0989C6.3056 11.5466 6.53914 10.9032 6.53914 10.1795H4.93914Z"
-                                              fill="url(#paint0_linear_18_74)"/>
-                                        <path d="M14 20.834C13.5326 21.5369 12.7335 22.0002 11.8261 22.0002C10.9187 22.0002 10.1195 21.5369 9.65218 20.834"
-                                              stroke="url(#paint1_linear_18_74)" stroke-width="1.6"
-                                              stroke-linecap="round"/>
-                                        <defs>
-                                            <linearGradient id="paint0_linear_18_74" x1="4" y1="2" x2="22.6411"
-                                                            y2="7.36314" gradientUnits="userSpaceOnUse">
-                                                <stop stop-color="#FDBF18"/>
-                                                <stop offset="0.8125" stop-color="#FD7E30"/>
-                                            </linearGradient>
-                                            <linearGradient id="paint1_linear_18_74" x1="14" y1="20.834"
-                                                            x2="11.5431"
-                                                            y2="23.6158" gradientUnits="userSpaceOnUse">
-                                                <stop stop-color="#FDBF18"/>
-                                                <stop offset="0.8125" stop-color="#FD7E30"/>
-                                            </linearGradient>
-                                        </defs>
-                                    </svg>
-                                    {{--                                    <span class="badge rounded-pill bg-danger fs-2">2</span>--}}
-                                </a>
-                                <div class="dropdown-menu content-dd dropdown-menu-end dropdown-menu-animate-up"
-                                     aria-labelledby="drop2">
-                                    <div class="d-flex align-items-center justify-content-between py-3 px-7">
-                                        <h5 class="mb-0 fs-5 fw-semibold">Notifications</h5>
-                                        <span class="badge bg-primary rounded-4 px-3 py-1 lh-sm">5 new</span>
-                                    </div>
-                                    <div class="message-body" data-simplebar="">
-                                        <a href="javascript:void(0)"
-                                           class="py-6 px-7 d-flex align-items-center dropdown-item">
-                                            <span class="me-3">
-                                                <img src="{{auth()->user()->image}}"
-                                                     alt="user"
-                                                     class="rounded-circle" width="48" height="48">
-                                            </span>
-                                            <div class="w-75 d-inline-block v-middle">
-                                                <h6 class="mb-1 fw-semibold">{{auth()->user()->name}} signed up!</h6>
-                                                <span class="d-block">Congratulate him</span>
-                                            </div>
-                                        </a>
-                                    </div>
-                                    <div class="py-6 px-7 mb-1">
-                                        <button class="btn btn-outline-primary w-100"> See All Notifications
-                                        </button>
-                                    </div>
-                                </div>
-                            </li>
+{{--                            <li class="nav-item">--}}
+{{--                                <a class="nav-link nav-icon-hover" href="javascript:void(0)" data-bs-toggle="modal"--}}
+{{--                                   data-bs-target="#searchModal">--}}
+{{--                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"--}}
+{{--                                         viewBox="0 0 24 24"--}}
+{{--                                         fill="none">--}}
+{{--                                        <circle cx="11" cy="11" r="8" stroke="#6A7073" stroke-width="1.5"--}}
+{{--                                                stroke-linecap="round" stroke-linejoin="round"/>--}}
+{{--                                        <path d="M16.5 16.9579L21.5 21.958" stroke="#6A7073" stroke-width="1.5"--}}
+{{--                                              stroke-linecap="round" stroke-linejoin="round"/>--}}
+{{--                                    </svg>--}}
+{{--                                </a>--}}
+{{--                            </li>--}}
                             <li class="nav-item dropdown">
                                 <a class="nav-link pe-0" href="javascript:void(0)" id="drop1"
                                    data-bs-toggle="dropdown"
                                    aria-expanded="false">
                                     <div class="d-flex align-items-center">
                                         <div class="user-profile-img">
-                                            <img src="{{auth()->user()->image}}"
+                                            <img src="{{auth()->user()->image}}" style="object-fit: cover"
                                                  class="rounded-circle"
                                                  width="35" height="35" alt="">
                                         </div>
@@ -303,7 +249,7 @@
                                         </div>
                                         <div class="d-flex align-items-center py-9 mx-7 border-bottom">
                                             <img src="{{auth()->user()->image}}"
-                                                 class="rounded-circle"
+                                                 class="rounded-circle" style="object-fit: cover"
                                                  width="80" height="80" alt="">
                                             <div class="ms-3">
                                                 <h5 class="mb-1 fs-3">{{auth()->user()->name}}</h5>
@@ -324,28 +270,6 @@
                                                 <div class="w-75 d-inline-block v-middle ps-3">
                                                     <h6 class="mb-1 bg-hover-primary fw-semibold"> My Profile </h6>
                                                     <span class="d-block text-dark">Account Settings</span>
-                                                </div>
-                                            </a>
-                                            <a href="#" class="py-8 px-7 d-flex align-items-center">
-                                                <span class="d-flex align-items-center justify-content-center bg-light rounded-1 p-6">
-                                                    <img src="{{asset('assets/emp/images/svgs/icon-inbox.svg')}}"
-                                                         alt="" width="24"
-                                                         height="24">
-                                                </span>
-                                                <div class="w-75 d-inline-block v-middle ps-3">
-                                                    <h6 class="mb-1 bg-hover-primary fw-semibold">My Inbox</h6>
-                                                    <span class="d-block text-dark">Messages & Emails</span>
-                                                </div>
-                                            </a>
-                                            <a href="#" class="py-8 px-7 d-flex align-items-center">
-                                                <span class="d-flex align-items-center justify-content-center bg-light rounded-1 p-6">
-                                                    <img src="{{asset('assets/emp/images/svgs/icon-tasks.svg')}}"
-                                                         alt="" width="24"
-                                                         height="24">
-                                                </span>
-                                                <div class="w-75 d-inline-block v-middle ps-3">
-                                                    <h6 class="mb-1 bg-hover-primary fw-semibold">My Task</h6>
-                                                    <span class="d-block text-dark">To-do and Daily Tasks</span>
                                                 </div>
                                             </a>
                                         </div>
@@ -443,7 +367,7 @@
                                       stroke-linejoin="round"></path>
                             </svg>
                         </span>
-                        <span class="hide-menu">Events & Team</span>
+                        <span class="hide-menu">Team & Events</span>
                     </a>
                 </li>
                 <li class="sidebar-item">

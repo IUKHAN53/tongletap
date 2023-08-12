@@ -30,7 +30,7 @@
     </style>
 @endpush
 @section('content')
-    <div style="scale: 96%">
+    <div style="scale: 92%">
         <div class="row">
             <div class="col-lg-8 d-flex align-items-stretch">
                 <div class="row w-100">
@@ -94,7 +94,7 @@
                     <div class="position-relative">
                         <img src="{{asset('assets/emp/images/svgs/card-header.svg')}}" class="w-100" alt="">
                         <div class="circle position-absolute avatar-div shadow">
-                            <img width="120" height="120"
+                            <img width="120" height="120" style="object-fit: cover"
                                  src="{{auth()->user()->image}}"
                                  alt="Avatar">
                         </div>
