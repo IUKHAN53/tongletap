@@ -507,7 +507,12 @@ class DashboardController extends Controller
 
     public function employeeDashboard()
     {
-        $stats = HealthStat::query()->where('user_id', Auth::user()->id)->latest()->first()->getStats();
+        $stats = HealthStat::query()->where('user_id', Auth::user()->id)->latest()->first();
+        if ($stats){
+            $stats = $stats->getStats();
+        }else{
+            $stats = [];
+        }
 //        Events for calendar
         $eventsData = Event::query()->where('company_name', '=', Auth::user()->ownerDetails()->name)->get();
         $arrEvents = [];

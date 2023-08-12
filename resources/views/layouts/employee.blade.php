@@ -368,7 +368,7 @@
         </header>
         <!--  Header End -->
         <div class="container-fluid">
-            <div class="page-header my-4">
+            <div class="page-header {{request()->routeIs('employee.dashboard')?'':'my-4'}}">
                 <div class="page-block">
                     <div class="row align-items-center">
                         <div class="col-auto">
