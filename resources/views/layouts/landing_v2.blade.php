@@ -2,6 +2,11 @@
 <html lang="en-US">
 @include('partials.landing.header')
 <body>
+@php
+function getLandingLink(){
+    return 'https://api.whatsapp.com/send?phone=6582658237';
+}
+@endphp
 <!-- ======= Header ======= -->
 <header id="header" class="fixed-top ">
     <div class="container d-flex align-items-center">
@@ -35,7 +40,7 @@
                     </a>
                 </li>
                 <li>
-                    <a class="custom-header-btn getstarted scrollto" href="#about">
+                    <a class="custom-header-btn getstarted scrollto" href="{{getLandingLink()}}">
                         <span>
                             Request Customization
                         </span>
@@ -53,7 +58,7 @@
                     </a>
                 </li>
                 <li>
-                    <a class="custom-header-btn getstarted scrollto" href="#about">
+                    <a class="custom-header-btn getstarted scrollto" href="{{getLandingLink()}}">
                         <span>
                             Go to Shop
                         </span>
@@ -90,7 +95,7 @@
                     only tool you need to manage your company’s entire workflow from anywhere, at any time!
                 </h3>
                 <div class="d-flex justify-content-center justify-content-lg-start mt-3">
-                    <a href="#about" class="custom-header-btn getstarted scrollto me-5">Get Started</a>
+                    <a href="{{getLandingLink()}}" class="custom-header-btn getstarted scrollto me-5">Get Started</a>
                     <a href="https://www.youtube.com/watch?v=jDDaplaOz7Q" class="custom-header-btn getstarted">
                         View Demo for free
                     </a>
@@ -133,7 +138,7 @@
                                 convenient dashboards to set financial goals, invoice clients, manage taxation, and see
                                 where your money is going.
                             </p>
-                            <a href="#" class="btn btn-success btn-sm px-3 py-2 rounded-5">Show More</a>
+                            <a href="{{getLandingLink()}}" class="btn btn-success btn-sm px-3 py-2 rounded-5">Show More</a>
                         </div>
                     </div>
 
@@ -148,7 +153,7 @@
                                 roles, and gain control over access. Handle all facets of your HR – from attendance
                                 records to salary payments – all without lifting a finger.
                             </p>
-                            <a href="#" class="btn btn-dark btn-sm px-3 py-2 rounded-5">Show More</a>
+                            <a href="{{getLandingLink()}}" class="btn btn-dark btn-sm px-3 py-2 rounded-5">Show More</a>
                         </div>
                     </div>
                 </div>
@@ -162,13 +167,13 @@
                                 efficient business. Generate new estimates quickly and easily. Crush deadlines by
                                 managing estimates – all in one place, in a matter of minutes.
                             </p>
-                            <a href="#" class="btn btn-warning text-white btn-sm px-3 py-2 rounded-5">Show More</a>
+                            <a href="{{getLandingLink()}}" class="btn btn-warning text-white btn-sm px-3 py-2 rounded-5">Show More</a>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="d-flex justify-content-center align-items-center my-5">
-                <a href="#" class="btn custom-header-btn rounded-5 fw-light text-uppercase py-3">View Demo For Free</a>
+                <a href="{{getLandingLink()}}" class="btn custom-header-btn rounded-5 fw-light text-uppercase py-3">View Demo For Free</a>
             </div>
         </div>
     </section>
@@ -182,7 +187,7 @@
             </div>
             <div class="row">
                 <div class="col-lg-5 img flex-column d-flex justify-content-center align-items-start gap-3">
-                    <a href="#" class="btn custom-header-btn rounded-5 fw-light text-uppercase py-3">Live Preview</a>
+                    <a href="{{getLandingLink()}}" class="btn custom-header-btn rounded-5 fw-light text-uppercase py-3">Live Preview</a>
                     <img src="{{asset('assets/landing/img/Laptop-1.png')}}" class="img-fluid" alt="">
                 </div>
                 <div class="col-lg-7 d-flex flex-column justify-content-center align-items-stretch  order-2 order-lg-1">
@@ -205,7 +210,7 @@
                         </ul>
                     </div>
                     <div class="d-flex justify-content-end align-items-center me-5">
-                        <a href="#" class="btn custom-header-btn rounded-5 fw-light text-uppercase py-3">
+                        <a href="{{getLandingLink()}}" class="btn custom-header-btn rounded-5 fw-light text-uppercase py-3">
                             <span class="fw-bold">Buy now</span>
                             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                                  style="height: 18px;width: 18px;margin: 0;"
@@ -367,7 +372,7 @@
 
                     </div>
                     <div class="d-flex justify-content-center align-items-center my-5">
-                        <a href="" class="btn custom-header-btn text-uppercase py-3">Check Our Reviews</a>
+                        <a href="{{getLandingLink()}}" class="btn custom-header-btn text-uppercase py-3">Check Our Reviews</a>
                     </div>
                 </div>
             </div>
@@ -398,7 +403,7 @@
                         </div>
                         <div class="row">
                             <div class="col-lg-5 img flex-column d-flex justify-content-center align-items-start gap-3">
-                                <a href="#" class="btn custom-header-btn rounded-5 fw-light text-uppercase py-3">
+                                <a href="{{getLandingLink()}}" class="btn custom-header-btn rounded-5 fw-light text-uppercase py-3">
                                     <span class="fw-bold">Buy Regular License Now</span>
                                     <svg xmlns="http://www.w3.org/2000/svg"
                                          xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -411,7 +416,7 @@
                                             </g>
                                     </svg>
                                 </a>
-                                <a href="#" class="btn custom-header-btn rounded-5 fw-light text-uppercase py-3">
+                                <a href="{{getLandingLink()}}" class="btn custom-header-btn rounded-5 fw-light text-uppercase py-3">
                                     <span class="fw-bold">Buy Extended License Now</span>
                                     <svg xmlns="http://www.w3.org/2000/svg"
                                          xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -471,7 +476,7 @@
                         </div>
                         <div class="row">
                             <div class="col-lg-5 img flex-column d-flex justify-content-center align-items-start gap-3">
-                                <a href="#" class="btn custom-header-btn rounded-5 fw-light text-uppercase py-3">
+                                <a href="{{getLandingLink()}}" class="btn custom-header-btn rounded-5 fw-light text-uppercase py-3">
                                     <span class="fw-bold">Buy Regular License Now</span>
                                     <svg xmlns="http://www.w3.org/2000/svg"
                                          xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -484,7 +489,7 @@
                                             </g>
                                     </svg>
                                 </a>
-                                <a href="#" class="btn custom-header-btn rounded-5 fw-light text-uppercase py-3">
+                                <a href="{{getLandingLink()}}" class="btn custom-header-btn rounded-5 fw-light text-uppercase py-3">
                                     <span class="fw-bold">Buy Extended License Now</span>
                                     <svg xmlns="http://www.w3.org/2000/svg"
                                          xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -563,7 +568,7 @@
                         Management, Sales, Invoicing, Customer Support, and much more
                     </p>
                     <div class="d-flex justify-content-start align-items-center my-5">
-                        <a href="#" class="btn custom-header-btn rounded-5 fw-light text-uppercase py-3">View Demo For
+                        <a href="{{getLandingLink()}}" class="btn custom-header-btn rounded-5 fw-light text-uppercase py-3">View Demo For
                             Free</a>
                     </div>
                 </div>
