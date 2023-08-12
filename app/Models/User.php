@@ -101,7 +101,7 @@ class User extends Authenticatable
         }
         $moods = array_values($moods);
         $inactive_mood = $moods[0];
-        $active_mood = $this->mood;
+        $active_mood = $this->mood ?? 'Fine';
         $next_mood = $moods[1];
         $inactive =
             "
