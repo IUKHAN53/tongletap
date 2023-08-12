@@ -253,7 +253,7 @@
                                                 </div>
                                             </div>
                                             <div class="review-text">
-                                                This is actually a complete ERP system with a very stunning look
+                                                This is actually a complete EAP system with a very stunning look
                                                 and VERY FAST SUPPORT
                                             </div>
                                             <div class="d-flex flex-column mt-4 justify-content-start review-user">
@@ -300,7 +300,7 @@
                                                 </div>
                                             </div>
                                             <div class="review-text">
-                                                Excellent support and amazing ERP
+                                                Excellent support and amazing EAP
                                             </div>
                                             <div class="d-flex flex-column mt-4 justify-content-start review-user">
                                                 <span><strong>@ mrblue9876</strong></span>

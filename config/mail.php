@@ -93,7 +93,7 @@ return [
 
     'from' => [
         'address' => env('MAIL_FROM_ADDRESS', 'support@tongle.com'),
-        'name' => env('MAIL_FROM_NAME', 'Tongle ERP'),
+        'name' => env('MAIL_FROM_NAME', 'Tongle EAP'),
     ],
 
     /*

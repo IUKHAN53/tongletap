@@ -65,6 +65,8 @@ class DashboardController extends Controller
                 return redirect()->route('client.dashboard.view');
             } elseif (strtolower(Auth::user()->type) == 'employee') {
                 return redirect()->route('employee.dashboard');
+            }elseif (strtolower(Auth::user()->type) == 'company'){
+                return $this->companyDashboard();
             } elseif (strtolower(Auth::user()->type) == 'accountant') {
                 $data['latestIncome'] = Revenue::where('created_by', '=', \Auth::user()->creatorId())->orderBy('id', 'desc')->limit(5)->get();
                 $data['latestExpense'] = Payment::where('created_by', '=', \Auth::user()->creatorId())->orderBy('id', 'desc')->limit(5)->get();
@@ -542,6 +544,24 @@ class DashboardController extends Controller
         }
         $bookings = str_replace('"[', '[', str_replace(']"', ']', json_encode($bookings)));
         return view('dashboard.employee-dashboard', compact('stats', 'arrEvents', 'bookings'));
+    }
+    public function companyDashboard()
+    {
+//        Events for calendar
+        $eventsData = Event::query()->where('company_name', '=', Auth::user()->name)->get();
+        $arrEvents = [];
+        foreach ($eventsData as $event) {
+            $arr['id'] = $event['id'];
+            $arr['title'] = $event['title'];
+            $arr['start'] = $event['start_date'];
+            $arr['end'] = $event['end_date'];
+            $arr['className'] = 'custom-btn';
+            $arr['url'] = 'javascript:void(0)';
+            $arrEvents[] = $arr;
+        }
+        $arrEvents = str_replace('"[', '[', str_replace(']"', ']', json_encode($arrEvents)));
+
+        return view('dashboard.company-dashboard', compact('arrEvents'));
     }
 
     public function getOrderChart($arrParam)
