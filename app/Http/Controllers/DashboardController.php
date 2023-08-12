@@ -42,6 +42,7 @@ use App\Models\Utility;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Spatie\Permission\Models\Role;
 
@@ -65,7 +66,7 @@ class DashboardController extends Controller
                 return redirect()->route('client.dashboard.view');
             } elseif (strtolower(Auth::user()->type) == 'employee') {
                 return redirect()->route('employee.dashboard');
-            }elseif (strtolower(Auth::user()->type) == 'company'){
+            } elseif (strtolower(Auth::user()->type) == 'company') {
                 return $this->companyDashboard();
             } elseif (strtolower(Auth::user()->type) == 'accountant') {
                 $data['latestIncome'] = Revenue::where('created_by', '=', \Auth::user()->creatorId())->orderBy('id', 'desc')->limit(5)->get();
@@ -510,9 +511,9 @@ class DashboardController extends Controller
     public function employeeDashboard()
     {
         $stats = HealthStat::query()->where('user_id', Auth::user()->id)->latest()->first();
-        if ($stats){
+        if ($stats) {
             $stats = $stats->getStats();
-        }else{
+        } else {
             $stats = new HealthStat();
             $stats = $stats->getStats();
         }
@@ -545,6 +546,7 @@ class DashboardController extends Controller
         $bookings = str_replace('"[', '[', str_replace(']"', ']', json_encode($bookings)));
         return view('dashboard.employee-dashboard', compact('stats', 'arrEvents', 'bookings'));
     }
+
     public function companyDashboard()
     {
 //        Events for calendar
@@ -555,13 +557,24 @@ class DashboardController extends Controller
             $arr['title'] = $event['title'];
             $arr['start'] = $event['start_date'];
             $arr['end'] = $event['end_date'];
-            $arr['className'] = 'custom-btn';
+            $arr['className'] = $event['color'];
             $arr['url'] = 'javascript:void(0)';
             $arrEvents[] = $arr;
         }
         $arrEvents = str_replace('"[', '[', str_replace(']"', ']', json_encode($arrEvents)));
+        $countTotal = User::where('created_by', '=', auth()->user()->creatorId())->count();
+        $countEmployee = User::where('created_by', '=', auth()->user()->creatorId())->whereIn('type', ['Employee', 'employee'])->count();
+        $countAccountant = User::where('created_by', '=', auth()->user()->creatorId())->whereIn('type', ['Accountant', 'accountant'])->count();
 
-        return view('dashboard.company-dashboard', compact('arrEvents'));
+        $total_hours = Timemodule::query()
+            ->where('company_name', auth()->user()->name)
+            ->sum('total_hours_purchase');
+        $used_hours = Timemodule::query()
+            ->where('company_name', auth()->user()->name)
+            ->sum('total_hours_used');
+        $remaining = $total_hours - $used_hours;
+        return view('dashboard.company-dashboard',
+            compact('arrEvents', 'countTotal', 'countEmployee', 'countAccountant', 'total_hours', 'used_hours', 'remaining'));
     }
 
     public function getOrderChart($arrParam)

@@ -108,7 +108,7 @@ $(document).on('click', 'a[data-ajax-popup="true"], button[data-ajax-popup="true
         },
         error: function (data) {
             data = data.responseJSON;
-            show_toastr('Error', data.error, 'error')
+            show_toastr('Error', data.error ?? '', 'error')
         }
     });
 
@@ -377,7 +377,7 @@ $(document).on('click', '.fc-daygrid-event', function (e) {
         },
         error: function (data) {
             data = data.responseJSON;
-            toastrs('Error', data.error, 'error')
+            toastr('Error', data.error, 'error')
         }
     });
     // }

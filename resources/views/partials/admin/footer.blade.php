@@ -29,6 +29,7 @@
 
 <script src="{{ asset('assets/js/plugins/sweetalert2.all.min.js') }}"></script>
 <script src="{{ asset('assets/js/plugins/simple-datatables.js') }}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
 <!-- Apex Chart -->
 <script src="{{ asset('assets/js/plugins/apexcharts.min.js') }}"></script>

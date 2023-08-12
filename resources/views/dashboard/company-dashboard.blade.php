@@ -5,155 +5,35 @@
     <div class="row">
         <div class="col-xxl-12">
             <div class="row">
-                <div class="col-md-9">
-                    <div class="card">
-                        <div class="card-header">
-                            <h5>{{__('Event')}}</h5>
-                        </div>
-                        <div class="card-body">
-                            <div id='event_calendar' class='calendar'></div>
+                <div class="col-md-6 col-sm-6">
+                    <div class="card w-100">
+                        <div class="card-body p-4">
+                            <p class="mb-2 fs-3">Counselling Hours (Total: {{$total_hours}})</p>
+                            <div id="hours_chart"></div>
                         </div>
                     </div>
-
                 </div>
-{{--                <div class="col-md-3">--}}
-{{--                    <div class="col-xxl-12">--}}
-{{--                        <div class="card">--}}
-{{--                            <div class="card-body">--}}
-{{--                                <h5>{{__('Staff')}}</h5>--}}
-{{--                                <div class="row  mt-4">--}}
-{{--                                    <div class="col-md-6 col-sm-6">--}}
-{{--                                        <div class="d-flex align-items-start mb-3">--}}
-{{--                                            <div class="theme-avtar bg-primary">--}}
-{{--                                                <i class="ti ti-users"></i>--}}
-{{--                                            </div>--}}
-{{--                                            <div class="ms-2">--}}
-{{--                                                <p class="text-muted text-sm mb-0">{{__('Total Staff')}}</p>--}}
-{{--                                                <h4 class="mb-0 text-success">{{ $countUser +   $countClient}}</h4>--}}
+                <div class="col-md-6 col-sm-6">
+                    <div class="card w-100">
+                        <div class="card-body p-4">
+                            <p class="mb-2 fs-3">Staff (Total: {{$countTotal}})</p>
+                            <div id="users_chart"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xxl-12">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5>{{__('Events')}} (Total: {{count(json_decode($arrEvents))}})</h5>
+                    </div>
+                    <div class="card-body">
+                        <div id='event_calendar' class='calendar'></div>
+                    </div>
+                </div>
 
-{{--                                            </div>--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
-{{--                                    <div class="col-md-6 col-sm-6 my-3 my-sm-0">--}}
-{{--                                        <div class="d-flex align-items-start mb-3">--}}
-{{--                                            <div class="theme-avtar bg-info">--}}
-{{--                                                <i class="ti ti-user"></i>--}}
-{{--                                            </div>--}}
-{{--                                            <div class="ms-2">--}}
-{{--                                                <p class="text-muted text-sm mb-0">{{__('Employee')}}</p>--}}
-{{--                                                <h4 class="mb-0 text-primary">{{$countUser}}</h4>--}}
-
-{{--                                            </div>--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                    <div class="col-xxl-12">--}}
-{{--                        <div class="card">--}}
-{{--                            <div class="card-body">--}}
-{{--                                <h5>{{__('Job')}}</h5>--}}
-{{--                                <div class="row  mt-4">--}}
-{{--                                    <div class="col-md-6 col-sm-6">--}}
-{{--                                        <div class="d-flex align-items-start mb-3">--}}
-{{--                                            <div class="theme-avtar bg-primary">--}}
-{{--                                                <i class="ti ti-award"></i>--}}
-{{--                                            </div>--}}
-{{--                                            <div class="ms-2">--}}
-{{--                                                <p class="text-muted text-sm mb-0">{{__('Total Jobs')}}</p>--}}
-{{--                                                <h4 class="mb-0 text-success">{{$activeJob + $inActiveJOb}}</h4>--}}
-
-{{--                                            </div>--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
-{{--                                    <div class="col-md-6 col-sm-6 my-3 my-sm-0">--}}
-{{--                                        <div class="d-flex align-items-start mb-3">--}}
-{{--                                            <div class="theme-avtar bg-info">--}}
-{{--                                                <i class="ti ti-check"></i>--}}
-{{--                                            </div>--}}
-{{--                                            <div class="ms-2">--}}
-{{--                                                <p class="text-muted text-sm mb-0">{{__('Active Job')}}</p>--}}
-{{--                                                <h4 class="mb-0 text-primary">{{$activeJob}}</h4>--}}
-
-{{--                                            </div>--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
-{{--                                    <div class="col-md-6 col-sm-6">--}}
-{{--                                        <div class="d-flex align-items-start mb-3">--}}
-{{--                                            <div class="theme-avtar bg-danger">--}}
-{{--                                                <i class="ti ti-x"></i>--}}
-{{--                                            </div>--}}
-{{--                                            <div class="ms-2">--}}
-{{--                                                <p class="text-muted text-sm mb-0">{{__('Inactive Job ')}}</p>--}}
-{{--                                                <h4 class="mb-0 text-danger">{{$inActiveJOb}}</h4>--}}
-
-{{--                                            </div>--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                    <div class="col-xxl-12">--}}
-{{--                        <div class="card">--}}
-{{--                            <div class="card-body">--}}
-{{--                                <h5>{{__('Training')}}</h5>--}}
-{{--                                <div class="row  mt-4">--}}
-{{--                                    <div class="col-md-6 col-sm-6">--}}
-{{--                                        <div class="d-flex align-items-start mb-3">--}}
-{{--                                            <div class="theme-avtar bg-primary">--}}
-{{--                                                <i class="ti ti-users"></i>--}}
-{{--                                            </div>--}}
-{{--                                            <div class="ms-2">--}}
-{{--                                                <p class="text-muted text-sm mb-0">{{__('Total Training')}}</p>--}}
-{{--                                                <h4 class="mb-0 text-success">{{ $onGoingTraining +   $doneTraining}}</h4>--}}
-
-{{--                                            </div>--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
-{{--                                    <div class="col-md-6 col-sm-6 my-3 my-sm-0">--}}
-{{--                                        <div class="d-flex align-items-start mb-3">--}}
-{{--                                            <div class="theme-avtar bg-info">--}}
-{{--                                                <i class="ti ti-user"></i>--}}
-{{--                                            </div>--}}
-{{--                                            <div class="ms-2">--}}
-{{--                                                <p class="text-muted text-sm mb-0">{{__('Trainer')}}</p>--}}
-{{--                                                <h4 class="mb-0 text-primary">{{$countTrainer}}</h4>--}}
-
-{{--                                            </div>--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
-{{--                                    <div class="col-md-6 col-sm-6">--}}
-{{--                                        <div class="d-flex align-items-start mb-3">--}}
-{{--                                            <div class="theme-avtar bg-danger">--}}
-{{--                                                <i class="ti ti-user-check"></i>--}}
-{{--                                            </div>--}}
-{{--                                            <div class="ms-2">--}}
-{{--                                                <p class="text-muted text-sm mb-0">{{__('Active Training')}}</p>--}}
-{{--                                                <h4 class="mb-0 text-danger">{{$onGoingTraining}}</h4>--}}
-
-{{--                                            </div>--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
-{{--                                    <div class="col-md-6 col-sm-6">--}}
-{{--                                        <div class="d-flex align-items-start mb-3">--}}
-{{--                                            <div class="theme-avtar bg-secondary">--}}
-{{--                                                <i class="ti ti-user-minus"></i>--}}
-{{--                                            </div>--}}
-{{--                                            <div class="ms-2">--}}
-{{--                                                <p class="text-muted text-sm mb-0">{{__('Done Training')}}</p>--}}
-{{--                                                <h4 class="mb-0 text-secondary">{{$doneTraining}}</h4>--}}
-{{--                                            </div>--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
             </div>
         </div>
     </div>
@@ -174,6 +54,7 @@
                     dayGridMonth: "{{__('Month')}}"
                 },
                 themeSystem: 'bootstrap',
+                slotDuration: '00:10:00',
                 navLinks: true,
                 droppable: true,
                 selectable: true,
@@ -181,36 +62,100 @@
                 editable: true,
                 dayMaxEvents: true,
                 handleWindowResize: true,
-                events: {!! json_encode($arrEvents) !!},
-                locale: '{{basename(App::getLocale())}}',
-                dayClick: function (e) {
-                    var t = moment(e).toISOString();
-                    $("#new-event").modal("show"), $(".new-event--title").val(""), $(".new-event--start").val(t), $(".new-event--end").val(t)
-                },
-                eventResize: function (event) {
-                    var eventObj = {
-                        start: event.start.format(),
-                        end: event.end.format(),
-                    };
-                },
-                viewRender: function (t) {
-                    e.fullCalendar("getDate").month(), $(".fullcalendar-title").html(t.title)
-                },
-                eventClick: function (e, t) {
-                    var title = e.title;
-                    var url = e.url;
-                    if (typeof url != 'undefined') {
-                        $("#commonModal .modal-title").html(title);
-                        $("#commonModal .modal-dialog").addClass('modal-md');
-                        $("#commonModal").modal('show');
-                        $.get(url, {}, function (data) {
-                            $('#commonModal .modal-body').html(data);
-                        });
-                        return false;
-                    }
-                }
+                events: {!! $arrEvents !!},
             });
             calendar.render();
+
+            const totalHours = parseInt(@json($total_hours))
+            const hoursUsed = parseInt(@json($used_hours))
+            const hoursRemaining = parseInt(@json($remaining))
+
+            var options = {
+                series: [hoursUsed, hoursRemaining],
+                chart: {
+                    type: 'donut',
+                    height: 350
+                },
+                labels: ['Hours Used', 'Hours Remaining'],
+                dataLabels: {
+                    enabled: true,
+                    formatter: function (val, opts) {
+                        return opts.w.globals.series[opts.seriesIndex] + " hours";
+                    },
+                },
+                tooltip: {
+                    y: {
+                        formatter: function (val) {
+                            return val + " hours";
+                        }
+                    }
+                },
+                legend: {
+                    show: true,
+                    labels: {
+                        useSeriesColors: true
+                    }
+                },
+                colors: ['#3ec7d4', '#6ed742'],
+                responsive: [{
+                    breakpoint: 480,
+                    options: {
+                        chart: {
+                            width: 200
+                        },
+                        legend: {
+                            position: 'bottom'
+                        }
+                    }
+                }]
+            };
+
+            var chart = new ApexCharts(document.querySelector("#hours_chart"), options);
+            chart.render();
+
+
+            const totalUsers = parseInt(@json($countTotal))
+            const employees = parseInt(@json($countEmployee))
+            const accountants = parseInt(@json($countAccountant))
+            var options2 = {
+                series: [employees, accountants], // Example data: 65 employees and 35 accountants
+                chart: {
+                    type: 'radialBar',
+                    height: 350
+                },
+                colors: ['#3ec7d4', '#6ed742'],
+                legend: {
+                    show: true,
+                    labels: {
+                        useSeriesColors: true
+                    }
+                },
+                plotOptions: {
+                    radialBar: {
+                        max: totalUsers,
+                        dataLabels: {
+                            name: {
+                                fontSize: '22px',
+                            },
+                            value: {
+                                fontSize: '16px',
+                            },
+                            total: {
+                                show: true,
+                                label: 'Total',
+                                formatter: function (w) {
+                                    return totalUsers;
+                                }
+                            }
+                        }
+                    }
+                },
+                labels: ['Employees', 'Accountants'],
+            };
+
+            var chart2 = new ApexCharts(document.querySelector("#users_chart"), options2);
+            chart2.render();
+
         })();
     </script>
 @endpush

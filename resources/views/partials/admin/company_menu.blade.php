@@ -186,7 +186,7 @@
         <li class="sidebar-item">
             <a class="sidebar-link" href="{{ route('timemodule.index') }}" aria-expanded="false">
                 <span>
-                    <i class="ti ti-time" style="font-size: 22px"></i>
+                    <i class="ti ti-package" style="font-size: 22px"></i>
                 </span>
                 <span class="hide-menu">Counselling Hours Package</span>
             </a>
