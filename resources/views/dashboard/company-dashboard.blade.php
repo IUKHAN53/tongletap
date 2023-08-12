@@ -3,6 +3,75 @@
 @section('content')
     <div class="row">
         <div class="col-xxl-12">
+            <div class="card w-100">
+                <div class="card-header">
+                    <h5>Requested Counsellors Summary</h5>
+                </div>
+                <div class="card-body p-4 d-flex gap-3">
+                    <div class="col-lg-3 col-md-6">
+                        <div class="row align-items-center justify-content-between">
+                            <div class="col-auto mb-3 mb-sm-0">
+                                <div class="d-flex align-items-center">
+                                    <div class="theme-avtar bg-success py-2 px-3 rounded">
+                                        <i class="ti ti-cast text-white fw-bold fs-4"></i>
+                                    </div>
+                                    <div class="ms-3">
+                                        <h6 class="m-0">Total Requested</h6>
+                                    </div>
+                                </div>
+                            </div>
+                            <h3 class="m-0">{{ $countTicket }}</h3>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="row align-items-center justify-content-between">
+                            <div class="col-auto mb-3 mb-sm-0">
+                                <div class="d-flex align-items-center">
+                                    <div class="theme-avtar bg-primary py-2 px-3 rounded">
+                                        <i class="ti ti-cast text-white fw-bold fs-4"></i>
+                                    </div>
+                                    <div class="ms-3">
+                                        <h6 class="m-0">Pending</h6>
+                                    </div>
+                                </div>
+                            </div>
+                            <h3 class="m-0">{{ $countPendingTicket }}</h3>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="row align-items-center justify-content-between">
+                            <div class="col-auto mb-3 mb-sm-0">
+                                <div class="d-flex align-items-center">
+                                    <div class="theme-avtar bg-info py-2 px-3 rounded">
+                                        <i class="ti ti-cast text-white fw-bold fs-4"></i>
+                                    </div>
+                                    <div class="ms-3">
+                                        <h6 class="m-0">Approved</h6>
+                                    </div>
+                                </div>
+                            </div>
+                            <h3 class="m-0">{{ $countApprovedTicket }}</h3>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="row align-items-center justify-content-between">
+                            <div class="col-auto mb-3 mb-sm-0">
+                                <div class="d-flex align-items-center">
+                                    <div class="theme-avtar bg-danger py-2 px-3 rounded">
+                                        <i class="ti ti-cast text-white fw-bold fs-4"></i>
+                                    </div>
+                                    <div class="ms-3">
+                                        <h6 class="m-0">Rejected</h6>
+                                    </div>
+                                </div>
+                            </div>
+                            <h3 class="m-0">{{ $countRejectedTicket }}</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xxl-12">
             <div class="row">
                 <div class="col-md-6 col-sm-6">
                     <div class="card w-100">

@@ -573,8 +573,26 @@ class DashboardController extends Controller
             ->where('company_name', auth()->user()->name)
             ->sum('total_hours_used');
         $remaining = $total_hours - $used_hours;
+
+        $countPendingTicket = Ticket::where('status', '=', 'pending')->where('created_by', '=', Auth::user()->creatorId())->count();
+        $countApprovedTicket = Ticket::where('status', '=', 'approved')->where('created_by', '=', Auth::user()->creatorId())->count();
+        $countTicket = Ticket::where('created_by', '=', Auth::user()->creatorId())->count();
+        $countRejectedTicket = Ticket::where('status', '=', 'rejected')->where('created_by', '=', Auth::user()->creatorId())->count();
+
         return view('dashboard.company-dashboard',
-            compact('arrEvents', 'countTotal', 'countEmployee', 'countAccountant', 'total_hours', 'used_hours', 'remaining'));
+            compact(
+                'arrEvents',
+                'countTotal',
+                'countEmployee',
+                'countAccountant',
+                'total_hours',
+                'used_hours',
+                'remaining',
+                'countPendingTicket',
+                'countTicket',
+                'countApprovedTicket',
+                'countRejectedTicket'
+            ));
     }
 
     public function getOrderChart($arrParam)
