@@ -3,7 +3,9 @@
 use App\Http\Controllers\CommissionController;
 use App\Http\Controllers\Employee\ProfileController;
 use App\Models\User;
+use App\Notifications\CounsellorStatusChanged;
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Auth\RegisteredUserController;
@@ -155,6 +157,13 @@ use App\Http\Controllers\ProjectReportController;
 // })->middleware(['auth'])->name('dashboard');
 
 require __DIR__ . '/auth.php';
+
+Route::get('/test-email', function () {
+    Notification::route('mail', [
+        'iu.khan53@gmail.com' => 'IU Khan',
+    ])->notify(new CounsellorStatusChanged('testing', 'test000'));
+    return 'success';
+});
 
 Route::get('/storage-link', function () {
     Artisan::call('storage:link');

@@ -255,9 +255,9 @@ class TicketController extends Controller
 
 //        send notification to user for status change
         $user = User::find($ticket->employee_id);
-//        if ($user) $user->notify(new CounsellorStatusChanged($request->status, $ticket->ticket_code));
-//        else
-//            return redirect()->route('ticket.index')->with('info', __('Ticket status successfully updated but email failed to send because of no employee.'));
+        if ($user) $user->notify(new CounsellorStatusChanged($request->status, $ticket->ticket_code));
+        else
+            return redirect()->route('ticket.index')->with('info', __('Ticket status successfully updated but email failed to send because of no employee.'));
 
 
         Notification::route('mail', [
