@@ -260,9 +260,9 @@ class TicketController extends Controller
             return redirect()->route('ticket.index')->with('info', __('Ticket status successfully updated but email failed to send because of no employee.'));
 
 
-        Notification::route('mail', [
-            'iu.khan53@gmail.com' => 'IU Khan',
-        ])->notify(new CounsellorStatusChanged($request->status, $ticket->ticket_code));
+//        Notification::route('mail', [
+//            'iu.khan53@gmail.com' => 'IU Khan',
+//        ])->notify(new CounsellorStatusChanged($request->status, $ticket->ticket_code));
 
         return redirect()->route('ticket.index')->with('success', __('Ticket status successfully updated.'));
     }
