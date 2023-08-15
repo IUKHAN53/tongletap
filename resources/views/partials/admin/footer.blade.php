@@ -185,6 +185,12 @@
         }
 
         document.addEventListener('click', function (event) {
+            var viewportWidth = window.innerWidth || document.documentElement.clientWidth;
+
+            if (viewportWidth > 991.98) {
+                return;  // Exit the function if the viewport width is above the breakpoint
+            }
+
             var menu = document.querySelector('.dash-navbar');
             var toggleButton = document.getElementById('sidebarToggle');  // Assuming you have a button with this ID for toggling the menu
 
@@ -207,6 +213,11 @@
         });
 
         document.addEventListener('click', function (event) {
+            var viewportWidth = window.innerWidth || document.documentElement.clientWidth;
+
+            if (viewportWidth > 991.98) {
+                return;  // Exit the function if the viewport width is above the breakpoint
+            }
             var sidebar = document.querySelector('.sidebar-nav');
             var toggleButton = document.getElementById('sidebarToggle');  // Assuming you have a button with this ID for toggling the menu
             var isClickInsideMenu = sidebar.contains(event.target);
