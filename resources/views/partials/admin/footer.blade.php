@@ -171,7 +171,35 @@
         }
     }
 
-    if (@json(auth()->user()->type  == 'super admin' )) {
+    if (@json(auth()->user()->type  != 'super admin' )) {
+
+        document.getElementById('sidebarToggle').addEventListener('click', function () {
+            var sidebar = document.querySelector('.sidebar-nav');
+
+            if (sidebar.classList.contains('show-sidebar')) {
+                sidebar.classList.remove('show-sidebar');
+            } else {
+                sidebar.classList.add('show-sidebar');
+            }
+        });
+
+        document.addEventListener('click', function (event) {
+            var viewportWidth = window.innerWidth || document.documentElement.clientWidth;
+
+            if (viewportWidth > 991.98) {
+                return;  // Exit the function if the viewport width is above the breakpoint
+            }
+            var sidebar = document.querySelector('.sidebar-nav');
+            var toggleButton = document.getElementById('sidebarToggle');  // Assuming you have a button with this ID for toggling the menu
+            var isClickInsideMenu = sidebar.contains(event.target);
+            var isHamburgerButton = (toggleButton === event.target) || toggleButton.contains(event.target);
+
+            if (!isClickInsideMenu && !isHamburgerButton) {
+                sidebar.classList.remove('show-sidebar');
+            }
+        });
+    } else {
+
         document.getElementById('sidebarToggle').addEventListener('click', toggleMenu);
 
         function toggleMenu() {
@@ -201,32 +229,7 @@
                 menu.style.display = "none";
             }
         });
-    } else {
-        document.getElementById('sidebarToggle').addEventListener('click', function () {
-            var sidebar = document.querySelector('.sidebar-nav');
 
-            if (sidebar.classList.contains('show-sidebar')) {
-                sidebar.classList.remove('show-sidebar');
-            } else {
-                sidebar.classList.add('show-sidebar');
-            }
-        });
-
-        document.addEventListener('click', function (event) {
-            var viewportWidth = window.innerWidth || document.documentElement.clientWidth;
-
-            if (viewportWidth > 991.98) {
-                return;  // Exit the function if the viewport width is above the breakpoint
-            }
-            var sidebar = document.querySelector('.sidebar-nav');
-            var toggleButton = document.getElementById('sidebarToggle');  // Assuming you have a button with this ID for toggling the menu
-            var isClickInsideMenu = sidebar.contains(event.target);
-            var isHamburgerButton = (toggleButton === event.target) || toggleButton.contains(event.target);
-
-            if (!isClickInsideMenu && !isHamburgerButton) {
-                sidebar.classList.remove('show-sidebar');
-            }
-        });
     }
 
 </script>
