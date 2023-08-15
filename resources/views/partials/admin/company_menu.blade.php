@@ -161,6 +161,12 @@
 </style>
 <nav class="sidebar-nav scroll-sidebar mt-4" data-simplebar="">
     <ul id="sidebarnav">
+        <!-- Mobile Logo -->
+        <li class="sidebar-item mobile-logo">
+            <img src="{{asset('assets/emp/images/logos/dark-logo.svg')}}" alt="Logo" width="100">
+        </li>
+
+
         <li class="sidebar-item">
             <a class="sidebar-link" href="{{ route('home') }}" aria-expanded="false">
                 <span>

@@ -171,41 +171,51 @@
         }
     }
 
-    document.getElementById('sidebarToggle').addEventListener('click', function () {
-        var sidebar = document.querySelector('.sidebar-nav');
-        var backdrop = document.querySelector('.sidebar-backdrop');
+    if (@json(auth()->user()->type  == 'super admin' )) {
+        document.getElementById('sidebarToggle').addEventListener('click', toggleMenu);
 
-        if (sidebar.classList.contains('show-sidebar')) {
-            sidebar.classList.remove('show-sidebar');
-            backdrop.classList.remove('show-backdrop');
-        } else {
-            sidebar.classList.add('show-sidebar');
-            backdrop.classList.add('show-backdrop');
+        function toggleMenu() {
+            var menu = document.querySelector('.dash-navbar');
+
+            if (menu.style.display === "block") {
+                menu.style.display = "none";
+            } else {
+                menu.style.display = "block";
+            }
         }
-    });
 
-    // If you're using the backdrop, close the sidebar when the backdrop is clicked
-    if (document.querySelector('.sidebar-backdrop')) {
-        document.querySelector('.sidebar-backdrop').addEventListener('click', function () {
-            document.querySelector('.sidebar-nav').classList.remove('show-sidebar');
-            this.classList.remove('show-backdrop');
+        document.addEventListener('click', function (event) {
+            var menu = document.querySelector('.dash-navbar');
+            var toggleButton = document.getElementById('sidebarToggle');  // Assuming you have a button with this ID for toggling the menu
+
+            var isClickInsideMenu = menu.contains(event.target);
+            var isHamburgerButton = (toggleButton === event.target) || toggleButton.contains(event.target);
+
+            if (!isClickInsideMenu && !isHamburgerButton) {
+                menu.style.display = "none";
+            }
+        });
+    } else {
+        document.getElementById('sidebarToggle').addEventListener('click', function () {
+            var sidebar = document.querySelector('.sidebar-nav');
+
+            if (sidebar.classList.contains('show-sidebar')) {
+                sidebar.classList.remove('show-sidebar');
+            } else {
+                sidebar.classList.add('show-sidebar');
+            }
+        });
+
+        document.addEventListener('click', function (event) {
+            var sidebar = document.querySelector('.sidebar-nav');
+            var toggleButton = document.getElementById('sidebarToggle');  // Assuming you have a button with this ID for toggling the menu
+            var isClickInsideMenu = sidebar.contains(event.target);
+            var isHamburgerButton = (toggleButton === event.target) || toggleButton.contains(event.target);
+
+            if (!isClickInsideMenu && !isHamburgerButton) {
+                sidebar.classList.remove('show-sidebar');
+            }
         });
     }
-
-    document.getElementById('sidebarToggle').addEventListener('click', toggleMenu);
-
-    function toggleMenu() {
-        var menu = document.querySelector('.dash-navbar');
-        var backdrop = document.querySelector('.menu-backdrop');
-
-        if (menu.style.display === "block") {
-            menu.style.display = "none";
-            backdrop.style.display = "none";
-        } else {
-            menu.style.display = "block";
-            backdrop.style.display = "block";
-        }
-    }
-
 
 </script>

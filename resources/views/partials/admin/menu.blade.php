@@ -136,6 +136,10 @@
         font-size: 13px;
         font-weight: 600;
     }
+    /* Hide the mobile logo by default */
+    .mobile-logo {
+        display: none;
+    }
     @media (max-width: 991.98px) {
         .dash-navbar {
             display: none;
@@ -167,7 +171,15 @@
         .menu-backdrop.show-backdrop {
             display: block;
         }
+        .mobile-logo {
+            display: block;
+            text-align: center; /* Center the logo */
+            padding: 15px 0;    /* Some padding around the logo for better appearance */
+        }
     }
+
+
+
 </style>
 
 @if (isset($setting['cust_theme_bg']) && $setting['cust_theme_bg'] == 'on')
@@ -298,6 +310,9 @@
                             @endif
                             @if((\Auth::user()->type == 'super admin'))
                                 <ul class="dash-navbar">
+                                    <li class="dash-item mobile-logo">
+                                        <img src="{{asset('assets/emp/images/logos/dark-logo.svg')}}" alt="Logo" width="100">
+                                    </li>
                                         <li class="dash-item dash-hasmenu {{ (Request::segment(1) == 'dashboard') ? ' active' : '' }}">
                                             <a href="{{ route('client.dashboard.view') }}" class="dash-link">
                                                 <span class="dash-micon"><i class="ti ti-home"></i></span><span
