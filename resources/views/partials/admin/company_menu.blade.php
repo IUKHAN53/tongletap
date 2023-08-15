@@ -136,6 +136,28 @@
     .sidebar-nav ul .sidebar-item .two-level .sidebar-item .sidebar-link {
         padding: 8px 10px 8px 45px
     }
+
+    /* Mobile view by default */
+    @media (max-width: 991.98px) {
+        .sidebar-nav {
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+            z-index: 9999;
+            background-color: #fff;
+            width: 250px;
+            overflow-y: auto;
+        }
+
+        .sidebar-nav.show-sidebar {
+            transform: translateX(0);
+        }
+
+    }
+
 </style>
 <nav class="sidebar-nav scroll-sidebar mt-4" data-simplebar="">
     <ul id="sidebarnav">

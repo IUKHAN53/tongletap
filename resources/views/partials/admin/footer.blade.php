@@ -2,7 +2,7 @@
     use App\Models\Utility;
 
 @endphp
-<!-- [ Main Content ] end -->
+        <!-- [ Main Content ] end -->
 <footer class="dash-footer">
     <div class="footer-wrapper">
         <div class="py-1">
@@ -170,4 +170,42 @@
             }
         }
     }
+
+    document.getElementById('sidebarToggle').addEventListener('click', function () {
+        var sidebar = document.querySelector('.sidebar-nav');
+        var backdrop = document.querySelector('.sidebar-backdrop');
+
+        if (sidebar.classList.contains('show-sidebar')) {
+            sidebar.classList.remove('show-sidebar');
+            backdrop.classList.remove('show-backdrop');
+        } else {
+            sidebar.classList.add('show-sidebar');
+            backdrop.classList.add('show-backdrop');
+        }
+    });
+
+    // If you're using the backdrop, close the sidebar when the backdrop is clicked
+    if (document.querySelector('.sidebar-backdrop')) {
+        document.querySelector('.sidebar-backdrop').addEventListener('click', function () {
+            document.querySelector('.sidebar-nav').classList.remove('show-sidebar');
+            this.classList.remove('show-backdrop');
+        });
+    }
+
+    document.getElementById('sidebarToggle').addEventListener('click', toggleMenu);
+
+    function toggleMenu() {
+        var menu = document.querySelector('.dash-navbar');
+        var backdrop = document.querySelector('.menu-backdrop');
+
+        if (menu.style.display === "block") {
+            menu.style.display = "none";
+            backdrop.style.display = "none";
+        } else {
+            menu.style.display = "block";
+            backdrop.style.display = "block";
+        }
+    }
+
+
 </script>

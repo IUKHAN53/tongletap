@@ -7,8 +7,8 @@
                 <div class="card-header">
                     <h5>Requested Counsellors Summary</h5>
                 </div>
-                <div class="card-body p-4 d-flex gap-3">
-                    <div class="col-lg-3 col-md-6">
+                <div class="card-body p-4 d-flex gap-3 flex-wrap">
+                    <div class="col-lg-3 col-md-6  col-sm-12">
                         <div class="row align-items-center justify-content-between">
                             <div class="col-auto mb-3 mb-sm-0">
                                 <div class="d-flex align-items-center">
@@ -23,7 +23,7 @@
                             <h3 class="m-0">{{ $countTicket }}</h3>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-6">
+                    <div class="col-lg-3 col-md-6 col-sm-12">
                         <div class="row align-items-center justify-content-between">
                             <div class="col-auto mb-3 mb-sm-0">
                                 <div class="d-flex align-items-center">
@@ -38,7 +38,7 @@
                             <h3 class="m-0">{{ $countPendingTicket }}</h3>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-6">
+                    <div class="col-lg-3 col-md-6 col-sm-12">
                         <div class="row align-items-center justify-content-between">
                             <div class="col-auto mb-3 mb-sm-0">
                                 <div class="d-flex align-items-center">
@@ -53,7 +53,7 @@
                             <h3 class="m-0">{{ $countApprovedTicket }}</h3>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-6">
+                    <div class="col-lg-3 col-md-6 col-sm-12">
                         <div class="row align-items-center justify-content-between">
                             <div class="col-auto mb-3 mb-sm-0">
                                 <div class="d-flex align-items-center">
@@ -73,7 +73,7 @@
         </div>
         <div class="col-xxl-12">
             <div class="row">
-                <div class="col-md-6 col-sm-6">
+                <div class="col-md-6  col-sm-12">
                     <div class="card w-100">
                         <div class="card-body p-4">
                             <p class="mb-2 fs-3">Counselling Hours (Total: {{$total_hours}})</p>
@@ -81,7 +81,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6 col-sm-6">
+                <div class="col-md-6 col-sm-12">
                     <div class="card w-100">
                         <div class="card-body p-4">
                             <p class="mb-2 fs-3">Staff (Total: {{$countTotal}})</p>
@@ -148,7 +148,7 @@
                 dataLabels: {
                     enabled: true,
                     formatter: function (val, opts) {
-                        return opts.w.globals.series[opts.seriesIndex] + " hours";
+                        return opts.w.globals.series[opts.seriesIndex];
                     },
                 },
                 tooltip: {
@@ -165,17 +165,7 @@
                     }
                 },
                 colors: ['#3ec7d4', '#6ed742'],
-                responsive: [{
-                    breakpoint: 480,
-                    options: {
-                        chart: {
-                            width: 200
-                        },
-                        legend: {
-                            position: 'bottom'
-                        }
-                    }
-                }]
+
             };
 
             var chart = new ApexCharts(document.querySelector("#hours_chart"), options);

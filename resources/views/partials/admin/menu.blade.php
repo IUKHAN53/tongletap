@@ -136,6 +136,38 @@
         font-size: 13px;
         font-weight: 600;
     }
+    @media (max-width: 991.98px) {
+        .dash-navbar {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+            z-index: 9999;
+            background-color: #fff;
+            width: 250px;
+            overflow-y: auto;
+        }
+
+        .dash-navbar.show-menu {
+            display: block;
+        }
+
+        .menu-backdrop {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 9998;
+            display: none;
+        }
+
+        .menu-backdrop.show-backdrop {
+            display: block;
+        }
+    }
 </style>
 
 @if (isset($setting['cust_theme_bg']) && $setting['cust_theme_bg'] == 'on')
