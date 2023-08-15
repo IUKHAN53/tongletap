@@ -42,6 +42,7 @@ class CounsellorRequested extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
+            ->from('no-reply@tongletap.com', 'Tongle EAP Portal')
             ->subject('New Counsellor Request')
             ->greeting('Hello Super Admin,')
             ->line('A new Counsellor has been requested with following ticket.')
@@ -49,7 +50,8 @@ class CounsellorRequested extends Notification
             ->line('Time Slot: ' . Carbon::parse($this->ticket->time_slot)->toDateTimeString())
             ->line('Subject: ' . $this->ticket->title)
             ->line('Priority: ' . ucfirst($this->ticket->priority))
-            ->action('View Request', url('/ticket'));
+            ->action('View Request', url('/ticket'))
+            ->salutation('Regards, Tongle Team');
     }
 
     /**
