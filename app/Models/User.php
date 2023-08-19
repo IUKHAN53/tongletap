@@ -74,9 +74,9 @@ class User extends Authenticatable
             return Utility::get_file('uploads/avatar/' . $this->avatar);
         } else {
             if ($this->type == 'company') {
-                return $this->attributes['avatar'] = asset('assets/images/company.png');
+                return asset('assets/images/company.png');
             }
-            return $this->attributes['avatar'] = asset('assets/images/avatar.png');
+            return asset('assets/images/avatar.png');
         }
     }
 
