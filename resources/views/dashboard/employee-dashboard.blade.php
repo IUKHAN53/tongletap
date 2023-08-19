@@ -43,7 +43,7 @@
                                 <div class="d-flex flex-column justify-content-center align-items-center">
                                     <div id="stressChart" style="width: 100%; height: 200px"></div>
                                     <div class="stress-indicator w-100 px-4 py-2 d-flex justify-content-center align-items-center">
-                                        <p class="m-0">{{$stats['stress']['status']}}</p>
+                                        <p class="m-0" style="color: {{$stats['stress']['color']}}">{{$stats['stress']['status']}}</p>
                                     </div>
                                 </div>
                             </div>
@@ -71,7 +71,7 @@
                                     <div id="depression-chart"></div>
                                 </div>
                                 <div class="stress-indicator w-100 px-4 py-2 d-flex justify-content-center align-items-center mt-4">
-                                    <p class="m-0">{{$stats['depression']['status']}}</p>
+                                    <p class="m-0" style="color: {{$stats['depression']['color']}}">{{$stats['depression']['status']}}</p>
                                 </div>
                             </div>
                         </div>
@@ -360,7 +360,7 @@
             var xAxis = chart.xAxes.push(am5xy.ValueAxis.new(root, {
                 maxDeviation: 0,
                 min: 0,
-                max: 100,
+                max: 20,
                 strictMinMax: true,
                 renderer: axisRenderer
             }));
@@ -378,7 +378,7 @@
 
             xAxis.createAxisRange(axisDataItem);
 
-            axisDataItem.set("value", {{$stats['stress']['percentage']}});
+            axisDataItem.set("value", {{$stats['stress']['score']}});
             bullet.get("sprite").on("rotation", function () {
                 var value = axisDataItem.get("value");
                 var fill = am5.color(0x000000);
@@ -399,31 +399,31 @@
             var bandsData = [{
                 color: "#81c984",
                 lowScore: 0,
-                highScore: 20,
+                highScore: 7,
                 title: `Healthy`,
                 icon: `{{asset('assets/emp/images/svgs/chart/outline/happy-80.svg')}}`
             }, {
                 color: "#fbbe18",
-                lowScore: 20,
-                highScore: 40,
+                lowScore: 7,
+                highScore: 9,
                 title: `Mild`,
                 icon: `{{asset('assets/emp/images/svgs/chart/outline/happy-60.svg')}}`
             }, {
                 color: "#fb822e",
-                lowScore: 40,
-                highScore: 60,
+                lowScore: 9,
+                highScore: 12,
                 title: `Moderate`,
                 icon: `{{asset('assets/emp/images/svgs/chart/outline/happy-40.svg')}}`
             }, {
                 color: "#c34b20",
-                lowScore: 60,
-                highScore: 80,
+                lowScore: 12,
+                highScore: 16,
                 title: `Unhealthy`,
                 icon: `{{asset('assets/emp/images/svgs/chart/outline/happy-20.svg')}}`
             }, {
                 color: "#b61f1c",
-                lowScore: 80,
-                highScore: 100,
+                lowScore: 16,
+                highScore: 20,
                 title: `Concerning`,
                 icon: `{{asset('assets/emp/images/svgs/chart/outline/happy-0.svg')}}`
             }];

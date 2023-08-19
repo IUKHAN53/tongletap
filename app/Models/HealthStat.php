@@ -31,7 +31,7 @@ class HealthStat extends Model
             'anxiety' => ($score / $maxAnxiety) * 100,
             'stress' => ($score / $maxStress) * 100,
         };
-        return number_format(min($percentage, 100), 2);
+        return floor(min($percentage, 100));
     }
 
     public function calculateStats($stat)
@@ -65,7 +65,7 @@ class HealthStat extends Model
         } else {
                 $depressionStatus = "N/A";
                 $depressionIcon = asset('assets/emp/images/svgs/chart/outline/happy-0.svg');
-                $depressionColor = '#ffff';
+                $depressionColor = '#000';
 
         }
 
@@ -94,7 +94,7 @@ class HealthStat extends Model
         } else {
                 $anxietyStatus = "N/A";
                 $anxietyIcon = asset('assets/emp/images/svgs/chart/outline/happy-0.svg');
-                $anxietyColor = '#ffff';
+                $anxietyColor = '#000';
 
         }
 
@@ -123,7 +123,7 @@ class HealthStat extends Model
         } else {
                 $stressStatus = "N/A";
                 $stressIcon = asset('assets/emp/images/svgs/chart/outline/happy-0.svg');
-                $stressColor = '#ffff';
+                $stressColor = '#000';
 
         }
 
@@ -142,10 +142,11 @@ class HealthStat extends Model
                 'icon' => $anxietyIcon,
                 'color' => $anxietyColor,
             ],
+
             'stress' => [
                 'status' => $stressStatus,
                 'percentage' => $this->getStatsByPercentage('stress', $stat->stress),
-                'score' => $stat->stress ?? 0,
+                'score' => min($stat->stress ?? 0, 20),
                 'icon' => $stressIcon,
                 'color' => $stressColor,
             ],
