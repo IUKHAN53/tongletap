@@ -198,8 +198,10 @@
                     </li>
                 </ul>
                 <div class="d-block d-lg-none">
-                    <img src="{{asset('assets/emp/images/logos/dark-logo.svg')}}" class="dark-logo" width="50"
-                         alt="">
+                    <a href="{{url('/')}}">
+                        <img src="{{asset('assets/emp/images/logos/dark-logo.svg')}}" class="dark-logo" width="50"
+                             alt="">
+                    </a>
                 </div>
                 <button class="navbar-toggler p-0 border-0" type="button" data-bs-toggle="collapse"
                         data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
@@ -217,19 +219,6 @@
                             <i class="ti ti-align-justified fs-7"></i>
                         </a>
                         <ul class="navbar-nav flex-row ms-auto align-items-center justify-content-center">
-                            {{--                            <li class="nav-item">--}}
-                            {{--                                <a class="nav-link nav-icon-hover" href="javascript:void(0)" data-bs-toggle="modal"--}}
-                            {{--                                   data-bs-target="#searchModal">--}}
-                            {{--                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"--}}
-                            {{--                                         viewBox="0 0 24 24"--}}
-                            {{--                                         fill="none">--}}
-                            {{--                                        <circle cx="11" cy="11" r="8" stroke="#6A7073" stroke-width="1.5"--}}
-                            {{--                                                stroke-linecap="round" stroke-linejoin="round"/>--}}
-                            {{--                                        <path d="M16.5 16.9579L21.5 21.958" stroke="#6A7073" stroke-width="1.5"--}}
-                            {{--                                              stroke-linecap="round" stroke-linejoin="round"/>--}}
-                            {{--                                    </svg>--}}
-                            {{--                                </a>--}}
-                            {{--                            </li>--}}
                             <li class="nav-item dropdown">
                                 <a class="nav-link pe-0" href="javascript:void(0)" id="drop1"
                                    data-bs-toggle="dropdown"
@@ -319,8 +308,10 @@
      aria-labelledby="offcanvasWithBothOptionsLabel">
     <nav class="sidebar-nav scroll-sidebar">
         <div class="offcanvas-header justify-content-between">
-            <img src="{{asset('assets/emp/images/logos/dark-logo.svg')}}" onclick="window.location = '{{url('/')}}'"
-                 alt="" class="img-fluid">
+            <a href="{{url('/')}}">
+                <img src="{{asset('assets/emp/images/logos/dark-logo.svg')}}"
+                     alt="" class="img-fluid">
+            </a>
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
         <div class="offcanvas-body profile-dropdown mobile-navbar">
