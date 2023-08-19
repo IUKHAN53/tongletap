@@ -42,8 +42,9 @@
                             <div class="card-body">
                                 <div class="d-flex flex-column justify-content-center align-items-center">
                                     <div id="stressChart" style="width: 100%; height: 200px"></div>
-                                    <div class="stress-indicator w-100 px-4 py-2 d-flex justify-content-center align-items-center">
-                                        <p class="m-0" style="color: {{$stats['stress']['color']}}">{{$stats['stress']['status']}}</p>
+                                    <div class="stress-indicator w-100 px-4 py-2 d-flex justify-content-center align-items-center"
+                                         style="background-color: {{$stats['stress']['color']}}">
+                                        <p class="m-0" style="color: white">{{$stats['stress']['status']}}</p>
                                     </div>
                                 </div>
                             </div>
@@ -70,8 +71,9 @@
                                 <div class="d-flex justify-content-center align-items-center">
                                     <div id="depression-chart"></div>
                                 </div>
-                                <div class="stress-indicator w-100 px-4 py-2 d-flex justify-content-center align-items-center mt-4">
-                                    <p class="m-0" style="color: {{$stats['depression']['color']}}">{{$stats['depression']['status']}}</p>
+                                <div class="stress-indicator w-100 px-4 py-2 d-flex justify-content-center align-items-center mt-4"
+                                     style="background-color: {{$stats['depression']['color']}}">
+                                    <p class="m-0" style="color: white">{{$stats['depression']['status']}}</p>
                                 </div>
                             </div>
                         </div>
@@ -179,7 +181,8 @@
                                 {{auth()->user()->biography}}
                             </p>
                         </div>
-                        <a href="{{route('employee.ticket.index')}}" class="btn custom-btn w-100 border-0 py-3 text-white">Schedule
+                        <a href="{{route('employee.ticket.index')}}"
+                           class="btn custom-btn w-100 border-0 py-3 text-white">Schedule
                             Meeting</a>
                     </div>
                 </div>
@@ -247,7 +250,7 @@
                 //     booking calendar
                 var booking_calendar = new FullCalendar.Calendar(document.getElementById('booking_calendar'), {
                     height: 500,
-                    displayEventTime : false,
+                    displayEventTime: false,
                     headerToolbar: {
                         left: 'title',
                         right: 'prev,next'
