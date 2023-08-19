@@ -42,8 +42,7 @@
                             <div class="card-body">
                                 <div class="d-flex flex-column justify-content-center align-items-center">
                                     <div id="stressChart" style="width: 100%; height: 200px"></div>
-                                    <div class="stress-indicator w-100 px-4 py-2 d-flex justify-content-center align-items-center"
-                                         style="background-color: {{$stats['stress']['color']}}">
+                                    <div class="stress-indicator w-100 px-4 py-2 d-flex justify-content-center align-items-center custom-btn">
                                         <p class="m-0" style="color: white">{{$stats['stress']['status']}}</p>
                                     </div>
                                 </div>
@@ -71,8 +70,7 @@
                                 <div class="d-flex justify-content-center align-items-center">
                                     <div id="depression-chart"></div>
                                 </div>
-                                <div class="stress-indicator w-100 px-4 py-2 d-flex justify-content-center align-items-center mt-4"
-                                     style="background-color: {{$stats['depression']['color']}}">
+                                <div class="stress-indicator w-100 px-4 py-2 d-flex justify-content-center align-items-center mt-4 custom-btn">
                                     <p class="m-0" style="color: white">{{$stats['depression']['status']}}</p>
                                 </div>
                             </div>

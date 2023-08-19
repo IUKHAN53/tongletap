@@ -31,7 +31,6 @@
 
 .stress-indicator {
     border-radius: 10px;
-    opacity: 0.4000000059604645;
     background: #F6F6F6;
     box-shadow: 0px 4px 12px 0px rgba(22, 22, 22, 0.20) inset, 4px 0px 15px 0px rgba(0, 0, 0, 0.05) inset;
 }
