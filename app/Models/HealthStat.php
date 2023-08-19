@@ -31,7 +31,7 @@ class HealthStat extends Model
             'anxiety' => ($score / $maxAnxiety) * 100,
             'stress' => ($score / $maxStress) * 100,
         };
-        return min($percentage, 100);
+        return number_format(min($percentage, 100), 2);
     }
 
     public function calculateStats($stat)
