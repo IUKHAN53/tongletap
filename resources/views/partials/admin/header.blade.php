@@ -1,5 +1,5 @@
 @php
-    $users=\Auth::user();
+    $users=auth()->user();
     //$profile=asset(Storage::url('uploads/avatar/'));
     $profile=\App\Models\Utility::get_file('uploads/avatar/');
     $languages=\App\Models\Utility::languages();
@@ -38,9 +38,9 @@
                         aria-expanded="false"
                     >
                         <span class="theme-avtar">
-                             <img src="{{ !empty(\Auth::user()->avatar) ? $profile . \Auth::user()->avatar :  $profile.'avatar.png'}}" class="img-fluid rounded-circle">
+                             <img src="{{ auth()->user()->image }}" class="img-fluid rounded-circle">
                         </span>
-                        <span class="hide-mob ms-2">{{__('Hi, ')}}{{\Auth::user()->name }}!</span>
+                        <span class="hide-mob ms-2">{{__('Hi, ')}}{{auth()->user()->name }}!</span>
                         <i class="ti ti-chevron-down drp-arrow nocolor hide-mob"></i>
                     </a>
                     <div class="dropdown-menu dash-h-dropdown">
@@ -70,7 +70,7 @@
         </div>
         <div class="ms-auto">
             <ul class="list-unstyled">
-                @if( \Auth::user()->type !='client' && \Auth::user()->type !='super admin' )
+                @if( auth()->user()->type !='client' && auth()->user()->type !='super admin' )
                     <li class="dropdown dash-h-item drp-notification">
                         <a class="dash-head-link arrow-none me-0" href="{{ url('chats') }}" aria-haspopup="false"
                            aria-expanded="false">
@@ -106,7 +106,7 @@
                             </a>
                         @endforeach
                         <h></h>
-                            @if(\Auth::user()->type=='super admin')
+                            @if(auth()->user()->type=='super admin')
 
                                 <a class="dropdown-item text-primary" href="{{route('manage.language',[isset($lang)?$lang:'en'])}}">{{ __('Manage Language ') }}</a>
                             @endif

@@ -61,7 +61,10 @@ class User extends Authenticatable
         if (!empty($this->avatar) && \Storage::exists($this->avatar)) {
             return $this->attributes['avatar'] = asset(\Storage::url($this->avatar));
         } else {
-            return $this->attributes['avatar'] = asset(\Storage::url('avatar.png'));
+            if ($this->type == 'company') {
+                return $this->attributes['avatar'] = asset('assets/images/company.png');
+            }
+            return $this->attributes['avatar'] = asset('assets/images/avatar.png');
         }
     }
 
@@ -70,7 +73,10 @@ class User extends Authenticatable
         if (!empty($this->avatar)) {
             return Utility::get_file('uploads/avatar/' . $this->avatar);
         } else {
-            return Utility::get_file('uploads/avatar/avatar.png');
+            if ($this->type == 'company') {
+                return $this->attributes['avatar'] = asset('assets/images/company.png');
+            }
+            return $this->attributes['avatar'] = asset('assets/images/avatar.png');
         }
     }
 

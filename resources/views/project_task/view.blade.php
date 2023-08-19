@@ -234,7 +234,7 @@
 
             <div class="col-12 d-flex">
                 <div class="avatar me-3">
-                    <img data-original-title="{{(!empty(\Auth::user()) ? \Auth::user()->name:'')}}" @if(\Auth::user()->avatar) src="{{asset('/storage/uploads/avatar/'.\Auth::user()->avatar)}}" @else src="{{asset('/storage/uploads/avatar/avatar.png')}}" @endif title="{{ Auth::user()->name }}" class="wid-40 rounded-circle ml-3">
+                    <img data-original-title="{{auth()->user()->image}}" @endif title="{{ Auth::user()->name }}" class="wid-40 rounded-circle ml-3">
                 </div>
                 <div class="form-group mb-0 form-send w-100">
                     <form method="post" class="card-comment-box" id="form-comment" data-action="{{route('task.comment.store',[$task->project_id,$task->id])}}">
