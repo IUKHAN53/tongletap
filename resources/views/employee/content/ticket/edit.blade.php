@@ -4,14 +4,13 @@
         <div class="col-md-6 col-sm-12 col-lg-6 col-xl-6">
             <div class="form-group">
                 {{ Form::label('title', __('Subject'), ['class' => 'col-form-label']) }}
-                {{ Form::text('title', null, ['class' => 'form-control', 'placeholder' => __('Enter Ticket Subject')]) }}
+                {{ Form::text('title', $ticket->title, ['class' => 'form-control', 'placeholder' => __('Enter Ticket Subject')]) }}
             </div>
         </div>
         <div class="col-md-6 col-sm-12 col-lg-6 col-xl-6">
             <div class="form-group">
                 {{ Form::label('EmployeePhone', __('Employee Phone'), ['class' => 'col-form-label']) }}
-                <input type="number" class="form-control" name="EmployeePhone" id="EmployeePhone"
-                       value="{{$ticket->employee_phone}}">
+                {{ Form::text('phone', $ticket->employee_phone, ['class' => 'form-control', 'placeholder' => __('Employee Phone')]) }}
             </div>
         </div>
         <div class="col-md-6 col-sm-12 col-lg-6 col-xl-6">

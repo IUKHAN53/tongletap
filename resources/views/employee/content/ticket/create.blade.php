@@ -17,7 +17,7 @@
         <div class="col-md-6 col-sm-12 col-lg-6 col-xl-6">
             <div class="form-group">
                 {{ Form::label('phone', __('Employee Phone'), ['class' => 'col-form-label']) }}
-                {{ Form::number('phone', null, ['class' => 'form-control', 'placeholder' => __('Employee Phone')]) }}
+                {{ Form::text('phone', null, ['class' => 'form-control', 'placeholder' => __('Employee Phone')]) }}
             </div>
         </div>
         <div class="col-md-6 col-sm-12 col-lg-6 col-xl-6">

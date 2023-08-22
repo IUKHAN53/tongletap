@@ -35,7 +35,7 @@ class TicketController extends Controller
         {
             $validator = Validator::make($request->all(), [
                 'title' => 'required',
-                'phone' => 'required',
+                'phone' => 'required|string|max:15',
                 'priority' => 'required',
                 'time_slot' => 'required|date|after_or_equal:today',
                 'description' => 'required',
@@ -88,6 +88,7 @@ class TicketController extends Controller
 
         $validator = Validator::make($request->all(), [
             'title' => 'required',
+            'phone' => 'required|string|max:15',
             'time_slot' => 'required',
             'description' => 'required',
         ]);
