@@ -41,9 +41,9 @@
                             </div>
                             <div class="card-body">
                                 <div class="d-flex flex-column justify-content-center align-items-center">
-                                    <div id="stressChart" style="width: 100%; height: 200px"></div>
+                                    <div id="stressChart" style="width: 100%; height: 200px; min-height: 250px"></div>
                                     <div class="stress-indicator w-100 px-4 py-2 d-flex justify-content-center align-items-center custom-btn">
-                                        <p class="m-0" style="color: white">{{$stats['stress']['status']}}</p>
+                                        <p class="m-0" style="color: white">{{$stats['stress']['status']}} ({{$stats['stress']['percentage']}}%)</p>
                                     </div>
                                 </div>
                             </div>
@@ -55,8 +55,11 @@
                                 <div class="card-title text-white fw-bold">Anxiety</div>
                             </div>
                             <div class="card-body">
-                                <div class="d-flex justify-content-center align-items-center">
-                                    <div id="anxiety-chart"></div>
+                                <div class="d-flex flex-column justify-content-center align-items-center">
+                                    <div id="anxiety-chart" style="width: 100%; height: 200px; min-height: 250px"></div>
+                                    <div class="stress-indicator w-100 px-4 py-2 d-flex justify-content-center align-items-center custom-btn">
+                                        <p class="m-0" style="color: white">{{$stats['anxiety']['status']}}</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -379,6 +382,14 @@
 
             xAxis.createAxisRange(axisDataItem);
 
+            // let label = chart.radarContainer.children.push(am5.Label.new(root, {
+            //     fill: am5.color(0xffffff),
+            //     centerX: am5.percent(50),
+            //     centerY: am5.percent(50),
+            //     textAlign: "center",
+            //     fontSize: "20px"
+            // }));
+
             axisDataItem.set("value", {{$stats['stress']['score']}});
             bullet.get("sprite").on("rotation", function () {
                 var value = axisDataItem.get("value");
@@ -389,7 +400,7 @@
                     }
                 })
 
-                // label.set("text", Math.round(value).toString());
+                {{--label.set("text", Math.round({{$stats['stress']['percentage']}}).toString());--}}
 
                 clockHand.pin.animate({key: "fill", to: fill, duration: 500, easing: am5.ease.out(am5.ease.cubic)})
                 clockHand.hand.animate({key: "fill", to: fill, duration: 500, easing: am5.ease.out(am5.ease.cubic)})

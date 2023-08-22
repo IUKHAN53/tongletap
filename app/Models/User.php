@@ -104,6 +104,8 @@ class User extends Authenticatable
         $moods = ['Tired', 'Fine', 'Normal'];
         if (($key = array_search($this->mood, $moods)) !== false) {
             unset($moods[$key]);
+        }else{
+            unset($moods['Fine']);
         }
         $moods = array_values($moods);
         $inactive_mood = $moods[0];
