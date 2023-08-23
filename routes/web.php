@@ -158,6 +158,8 @@ use App\Http\Controllers\ProjectReportController;
 
 require __DIR__ . '/auth.php';
 
+
+
 Route::get('/test-email', function () {
     Notification::route('mail', [
         'iu.khan53@gmail.com' => 'IU Khan',

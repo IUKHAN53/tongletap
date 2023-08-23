@@ -43,7 +43,7 @@ class ProfileController extends Controller
 
             $path = Utility::upload_file($request, 'profile', $fileNameToStore, $dir, []);
             if ($path['flag'] != 1) {
-                return redirect()->route('employee.profile', auth()->user()->id)->with('error', __($path['msg']));
+                return redirect()->route('employee.employee-profile-view', auth()->id())->with('error', __($path['msg']));
             }
         }
 
