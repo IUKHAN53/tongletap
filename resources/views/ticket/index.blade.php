@@ -134,14 +134,11 @@
                                 <th>{{ __('Ticket Request Code') }}</th>
                                 @if(\Auth::user()->type <> 'employee')
                                     <th>{{ __('Employee') }}</th>
-                                    <th>{{ __('Employee Phone') }}</th>
                                     <th>{{ __('Company Name') }}</th>
                                     @endif
                                     <th>{{ __('Status') }}</th>
                                     <th>{{ __('priority') }}</th>
                                     <th>{{ __('Appointment Time and Day') }}</th>
-                                    <th>{{ __('Created By') }}</th>
-                                    <th>{{ __('Description') }}</th>
                                     <th width="200px">{{ __('Action') }}</th>
                             </tr>
                         </thead>
@@ -163,9 +160,7 @@
                                     @php
                                     $user = \Auth::user();
                                     @endphp
-
                                     <td>{{ $ticket->employee->name ?? ''}}</td>
-                                    <td>{{ $ticket->employee_phone }}</td>
                                     <td>{{ $ticket->company_name }}</td>
                                     @endif
                                     <td>
@@ -179,14 +174,6 @@
                                     </td>
                                     <td>{{ $ticket->priority }}</td>
                                     <td>{{ date('M j, Y H:i', strtotime($ticket->time_slot)) }}</td>
-                                    <td>{{ !empty($ticket->createdBy) ? $ticket->createdBy->name : '' }}</td>
-                                    <td>
-                                        <span style="display: block;
-                                            white-space: nowrap;
-                                            width: 200px;
-                                            overflow: hidden;
-                                            text-overflow: ellipsis;">{{ $ticket->description }}</span>
-                                    </td>
                                     <td class="Action">
                                         @if (\Auth::user()->type == 'super admin')
                                         <div class="action-btn bg-warning ms-2">

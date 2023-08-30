@@ -98,7 +98,7 @@
                                 <label class="col-form-label text-dark">{{__('Activity')}}</label>
                                 <input class="form-control @error('activity') is-invalid @enderror" name="activity" type="number"
                                        value="{{ $userDetail->activity }}"
-                                       id="activity" placeholder="{{ __('Enter Your Activity') }}" required>
+                                       id="activity" placeholder="{{ __('Activity (Active hours)') }}" required>
                                 @error('activity')
                                 <span class="invalid-feedback text-danger text-xs" role="alert">{{ $message }}</span>
                                 @enderror

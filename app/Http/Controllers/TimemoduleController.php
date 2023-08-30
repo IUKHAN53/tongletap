@@ -106,7 +106,7 @@ class TimemoduleController extends Controller
             }
             $timemodule->total_hours_purchase = $request->totalhourspurchase ? $request->totalhourspurchase : null;
             $timemodule->total_hours_used = $request->totalhoursused ? $request->totalhoursused : null;
-            $timemodule->remaining_hours = $request->remaininghours ? $request->remaininghours : null;
+            $timemodule->remaining_hours = $timemodule->total_hours_purchase - $timemodule->total_hours_used;
             // $timemodule->employee_name     = $request->employeename;
             $timemodule->company_name     = $request->companyname;
             $timemodule->datetime         = $request->time_slot;

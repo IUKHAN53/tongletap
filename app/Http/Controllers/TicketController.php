@@ -217,7 +217,7 @@ class TicketController extends Controller
 
     public function destroy(Ticket $ticket)
     {
-        if ($ticket->created_by == Auth::user()->creatorId()) {
+        if ($ticket->created_by == Auth::user()->creatorId() || Auth::user()->type == 'super admin') {
             $ticket->delete();
             return redirect()->route('ticket.index')->with('success', __('Ticket successfully deleted.'));
         } else {

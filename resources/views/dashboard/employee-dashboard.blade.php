@@ -183,8 +183,7 @@
                             </p>
                         </div>
                         <a href="{{route('employee.ticket.index')}}"
-                           class="btn custom-btn w-100 border-0 py-3 text-white">Schedule
-                            Meeting</a>
+                           class="btn custom-btn w-100 border-0 py-3 text-white">Schedule Counsellor</a>
                     </div>
                 </div>
             </div>

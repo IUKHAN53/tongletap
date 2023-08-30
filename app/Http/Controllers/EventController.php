@@ -42,7 +42,9 @@ class EventController extends Controller
             $transdate = date('Y-m-d', time());
 
             $today_date = date('m');
-            $current_month_event = Event::select('id', 'start_date', 'end_date', 'title', 'created_at', 'color')->whereRaw('MONTH(start_date)=' . $today_date)->whereRaw('MONTH(end_date)=' . $today_date);
+            $current_month_event = Event::select('id', 'start_date', 'end_date', 'title', 'created_at', 'color')
+                ->whereRaw('MONTH(start_date)=' . $today_date)
+                ->whereRaw('MONTH(end_date)=' . $today_date);
             $current_month_event = $current_month_event->when(\auth()->user()->type != 'super admin', function ($query){
                 $query->where(function ($query) {
                     $query->where('company_name', '=', Auth::user()->name)
