@@ -95,10 +95,10 @@
 
                         <div class="col-lg-6 col-sm-6">
                             <div class="form-group">
-                                <label class="col-form-label text-dark">{{__('Activity')}}</label>
+                                <label class="col-form-label text-dark">{{__('Activity (Active hours)')}}</label>
                                 <input class="form-control @error('activity') is-invalid @enderror" name="activity" type="number"
                                        value="{{ $userDetail->activity }}"
-                                       id="activity" placeholder="{{ __('Activity (Active hours)') }}" required>
+                                       id="activity" placeholder="{{ __('Enter Activity Hours') }}" required>
                                 @error('activity')
                                 <span class="invalid-feedback text-danger text-xs" role="alert">{{ $message }}</span>
                                 @enderror
