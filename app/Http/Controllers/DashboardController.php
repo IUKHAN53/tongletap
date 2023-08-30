@@ -549,6 +549,24 @@ class DashboardController extends Controller
 
     public function companyDashboard()
     {
+        $depression_avg = DB::table('users as u')
+            ->join('health_stats as hs', 'u.id', '=', 'hs.user_id')
+            ->select('u.created_by', DB::raw('AVG(hs.depression) as avg'))
+            ->where('u.created_by', auth()->id())
+            ->groupBy('u.created_by')
+            ->first()->avg ?? 0;
+        $anxiety_avg = DB::table('users as u')
+            ->join('health_stats as hs', 'u.id', '=', 'hs.user_id')
+            ->select('u.created_by', DB::raw('AVG(hs.anxiety) as avg'))
+            ->where('u.created_by', auth()->id())
+            ->groupBy('u.created_by')
+            ->first()->avg ?? 0;
+        $stress_avg = DB::table('users as u')
+            ->join('health_stats as hs', 'u.id', '=', 'hs.user_id')
+            ->select('u.created_by', DB::raw('AVG(hs.stress) as avg'))
+            ->where('u.created_by', auth()->id())
+            ->groupBy('u.created_by')
+            ->first()->avg ?? 0;
 //        Events for calendar
         $eventsData = Event::query()->where('company_name', '=', Auth::user()->name)->get();
         $arrEvents = [];
@@ -591,7 +609,10 @@ class DashboardController extends Controller
                 'countPendingTicket',
                 'countTicket',
                 'countApprovedTicket',
-                'countRejectedTicket'
+                'countRejectedTicket',
+                'depression_avg',
+                'anxiety_avg',
+                'stress_avg'
             ));
     }
 
