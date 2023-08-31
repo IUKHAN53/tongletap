@@ -1,10 +1,18 @@
 @extends('layouts.admin')
 @section('page-title','Company Dashboard')
 @section('content')
+
     <style>
-        .apexcharts-bar-series {
-            border-radius: 10px;
-            overflow: hidden;
+        .card-header {
+            border-radius: 15px !important;
+            background: linear-gradient(90deg, #FF0080 0%, #FF8C00 100%);
+            box-shadow: 0px 6px 20px 0px rgba(253, 126, 48, 0.40);
+        }
+        .card-header h5 {
+            color: #fff !important;
+        }
+        .card .card-header:not(.border-0) h5:after, .card .card-header:not(.border-0) .h5:after {
+            content: none !important;
         }
     </style>
     <div class="row">
@@ -12,8 +20,10 @@
             <div class="row">
                 <div class="col-md-6  col-sm-12">
                     <div class="card w-100">
+                        <div class="card-header">
+                            <h5>Weekly Mental Health %</h5>
+                        </div>
                         <div class="card-body p-4">
-                            <p class="mb-2 fs-3">Average Health Scores (Weekly)</p>
                             <div class="box mt-4">
                                 <div class="m-4">
                                     <div id="depression"></div>
@@ -30,16 +40,20 @@
                 </div>
                 <div class="col-md-6  col-sm-12">
                     <div class="card w-100">
+                        <div class="card-header">
+                            <h5>Monthly Mental Health %</h5>
+                        </div>
                         <div class="card-body p-4">
-                            <p class="mb-2 fs-3">Average Health Scores (Monthly)</p>
                             <div id="monthly_stats"></div>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-6 col-sm-12">
                     <div class="card w-100">
+                        <div class="card-header">
+                            <h5>Staff (Total: {{$countTotal}})</h5>
+                        </div>
                         <div class="card-body p-4">
-                            <p class="mb-2 fs-3">Staff (Total: {{$countTotal}})</p>
                             <div id="users_chart"></div>
                         </div>
                     </div>
@@ -49,7 +63,7 @@
                         <div class="card-header">
                             <h5>Requested Counsellors Summary</h5>
                         </div>
-                        <div class="card-body p-4 d-flex gap-3 flex-wrap" style="min-height: 320px">
+                        <div class="card-body p-6 d-flex gap-4 flex-wrap" style="min-height: 350px">
                             <div class="col-lg-3 col-md-6  col-sm-12">
                                 <div class="row align-items-center justify-content-between">
                                     <div class="col-auto mb-3 mb-sm-0">
@@ -119,8 +133,10 @@
             <div class="row">
                 <div class="col-md-6  col-sm-12">
                     <div class="card w-100">
+                        <div class="card-header">
+                            <h5>Counselling Hours (Total: {{$total_hours}})</h5>
+                        </div>
                         <div class="card-body p-4">
-                            <p class="mb-2 fs-3">Counselling Hours (Total: {{$total_hours}})</p>
                             <div id="hours_chart"></div>
                         </div>
                     </div>
@@ -170,7 +186,7 @@
                     }
                 },
             },
-            colors: ['#4c5eeb'],
+            colors: ['#FDBF18'],
             stroke: {
                 width: 0,
             },
@@ -186,7 +202,7 @@
                 style: {
                     fontSize: '20px',
                     fontWeight: '2px',
-                    color: '#4f5eeb'
+                    color: '#FDBF18'
                 },
             },
             subtitle: {
@@ -196,7 +212,7 @@
                 text: depressionPercentage + '%',
                 style: {
                     fontSize: '20px',
-                    color: '#b34dc5'
+                    color: '#FD7E30'
                 }
             },
             tooltip: {
@@ -212,7 +228,7 @@
                 type: 'gradient',
                 gradient: {
                     inverseColors: false,
-                    gradientToColors: ['#b34dc5']
+                    gradientToColors: ['#FD7E30']
                 }
             },
         }
@@ -376,7 +392,7 @@
                 height: 290,
                 type: 'bar',
             },
-            colors: ['#4c5eeb', '#b44bc9', '#1bd1fd'],
+            colors: ['#FDBF18', '#b44bc9', '#1bd1fd'],
             plotOptions: {
                 bar: {
                     columnWidth: '45%',
@@ -389,7 +405,7 @@
             dataLabels: {
                 enabled: true,
                 style: {
-                    colors: ['#4c5eeb', '#b44bc9', '#1bd1fd'],
+                    colors: ['#FDBF18', '#b44bc9', '#1bd1fd'],
                 },
                 offsetY: -40
             },
@@ -404,7 +420,7 @@
                 ],
                 labels: {
                     style: {
-                        colors: ['#4c5eeb', '#b44bc9', '#1bd1fd'],
+                        colors: ['#FD7E30', '#b44bc9', '#1bd1fd'],
                         fontSize: '12px'
                     }
                 }
@@ -414,7 +430,7 @@
                 gradient: {
                     type: "vertical",
                     inverseColors: true,
-                    gradientToColors: ['#b24ccd', '#fdb983', '#4e5eeb']
+                    gradientToColors: ['#FD7E30', '#fdb983', '#4e5eeb']
                 }
             },
         };
