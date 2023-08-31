@@ -5,7 +5,8 @@
     <style>
         .card-header {
             border-radius: 15px !important;
-            background: linear-gradient(90deg, #FF0080 0%, #FF8C00 100%);
+            /*background: linear-gradient(90deg, #FF0080 0%, #FF8C00 100%);*/
+            background: linear-gradient(135deg, #FDBF18 0%, #FD7E30 75.26%) !important;
             box-shadow: 0px 6px 20px 0px rgba(253, 126, 48, 0.40);
         }
         .card-header h5 {
