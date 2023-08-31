@@ -549,24 +549,30 @@ class DashboardController extends Controller
 
     public function companyDashboard()
     {
+        $hs = new HealthStat();
         $depression_avg = DB::table('users as u')
             ->join('health_stats as hs', 'u.id', '=', 'hs.user_id')
             ->select('u.created_by', DB::raw('AVG(hs.depression) as avg'))
             ->where('u.created_by', auth()->id())
             ->groupBy('u.created_by')
             ->first()->avg ?? 0;
+        $depression_percentage = $hs->getStatsByPercentage('depression', $depression_avg);
         $anxiety_avg = DB::table('users as u')
             ->join('health_stats as hs', 'u.id', '=', 'hs.user_id')
             ->select('u.created_by', DB::raw('AVG(hs.anxiety) as avg'))
             ->where('u.created_by', auth()->id())
             ->groupBy('u.created_by')
             ->first()->avg ?? 0;
+        $anxiety_percentage = $hs->getStatsByPercentage('anxiety', $anxiety_avg);
+
         $stress_avg = DB::table('users as u')
             ->join('health_stats as hs', 'u.id', '=', 'hs.user_id')
             ->select('u.created_by', DB::raw('AVG(hs.stress) as avg'))
             ->where('u.created_by', auth()->id())
             ->groupBy('u.created_by')
             ->first()->avg ?? 0;
+        $stress_percentage = $hs->getStatsByPercentage('stress', $stress_avg);
+
 //        Events for calendar
         $eventsData = Event::query()->where('company_name', '=', Auth::user()->name)->get();
         $arrEvents = [];
@@ -612,7 +618,10 @@ class DashboardController extends Controller
                 'countRejectedTicket',
                 'depression_avg',
                 'anxiety_avg',
-                'stress_avg'
+                'stress_avg',
+                'depression_percentage',
+                'anxiety_percentage',
+                'stress_percentage'
             ));
     }
 
