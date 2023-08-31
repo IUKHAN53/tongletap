@@ -40,6 +40,7 @@ use App\Models\Training;
 use App\Models\User;
 use App\Models\Utility;
 use Carbon\Carbon;
+use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -547,31 +548,12 @@ class DashboardController extends Controller
         return view('dashboard.employee-dashboard', compact('stats', 'arrEvents', 'bookings'));
     }
 
+    /**
+     * @throws \Exception
+     */
     public function companyDashboard()
     {
-        $hs = new HealthStat();
-        $depression_avg = DB::table('users as u')
-            ->join('health_stats as hs', 'u.id', '=', 'hs.user_id')
-            ->select('u.created_by', DB::raw('AVG(hs.depression) as avg'))
-            ->where('u.created_by', auth()->id())
-            ->groupBy('u.created_by')
-            ->first()->avg ?? 0;
-        $depression_percentage = $hs->getStatsByPercentage('depression', $depression_avg);
-        $anxiety_avg = DB::table('users as u')
-            ->join('health_stats as hs', 'u.id', '=', 'hs.user_id')
-            ->select('u.created_by', DB::raw('AVG(hs.anxiety) as avg'))
-            ->where('u.created_by', auth()->id())
-            ->groupBy('u.created_by')
-            ->first()->avg ?? 0;
-        $anxiety_percentage = $hs->getStatsByPercentage('anxiety', $anxiety_avg);
 
-        $stress_avg = DB::table('users as u')
-            ->join('health_stats as hs', 'u.id', '=', 'hs.user_id')
-            ->select('u.created_by', DB::raw('AVG(hs.stress) as avg'))
-            ->where('u.created_by', auth()->id())
-            ->groupBy('u.created_by')
-            ->first()->avg ?? 0;
-        $stress_percentage = $hs->getStatsByPercentage('stress', $stress_avg);
 
 //        Events for calendar
         $eventsData = Event::query()->where('company_name', '=', Auth::user()->name)->get();
@@ -603,6 +585,21 @@ class DashboardController extends Controller
         $countTicket = Ticket::where('created_by', '=', Auth::user()->creatorId())->count();
         $countRejectedTicket = Ticket::where('status', '=', 'rejected')->where('created_by', '=', Auth::user()->creatorId())->count();
 
+        $stats = $this->getHealthStats(new Request());
+        $depression_percentage = $stats['depression_percentage'];
+        $anxiety_percentage = $stats['anxiety_percentage'];
+        $stress_percentage = $stats['stress_percentage'];
+
+        $m_stats = $this->getHealthStats(new Request(), 'month');
+        $m_depression_percentage = $m_stats['depression_percentage'];
+        $m_anxiety_percentage = $m_stats['anxiety_percentage'];
+        $m_stress_percentage = $m_stats['stress_percentage'];
+
+        $y_stats = $this->getHealthStatsForYear(new Request(), now()->year);
+        $y_depression_percentage = $y_stats['depression_percentage'];
+        $y_anxiety_percentage = $y_stats['anxiety_percentage'];
+        $y_stress_percentage = $y_stats['stress_percentage'];
+
         return view('dashboard.company-dashboard',
             compact(
                 'arrEvents',
@@ -616,12 +613,15 @@ class DashboardController extends Controller
                 'countTicket',
                 'countApprovedTicket',
                 'countRejectedTicket',
-                'depression_avg',
-                'anxiety_avg',
-                'stress_avg',
                 'depression_percentage',
                 'anxiety_percentage',
-                'stress_percentage'
+                'stress_percentage',
+                'm_depression_percentage',
+                'm_anxiety_percentage',
+                'm_stress_percentage',
+                'y_depression_percentage',
+                'y_anxiety_percentage',
+                'y_stress_percentage'
             ));
     }
 
@@ -679,4 +679,117 @@ class DashboardController extends Controller
         return Utility::error_res('Tracker not found.');
     }
 
+    /**
+     * @throws \Exception
+     */
+    public function getHealthStats(Request $request, $time = 'week'): array
+    {
+        $hs = new HealthStat();
+
+        if ($time == 'weekly') {
+            $startDate = new DateTime($request->week);
+            $endDate = clone $startDate;
+            $endDate->modify('+6 days');
+        } elseif ($time == 'monthly') {
+            $startDate = new DateTime($request->month);
+            $endDate = clone $startDate;
+            $endDate->modify('+1 month');
+        } elseif ($time == 'yearly') {
+            return $this->getHealthStatsForYear($request, $request->year);
+        } elseif ($time == 'week') {
+            $startDate = now()->startOfWeek();
+            $endDate = now()->endOfWeek();
+        } else {
+            $startDate = now()->startOfMonth();
+            $endDate = now()->endOfMonth();
+        }
+
+        $depression_avg = DB::table('users as u')
+            ->join('health_stats as hs', 'u.id', '=', 'hs.user_id')
+            ->select('u.created_by', DB::raw('AVG(hs.depression) as avg'))
+            ->where('u.created_by', auth()->id() ?? $request->user_id)
+            ->whereBetween('hs.created_at', [$startDate, $endDate])  // Filter by date
+            ->groupBy('u.created_by')
+            ->first()->avg ?? 0;
+        $depression_percentage = $hs->getStatsByPercentage('depression', $depression_avg);
+
+        $anxiety_avg = DB::table('users as u')
+            ->join('health_stats as hs', 'u.id', '=', 'hs.user_id')
+            ->select('u.created_by', DB::raw('AVG(hs.anxiety) as avg'))
+            ->where('u.created_by', auth()->id() ?? $request->user_id)
+            ->whereBetween('hs.created_at', [$startDate, $endDate])  // Filter by date
+            ->groupBy('u.created_by')
+            ->first()->avg ?? 0;
+        $anxiety_percentage = $hs->getStatsByPercentage('anxiety', $anxiety_avg);
+
+        $stress_avg = DB::table('users as u')
+            ->join('health_stats as hs', 'u.id', '=', 'hs.user_id')
+            ->select('u.created_by', DB::raw('AVG(hs.stress) as avg'))
+            ->where('u.created_by', auth()->id() ?? $request->user_id)
+            ->whereBetween('hs.created_at', [$startDate, $endDate])  // Filter by date
+            ->groupBy('u.created_by')
+            ->first()->avg ?? 0;
+        $stress_percentage = $hs->getStatsByPercentage('stress', $stress_avg);
+
+        return [
+            'depression_percentage' => $depression_percentage,
+            'anxiety_percentage' => $anxiety_percentage,
+            'stress_percentage' => $stress_percentage,
+        ];
+    }
+
+    public function getHealthStatsForYear(Request $request, $year = '2023')
+    {
+        $hs = new HealthStat();
+
+        // Initialize arrays to hold monthly data
+        $depression_data = [];
+        $anxiety_data = [];
+        $stress_data = [];
+
+        if ($request->has('year')) {
+            $year = $request->year;
+        }
+
+        for ($month = 1; $month <= 12; $month++) {
+            $startDate = "{$year}-{$month}-01";
+            $endDate = "{$year}-{$month}-31";  // This will work even for months with fewer than 31 days
+
+            // Depression
+            $depression_avg = DB::table('users as u')
+                ->join('health_stats as hs', 'u.id', '=', 'hs.user_id')
+                ->select(DB::raw('AVG(hs.depression) as avg'))
+                ->where('u.created_by', auth()->id() ?? $request->user_id)
+                ->whereBetween('hs.created_at', [$startDate, $endDate])
+                ->groupBy(DB::raw('MONTH(hs.created_at)'))
+                ->first()->avg ?? 0;
+            $depression_data[] = $hs->getStatsByPercentage('depression', $depression_avg);
+
+            // Anxiety
+            $anxiety_avg = DB::table('users as u')
+                ->join('health_stats as hs', 'u.id', '=', 'hs.user_id')
+                ->select(DB::raw('AVG(hs.anxiety) as avg'))
+                ->where('u.created_by', auth()->id() ?? $request->user_id)
+                ->whereBetween('hs.created_at', [$startDate, $endDate])
+                ->groupBy(DB::raw('MONTH(hs.created_at)'))
+                ->first()->avg ?? 0;
+            $anxiety_data[] = $hs->getStatsByPercentage('anxiety', $anxiety_avg);
+
+            // Stress
+            $stress_avg = DB::table('users as u')
+                ->join('health_stats as hs', 'u.id', '=', 'hs.user_id')
+                ->select(DB::raw('AVG(hs.stress) as avg'))
+                ->where('u.created_by', auth()->id() ?? $request->user_id)
+                ->whereBetween('hs.created_at', [$startDate, $endDate])
+                ->groupBy(DB::raw('MONTH(hs.created_at)'))
+                ->first()->avg ?? 0;
+            $stress_data[] = $hs->getStatsByPercentage('stress', $stress_avg);
+        }
+        return [
+            'depression_percentage' => $depression_data,
+            'anxiety_percentage' => $anxiety_data,
+            'stress_percentage' => $stress_data,
+        ];
+
+    }
 }

@@ -14,6 +14,8 @@ use App\Http\Controllers\ApiController;
 |
 */
 Route::post('store-health-stats', [\App\Http\Controllers\Api\GeneralController::class, 'storeHealthStats']);
+Route::get('getHealthStats/{time}', [\App\Http\Controllers\DashboardController::class, 'getHealthStats']);
+
 Route::post('login', 'ApiController@login');
 Route::get('getuserdata', [ApiController::class, 'getuserdata']);
 Route::post('filteruser', [ApiController::class, 'filteruser']);
