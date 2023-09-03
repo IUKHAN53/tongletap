@@ -29,9 +29,9 @@ class GeneralController extends Controller
         } else {
             $hs = HealthStat::create([
                 'user_id' => User::where('email', $request->email)->first()->id,
-                'depression' => $request->depression,
-                'anxiety' => $request->anxiety,
-                'stress' => $request->stress,
+                'depression' => $request->depressionScore,
+                'anxiety' => $request->anxietyScore,
+                'stress' => $request->stressScore,
             ]);
             return response()->json([
                 'message' => 'Health Stats Added Successfully',
