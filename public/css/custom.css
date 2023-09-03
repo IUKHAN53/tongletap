@@ -646,7 +646,7 @@ a.b-brand {
 .round-img {
     width: 80px;
     height: 80px;
-    object: cover !important;
+    object-fit: cover !important;
 }
 
 

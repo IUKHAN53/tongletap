@@ -163,7 +163,7 @@
     <ul id="sidebarnav">
         <!-- Mobile Logo -->
         <li class="sidebar-item mobile-logo">
-            <img src="{{asset('assets/emp/images/logos/dark-logo.svg')}}" alt="Logo" width="100">
+            <img src="{{asset('assets/emp/images/logos/new_logo.png')}}" alt="Logo" width="100">
         </li>
 
 

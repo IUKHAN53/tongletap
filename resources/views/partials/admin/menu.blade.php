@@ -190,7 +190,7 @@
                 <div class="navbar-wrapper">
                     <div class="m-header main-logo">
                         <a href="{{route('home')}}">
-                            <img src="{{asset('assets/emp/images/logos/dark-logo.svg')}}"
+                            <img src="{{asset('assets/emp/images/logos/new_logo.png')}}"
                                  alt="{{ config('app.name', 'EAPGo-SaaS') }}">
                         </a>
                     </div>
@@ -311,7 +311,7 @@
                             @if((\Auth::user()->type == 'super admin'))
                                 <ul class="dash-navbar">
                                     <li class="dash-item mobile-logo">
-                                        <img src="{{asset('assets/emp/images/logos/dark-logo.svg')}}" alt="Logo" width="100">
+                                        <img src="{{asset('assets/emp/images/logos/new_logo.png')}}" alt="Logo" width="100">
                                     </li>
                                         <li class="dash-item dash-hasmenu {{ (Request::segment(1) == 'dashboard') ? ' active' : '' }}">
                                             <a href="{{ route('client.dashboard.view') }}" class="dash-link">

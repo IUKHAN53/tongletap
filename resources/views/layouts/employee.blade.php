@@ -45,7 +45,7 @@
         <div>
             <div class="brand-logo d-flex align-items-center justify-content-between">
                 <a href="{{url('/')}}" class="text-nowrap logo-img mt-2">
-                    <img src="{{asset('assets/emp/images/logos/dark-logo.svg')}}" class="dark-logo" width="100"
+                    <img src="{{asset('assets/emp/images/logos/new_logo.png')}}" class="dark-logo" width="100"
                          alt="">
                 </a>
                 <div class="close-btn d-lg-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
@@ -199,7 +199,7 @@
                 </ul>
                 <div class="d-block d-lg-none">
                     <a href="{{url('/')}}">
-                        <img src="{{asset('assets/emp/images/logos/dark-logo.svg')}}" class="dark-logo" width="50"
+                        <img src="{{asset('assets/emp/images/logos/new_logo.png')}}" class="dark-logo" width="50"
                              alt="">
                     </a>
                 </div>
@@ -309,7 +309,7 @@
     <nav class="sidebar-nav scroll-sidebar">
         <div class="offcanvas-header justify-content-between">
             <a href="{{url('/')}}">
-                <img src="{{asset('assets/emp/images/logos/dark-logo.svg')}}"
+                <img src="{{asset('assets/emp/images/logos/new_logo.png')}}"
                      alt="" class="img-fluid">
             </a>
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
