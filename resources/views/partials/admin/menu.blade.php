@@ -189,8 +189,8 @@
                 @endif
                 <div class="navbar-wrapper">
                     <div class="m-header main-logo">
-                        <a href="{{route('home')}}">
-                            <img src="{{asset('assets/emp/images/logos/new_logo.png')}}"
+                        <a href="{{route('home')}}" class="">
+                            <img src="{{asset('assets/emp/images/logos/new_logo.png')}}" style="width: 130px !important;"
                                  alt="{{ config('app.name', 'EAPGo-SaaS') }}">
                         </a>
                     </div>
