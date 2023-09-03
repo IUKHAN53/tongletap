@@ -14,9 +14,9 @@ class GeneralController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'email' => 'required|exists:users,email',
-            'depression' => 'required',
-            'anxiety' => 'required',
-            'stress' => 'required',
+            'depressionScore' => 'required',
+            'anxietyScore' => 'required',
+            'stressScore' => 'required',
         ]);
         if ($validator->fails()) {
             return response()->json(['message' => $validator->errors()], 422);
