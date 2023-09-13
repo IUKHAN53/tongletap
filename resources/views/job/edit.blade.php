@@ -62,7 +62,8 @@
                         </div>
 
                         <div class="form-group col-md-12">
-                            <input type="text" class="form-control" value="{{$job->skill}}" data-toggle="tags" name="skill" placeholder="Skill"/>
+                            <input type="text" class="form-control" value="{{$job->skill}}" data-toggle="tags"
+                                   name="skill" placeholder="Skill"/>
                         </div>
                     </div>
                 </div>
@@ -77,15 +78,20 @@
                                 <h6>{{__('Need to ask ?')}}</h6>
                                 <div class="my-4">
                                     <div class="form-check custom-checkbox">
-                                        <input type="checkbox" class="form-check-input" name="applicant[]" value="gender" id="check-gender" {{(in_array('gender',$job->applicant)?'checked':'')}}>
+                                        <input type="checkbox" class="form-check-input" name="applicant[]"
+                                               value="gender"
+                                               id="check-gender" {{(in_array('gender',$job->applicant)?'checked':'')}}>
                                         <label class="form-check-label" for="check-gender">{{__('Gender')}} </label>
                                     </div>
                                     <div class="form-check custom-checkbox">
-                                        <input type="checkbox" class="form-check-input" name="applicant[]" value="dob" id="check-dob" {{(in_array('dob',$job->applicant)?'checked':'')}}>
+                                        <input type="checkbox" class="form-check-input" name="applicant[]" value="dob"
+                                               id="check-dob" {{(in_array('dob',$job->applicant)?'checked':'')}}>
                                         <label class="form-check-label" for="check-dob">{{__('Date Of Birth')}}</label>
                                     </div>
                                     <div class="form-check custom-checkbox">
-                                        <input type="checkbox" class="form-check-input" name="applicant[]" value="country" id="check-country" {{(in_array('country',$job->applicant)?'checked':'')}}>
+                                        <input type="checkbox" class="form-check-input" name="applicant[]"
+                                               value="country"
+                                               id="check-country" {{(in_array('country',$job->applicant)?'checked':'')}}>
                                         <label class="form-check-label" for="check-country">{{__('Country')}}</label>
                                     </div>
                                 </div>
@@ -96,20 +102,31 @@
                                 <h6>{{__('Need to show option ?')}}</h6>
                                 <div class="my-4">
                                     <div class="form-check custom-checkbox">
-                                        <input type="checkbox" class="form-check-input" name="visibility[]" value="profile" id="check-profile" {{(in_array('profile',$job->visibility)?'checked':'')}}>
-                                        <label class="form-check-label" for="check-profile">{{__('Profile Image')}} </label>
+                                        <input type="checkbox" class="form-check-input" name="visibility[]"
+                                               value="profile"
+                                               id="check-profile" {{(in_array('profile',$job->visibility)?'checked':'')}}>
+                                        <label class="form-check-label"
+                                               for="check-profile">{{__('Profile Image')}} </label>
                                     </div>
                                     <div class="form-check custom-checkbox">
-                                        <input type="checkbox" class="form-check-input" name="visibility[]" value="resume" id="check-resume" {{(in_array('resume',$job->visibility)?'checked':'')}}>
+                                        <input type="checkbox" class="form-check-input" name="visibility[]"
+                                               value="resume"
+                                               id="check-resume" {{(in_array('resume',$job->visibility)?'checked':'')}}>
                                         <label class="form-check-label" for="check-resume">{{__('Resume')}}</label>
                                     </div>
                                     <div class="form-check custom-checkbox">
-                                        <input type="checkbox" class="form-check-input" name="visibility[]" value="letter" id="check-letter" {{(in_array('letter',$job->visibility)?'checked':'')}}>
-                                        <label class="form-check-label" for="check-letter">{{__('Cover Letter')}}</label>
+                                        <input type="checkbox" class="form-check-input" name="visibility[]"
+                                               value="letter"
+                                               id="check-letter" {{(in_array('letter',$job->visibility)?'checked':'')}}>
+                                        <label class="form-check-label"
+                                               for="check-letter">{{__('Cover Letter')}}</label>
                                     </div>
                                     <div class="form-check custom-checkbox">
-                                        <input type="checkbox" class="form-check-input" name="visibility[]" value="terms" id="check-terms" {{(in_array('terms',$job->visibility)?'checked':'')}}>
-                                        <label class="form-check-label" for="check-terms">{{__('Terms And Conditions')}}</label>
+                                        <input type="checkbox" class="form-check-input" name="visibility[]"
+                                               value="terms"
+                                               id="check-terms" {{(in_array('terms',$job->visibility)?'checked':'')}}>
+                                        <label class="form-check-label"
+                                               for="check-terms">{{__('Terms And Conditions')}}</label>
                                     </div>
                                 </div>
                             </div>
@@ -119,8 +136,11 @@
                             <div class="my-4">
                                 @foreach($customQuestion as $question)
                                     <div class="form-check custom-checkbox">
-                                        <input type="checkbox" class="form-check-input" name="custom_question[]" value="{{$question->id}}" id="custom_question_{{$question->id}}" {{(in_array($question->id,$job->custom_question)?'checked':'')}}>
-                                        <label class="form-check-label" for="custom_question_{{$question->id}}">{{$question->question}} </label>
+                                        <input type="checkbox" class="form-check-input" name="custom_question[]"
+                                               value="{{$question->id}}"
+                                               id="custom_question_{{$question->id}}" {{(in_array($question->id,$job->custom_question)?'checked':'')}}>
+                                        <label class="form-check-label"
+                                               for="custom_question_{{$question->id}}">{{$question->question}} </label>
                                     </div>
                                 @endforeach
                             </div>
@@ -135,7 +155,8 @@
                     <div class="row">
                         <div class="form-group col-md-12">
                             {!! Form::label('description', __('Job Description'),['class'=>'form-label']) !!}
-                            <textarea class="form-control summernote-simple" name="description" id="exampleFormControlTextarea1" rows="15">{{$job->description}}</textarea>
+                            <textarea class="form-control summernote-simple" name="description"
+                                      id="exampleFormControlTextarea1" rows="15">{{$job->description}}</textarea>
                         </div>
                     </div>
                 </div>
@@ -147,7 +168,8 @@
                     <div class="row">
                         <div class="form-group col-md-12">
                             {!! Form::label('requirement', __('Job Requirement'),['class'=>'form-label']) !!}
-                            <textarea class="form-control summernote-simple" name="requirement" id="exampleFormControlTextarea2" rows="8">{{$job->requirement}}</textarea>
+                            <textarea class="form-control summernote-simple" name="requirement"
+                                      id="exampleFormControlTextarea2" rows="8">{{$job->requirement}}</textarea>
                         </div>
                     </div>
                 </div>

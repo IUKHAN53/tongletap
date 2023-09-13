@@ -18,14 +18,16 @@
 @section('action-btn')
     <div class="float-end">
 
-        <a href="#" data-url="{{ route('create.language') }}" class="btn btn-sm btn-primary" data-bs-toggle="tooltip" title="{{ __('Create') }}"  data-ajax-popup="true" data-title="{{__('Create New Language')}}">
+        <a href="#" data-url="{{ route('create.language') }}" class="btn btn-sm btn-primary" data-bs-toggle="tooltip"
+           title="{{ __('Create') }}" data-ajax-popup="true" data-title="{{__('Create New Language')}}">
             <i class="ti ti-plus text-white"></i>
         </a>
 
         @if($currantLang != (!empty(env('default_language')) ? env('default_language') : 'en'))
             <div class="action-btn bg-danger ms-2">
                 {!! Form::open(['method' => 'DELETE', 'route' => ['lang.destroy', $currantLang]]) !!}
-                <a href="#!" class="btn btn-sm btn-danger btn-icon bs-pass-para" data-bs-toggle="tooltip" title="{{ __('Delete') }}">
+                <a href="#!" class="btn btn-sm btn-danger btn-icon bs-pass-para" data-bs-toggle="tooltip"
+                   title="{{ __('Delete') }}">
                     <i class="ti ti-trash text-white"></i>
                 </a>
                 {!! Form::close() !!}
@@ -42,7 +44,8 @@
                     <ul class="nav nav-pills flex-column " id="myTab4" role="tablist">
                         @foreach($languages as $lang)
                             <li class="nav-item">
-                                <a href="{{route('manage.language',[$lang])}}" class="nav-link {{($currantLang == $lang)?'active':''}}">{{Str::upper($lang)}}</a>
+                                <a href="{{route('manage.language',[$lang])}}"
+                                   class="nav-link {{($currantLang == $lang)?'active':''}}">{{Str::upper($lang)}}</a>
                             </li>
                         @endforeach
                     </ul>
@@ -70,26 +73,31 @@
                         <div class="tab-pane fade show active" id="lang1" role="tabpanel" aria-labelledby="home-tab4">
 
                             <div class="tab-content" id="myTabContent">
-                                <div class="tab-pane fade show active" id="pills-user-1" role="tabpanel" aria-labelledby="pills-user-tab-1">
+                                <div class="tab-pane fade show active" id="pills-user-1" role="tabpanel"
+                                     aria-labelledby="pills-user-tab-1">
                                     <form method="post" action="{{route('store.language.data',[$currantLang])}}">
                                         @csrf
                                         <div class="row">
                                             @foreach($arrLabel as $label => $value)
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <label class="form-control-label" for="example3cols1Input">{{$label}} </label>
-                                                        <input type="text" class="form-control" name="label[{{$label}}]" value="{{$value}}">
+                                                        <label class="form-control-label"
+                                                               for="example3cols1Input">{{$label}} </label>
+                                                        <input type="text" class="form-control" name="label[{{$label}}]"
+                                                               value="{{$value}}">
                                                     </div>
                                                 </div>
                                             @endforeach
                                             <div class="col-lg-12 text-end">
-                                                <button class="btn btn-primary" type="submit">{{ __('Save Changes')}}</button>
+                                                <button class="btn btn-primary"
+                                                        type="submit">{{ __('Save Changes')}}</button>
                                             </div>
 
                                         </div>
                                     </form>
                                 </div>
-                                <div class="tab-pane fade" id="pills-user-2" role="tabpanel" aria-labelledby="pills-user-tab-2">
+                                <div class="tab-pane fade" id="pills-user-2" role="tabpanel"
+                                     aria-labelledby="pills-user-tab-2">
                                     <form method="post" action="{{route('store.language.data',[$currantLang])}}">
                                         @csrf
                                         <div class="row">
@@ -108,16 +116,27 @@
                                                                                 @foreach($value4 as $label5 => $value5)
                                                                                     <div class="col-md-6">
                                                                                         <div class="form-group">
-                                                                                            <label>{{$fileName}}.{{$label}}.{{$label2}}.{{$label3}}.{{$label4}}.{{$label5}}</label>
-                                                                                            <input type="text" class="form-control" name="message[{{$fileName}}][{{$label}}][{{$label2}}][{{$label3}}][{{$label4}}][{{$label5}}]" value="{{$value5}}">
+                                                                                            <label>{{$fileName}}
+                                                                                                .{{$label}}.{{$label2}}
+                                                                                                .{{$label3}}.{{$label4}}
+                                                                                                .{{$label5}}</label>
+                                                                                            <input type="text"
+                                                                                                   class="form-control"
+                                                                                                   name="message[{{$fileName}}][{{$label}}][{{$label2}}][{{$label3}}][{{$label4}}][{{$label5}}]"
+                                                                                                   value="{{$value5}}">
                                                                                         </div>
                                                                                     </div>
                                                                                 @endforeach
                                                                             @else
                                                                                 <div class="col-lg-6">
                                                                                     <div class="form-group">
-                                                                                        <label>{{$fileName}}.{{$label}}.{{$label2}}.{{$label3}}.{{$label4}}</label>
-                                                                                        <input type="text" class="form-control" name="message[{{$fileName}}][{{$label}}][{{$label2}}][{{$label3}}][{{$label4}}]" value="{{$value4}}">
+                                                                                        <label>{{$fileName}}.{{$label}}
+                                                                                            .{{$label2}}.{{$label3}}
+                                                                                            .{{$label4}}</label>
+                                                                                        <input type="text"
+                                                                                               class="form-control"
+                                                                                               name="message[{{$fileName}}][{{$label}}][{{$label2}}][{{$label3}}][{{$label4}}]"
+                                                                                               value="{{$value4}}">
                                                                                     </div>
                                                                                 </div>
                                                                             @endif
@@ -125,8 +144,11 @@
                                                                     @else
                                                                         <div class="col-lg-6">
                                                                             <div class="form-group">
-                                                                                <label>{{$fileName}}.{{$label}}.{{$label2}}.{{$label3}}</label>
-                                                                                <input type="text" class="form-control" name="message[{{$fileName}}][{{$label}}][{{$label2}}][{{$label3}}]" value="{{$value3}}">
+                                                                                <label>{{$fileName}}.{{$label}}
+                                                                                    .{{$label2}}.{{$label3}}</label>
+                                                                                <input type="text" class="form-control"
+                                                                                       name="message[{{$fileName}}][{{$label}}][{{$label2}}][{{$label3}}]"
+                                                                                       value="{{$value3}}">
                                                                             </div>
                                                                         </div>
                                                                     @endif
@@ -134,8 +156,11 @@
                                                             @else
                                                                 <div class="col-lg-6">
                                                                     <div class="form-group">
-                                                                        <label>{{$fileName}}.{{$label}}.{{$label2}}</label>
-                                                                        <input type="text" class="form-control" name="message[{{$fileName}}][{{$label}}][{{$label2}}]" value="{{$value2}}">
+                                                                        <label>{{$fileName}}.{{$label}}
+                                                                            .{{$label2}}</label>
+                                                                        <input type="text" class="form-control"
+                                                                               name="message[{{$fileName}}][{{$label}}][{{$label2}}]"
+                                                                               value="{{$value2}}">
                                                                     </div>
                                                                 </div>
                                                             @endif
@@ -144,7 +169,9 @@
                                                         <div class="col-lg-6">
                                                             <div class="form-group">
                                                                 <label>{{$fileName}}.{{$label}}</label>
-                                                                <input type="text" class="form-control" name="message[{{$fileName}}][{{$label}}]" value="{{$value}}">
+                                                                <input type="text" class="form-control"
+                                                                       name="message[{{$fileName}}][{{$label}}]"
+                                                                       value="{{$value}}">
                                                             </div>
                                                         </div>
                                                     @endif
@@ -152,7 +179,8 @@
                                             @endforeach
                                         </div>
                                         <div class="col-lg-12 text-end">
-                                            <button class="btn btn-primary" type="submit">{{ __('Save Changes')}}</button>
+                                            <button class="btn btn-primary"
+                                                    type="submit">{{ __('Save Changes')}}</button>
                                         </div>
                                     </form>
                                 </div>

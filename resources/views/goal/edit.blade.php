@@ -1,6 +1,6 @@
 {{ Form::model($goal, array('route' => array('goal.update', $goal->id), 'method' => 'PUT')) }}
 <div class="modal-body">
-     <div class="row">
+    <div class="row">
         <div class="form-group col-md-6">
             {{ Form::label('name', __('Name'),['class'=>'form-label']) }}
             {{ Form::text('name', null, array('class' => 'form-control','required'=>'required')) }}
@@ -22,7 +22,8 @@
             {{Form::date('to',null,array('class'=>'form-control','required'=>'required'))}}
         </div>
         <div class="form-group col-md-12">
-            <input class="form-check-input" type="checkbox" name="is_display" id="is_display" {{$goal->is_display==1?'checked':''}}>
+            <input class="form-check-input" type="checkbox" name="is_display"
+                   id="is_display" {{$goal->is_display==1?'checked':''}}>
             <label class="custom-control-label form-label" for="is_display">{{__('Display On Dashboard')}}</label>
         </div>
 

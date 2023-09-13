@@ -1,5 +1,5 @@
-    {{Form::model($plan, array('route' => array('plans.update', $plan->id), 'method' => 'PUT', 'enctype' => "multipart/form-data")) }}
-    <div class="modal-body">
+{{Form::model($plan, array('route' => array('plans.update', $plan->id), 'method' => 'PUT', 'enctype' => "multipart/form-data")) }}
+<div class="modal-body">
 
     <div class="row">
         <div class="form-group col-md-6">
@@ -42,41 +42,46 @@
         </div>
         <div class="form-group col-md-3">
             <div class="form-check form-switch ">
-                <input type="checkbox" class="form-check-input" name="enable_crm" id="enable_crm" {{ $plan['crm'] == 1 ? 'checked="checked"' : '' }}>
+                <input type="checkbox" class="form-check-input" name="enable_crm"
+                       id="enable_crm" {{ $plan['crm'] == 1 ? 'checked="checked"' : '' }}>
                 <label class="custom-control-label form-label" for="enable_crm">{{__('CRM')}}</label>
             </div>
         </div>
         <div class="form-group col-md-3">
             <div class="form-check form-switch">
-                <input type="checkbox" class="form-check-input" name="enable_project" id="enable_project" {{ $plan['project'] == 1 ? 'checked="checked"' : '' }}>
+                <input type="checkbox" class="form-check-input" name="enable_project"
+                       id="enable_project" {{ $plan['project'] == 1 ? 'checked="checked"' : '' }}>
                 <label class="custom-control-label form-label" for="enable_project">{{__('Project')}}</label>
             </div>
         </div>
         <div class="form-group col-md-3">
             <div class="form-check form-switch">
-                <input type="checkbox" class="form-check-input" name="enable_hrm" id="enable_hrm" {{ $plan['hrm'] == 1 ? 'checked="checked"' : '' }}>
+                <input type="checkbox" class="form-check-input" name="enable_hrm"
+                       id="enable_hrm" {{ $plan['hrm'] == 1 ? 'checked="checked"' : '' }}>
                 <label class="custom-control-label form-label" for="enable_hrm">{{__('HRM')}}</label>
             </div>
         </div>
         <div class="form-group col-md-3">
             <div class="form-check form-switch">
-                <input type="checkbox" class="form-check-input" name="enable_account" id="enable_account" {{ $plan['account'] == 1 ? 'checked="checked"' : '' }}>
+                <input type="checkbox" class="form-check-input" name="enable_account"
+                       id="enable_account" {{ $plan['account'] == 1 ? 'checked="checked"' : '' }}>
                 <label class="custom-control-label form-label" for="enable_account">{{__('Account')}}</label>
             </div>
         </div>
         <div class="form-group col-md-3">
             <div class="form-check form-switch">
-                <input type="checkbox" class="form-check-input" name="enable_pos" id="enable_pos" {{ $plan['pos'] == 1 ? 'checked="checked"' : '' }}>
+                <input type="checkbox" class="form-check-input" name="enable_pos"
+                       id="enable_pos" {{ $plan['pos'] == 1 ? 'checked="checked"' : '' }}>
                 <label class="custom-control-label form-label" for="enable_pos">{{__('POS')}}</label>
             </div>
         </div>
 
     </div>
-    </div>
+</div>
 
-    <div class="modal-footer">
+<div class="modal-footer">
     <input type="button" value="{{__('Cancel')}}" class="btn  btn-light" data-bs-dismiss="modal">
     <input type="submit" value="{{__('Update')}}" class="btn  btn-primary">
 </div>
-    {{ Form::close() }}
+{{ Form::close() }}
 

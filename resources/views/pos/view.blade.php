@@ -28,7 +28,8 @@
 
 @section('action-btn')
     <div class="float-end">
-        <a href="{{ route('pos.pdf', Crypt::encrypt($pos->id))}}" class="btn btn-primary" target="_blank">{{__('Download')}}</a>
+        <a href="{{ route('pos.pdf', Crypt::encrypt($pos->id))}}" class="btn btn-primary"
+           target="_blank">{{__('Download')}}</a>
     </div>
 @endsection
 
@@ -57,8 +58,10 @@
                                     {{!empty($customer->billing_phone)?$customer->billing_phone:''}}<br>
                                     {{!empty($customer->billing_address)?$customer->billing_address:''}}<br>
                                     {{!empty($customer->billing_zip)?$customer->billing_zip:''}}<br>
-                                    {{!empty($customer->billing_city)?$customer->billing_city:'' .', '}} {{!empty($customer->billing_state)?$customer->billing_state:'',', '}} {{!empty($customer->billing_country)?$customer->billing_country:''}}<br>
-                                    <strong>{{__('Tax Number ')}} : </strong>{{!empty($customer->tax_number)?$customer->tax_number:''}}
+                                    {{!empty($customer->billing_city)?$customer->billing_city:'' .', '}} {{!empty($customer->billing_state)?$customer->billing_state:'',', '}} {{!empty($customer->billing_country)?$customer->billing_country:''}}
+                                    <br>
+                                    <strong>{{__('Tax Number ')}}
+                                        : </strong>{{!empty($customer->tax_number)?$customer->tax_number:''}}
                                 </small>
                             @endif
                         </div>
@@ -71,8 +74,10 @@
                                         {{!empty($customer->shipping_phone)?$customer->shipping_phone:''}}<br>
                                         {{!empty($customer->shipping_address)?$customer->shipping_address:''}}<br>
                                         {{!empty($customer->shipping_zip)?$customer->shipping_zip:''}}<br>
-                                        {{!empty($customer->shipping_city)?$customer->shipping_city:'' .', '}} {{!empty($customer->shipping_state)?$customer->shipping_state:'',', '}} {{!empty($customer->shipping_country)?$customer->shipping_country:''}}<br>
-                                        <strong>{{__('Tax Number ')}} : </strong>{{!empty($customer->tax_number)?$customer->tax_number:''}}
+                                        {{!empty($customer->shipping_city)?$customer->shipping_city:'' .', '}} {{!empty($customer->shipping_state)?$customer->shipping_state:'',', '}} {{!empty($customer->shipping_country)?$customer->shipping_country:''}}
+                                        <br>
+                                        <strong>{{__('Tax Number ')}}
+                                            : </strong>{{!empty($customer->tax_number)?$customer->tax_number:''}}
                                     </small>
                                 @endif
                             @endif
@@ -94,7 +99,7 @@
                                 <table class="table">
                                     <thead>
                                     <tr>
-                                        <th class="text-dark" >#</th>
+                                        <th class="text-dark">#</th>
                                         <th class="text-dark">{{__('Items')}}</th>
                                         <th class="text-dark">{{__('Quantity')}}</th>
                                         <th class="text-dark">{{__('Price')}}</th>
@@ -149,7 +154,8 @@
                                                                 $totalTaxPrice+=$taxPrice;
                                                             @endphp
                                                             <tr>
-                                                                <span class="badge bg-primary">{{$tax->name .' ('.$tax->rate .'%)'}}</span> <br>
+                                                                <span class="badge bg-primary">{{$tax->name .' ('.$tax->rate .'%)'}}</span>
+                                                                <br>
                                                             </tr>
                                                         @endforeach
                                                     </table>
@@ -158,7 +164,7 @@
                                                 @endif
                                             </td>
                                             <td>{{\Auth::user()->priceFormat($totalTaxPrice)}}</td>
-                                            <td >{{\Auth::user()->priceFormat(($iteam->price*$iteam->quantity) + $totalTaxPrice)}}</td>
+                                            <td>{{\Auth::user()->priceFormat(($iteam->price*$iteam->quantity) + $totalTaxPrice)}}</td>
                                         </tr>
                                     @endforeach
 

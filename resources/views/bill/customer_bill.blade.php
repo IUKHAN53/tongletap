@@ -1,20 +1,21 @@
 @php
-   // $logo=asset(Storage::url('uploads/logo/'));
-   $logo=\App\Models\Utility::get_file('uploads/logo');
-    $company_favicon=Utility::companyData($bill->created_by,'company_favicon');
-     $setting = \App\Models\Utility::colorset();
-    $color = (!empty($setting['color'])) ? $setting['color'] : 'theme-3';
-    $company_setting=\App\Models\Utility::settingsById($bill->created_by);
-    $mode_setting = \App\Models\Utility::mode_layout();
-    $SITE_RTL = Utility::getValByName('SITE_RTL');
+    // $logo=asset(Storage::url('uploads/logo/'));
+    $logo=\App\Models\Utility::get_file('uploads/logo');
+     $company_favicon=Utility::companyData($bill->created_by,'company_favicon');
+      $setting = \App\Models\Utility::colorset();
+     $color = (!empty($setting['color'])) ? $setting['color'] : 'theme-3';
+     $company_setting=\App\Models\Utility::settingsById($bill->created_by);
+     $mode_setting = \App\Models\Utility::mode_layout();
+     $SITE_RTL = Utility::getValByName('SITE_RTL');
 @endphp
 
-    <!DOCTYPE html>
+        <!DOCTYPE html>
 
 <html lang="en">
 
 <head>
-    <title>{{(Utility::getValByName('title_text')) ? Utility::getValByName('title_text') : config('app.name', 'ERPGO')}} - @yield('page-title')</title>
+    <title>{{(Utility::getValByName('title_text')) ? Utility::getValByName('title_text') : config('app.name', 'ERPGO')}}
+        - @yield('page-title')</title>
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 
@@ -22,19 +23,20 @@
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-{{--    <meta name="url" content="{{ url('').'/'.config('chatify.path') }}" data-user="{{ Auth::user()->id }}">--}}
-    <link rel="icon" href="{{$logo.'/'.(isset($company_favicon) && !empty($company_favicon)?$company_favicon:'favicon.png')}}" type="image" sizes="16x16">
+    {{--    <meta name="url" content="{{ url('').'/'.config('chatify.path') }}" data-user="{{ Auth::user()->id }}">--}}
+    <link rel="icon"
+          href="{{$logo.'/'.(isset($company_favicon) && !empty($company_favicon)?$company_favicon:'favicon.png')}}"
+          type="image" sizes="16x16">
 
     <!-- Favicon icon -->
-{{--    <link rel="icon" href="{{ asset('assets/images/favicon.svg') }}" type="image/x-icon"/>--}}
-<!-- Calendar-->@stack('css-page')
+    {{--    <link rel="icon" href="{{ asset('assets/images/favicon.svg') }}" type="image/x-icon"/>--}}
+    <!-- Calendar-->@stack('css-page')
     <link rel="stylesheet" href="{{ asset('assets/css/plugins/main.css') }}">
 
     <link rel="stylesheet" href="{{ asset('assets/css/plugins/style.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/plugins/flatpickr.min.css') }}">
 
     <link rel="stylesheet" href="{{ asset('assets/css/plugins/animate.min.css') }}">
-
 
 
     <!-- font css -->
@@ -74,7 +76,8 @@
 
             <div class="all-button-box mx-2">
 
-                <a href="{{ route('bill.pdf', \Crypt::encrypt($bill->id))}}" target="_blank" class="btn btn-primary mt-3">
+                <a href="{{ route('bill.pdf', \Crypt::encrypt($bill->id))}}" target="_blank"
+                   class="btn btn-primary mt-3">
                     {{__('Download')}}
                 </a>
             </div>
@@ -144,11 +147,11 @@
                                         </small>
                                     </div>
                                 @endif
-                                    <div class="col">
-                                        <div class="float-end mt-3">
-                                            {!! DNS2D::getBarcodeHTML(route('bill.link.copy',\Illuminate\Support\Facades\Crypt::encrypt($bill->id)), "QRCODE",2,2) !!}
-                                        </div>
+                                <div class="col">
+                                    <div class="float-end mt-3">
+                                        {!! DNS2D::getBarcodeHTML(route('bill.link.copy',\Illuminate\Support\Facades\Crypt::encrypt($bill->id)), "QRCODE",2,2) !!}
                                     </div>
+                                </div>
                             </div>
                             <div class="row mt-3">
                                 <div class="col">
@@ -195,7 +198,7 @@
                                                 <th class="text-dark">{{__('Rate')}}</th>
                                                 <th class="text-dark">{{__('Tax')}}</th>
                                                 <th class="text-dark">
-                                                        {{__('Discount')}}
+                                                    {{__('Discount')}}
 
                                                 </th>
                                                 <th class="text-dark">{{__('Description')}}</th>
@@ -256,7 +259,7 @@
                                                         @endif
                                                     </td>
                                                     <td>
-                                                            {{$user->priceFormat($iteam->discount)}}
+                                                        {{$user->priceFormat($iteam->discount)}}
 
                                                     </td>
                                                     <td>{{!empty($iteam->description)?$iteam->description:'-'}}</td>
@@ -271,7 +274,7 @@
                                                 <td><b>{{$user->priceFormat($totalRate)}}</b></td>
                                                 <td><b>{{$user->priceFormat($totalTaxPrice)}}</b></td>
                                                 <td>
-                                                        <b>{{$user->priceFormat($totalDiscount)}}</b>
+                                                    <b>{{$user->priceFormat($totalDiscount)}}</b>
 
                                                 </td>
                                             </tr>
@@ -281,11 +284,11 @@
                                                 <td class="text-end">{{$user->priceFormat($bill->getSubTotal())}}</td>
                                             </tr>
 
-                                                <tr>
-                                                    <td colspan="6"></td>
-                                                    <td class="text-end"><b>{{__('Discount')}}</b></td>
-                                                    <td class="text-end">{{$user->priceFormat($bill->getTotalDiscount())}}</td>
-                                                </tr>
+                                            <tr>
+                                                <td colspan="6"></td>
+                                                <td class="text-end"><b>{{__('Discount')}}</b></td>
+                                                <td class="text-end">{{$user->priceFormat($bill->getTotalDiscount())}}</td>
+                                            </tr>
 
                                             @if(!empty($taxesData))
                                                 @foreach($taxesData as $taxName => $taxPrice)
@@ -344,9 +347,9 @@
                                 <th class="text-dark">{{__('Account')}}</th>
                                 <th class="text-dark">{{__('Reference')}}</th>
                                 <th class="text-dark">{{__('Description')}}</th>
-{{--                                @can('delete payment bill')--}}
-{{--                                    <th class="text-dark">{{__('Action')}}</th>--}}
-{{--                                @endcan--}}
+                                {{--                                @can('delete payment bill')--}}
+                                {{--                                    <th class="text-dark">{{__('Action')}}</th>--}}
+                                {{--                                @endcan--}}
                             </tr>
                             </thead>
                             @forelse($bill->payments as $key =>$payment)
@@ -356,18 +359,18 @@
                                     <td>{{!empty($payment->bankAccount)?$payment->bankAccount->bank_name.' '.$payment->bankAccount->holder_name:''}}</td>
                                     <td>{{$payment->reference}}</td>
                                     <td>{{$payment->description}}</td>
-{{--                                    <td class="text-dark">--}}
-{{--                                        @can('delete bill product')--}}
-{{--                                            <div class="action-btn bg-danger ms-2">--}}
-{{--                                                {!! Form::open(['method' => 'post', 'route' => ['bill.payment.destroy',$bill->id,$payment->id],'id'=>'delete-form-'.$payment->id]) !!}--}}
+                                    {{--                                    <td class="text-dark">--}}
+                                    {{--                                        @can('delete bill product')--}}
+                                    {{--                                            <div class="action-btn bg-danger ms-2">--}}
+                                    {{--                                                {!! Form::open(['method' => 'post', 'route' => ['bill.payment.destroy',$bill->id,$payment->id],'id'=>'delete-form-'.$payment->id]) !!}--}}
 
-{{--                                                <a href="#" class="mx-3 btn btn-sm align-items-center bs-pass-para "data-bs-toggle="tooltip" data-original-title="{{__('Delete')}}"  title="{{__('Delete')}}" data-confirm="{{__('Are You Sure?').'|'.__('This action can not be undone. Do you want to continue?')}}" data-confirm-yes="document.getElementById('delete-form-{{$payment->id}}').submit();">--}}
-{{--                                                    <i class="ti ti-trash text-white"></i>--}}
-{{--                                                </a>--}}
-{{--                                                {!! Form::close() !!}--}}
-{{--                                            </div>--}}
-{{--                                        @endcan--}}
-{{--                                    </td>--}}
+                                    {{--                                                <a href="#" class="mx-3 btn btn-sm align-items-center bs-pass-para "data-bs-toggle="tooltip" data-original-title="{{__('Delete')}}"  title="{{__('Delete')}}" data-confirm="{{__('Are You Sure?').'|'.__('This action can not be undone. Do you want to continue?')}}" data-confirm-yes="document.getElementById('delete-form-{{$payment->id}}').submit();">--}}
+                                    {{--                                                    <i class="ti ti-trash text-white"></i>--}}
+                                    {{--                                                </a>--}}
+                                    {{--                                                {!! Form::close() !!}--}}
+                                    {{--                                            </div>--}}
+                                    {{--                                        @endcan--}}
+                                    {{--                                    </td>--}}
                                 </tr>
                             @empty
                                 <tr>

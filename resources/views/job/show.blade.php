@@ -10,8 +10,10 @@
 
 @section('action-btn')
     <div class="float-end">
-    @can('edit job')
-            <a href="{{ route('job.edit',$job->id) }}" data-url="" data-ajax-popup="true" data-title="{{__('Edit Job')}}" data-bs-toggle="tooltip" title="{{__('Edit')}}"  class="btn btn-sm btn-primary">
+        @can('edit job')
+            <a href="{{ route('job.edit',$job->id) }}" data-url="" data-ajax-popup="true"
+               data-title="{{__('Edit Job')}}" data-bs-toggle="tooltip" title="{{__('Edit')}}"
+               class="btn btn-sm btn-primary">
                 <i class="ti ti-pencil"></i>
             </a>
 
@@ -22,7 +24,7 @@
     <div class="row">
         <div class="col-md-4">
             <div class="card ">
-            <div class="card-body table-border-style">
+                <div class="card-body table-border-style">
                     <div class="table-responsive">
                         <table class="table mt-3">
                             <tbody>

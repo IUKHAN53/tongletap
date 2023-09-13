@@ -8,8 +8,8 @@
             {{ Form::text('code', '', array('class' => 'form-control','required'=>'required')) }}
             @error('code')
             <span class="invalid-code" role="alert">
-            <strong class="text-danger">{{ $message }}</strong>
-        </span>
+                <strong class="text-danger">{{ $message }}</strong>
+            </span>
             @enderror
         </div>
     </div>

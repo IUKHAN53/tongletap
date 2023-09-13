@@ -59,7 +59,6 @@
         }
 
 
-
     </script>
     <script>
         function copyToClipboard(element) {
@@ -93,7 +92,8 @@
 
 @section('action-btn')
     <div class="float-end">
-        <a href="{{ route('pos.barcode') }}" class="btn btn-sm btn-primary" data-bs-toggle="tooltip" title="{{__('Back')}}">
+        <a href="{{ route('pos.barcode') }}" class="btn btn-sm btn-primary" data-bs-toggle="tooltip"
+           title="{{__('Back')}}">
             <i class="ti ti-arrow-left text-white"></i>
         </a>
 
@@ -109,33 +109,33 @@
                     {{Form::open(array('route'=>'pos.receipt','method'=>'post'))}}
 
 
-
-                        <div class="row" id="printableArea">
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    {{Form::label('warehouse_id',__('Warehouse'),['class'=>'form-label'])}}
-                                    {{ Form::select('warehouse_id', $warehouses,'', array('class' => 'form-control select','id'=>'warehouse_id','required'=>'required')) }}
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group" id="product_div">
-                                    {{Form::label('product_id',__('Product'),['class'=>'form-label'])}}
-                                    <select class="form-control select" name="product_id[]" id="product_id" required >
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group col-md-4">
-                                {{ Form::label('quantity', __('Quantity'),['class'=>'form-label']) }}<span class="text-danger">*</span>
-                                {{ Form::text('quantity',null, array('class' => 'form-control','required'=>'required')) }}
+                    <div class="row" id="printableArea">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                {{Form::label('warehouse_id',__('Warehouse'),['class'=>'form-label'])}}
+                                {{ Form::select('warehouse_id', $warehouses,'', array('class' => 'form-control select','id'=>'warehouse_id','required'=>'required')) }}
                             </div>
                         </div>
-
-                        <div class="col-md-6 pt-4">
-
-                            <button class="btn btn-sm btn-primary btn-icon" type="submit">{{__('Print')}}</button>
-
-
+                        <div class="col-md-4">
+                            <div class="form-group" id="product_div">
+                                {{Form::label('product_id',__('Product'),['class'=>'form-label'])}}
+                                <select class="form-control select" name="product_id[]" id="product_id" required>
+                                </select>
+                            </div>
                         </div>
+                        <div class="form-group col-md-4">
+                            {{ Form::label('quantity', __('Quantity'),['class'=>'form-label']) }}<span
+                                    class="text-danger">*</span>
+                            {{ Form::text('quantity',null, array('class' => 'form-control','required'=>'required')) }}
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 pt-4">
+
+                        <button class="btn btn-sm btn-primary btn-icon" type="submit">{{__('Print')}}</button>
+
+
+                    </div>
 
                     {{Form::close()}}
 

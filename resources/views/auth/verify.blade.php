@@ -3,9 +3,9 @@
     {{__('Verify Email')}}
 @endsection
 @php
-  //  $logo=asset(Storage::url('uploads/logo/'));
-    $logo=\App\Models\Utility::get_file('uploads/logo');
- $company_logo=Utility::getValByName('company_logo');
+    //  $logo=asset(Storage::url('uploads/logo/'));
+      $logo=\App\Models\Utility::get_file('uploads/logo');
+   $company_logo=Utility::getValByName('company_logo');
 @endphp
 @section('auth-topbar')
 
@@ -22,7 +22,8 @@
             {{ __('If you did not receive the email') }},
         </small>
         <small>
-            <a href="{{ route('verification.resend') }}" class="text-primary">{{ __('click here to request another.') }}</a>
+            <a href="{{ route('verification.resend') }}"
+               class="text-primary">{{ __('click here to request another.') }}</a>
         </small>
     </div>
 @endsection

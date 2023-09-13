@@ -4,10 +4,13 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>{{!empty($companySettings['title_text']) ? $companySettings['title_text']->value : config('app.name', 'ERPGO')}} - {{$job->title}}</title>
+    <title>{{!empty($companySettings['title_text']) ? $companySettings['title_text']->value : config('app.name', 'ERPGO')}}
+        - {{$job->title}}</title>
 
-    <link rel="icon" href="{{asset(Storage::url('uploads/logo/')).'/'.(isset($companySettings['company_favicon']) && !empty($companySettings['company_favicon'])?$companySettings['company_favicon']->value:'favicon.png')}}" type="image" sizes="16x16">
-{{--    <link rel="stylesheet" href="{{ asset('libs/@fortawesome/fontawesome-free/css/all.min.css') }}">--}}
+    <link rel="icon"
+          href="{{asset(Storage::url('uploads/logo/')).'/'.(isset($companySettings['company_favicon']) && !empty($companySettings['company_favicon'])?$companySettings['company_favicon']->value:'favicon.png')}}"
+          type="image" sizes="16x16">
+    {{--    <link rel="stylesheet" href="{{ asset('libs/@fortawesome/fontawesome-free/css/all.min.css') }}">--}}
     <link rel="stylesheet" href="{{ asset('assets/fonts/tabler-icons.min.css') }}">
 
     <link rel="stylesheet" href="{{ asset('css/site.css') }}" id="stylesheet">
@@ -20,24 +23,30 @@
     <nav class="navbar navbar-main navbar-expand-lg navbar-transparent navbar-light bg-white" id="navbar-main">
         <div class="container px-lg-0">
             <a class="navbar-brand mr-lg-5" href="#">
-                <img class="hweb" alt="Image placeholder" src="{{asset(Storage::url('uploads/logo/')).'/'.(isset($companySettings['company_logo']) && !empty($companySettings['company_logo'])?$companySettings['company_logo']->value:'logo-dark.png')}}" id="navbar-logo" style="height: 50px;">
+                <img class="hweb" alt="Image placeholder"
+                     src="{{asset(Storage::url('uploads/logo/')).'/'.(isset($companySettings['company_logo']) && !empty($companySettings['company_logo'])?$companySettings['company_logo']->value:'logo-dark.png')}}"
+                     id="navbar-logo" style="height: 50px;">
             </a>
-            <button class="navbar-toggler pr-0" type="button" data-toggle="collapse" data-target="#navbar-main-collapse" aria-controls="navbar-main-collapse" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler pr-0" type="button" data-toggle="collapse" data-target="#navbar-main-collapse"
+                    aria-controls="navbar-main-collapse" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbar-main-collapse">
 
                 <ul class="navbar-nav align-items-lg-center ml-lg-auto">
                     <li class="nav-item">
-                        <div class="dropdown global-icon" data-toggle="tooltip" data-original-titla="{{__('Choose Language')}}">
-                            <a class="nav-link px-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-offset="0,10">
+                        <div class="dropdown global-icon" data-toggle="tooltip"
+                             data-original-titla="{{__('Choose Language')}}">
+                            <a class="nav-link px-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
+                               aria-expanded="false" data-offset="0,10">
                                 <i class="ti ti-globe-europe"></i>
                                 <span class="d-none d-lg-inline-block">{{\Str::upper($currantLang)}}</span>
                             </a>
 
                             <div class="dropdown-menu  dropdown-menu-right" aria-labelledby="dropdownMenuButton">
                                 @foreach($languages as $language)
-                                    <a class="dropdown-item @if($language == $currantLang) text-danger @endif" href="{{route('job.requirement',[$job->code,$language])}}">{{\Str::upper($language)}}</a>
+                                    <a class="dropdown-item @if($language == $currantLang) text-danger @endif"
+                                       href="{{route('job.requirement',[$job->code,$language])}}">{{\Str::upper($language)}}</a>
                                 @endforeach
                             </div>
                         </div>
@@ -62,11 +71,14 @@
                             <span class="badge badge-primary"> {{$skill}}</span>
                         @endforeach
                     </p>
-                    <p class="lead lh-180"><i class="fas fa-map-marker-alt"></i>{{$job->position}} {{__('Position')}}</p>
-                    <p class="lead lh-180"><i class="ti ti-map-pin"></i> {{!empty($job->branches)?$job->branches->name:''}} </p>
+                    <p class="lead lh-180"><i class="fas fa-map-marker-alt"></i>{{$job->position}} {{__('Position')}}
+                    </p>
+                    <p class="lead lh-180"><i
+                                class="ti ti-map-pin"></i> {{!empty($job->branches)?$job->branches->name:''}} </p>
                     @if($job->end_date >= date('Y-m-d'))
                         <div class="mt-2">
-                            <a href="{{route('job.apply',[$job->code,$currantLang])}}" class="btn btn-dark rounded-pill btn-icon hover-translate-y-n3 mt-4 px-4">
+                            <a href="{{route('job.apply',[$job->code,$currantLang])}}"
+                               class="btn btn-dark rounded-pill btn-icon hover-translate-y-n3 mt-4 px-4">
                                 <span class="btn-inner--icon"><i class="ti ti-angle-right"></i></span>
                                 <span class="btn-inner--text">{{__('Apply now')}}</span>
                             </a>
@@ -92,14 +104,14 @@
                             {!! $job->description !!}
                         </div>
                     </div>
-{{--                    @if($job->end_date >= date('Y-m-d'))--}}
-{{--                        <div class="text-center mt-5">--}}
-{{--                            <a href="{{route('job.apply',[$job->code,$currantLang])}}" class="btn btn-dark rounded-pill btn-icon shadow">--}}
-{{--                                <span class="btn-inner--icon"><i class="ti ti-angle-right"></i></span>--}}
-{{--                                <span class="btn-inner--text">{{__('Apply now')}}</span>--}}
-{{--                            </a>--}}
-{{--                        </div>--}}
-{{--                    @endif--}}
+                    {{--                    @if($job->end_date >= date('Y-m-d'))--}}
+                    {{--                        <div class="text-center mt-5">--}}
+                    {{--                            <a href="{{route('job.apply',[$job->code,$currantLang])}}" class="btn btn-dark rounded-pill btn-icon shadow">--}}
+                    {{--                                <span class="btn-inner--icon"><i class="ti ti-angle-right"></i></span>--}}
+                    {{--                                <span class="btn-inner--text">{{__('Apply now')}}</span>--}}
+                    {{--                            </a>--}}
+                    {{--                        </div>--}}
+                    {{--                    @endif--}}
                 </div>
             </div>
         </div>

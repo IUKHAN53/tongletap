@@ -8,7 +8,6 @@
 @endsection
 @push('script-page')
 
-
     <script>
         function copyToClipboard(element) {
 
@@ -23,14 +22,14 @@
         }
     </script>
 
-
 @endpush
 
 
 @section('action-btn')
     <div class="float-end">
         @can('create job')
-            <a href="{{ route('job.create') }}" class="btn btn-sm btn-primary"  data-bs-toggle="tooltip" title="{{__('Create')}}" data-title="{{__('Create New Job')}}">
+            <a href="{{ route('job.create') }}" class="btn btn-sm btn-primary" data-bs-toggle="tooltip"
+               title="{{__('Create')}}" data-title="{{__('Create New Job')}}">
                 <i class="ti ti-plus"></i>
             </a>
         @endcan
@@ -38,7 +37,7 @@
 @endsection
 
 @section('content')
-<div class="row">
+    <div class="row">
         <div class="col-lg-4 col-md-6">
             <div class="card">
                 <div class="card-body">
@@ -105,16 +104,16 @@
                 </div>
             </div>
         </div>
-</div>
+    </div>
 
 
 
     <div class="row">
         <div class="col-md-12">
             <div class="card">
-            <div class="card-body table-border-style">
+                <div class="card-body table-border-style">
                     <div class="table-responsive">
-                    <table class="table datatable">
+                        <table class="table datatable">
                             <thead>
                             <tr>
                                 <th>{{__('Branch')}}</th>
@@ -146,40 +145,57 @@
                                     @if( Gate::check('edit job') ||Gate::check('delete job') || Gate::check('show job'))
                                         <td>
 
-                                        @if($job->status!='in_active')
-{{--                                            <div class="action-btn bg-warning ms-2">--}}
-{{--                                                <a href="{{ route('job.requirement',[$job->code,!empty($job)?$job->createdBy->lang:'en']) }}" class="mx-3 btn btn-sm align-items-center " onclick="copyToClipboard(this)" data-bs-toggle="tooltip" data-original-title="{{__('Click to copy')}}">--}}
-{{--                                                    <i class="ti ti-link text-white"></i></a>--}}
+                                            @if($job->status!='in_active')
+                                                {{--                                            <div class="action-btn bg-warning ms-2">--}}
+                                                {{--                                                <a href="{{ route('job.requirement',[$job->code,!empty($job)?$job->createdBy->lang:'en']) }}" class="mx-3 btn btn-sm align-items-center " onclick="copyToClipboard(this)" data-bs-toggle="tooltip" data-original-title="{{__('Click to copy')}}">--}}
+                                                {{--                                                    <i class="ti ti-link text-white"></i></a>--}}
 
-{{--                                                <a href="#" id="{{ route('invoice.link.copy',[$invoiceID]) }}" class="mx-3 btn btn-sm align-items-center"   onclick="copyToClipboard(this)" data-bs-toggle="tooltip" data-original-title="{{__('Click to copy')}}"><i class="ti ti-link text-white"></i></a>--}}
+                                                {{--                                                <a href="#" id="{{ route('invoice.link.copy',[$invoiceID]) }}" class="mx-3 btn btn-sm align-items-center"   onclick="copyToClipboard(this)" data-bs-toggle="tooltip" data-original-title="{{__('Click to copy')}}"><i class="ti ti-link text-white"></i></a>--}}
 
-{{--                                            </div>--}}
+                                                {{--                                            </div>--}}
 
                                                 <div class="action-btn bg-warning ms-2">
-                                                    <a href="#" id="{{ route('job.requirement',[$job->code,!empty($job)?$job->createdBy->lang:'en']) }}" class="mx-3 btn btn-sm align-items-center"  onclick="copyToClipboard(this)" data-bs-toggle="tooltip" title="{{__('Copy')}}" data-original-title="{{__('Click to copy')}}"><i class="ti ti-link text-white"></i></a>
+                                                    <a href="#"
+                                                       id="{{ route('job.requirement',[$job->code,!empty($job)?$job->createdBy->lang:'en']) }}"
+                                                       class="mx-3 btn btn-sm align-items-center"
+                                                       onclick="copyToClipboard(this)" data-bs-toggle="tooltip"
+                                                       title="{{__('Copy')}}"
+                                                       data-original-title="{{__('Click to copy')}}"><i
+                                                                class="ti ti-link text-white"></i></a>
                                                 </div>
-
 
                                             @endif
                                             @can('show job')
-                                            <div class="action-btn bg-info ms-2">
-                                                <a href="{{ route('job.show',$job->id) }}" data-title="{{__('Job Detail')}}" title="{{__('View')}}"  class="mx-3 btn btn-sm align-items-center" data-bs-toggle="tooltip" data-original-title="{{__('View Detail')}}">
-                                                    <i class="ti ti-eye text-white"></i></a>
-                                            </div>
-                                                @endcan
+                                                <div class="action-btn bg-info ms-2">
+                                                    <a href="{{ route('job.show',$job->id) }}"
+                                                       data-title="{{__('Job Detail')}}" title="{{__('View')}}"
+                                                       class="mx-3 btn btn-sm align-items-center"
+                                                       data-bs-toggle="tooltip"
+                                                       data-original-title="{{__('View Detail')}}">
+                                                        <i class="ti ti-eye text-white"></i></a>
+                                                </div>
+                                            @endcan
                                             @can('edit job')
-                                            <div class="action-btn bg-primary ms-2">
-                                                <a href="{{ route('job.edit',$job->id) }}" data-title="{{__('Edit Job')}}" class="mx-3 btn btn-sm align-items-center" data-bs-toggle="tooltip" title="{{__('Edit')}}" data-original-title="{{__('Edit')}}">
-                                                    <i class="ti ti-pencil text-white"></i></a>
-                                            </div>
-                                                @endcan
+                                                <div class="action-btn bg-primary ms-2">
+                                                    <a href="{{ route('job.edit',$job->id) }}"
+                                                       data-title="{{__('Edit Job')}}"
+                                                       class="mx-3 btn btn-sm align-items-center"
+                                                       data-bs-toggle="tooltip" title="{{__('Edit')}}"
+                                                       data-original-title="{{__('Edit')}}">
+                                                        <i class="ti ti-pencil text-white"></i></a>
+                                                </div>
+                                            @endcan
                                             @can('delete job')
-                                            <div class="action-btn bg-danger ms-2">
-                                            {!! Form::open(['method' => 'DELETE', 'route' => ['job.destroy', $job->id],'id'=>'delete-form-'.$job->id]) !!}
+                                                <div class="action-btn bg-danger ms-2">
+                                                    {!! Form::open(['method' => 'DELETE', 'route' => ['job.destroy', $job->id],'id'=>'delete-form-'.$job->id]) !!}
 
-                                                <a href="#" class="mx-3 btn btn-sm align-items-center bs-pass-para" data-bs-toggle="tooltip" title="{{__('Delete')}}" data-original-title="{{__('Delete')}}" data-confirm="{{__('Are You Sure?').'|'.__('This action can not be undone. Do you want to continue?')}}" data-confirm-yes="document.getElementById('delete-form-{{$job->id}}').submit();">
-                                                    <i class="ti ti-trash text-white"></i></a>
-                                                {!! Form::close() !!}
+                                                    <a href="#" class="mx-3 btn btn-sm align-items-center bs-pass-para"
+                                                       data-bs-toggle="tooltip" title="{{__('Delete')}}"
+                                                       data-original-title="{{__('Delete')}}"
+                                                       data-confirm="{{__('Are You Sure?').'|'.__('This action can not be undone. Do you want to continue?')}}"
+                                                       data-confirm-yes="document.getElementById('delete-form-{{$job->id}}').submit();">
+                                                        <i class="ti ti-trash text-white"></i></a>
+                                                    {!! Form::close() !!}
                                                 </div>
                                             @endcan
                                         </td>

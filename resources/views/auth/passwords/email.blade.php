@@ -3,15 +3,18 @@
     {{__('Forgot Password')}}
 @endsection
 @php
-  //  $logo=asset(Storage::url('uploads/logo/'));
-    $logo=\App\Models\Utility::get_file('uploads/logo');
- $company_logo=Utility::getValByName('company_logo');
+    //  $logo=asset(Storage::url('uploads/logo/'));
+      $logo=\App\Models\Utility::get_file('uploads/logo');
+   $company_logo=Utility::getValByName('company_logo');
 @endphp
 @section('auth-topbar')
     <li class="nav-item ">
-        <select class="btn btn-primary my-1 me-2 " onchange="this.options[this.selectedIndex].value && (window.location = this.options[this.selectedIndex].value);" id="language">
+        <select class="btn btn-primary my-1 me-2 "
+                onchange="this.options[this.selectedIndex].value && (window.location = this.options[this.selectedIndex].value);"
+                id="language">
             @foreach(Utility::languages() as $language)
-                <option class="" @if($lang == $language) selected @endif value="{{ route('login',$language) }}">{{Str::upper($language)}}</option>
+                <option class="" @if($lang == $language) selected
+                        @endif value="{{ route('login',$language) }}">{{Str::upper($language)}}</option>
             @endforeach
         </select>
     </li>
@@ -33,11 +36,12 @@
         <div class="">
             <div class="form-group mb-3">
                 <label class="form-label" for="email">{{ __('E-Mail Address') }}</label>
-                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email"
+                       value="{{ old('email') }}" required autocomplete="email" autofocus>
                 @error('email')
                 <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
+                    <strong>{{ $message }}</strong>
+                </span>
                 @enderror
             </div>
 

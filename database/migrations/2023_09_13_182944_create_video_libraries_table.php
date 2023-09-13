@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('video_libraries', function (Blueprint $table) {
             $table->id();
             $table->string('title');
+            $table->string('thumbnail');
             $table->string('url');
             $table->timestamps();
         });

@@ -2,15 +2,15 @@
     $settings_data = \App\Models\Utility::settingsById($invoice->created_by);
 
 @endphp
-    <!DOCTYPE html>
+        <!DOCTYPE html>
 <html lang="en" dir="{{$settings_data['SITE_RTL'] == 'on'?'rtl':''}}">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>New York - bill</title>
     <link
-        href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"
-        rel="stylesheet">
+            href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"
+            rel="stylesheet">
 
 
     <style type="text/css">
@@ -148,21 +148,26 @@
         .itm-description td {
             padding-top: 0;
         }
+
         html[dir="rtl"] table tr td,
-        html[dir="rtl"] table tr th{
+        html[dir="rtl"] table tr th {
             text-align: right;
         }
-        html[dir="rtl"]  .text-right{
+
+        html[dir="rtl"] .text-right {
             text-align: left;
         }
-        html[dir="rtl"] .view-qrcode{
+
+        html[dir="rtl"] .view-qrcode {
             margin-left: 0;
             margin-right: auto;
         }
-        p:not(:last-of-type){
+
+        p:not(:last-of-type) {
             margin-bottom: 15px;
         }
-        .bill-summary p{
+
+        .bill-summary p {
             margin-bottom: 0;
         }
     </style>
@@ -174,11 +179,11 @@
 
 <body>
 <div class="bill-preview-main" id="boxes">
-    <div class="bill-header"  style="border-top: 15px solid {{ $color }};">
+    <div class="bill-header" style="border-top: 15px solid {{ $color }};">
         <table>
             <tbody>
             <tr>
-                <td >
+                <td>
                     <h3 style="text-transform: uppercase; font-size: 40px; font-weight: bold;">{{__('BILL')}}</h3>
                 </td>
                 <td class="text-right">
@@ -194,26 +199,46 @@
     </div>
     <div class="bill-body">
         <table class="vertical-align-top">
-            <tbody >
+            <tbody>
             <tr>
                 @if (!empty($settings['company_name']) && !empty($settings['company_email']) && !empty($settings['company_address']))
-                <td style="font-size: 13px;">
-                    <strong style="margin-bottom: 10px; display:block;">{{__('From:')}}</strong>
-                    <p>
-                        @if($settings['company_name']){{$settings['company_name']}}@endif<br>
-                        @if($settings['company_email']){{$settings['company_email']}}@endif<br>
-                        @if($settings['company_telephone']){{$settings['company_telephone']}}@endif<br>
-                        @if($settings['company_address']){{$settings['company_address']}}@endif
-                        @if($settings['company_city']) <br> {{$settings['company_city']}}, @endif
-                        @if($settings['company_state']){{$settings['company_state']}}@endif
-                        @if($settings['company_country']) <br>{{$settings['company_country']}}@endif
-                        @if($settings['company_zipcode']) - {{$settings['company_zipcode']}}@endif<br>
-                        @if(!empty($settings['registration_number'])){{__('Registration Number')}} : {{$settings['registration_number']}} @endif
-                        @if(!empty($settings['tax_type']) && !empty($settings['vat_number'])){{$settings['tax_type'].' '. __('Number')}} : {{$settings['vat_number']}} <br>@endif
-                    </p>
-                </td>
+                    <td style="font-size: 13px;">
+                        <strong style="margin-bottom: 10px; display:block;">{{__('From:')}}</strong>
+                        <p>
+                            @if($settings['company_name'])
+                                {{$settings['company_name']}}
+                            @endif<br>
+                            @if($settings['company_email'])
+                                {{$settings['company_email']}}
+                            @endif<br>
+                            @if($settings['company_telephone'])
+                                {{$settings['company_telephone']}}
+                            @endif<br>
+                            @if($settings['company_address'])
+                                {{$settings['company_address']}}
+                            @endif
+                            @if($settings['company_city'])
+                                <br> {{$settings['company_city']}},
+                            @endif
+                            @if($settings['company_state'])
+                                {{$settings['company_state']}}
+                            @endif
+                            @if($settings['company_country'])
+                                <br>{{$settings['company_country']}}
+                            @endif
+                            @if($settings['company_zipcode'])
+                                - {{$settings['company_zipcode']}}
+                            @endif<br>
+                            @if(!empty($settings['registration_number']))
+                                {{__('Registration Number')}} : {{$settings['registration_number']}}
+                            @endif
+                            @if(!empty($settings['tax_type']) && !empty($settings['vat_number']))
+                                {{$settings['tax_type'].' '. __('Number')}} : {{$settings['vat_number']}} <br>
+                            @endif
+                        </p>
+                    </td>
                 @endif
-                <td  style="font-size: 13px;">
+                <td style="font-size: 13px;">
                     <strong style="margin-bottom: 10px; display:block;">{{__('Bill To:')}}</strong>
                     <p>
                         {{!empty($vendor->billing_name)?$vendor->billing_name:''}}<br>
@@ -243,8 +268,12 @@
             <tr style="border-bottom:1px solid {{ $color }};">
                 <td>
                     <p>
-                        @if (!empty($settings['registration_number'])){{ __('Registration Number') }} : {{ $settings['registration_number'] }} @endif<br>
-                        @if (!empty($settings['tax_type']) && !empty($settings['vat_number'])){{ $settings['tax_type'] . ' ' . __('Number') }} : {{ $settings['vat_number'] }} <br>@endif
+                        @if (!empty($settings['registration_number']))
+                            {{ __('Registration Number') }} : {{ $settings['registration_number'] }}
+                        @endif<br>
+                        @if (!empty($settings['tax_type']) && !empty($settings['vat_number']))
+                            {{ $settings['tax_type'] . ' ' . __('Number') }} : {{ $settings['vat_number'] }} <br>
+                        @endif
 
                     </p>
                 </td>
@@ -256,14 +285,14 @@
             </tr>
             </tbody>
         </table>
-        <table >
-            <tbody >
-            <tr >
-                <td >
-                    <table class="no-space" >
+        <table>
+            <tbody>
+            <tr>
+                <td>
+                    <table class="no-space">
                         <tbody>
                         <tr>
-                            <td >{{__('Number')}}:</td>
+                            <td>{{__('Number')}}:</td>
                             <td class="text-right">{{Utility::billNumberFormat($settings,$bill->bill_id)}}</td>
                         </tr>
                         <tr>
@@ -291,7 +320,7 @@
         </table>
         <table class="add-border bill-summary" style="margin-top: 30px;">
             <thead style="background: {{ $color }};color:{{ $font_color }}">
-            <tr style="border-bottom:1px solid {{ $color }};" >
+            <tr style="border-bottom:1px solid {{ $color }};">
                 <th>{{__('Item')}}</th>
                 <th>{{__('Quantity')}}</th>
                 <th>{{__('Rate')}}</th>
@@ -299,16 +328,16 @@
                 <th>{{__('Tax')}} (%)</th>
                 <th>{{__('Price')}} <small>after tax & discount</small></th>
             </tr>
-            </thead >
-            <tbody style="border-bottom:1px solid {{ $color }};" >
+            </thead>
+            <tbody style="border-bottom:1px solid {{ $color }};">
             @if(isset($bill->itemData) && count($bill->itemData) > 0)
                 @foreach($bill->itemData as $key => $item)
-                    <tr >
+                    <tr>
                         <td>{{$item->name}}</td>
                         <td>{{$item->quantity}}</td>
                         <td>{{Utility::priceFormat($settings,$item->price)}}</td>
                         <td>{{($item->discount!=0)?Utility::priceFormat($settings,$item->discount):'-'}}</td>
-                        <td >
+                        <td>
                             @if(!empty($item->itemTax))
                                 @php
                                     $itemtax = 0;
@@ -323,7 +352,7 @@
                                 <span>-</span>
                             @endif
                         </td>
-                        <td >{{Utility::priceFormat($settings,$item->price * $item->quantity -  $item->discount + $itemtax)}}</td>
+                        <td>{{Utility::priceFormat($settings,$item->price * $item->quantity -  $item->discount + $itemtax)}}</td>
                     @if(!empty($item->description))
                         <tr class="border-0 itm-description">
                             <td colspan="6" style="border-bottom:1px solid {{ $color }};">{{$item->description}}</td>
@@ -335,7 +364,7 @@
                     @else
                     @endif
             </tbody>
-            <tfoot >
+            <tfoot>
             <tr style="border-bottom:1px solid {{ $color }};">
                 <td>{{__('Total')}}</td>
                 <td>{{$bill->totalQuantity}}</td>
@@ -349,7 +378,7 @@
                 <td colspan="2" class="sub-total">
                     <table class="total-table">
                         <tr style="border-bottom:1px solid {{ $color }};">
-                            <td >{{__('Subtotal')}}:</td>
+                            <td>{{__('Subtotal')}}:</td>
                             <td>{{Utility::priceFormat($settings,$bill->getSubTotal())}}</td>
                         </tr>
                         @if($bill->getTotalDiscount())

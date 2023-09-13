@@ -4,9 +4,12 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>{{!empty($companySettings['title_text']) ? $companySettings['title_text']->value : config('app.name', 'ERPGO')}} - {{$job->title}}</title>
+    <title>{{!empty($companySettings['title_text']) ? $companySettings['title_text']->value : config('app.name', 'ERPGO')}}
+        - {{$job->title}}</title>
 
-    <link rel="icon" href="{{asset(Storage::url('uploads/logo/')).'/'.(isset($companySettings['company_favicon']) && !empty($companySettings['company_favicon'])?$companySettings['company_favicon']->value:'favicon.png')}}" type="image" sizes="16x16">
+    <link rel="icon"
+          href="{{asset(Storage::url('uploads/logo/')).'/'.(isset($companySettings['company_favicon']) && !empty($companySettings['company_favicon'])?$companySettings['company_favicon']->value:'favicon.png')}}"
+          type="image" sizes="16x16">
     <link rel="stylesheet" href="{{ asset('assets/fonts/tabler-icons.min.css') }}">
 
     <link rel="stylesheet" href="{{ asset('css/site.css') }}" id="stylesheet">
@@ -19,24 +22,30 @@
     <nav class="navbar navbar-main navbar-expand-lg navbar-transparent navbar-light bg-white" id="navbar-main">
         <div class="container px-lg-0">
             <a class="navbar-brand mr-lg-5" href="#">
-                <img class="hweb" alt="Image placeholder" src="{{asset(Storage::url('uploads/logo/')).'/'.(isset($companySettings['company_logo']) && !empty($companySettings['company_logo'])?$companySettings['company_logo']->value:'logo-dark.png')}}" id="navbar-logo" style="height: 50px;">
+                <img class="hweb" alt="Image placeholder"
+                     src="{{asset(Storage::url('uploads/logo/')).'/'.(isset($companySettings['company_logo']) && !empty($companySettings['company_logo'])?$companySettings['company_logo']->value:'logo-dark.png')}}"
+                     id="navbar-logo" style="height: 50px;">
             </a>
-            <button class="navbar-toggler pr-0" type="button" data-toggle="collapse" data-target="#navbar-main-collapse" aria-controls="navbar-main-collapse" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler pr-0" type="button" data-toggle="collapse" data-target="#navbar-main-collapse"
+                    aria-controls="navbar-main-collapse" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbar-main-collapse">
 
                 <ul class="navbar-nav align-items-lg-center ml-lg-auto">
                     <li class="nav-item">
-                        <div class="dropdown global-icon" data-toggle="tooltip" data-original-titla="{{__('Choose Language')}}">
-                            <a class="nav-link px-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-offset="0,10">
+                        <div class="dropdown global-icon" data-toggle="tooltip"
+                             data-original-titla="{{__('Choose Language')}}">
+                            <a class="nav-link px-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
+                               aria-expanded="false" data-offset="0,10">
                                 <i class="ti ti-globe-europe"></i>
                                 <span class="d-none d-lg-inline-block">{{\Str::upper($currantLang)}}</span>
                             </a>
 
                             <div class="dropdown-menu  dropdown-menu-right" aria-labelledby="dropdownMenuButton">
                                 @foreach($languages as $language)
-                                    <a class="dropdown-item @if($language == $currantLang) text-danger @endif" href="{{route('job.apply',[$job->code,$language])}}">{{\Str::upper($language)}}</a>
+                                    <a class="dropdown-item @if($language == $currantLang) text-danger @endif"
+                                       href="{{route('job.apply',[$job->code,$language])}}">{{\Str::upper($language)}}</a>
                                 @endforeach
                             </div>
                         </div>
@@ -59,7 +68,8 @@
                             <span class="badge bg-primary p-2 px-3 rounded text-white"> {{$skill}}</span>
                         @endforeach
                     </p>
-                    <p class="lead text-center"><i class="ti ti-map-pin"></i> {{!empty($job->branches)?$job->branches->name:''}} </p>
+                    <p class="lead text-center"><i
+                                class="ti ti-map-pin"></i> {{!empty($job->branches)?$job->branches->name:''}} </p>
 
                 </div>
             </div>
@@ -102,12 +112,15 @@
                                         {!! Form::label('gender', __('Gender'),['class'=>'form-label']) !!}
                                         <div class="d-flex radio-check">
                                             <div class="custom-control custom-radio custom-control-inline">
-                                                <input type="radio" id="g_male" value="Male" name="gender" class="custom-control-input" >
+                                                <input type="radio" id="g_male" value="Male" name="gender"
+                                                       class="custom-control-input">
                                                 <label class="custom-control-label" for="g_male">{{__('Male')}}</label>
                                             </div>
                                             <div class="custom-control custom-radio custom-control-inline">
-                                                <input type="radio" id="g_female" value="Female" name="gender" class="custom-control-input">
-                                                <label class="custom-control-label" for="g_female">{{__('Female')}}</label>
+                                                <input type="radio" id="g_female" value="Female" name="gender"
+                                                       class="custom-control-input">
+                                                <label class="custom-control-label"
+                                                       for="g_female">{{__('Female')}}</label>
                                             </div>
                                         </div>
                                     </div>
@@ -131,7 +144,9 @@
                                     <div class="form-group col-md-6 ">
                                         {{Form::label('profile',__('Profile'),['class'=>'col-form-label'])}}
                                         {{--                                                <label for="profile" class="form-label">--}}
-                                        <input type="file" class="form-control" name="profile" id="profile" data-filename="profile_create" onchange="document.getElementById('blah').src = window.URL.createObjectURL(this.files[0])">
+                                        <input type="file" class="form-control" name="profile" id="profile"
+                                               data-filename="profile_create"
+                                               onchange="document.getElementById('blah').src = window.URL.createObjectURL(this.files[0])">
                                         {{--                                                </label>--}}
                                         <img id="blah" src="" class="mt-3" width="25%"/>
                                         <p class="profile_create"></p>
@@ -143,7 +158,10 @@
                                         {{Form::label('resume',__('CV / Resume'),['class'=>'col-form-label'])}}
 
                                         {{--                                                <label for="resume" class="form-label">--}}
-                                        <input type="file" class="form-control" name="resume" id="resume" data-filename="resume_create" onchange="document.getElementById('blah1').src = window.URL.createObjectURL(this.files[0])" required>
+                                        <input type="file" class="form-control" name="resume" id="resume"
+                                               data-filename="resume_create"
+                                               onchange="document.getElementById('blah1').src = window.URL.createObjectURL(this.files[0])"
+                                               required>
                                         {{--                                                </label>--}}
                                         <img id="blah1" class="mt-3" src="" width="25%"/>
                                         <p class="resume_create"></p>
@@ -159,12 +177,14 @@
                                 @foreach($questions as $question)
                                     <div class="form-group col-md-12  question question_{{$question->id}}">
                                         {{Form::label($question->question,$question->question,['class'=>'form-label'])}}
-                                        <input type="text" class="form-control" name="question[{{$question->question}}]" {{($question->is_required=='yes')?'required':''}}>
+                                        <input type="text" class="form-control"
+                                               name="question[{{$question->question}}]" {{($question->is_required=='yes')?'required':''}}>
                                     </div>
                                 @endforeach
                                 <div class="col-12">
                                     <div class="text-center mt-4">
-                                        <button type="submit" class="btn btn-primary">{{__('Submit your application')}}</button>
+                                        <button type="submit"
+                                                class="btn btn-primary">{{__('Submit your application')}}</button>
                                     </div>
                                 </div>
                             </div>

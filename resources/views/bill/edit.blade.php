@@ -31,7 +31,7 @@
                             max_size: 2048
                         });
                     }
-                    if($('.select2').length) {
+                    if ($('.select2').length) {
                         $('.select2').select2();
                     }
                 },
@@ -169,12 +169,12 @@
 
                             }
 
-                            var discount=$(el.parent().parent().parent().find('.discount')).val();
+                            var discount = $(el.parent().parent().parent().find('.discount')).val();
 
                             if (billItems != null) {
-                                var itemTaxPrice = parseFloat((totalItemTaxRate / 100)) * parseFloat((billItems.price * billItems.quantity)- discount);
+                                var itemTaxPrice = parseFloat((totalItemTaxRate / 100)) * parseFloat((billItems.price * billItems.quantity) - discount);
                             } else {
-                                var itemTaxPrice = parseFloat((totalItemTaxRate / 100)) * parseFloat((item.product.purchase_price * 1)- discount);
+                                var itemTaxPrice = parseFloat((totalItemTaxRate / 100)) * parseFloat((item.product.purchase_price * 1) - discount);
                             }
 
 
@@ -204,9 +204,9 @@
                             for (var j = 0; j < itemTaxPriceInput.length; j++) {
                                 totalItemTaxPrice += parseFloat(itemTaxPriceInput[j].value);
                                 if (billItems != null) {
-                                    $(el.parent().parent().parent().find('.amount')).html(parseFloat(amount)+parseFloat(itemTaxPrice)-parseFloat(discount));
+                                    $(el.parent().parent().parent().find('.amount')).html(parseFloat(amount) + parseFloat(itemTaxPrice) - parseFloat(discount));
                                 } else {
-                                    $(el.parent().parent().parent().find('.amount')).html(parseFloat(item.totalAmount)+parseFloat(itemTaxPrice));
+                                    $(el.parent().parent().parent().find('.amount')).html(parseFloat(item.totalAmount) + parseFloat(itemTaxPrice));
                                 }
 
                             }
@@ -243,9 +243,8 @@
             var quantity = $(this).val();
             var price = $(el.find('.price')).val();
             var discount = $(el.find('.discount')).val();
-            if(discount.length <= 0)
-            {
-                discount = 0 ;
+            if (discount.length <= 0) {
+                discount = 0;
             }
 
             var totalItemPrice = (quantity * price) - discount;
@@ -257,7 +256,7 @@
             var itemTaxPrice = parseFloat((totalItemTaxRate / 100) * (totalItemPrice));
             $(el.find('.itemTaxPrice')).val(itemTaxPrice.toFixed(2));
 
-            $(el.find('.amount')).html(parseFloat(itemTaxPrice)+parseFloat(amount));
+            $(el.find('.amount')).html(parseFloat(itemTaxPrice) + parseFloat(amount));
 
             var totalItemTaxPrice = 0;
             var itemTaxPriceInput = $('.itemTaxPrice');
@@ -294,13 +293,12 @@
             var price = $(this).val();
             var quantity = $(el.find('.quantity')).val();
             var discount = $(el.find('.discount')).val();
-            if(discount.length <= 0)
-            {
-                discount = 0 ;
+            if (discount.length <= 0) {
+                discount = 0;
             }
 
 
-            var totalItemPrice = (quantity * price)-discount;
+            var totalItemPrice = (quantity * price) - discount;
 
             var amount = (totalItemPrice);
 
@@ -308,7 +306,7 @@
             var itemTaxPrice = parseFloat((totalItemTaxRate / 100) * (totalItemPrice));
             $(el.find('.itemTaxPrice')).val(itemTaxPrice.toFixed(2));
 
-            $(el.find('.amount')).html(parseFloat(itemTaxPrice)+parseFloat(amount));
+            $(el.find('.amount')).html(parseFloat(itemTaxPrice) + parseFloat(amount));
 
             var totalItemTaxPrice = 0;
             var itemTaxPriceInput = $('.itemTaxPrice');
@@ -342,9 +340,8 @@
         $(document).on('keyup change', '.discount', function () {
             var el = $(this).parent().parent().parent();
             var discount = $(this).val();
-            if(discount.length <= 0)
-            {
-                discount = 0 ;
+            if (discount.length <= 0) {
+                discount = 0;
             }
             var price = $(el.find('.price')).val();
 
@@ -357,7 +354,7 @@
             var itemTaxPrice = parseFloat((totalItemTaxRate / 100) * (totalItemPrice));
             $(el.find('.itemTaxPrice')).val(itemTaxPrice.toFixed(2));
 
-            $(el.find('.amount')).html(parseFloat(itemTaxPrice)+parseFloat(amount));
+            $(el.find('.amount')).html(parseFloat(itemTaxPrice) + parseFloat(amount));
 
 
             var totalItemTaxPrice = 0;
@@ -499,19 +496,19 @@
                                     </div>
                                 </div>
 
-{{--                                <div class="col-md-6">--}}
-{{--                                    <div class="form-check custom-checkbox mt-4">--}}
-{{--                                        <input class="form-check-input" type="checkbox" name="discount_apply" id="discount_apply" {{$bill->discount_apply==1?'checked':''}}>--}}
-{{--                                        <label class="form-check-label" for="discount_apply">{{__('Discount Apply')}}</label>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
+                                {{--                                <div class="col-md-6">--}}
+                                {{--                                    <div class="form-check custom-checkbox mt-4">--}}
+                                {{--                                        <input class="form-check-input" type="checkbox" name="discount_apply" id="discount_apply" {{$bill->discount_apply==1?'checked':''}}>--}}
+                                {{--                                        <label class="form-check-label" for="discount_apply">{{__('Discount Apply')}}</label>--}}
+                                {{--                                    </div>--}}
+                                {{--                                </div>--}}
 
-{{--                                <div class="col-md-6">--}}
-{{--                                    <div class="form-group">--}}
-{{--                                        {{Form::label('sku',__('SKU')) }}--}}
-{{--                                        {!!Form::text('sku', null,array('class' => 'form-control','required'=>'required')) !!}--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
+                                {{--                                <div class="col-md-6">--}}
+                                {{--                                    <div class="form-group">--}}
+                                {{--                                        {{Form::label('sku',__('SKU')) }}--}}
+                                {{--                                        {!!Form::text('sku', null,array('class' => 'form-control','required'=>'required')) !!}--}}
+                                {{--                                    </div>--}}
+                                {{--                                </div>--}}
                                 @if(!$customFields->isEmpty())
                                     <div class="col-md-6">
                                         <div class="tab-pane fade show" id="tab-2" role="tabpanel">
@@ -532,7 +529,8 @@
                     <div class="row justify-content-between align-items-center">
                         <div class="col-md-12 d-flex align-items-center justify-content-between justify-content-md-end">
                             <div class="all-button-box me-2">
-                                <a href="#" data-repeater-create="" class="btn btn-primary" data-bs-toggle="modal" data-target="#add-bank">
+                                <a href="#" data-repeater-create="" class="btn btn-primary" data-bs-toggle="modal"
+                                   data-target="#add-bank">
                                     <i class="ti ti-plus"></i> {{__('Add item')}}
                                 </a>
                             </div>
@@ -549,7 +547,9 @@
                                 <th>{{__('Price')}} </th>
                                 <th>{{__('Discount')}}</th>
                                 <th>{{__('Tax')}} (%)</th>
-                                <th class="text-end">{{__('Amount')}} <br><small class="text-danger font-weight-bold">{{__('after tax & discount')}}</small></th>
+                                <th class="text-end">{{__('Amount')}} <br><small
+                                            class="text-danger font-weight-bold">{{__('after tax & discount')}}</small>
+                                </th>
                                 <th></th>
                             </tr>
                             </thead>
@@ -596,7 +596,9 @@
 
                                 <td>
                                     @can('delete proposal product')
-                                        <a href="#" class="ti ti-trash text-white repeater-action-btn bg-danger ms-2 bs-pass-para" data-repeater-delete></a>
+                                        <a href="#"
+                                           class="ti ti-trash text-white repeater-action-btn bg-danger ms-2 bs-pass-para"
+                                           data-repeater-delete></a>
                                     @endcan
                                 </td>
                             </tr>
@@ -642,7 +644,8 @@
                                 <td>&nbsp;</td>
                                 <td>&nbsp;</td>
                                 <td>&nbsp;</td>
-                                <td class="blue-text"><strong>{{__('Total Amount')}} ({{\Auth::user()->currencySymbol()}})</strong></td>
+                                <td class="blue-text"><strong>{{__('Total Amount')}}
+                                        ({{\Auth::user()->currencySymbol()}})</strong></td>
                                 <td class="blue-text text-end totalAmount">0.00</td>
                                 <td></td>
                             </tr>
@@ -654,7 +657,8 @@
         </div>
 
         <div class="modal-footer">
-            <input type="button" value="{{__('Cancel')}}" onclick="location.href = '{{route("bill.index")}}';" class="btn btn-light">
+            <input type="button" value="{{__('Cancel')}}" onclick="location.href = '{{route("bill.index")}}';"
+                   class="btn btn-light">
             <input type="submit" value="{{__('Update')}}" class="btn btn-primary">
         </div>
         {{ Form::close() }}

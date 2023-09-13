@@ -34,10 +34,11 @@
 
                                 @forelse ($posPayments as $posPayment)
                                     <tr>
-{{--                                        <td>{{ AUth::user()->posNumberFormat($posPayment->pos_id) }}</td>--}}
+                                        {{--                                        <td>{{ AUth::user()->posNumberFormat($posPayment->pos_id) }}</td>--}}
 
                                         <td class="Id">
-                                            <a href="{{ route('pos.show',\Crypt::encrypt($posPayment->id)) }}" class="btn btn-outline-primary">
+                                            <a href="{{ route('pos.show',\Crypt::encrypt($posPayment->id)) }}"
+                                               class="btn btn-outline-primary">
                                                 {{ AUth::user()->posNumberFormat($posPayment->id) }}
                                             </a>
                                         </td>
@@ -54,7 +55,8 @@
                                     </tr>
                                 @empty
                                     <tr>
-                                        <td colspan="7" class="text-center text-dark"><p>{{__('No Data Found')}}</p></td>
+                                        <td colspan="7" class="text-center text-dark"><p>{{__('No Data Found')}}</p>
+                                        </td>
                                     </tr>
                                 @endforelse
                                 </tbody>

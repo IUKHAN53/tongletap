@@ -1,7 +1,7 @@
 @php
     $logo=\App\Models\Utility::get_file('uploads/logo/');
 @endphp
-<!DOCTYPE html>
+        <!DOCTYPE html>
 
 <html lang="en">
 
@@ -13,11 +13,11 @@
         - {{ __('Career') }}</title>
 
     <link rel="icon"
-{{--          href="{{ asset(Storage::url('uploads/logo/')) . '/' . (isset($companySettings['company_favicon']) && !empty($companySettings['company_favicon']) ? $companySettings['company_favicon']->value : 'favicon.png') }}"--}}
-{{--          type="image" sizes="16x16">--}}
-            href="{{$logo . '/' . (isset($companySettings['company_favicon']) && !empty($companySettings['company_favicon']) ?
+          {{--          href="{{ asset(Storage::url('uploads/logo/')) . '/' . (isset($companySettings['company_favicon']) && !empty($companySettings['company_favicon']) ? $companySettings['company_favicon']->value : 'favicon.png') }}"--}}
+          {{--          type="image" sizes="16x16">--}}
+          href="{{$logo . '/' . (isset($companySettings['company_favicon']) && !empty($companySettings['company_favicon']) ?
             $companySettings['company_favicon']->value : 'favicon.png') }}"
-            type="image" sizes="16x16">
+          type="image" sizes="16x16">
 
     <link rel="stylesheet" href="{{ asset('assets/fonts/tabler-icons.min.css') }}">
 
@@ -31,9 +31,9 @@
     <nav class="navbar navbar-main navbar-expand-lg navbar-transparent navbar-light bg-white" id="navbar-main">
         <div class="container px-lg-0">
             <a class="navbar-brand mr-lg-5" href="#">
-{{--                <img class="hweb" alt="Image placeholder"--}}
-{{--                     src="{{ asset(Storage::url('uploads/logo/')) . '/' . (isset($companySettings['company_logo']) && !empty($companySettings['company_logo']) ? $companySettings['company_logo']->value : 'logo-dark.png') }}"--}}
-{{--                     id="navbar-logo" style="height: 50px;">--}}
+                {{--                <img class="hweb" alt="Image placeholder"--}}
+                {{--                     src="{{ asset(Storage::url('uploads/logo/')) . '/' . (isset($companySettings['company_logo']) && !empty($companySettings['company_logo']) ? $companySettings['company_logo']->value : 'logo-dark.png') }}"--}}
+                {{--                     id="navbar-logo" style="height: 50px;">--}}
                 <img class="hweb" alt="Image placeholder"
                      src="{{ $logo . '/' . (isset($companySettings['company_logo']) && !empty($companySettings['company_logo']) ? $companySettings['company_logo']->value : 'logo-dark.png') }}"
                      id="navbar-logo" style="height: 50px;">
@@ -107,7 +107,7 @@
                                         <div class="media align-items-center">
                                             <div>
                                                 <span class="avatar bg-primary text-white mr-4"
-                                                              title="{{ __('Job Position') }}">{{ $job->position }}</span>
+                                                      title="{{ __('Job Position') }}">{{ $job->position }}</span>
                                             </div>
                                             <div class="media-body media-body-custom">
                                                 <a href="{{ route('job.requirement', [$job->code, !empty($job) ? (!empty($job->createdBy->lang) ? $job->createdBy->lang : 'en') : 'en']) }}"
@@ -123,7 +123,7 @@
                                     </td>
 
                                     <td><i class="ti ti-map-pin mr-3"></i><span
-                                            class="h6">{{!empty($job->branches)?$job->branches->name:'-'}}</span>
+                                                class="h6">{{!empty($job->branches)?$job->branches->name:'-'}}</span>
                                     </td>
                                 </tr>
                                 <tr class="table-divider"></tr>

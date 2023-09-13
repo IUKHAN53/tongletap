@@ -2,13 +2,14 @@
     $settings_data = \App\Models\Utility::settingsById($bill->created_by);
 
 @endphp
-    <!DOCTYPE html>
+        <!DOCTYPE html>
 <html lang="en" dir="{{$settings_data['SITE_RTL'] == 'on'?'rtl':''}}">
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"
+          rel="stylesheet">
 
 
     <style type="text/css">
@@ -110,7 +111,6 @@
         }
 
 
-
         tfoot tr:first-of-type {
             border-bottom: 1px solid var(--theme-color);
         }
@@ -167,7 +167,8 @@
         p:not(:last-of-type) {
             margin-bottom: 15px;
         }
-        .bill-summary p{
+
+        .bill-summary p {
             margin-bottom: 0;
         }
     </style>
@@ -177,7 +178,7 @@
 </head>
 
 <body>
-<div class="bill-preview-main"  id="boxes">
+<div class="bill-preview-main" id="boxes">
     <div class="bill-header" style="">
         <table class="vertical-align-top">
             <tbody>
@@ -199,21 +200,41 @@
             <tbody>
             <tr>
                 @if (!empty($settings['company_name']) && !empty($settings['company_email']) && !empty($settings['company_address']))
-                <td>
-                    <p>
-                        @if($settings['company_name']){{$settings['company_name']}}@endif<br>
-                        @if($settings['company_email']){{$settings['company_email']}}@endif<br>
-                        @if($settings['company_telephone']){{$settings['company_telephone']}}@endif<br>
-                        @if($settings['company_address']){{$settings['company_address']}}@endif
-                        @if($settings['company_city']) <br> {{$settings['company_city']}}, @endif
-                        @if($settings['company_state']){{$settings['company_state']}}@endif
-                        @if($settings['company_country']) <br>{{$settings['company_country']}}@endif
-                        @if($settings['company_zipcode']) - {{$settings['company_zipcode']}}@endif<br>
-                        @if(!empty($settings['registration_number'])){{__('Registration Number')}} : {{$settings['registration_number']}} @endif
-                        @if(!empty($settings['tax_type']) && !empty($settings['vat_number'])){{$settings['tax_type'].' '. __('Number')}} : {{$settings['vat_number']}} <br>@endif
-                    </p>
+                    <td>
+                        <p>
+                            @if($settings['company_name'])
+                                {{$settings['company_name']}}
+                            @endif<br>
+                            @if($settings['company_email'])
+                                {{$settings['company_email']}}
+                            @endif<br>
+                            @if($settings['company_telephone'])
+                                {{$settings['company_telephone']}}
+                            @endif<br>
+                            @if($settings['company_address'])
+                                {{$settings['company_address']}}
+                            @endif
+                            @if($settings['company_city'])
+                                <br> {{$settings['company_city']}},
+                            @endif
+                            @if($settings['company_state'])
+                                {{$settings['company_state']}}
+                            @endif
+                            @if($settings['company_country'])
+                                <br>{{$settings['company_country']}}
+                            @endif
+                            @if($settings['company_zipcode'])
+                                - {{$settings['company_zipcode']}}
+                            @endif<br>
+                            @if(!empty($settings['registration_number']))
+                                {{__('Registration Number')}} : {{$settings['registration_number']}}
+                            @endif
+                            @if(!empty($settings['tax_type']) && !empty($settings['vat_number']))
+                                {{$settings['tax_type'].' '. __('Number')}} : {{$settings['vat_number']}} <br>
+                            @endif
+                        </p>
 
-                </td>
+                    </td>
                 @endif
                 <td>
                     <table class="no-space">

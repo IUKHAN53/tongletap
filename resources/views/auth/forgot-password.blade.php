@@ -1,4 +1,4 @@
-    @extends('layouts.auth')
+@extends('layouts.auth')
 
 @section('page-title')
     {{ __('Reset Password') }}
@@ -27,7 +27,8 @@
         <div class="">
             <div class="form-group mb-3">
                 <label for="email" class="form-label">{{ __('E-Mail') }}</label>
-                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email"
+                       value="{{ old('email') }}" required autocomplete="email" autofocus>
                 @error('email')
                 <span class="invalid-feedback" role="alert">
                     <small>{{ $message }}</small>
@@ -40,16 +41,18 @@
                     {!! NoCaptcha::display() !!}
                     @error('g-recaptcha-response')
                     <span class="small text-danger" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
+                        <strong>{{ $message }}</strong>
+                    </span>
                     @enderror
                 </div>
             @endif
 
             <div class="d-grid">
-                <button type="submit" class="btn btn-primary btn-block mt-2">{{ __('Send Password Reset Link') }}</button>
+                <button type="submit"
+                        class="btn btn-primary btn-block mt-2">{{ __('Send Password Reset Link') }}</button>
             </div>
-            <p class="my-4 text-center">{{__("Back to")}} <a href="{{ route('login') }}" class="text-primary">{{__('Sign In')}}</a></p>
+            <p class="my-4 text-center">{{__("Back to")}} <a href="{{ route('login') }}"
+                                                             class="text-primary">{{__('Sign In')}}</a></p>
 
         </div>
     </form>

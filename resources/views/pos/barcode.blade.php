@@ -13,10 +13,12 @@
 @section('action-btn')
     <div class="float-end">
         @can('create barcode')
-            <a href="{{ route('pos.print') }}" class="btn btn-sm btn-primary" data-bs-toggle="tooltip" title="{{__('Print Barcode')}}">
+            <a href="{{ route('pos.print') }}" class="btn btn-sm btn-primary" data-bs-toggle="tooltip"
+               title="{{__('Print Barcode')}}">
                 <i class="ti ti-scan text-white"></i>
             </a>
-            <a data-url="{{ route('pos.setting') }}" data-ajax-popup="true" data-bs-toggle="tooltip" data-title="{{__('Barcode Setting')}}" title="{{__('Barcode Setting')}}" class="btn btn-sm btn-primary">
+            <a data-url="{{ route('pos.setting') }}" data-ajax-popup="true" data-bs-toggle="tooltip"
+               data-title="{{__('Barcode Setting')}}" title="{{__('Barcode Setting')}}" class="btn btn-sm btn-primary">
                 <i class="ti ti-settings text-white"></i>
             </a>
         @endcan
@@ -30,29 +32,31 @@
             <div class="card">
                 <div class="card-body table-border-style">
                     <div class="table-responsive ">
-                        <table class="table datatable-barcode" >
+                        <table class="table datatable-barcode">
                             <thead>
-                                <tr>
-                                    <th>{{__('Product')}}</th>
-                                    <th>{{ __('SKU') }}</th>
-                                    <th>{{ __('Barcode') }}</th>
-                                </tr>
+                            <tr>
+                                <th>{{__('Product')}}</th>
+                                <th>{{ __('SKU') }}</th>
+                                <th>{{ __('Barcode') }}</th>
+                            </tr>
                             </thead>
 
                             <tbody>
-                                @forelse ($productServices as $productService)
-                                    <tr>
-                                        <td>{{$productService->name}}</td>
-                                        <td>{{$productService->sku}}</td>
-                                        <td>
-                                            <div id="{{ $productService->id }}" class="product_barcode product_barcode_hight_de" data-skucode="{{ $productService->sku }}"></div>
-                                        </td>
-                                    </tr>
-                                    @empty
-                                    <tr>
-                                        <td colspan="5" class="text-center text-dark"><p>{{__('No Data Found')}}</p></td>
-                                    </tr>
-                                @endforelse
+                            @forelse ($productServices as $productService)
+                                <tr>
+                                    <td>{{$productService->name}}</td>
+                                    <td>{{$productService->sku}}</td>
+                                    <td>
+                                        <div id="{{ $productService->id }}"
+                                             class="product_barcode product_barcode_hight_de"
+                                             data-skucode="{{ $productService->sku }}"></div>
+                                    </td>
+                                </tr>
+                            @empty
+                                <tr>
+                                    <td colspan="5" class="text-center text-dark"><p>{{__('No Data Found')}}</p></td>
+                                </tr>
+                            @endforelse
                             </tbody>
                         </table>
                     </div>
@@ -63,16 +67,17 @@
 @endsection
 
 @push('script-page')
-{{--    <script src="{{ asset('public/js/jquery-barcode.min.js') }}"></script>--}}
+    {{--    <script src="{{ asset('public/js/jquery-barcode.min.js') }}"></script>--}}
     <script src="{{ asset('public/js/jquery-barcode.js') }}"></script>
     <script>
-        $(document).ready(function() {
-            $(".product_barcode").each(function() {
+        $(document).ready(function () {
+            $(".product_barcode").each(function () {
                 var id = $(this).attr("id");
                 var sku = $(this).data('skucode');
                 generateBarcode(sku, id);
             });
         });
+
         function generateBarcode(val, id) {
 
             var value = val;
@@ -94,11 +99,13 @@
         }
 
         setTimeout(myGreeting, 1000);
+
         function myGreeting() {
             if ($(".datatable-barcode").length > 0) {
-                const dataTable =  new simpleDatatables.DataTable(".datatable-barcode");
+                const dataTable = new simpleDatatables.DataTable(".datatable-barcode");
             }
         }
+
         // });
     </script>
 

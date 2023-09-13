@@ -25,12 +25,14 @@
 
 @section('action-btn')
     <div class="float-end">
-        <a href="{{ route('bill.export') }}" class="btn btn-sm btn-primary" data-bs-toggle="tooltip" title="{{__('Export')}}">
+        <a href="{{ route('bill.export') }}" class="btn btn-sm btn-primary" data-bs-toggle="tooltip"
+           title="{{__('Export')}}">
             <i class="ti ti-file-export"></i>
         </a>
 
         @can('create bill')
-            <a href="{{ route('bill.create',0) }}" class="btn btn-sm btn-primary" data-bs-toggle="tooltip" title="{{__('Create')}}">
+            <a href="{{ route('bill.create',0) }}" class="btn btn-sm btn-primary" data-bs-toggle="tooltip"
+               title="{{__('Create')}}">
                 <i class="ti ti-plus"></i>
             </a>
         @endcan
@@ -67,11 +69,17 @@
                             <div class="col-auto mt-4">
                                 <div class="row">
                                     <div class="col-auto">
-                                        <a href="#" class="btn btn-sm btn-primary" onclick="document.getElementById('frm_submit').submit(); return false;" data-bs-toggle="tooltip" title="{{__('Apply')}}" data-original-title="{{__('apply')}}">
+                                        <a href="#" class="btn btn-sm btn-primary"
+                                           onclick="document.getElementById('frm_submit').submit(); return false;"
+                                           data-bs-toggle="tooltip" title="{{__('Apply')}}"
+                                           data-original-title="{{__('apply')}}">
                                             <span class="btn-inner--icon"><i class="ti ti-search"></i></span>
                                         </a>
-                                        <a href="{{route('bill.index')}}" class="btn btn-sm btn-danger " data-bs-toggle="tooltip"  title="{{ __('Reset') }}" data-original-title="{{__('Reset')}}">
-                                            <span class="btn-inner--icon"><i class="ti ti-trash-off text-white-off "></i></span>
+                                        <a href="{{route('bill.index')}}" class="btn btn-sm btn-danger "
+                                           data-bs-toggle="tooltip" title="{{ __('Reset') }}"
+                                           data-original-title="{{__('Reset')}}">
+                                            <span class="btn-inner--icon"><i
+                                                        class="ti ti-trash-off text-white-off "></i></span>
                                         </a>
                                     </div>
                                 </div>
@@ -103,10 +111,11 @@
                             </tr>
                             </thead>
                             <tbody>
-                                @foreach ($bills as $bill)
+                            @foreach ($bills as $bill)
                                 <tr>
                                     <td class="Id">
-                                        <a href="{{ route('bill.show',\Crypt::encrypt($bill->id)) }}" class="btn btn-outline-primary">{{ AUth::user()->billNumberFormat($bill->bill_id) }}</a>
+                                        <a href="{{ route('bill.show',\Crypt::encrypt($bill->id)) }}"
+                                           class="btn btn-outline-primary">{{ AUth::user()->billNumberFormat($bill->bill_id) }}</a>
                                     </td>
                                     <td>{{ !empty($bill->category)?$bill->category->name:''}}</td>
                                     <td>{{ Auth::user()->dateFormat($bill->bill_date) }}</td>
@@ -131,22 +140,35 @@
                                                     <div class="action-btn bg-success ms-2">
                                                         {!! Form::open(['method' => 'get', 'route' => ['bill.duplicate', $bill->id],'id'=>'duplicate-form-'.$bill->id]) !!}
 
-                                                        <a href="#" class="mx-3 btn btn-sm align-items-center bs-pass-para " data-bs-toggle="tooltip" data-original-title="{{__('Duplicate')}}" data-bs-toggle="tooltip" title="{{__('Duplicate Bill')}}" data-original-title="{{__('Delete')}}" data-confirm="You want to confirm this action. Press Yes to continue or Cancel to go back" data-confirm-yes="document.getElementById('duplicate-form-{{$bill->id}}').submit();">
-                                                        <i class="ti ti-copy text-white"></i>
+                                                        <a href="#"
+                                                           class="mx-3 btn btn-sm align-items-center bs-pass-para "
+                                                           data-bs-toggle="tooltip"
+                                                           data-original-title="{{__('Duplicate')}}"
+                                                           data-bs-toggle="tooltip" title="{{__('Duplicate Bill')}}"
+                                                           data-original-title="{{__('Delete')}}"
+                                                           data-confirm="You want to confirm this action. Press Yes to continue or Cancel to go back"
+                                                           data-confirm-yes="document.getElementById('duplicate-form-{{$bill->id}}').submit();">
+                                                            <i class="ti ti-copy text-white"></i>
                                                             {!! Form::close() !!}
                                                         </a>
                                                     </div>
                                                 @endcan
                                                 @can('show bill')
                                                     <div class="action-btn bg-info ms-2">
-                                                            <a href="{{ route('bill.show',\Crypt::encrypt($bill->id)) }}" class="mx-3 btn btn-sm align-items-center" data-bs-toggle="tooltip" title="{{__('Show')}}" data-original-title="{{__('Detail')}}">
-                                                                <i class="ti ti-eye text-white"></i>
-                                                            </a>
-                                                        </div>
+                                                        <a href="{{ route('bill.show',\Crypt::encrypt($bill->id)) }}"
+                                                           class="mx-3 btn btn-sm align-items-center"
+                                                           data-bs-toggle="tooltip" title="{{__('Show')}}"
+                                                           data-original-title="{{__('Detail')}}">
+                                                            <i class="ti ti-eye text-white"></i>
+                                                        </a>
+                                                    </div>
                                                 @endcan
                                                 @can('edit bill')
                                                     <div class="action-btn bg-primary ms-2">
-                                                        <a href="{{ route('bill.edit',\Crypt::encrypt($bill->id)) }}" class="mx-3 btn btn-sm align-items-center" data-bs-toggle="tooltip" title="Edit" data-original-title="{{__('Edit')}}">
+                                                        <a href="{{ route('bill.edit',\Crypt::encrypt($bill->id)) }}"
+                                                           class="mx-3 btn btn-sm align-items-center"
+                                                           data-bs-toggle="tooltip" title="Edit"
+                                                           data-original-title="{{__('Edit')}}">
                                                             <i class="ti ti-pencil text-white"></i>
                                                         </a>
                                                     </div>
@@ -154,7 +176,12 @@
                                                 @can('delete bill')
                                                     <div class="action-btn bg-danger ms-2">
                                                         {!! Form::open(['method' => 'DELETE', 'route' => ['bill.destroy', $bill->id],'class'=>'delete-form-btn','id'=>'delete-form-'.$bill->id]) !!}
-                                                        <a href="#" class="mx-3 btn btn-sm align-items-center bs-pass-para" data-bs-toggle="tooltip" title="{{__('Delete')}}" data-original-title="{{__('Delete')}}" data-confirm="{{__('Are You Sure?').'|'.__('This action can not be undone. Do you want to continue?')}}" data-confirm-yes="document.getElementById('delete-form-{{$bill->id}}').submit();">
+                                                        <a href="#"
+                                                           class="mx-3 btn btn-sm align-items-center bs-pass-para"
+                                                           data-bs-toggle="tooltip" title="{{__('Delete')}}"
+                                                           data-original-title="{{__('Delete')}}"
+                                                           data-confirm="{{__('Are You Sure?').'|'.__('This action can not be undone. Do you want to continue?')}}"
+                                                           data-confirm-yes="document.getElementById('delete-form-{{$bill->id}}').submit();">
                                                             <i class="ti ti-trash text-white"></i>
                                                         </a>
                                                         {!! Form::close() !!}

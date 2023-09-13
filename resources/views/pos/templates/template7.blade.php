@@ -2,15 +2,15 @@
     $settings_data = \App\Models\Utility::settingsById($pos->created_by);
 
 @endphp
-    <!DOCTYPE html>
+        <!DOCTYPE html>
 <html lang="en" dir="{{$settings_data['SITE_RTL'] == 'on'?'rtl':''}}">
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link
-        href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"
-        rel="stylesheet">
+            href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"
+            rel="stylesheet">
 
 
     <style type="text/css">
@@ -149,21 +149,26 @@
         .itm-description td {
             padding-top: 0;
         }
+
         html[dir="rtl"] table tr td,
-        html[dir="rtl"] table tr th{
+        html[dir="rtl"] table tr th {
             text-align: right;
         }
-        html[dir="rtl"]  .text-right{
+
+        html[dir="rtl"] .text-right {
             text-align: left;
         }
-        html[dir="rtl"] .view-qrcode{
+
+        html[dir="rtl"] .view-qrcode {
             margin-left: 0;
             margin-right: auto;
         }
-        p:not(:last-of-type){
+
+        p:not(:last-of-type) {
             margin-bottom: 15px;
         }
-        .pos-summary p{
+
+        .pos-summary p {
             margin-bottom: 0;
         }
     </style>
@@ -195,20 +200,40 @@
             <tr>
                 <td>
                     <p>
-                        @if($settings['company_name']){{$settings['company_name']}}@endif<br>
-                        @if($settings['company_email']){{$settings['company_email']}}@endif<br>
-                        @if($settings['company_telephone']){{$settings['company_telephone']}}@endif<br>
-                        @if($settings['company_address']){{$settings['company_address']}}@endif
-                        @if($settings['company_city']) <br> {{$settings['company_city']}}, @endif
-                        @if($settings['company_state']){{$settings['company_state']}}@endif
-                        @if($settings['company_country']) <br>{{$settings['company_country']}}@endif
-                        @if($settings['company_zipcode']) - {{$settings['company_zipcode']}}@endif<br>
-                        @if(!empty($settings['registration_number'])){{__('Registration Number')}} : {{$settings['registration_number']}} @endif
-                        @if(!empty($settings['tax_type']) && !empty($settings['vat_number'])){{$settings['tax_type'].' '. __('Number')}} : {{$settings['vat_number']}} <br>@endif
+                        @if($settings['company_name'])
+                            {{$settings['company_name']}}
+                        @endif<br>
+                        @if($settings['company_email'])
+                            {{$settings['company_email']}}
+                        @endif<br>
+                        @if($settings['company_telephone'])
+                            {{$settings['company_telephone']}}
+                        @endif<br>
+                        @if($settings['company_address'])
+                            {{$settings['company_address']}}
+                        @endif
+                        @if($settings['company_city'])
+                            <br> {{$settings['company_city']}},
+                        @endif
+                        @if($settings['company_state'])
+                            {{$settings['company_state']}}
+                        @endif
+                        @if($settings['company_country'])
+                            <br>{{$settings['company_country']}}
+                        @endif
+                        @if($settings['company_zipcode'])
+                            - {{$settings['company_zipcode']}}
+                        @endif<br>
+                        @if(!empty($settings['registration_number']))
+                            {{__('Registration Number')}} : {{$settings['registration_number']}}
+                        @endif
+                        @if(!empty($settings['tax_type']) && !empty($settings['vat_number']))
+                            {{$settings['tax_type'].' '. __('Number')}} : {{$settings['vat_number']}} <br>
+                        @endif
                     </p>
                 </td>
                 <td>
-                    <table class="no-space"  style="width: 45%;margin-left: auto;">
+                    <table class="no-space" style="width: 45%;margin-left: auto;">
                         <tbody>
                         <tr>
                             <td>{{__('Number')}}:</td>
@@ -285,38 +310,38 @@
             </tr>
             </thead>
             <tbody>
-                @if(isset($pos->itemData) && count($pos->itemData) > 0)
-                    @foreach($pos->itemData as $key => $item)
-                        <tr>
-                            <td>{{$item->name}}</td>
-                            <td>{{$item->quantity}}</td>
-                            <td>{{Utility::priceFormat($settings,$item->price)}}</td>
-                            <td>
-                                @php
-                                    $totalTaxRate = 0;
-                                    $totalTaxPrice=0;
-                                @endphp
-                                @if(!empty($item->itemTax))
-                                    @foreach($item->itemTax as $taxes)
-                                        @php
-                                            $res = str_ireplace( array( '%' ), ' ', $taxes['rate']);
-                                            $taxPrice=App\Models\Utility::taxRate($res,$item->price,$item->quantity);
-                                            $totalTaxPrice+=$taxPrice;
-                                        @endphp
-                                        <span>{{$taxes['name']}}</span> <span>({{$taxes['rate']}})</span><br>
-                                    @endforeach
-                                @else
-                                    -
-                                @endif
-                            </td>
+            @if(isset($pos->itemData) && count($pos->itemData) > 0)
+                @foreach($pos->itemData as $key => $item)
+                    <tr>
+                        <td>{{$item->name}}</td>
+                        <td>{{$item->quantity}}</td>
+                        <td>{{Utility::priceFormat($settings,$item->price)}}</td>
+                        <td>
+                            @php
+                                $totalTaxRate = 0;
+                                $totalTaxPrice=0;
+                            @endphp
+                            @if(!empty($item->itemTax))
+                                @foreach($item->itemTax as $taxes)
+                                    @php
+                                        $res = str_ireplace( array( '%' ), ' ', $taxes['rate']);
+                                        $taxPrice=App\Models\Utility::taxRate($res,$item->price,$item->quantity);
+                                        $totalTaxPrice+=$taxPrice;
+                                    @endphp
+                                    <span>{{$taxes['name']}}</span> <span>({{$taxes['rate']}})</span><br>
+                                @endforeach
+                            @else
+                                -
+                            @endif
+                        </td>
 
-                            <td>{{Utility::priceFormat($settings,$totalTaxPrice)}}</td>
-                            <td>{{Utility::priceFormat($settings,($item->price*$item->quantity) +$totalTaxPrice)}}</td>
+                        <td>{{Utility::priceFormat($settings,$totalTaxPrice)}}</td>
+                        <td>{{Utility::priceFormat($settings,($item->price*$item->quantity) +$totalTaxPrice)}}</td>
 
-                        </tr>
-                    @endforeach
-                @else
-                @endif
+                    </tr>
+                @endforeach
+            @else
+            @endif
 
             </tbody>
             <tfoot>

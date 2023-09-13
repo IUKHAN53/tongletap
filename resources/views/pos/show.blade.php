@@ -8,11 +8,12 @@
         <div class="card-body">
             <div class="row mt-2">
                 <div class="col-6">
-                    <img src="{{$logo.'/'.(isset($company_logo) && !empty($company_logo)?$company_logo:'logo-dark.png')}}" width="120px;">
+                    <img src="{{$logo.'/'.(isset($company_logo) && !empty($company_logo)?$company_logo:'logo-dark.png')}}"
+                         width="120px;">
                 </div>
-{{--                <div class="col-6 text-end">--}}
-{{--                    <a href="#" class="btn btn-sm btn-primary" onclick="saveAsPDF()"><span class="ti ti-download"></span></a>--}}
-{{--                </div>--}}
+                {{--                <div class="col-6 text-end">--}}
+                {{--                    <a href="#" class="btn btn-sm btn-primary" onclick="saveAsPDF()"><span class="ti ti-download"></span></a>--}}
+                {{--                </div>--}}
             </div>
             <div id="printableArea">
                 <div class="row mt-3">
@@ -58,7 +59,7 @@
                         </thead>
                         <tbody>
                         @foreach ($sales['data'] as $key => $value)
-{{--                            @dd($value)--}}
+                            {{--                            @dd($value)--}}
                             <tr>
                                 <td class="cart-summary-table text-left">
                                     {{ $value['name'] }}

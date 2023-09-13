@@ -1,8 +1,8 @@
 @extends('layouts.auth')
 @php
-  //  $logo=asset(Storage::url('uploads/logo/'));
-    $logo=\App\Models\Utility::get_file('uploads/logo');
- $company_logo=Utility::getValByName('company_logo');
+    //  $logo=asset(Storage::url('uploads/logo/'));
+      $logo=\App\Models\Utility::get_file('uploads/logo');
+   $company_logo=Utility::getValByName('company_logo');
 @endphp
 @section('page-title')
     {{__('Forgot Password')}}
@@ -22,8 +22,8 @@
             {{Form::text('email',null,array('class'=>'form-control'))}}
             @error('email')
             <span class="invalid-email text-danger" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
+                <strong>{{ $message }}</strong>
+            </span>
             @enderror
         </div>
         <div class="form-group mb-3">
@@ -31,8 +31,8 @@
             {{Form::password('password',array('class'=>'form-control'))}}
             @error('password')
             <span class="invalid-password text-danger" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
+                <strong>{{ $message }}</strong>
+            </span>
             @enderror
         </div>
         <div class="form-group mb-3">
@@ -40,8 +40,8 @@
             {{Form::password('password_confirmation',array('class'=>'form-control'))}}
             @error('password_confirmation')
             <span class="invalid-password_confirmation text-danger" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
+                <strong>{{ $message }}</strong>
+            </span>
             @enderror
         </div>
         <div class="d-grid">

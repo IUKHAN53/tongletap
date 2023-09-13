@@ -7,7 +7,8 @@
             {{ Form::text('title',null, array('class' => 'form-control ','required'=>'required')) }}
         </div>
         <div class="form-group col-md-6">
-            {{ Form::label('loan_option', __('Loan Options'),['class'=>'form-label']) }}<span class="text-danger">*</span>
+            {{ Form::label('loan_option', __('Loan Options'),['class'=>'form-label']) }}<span
+                    class="text-danger">*</span>
             {{ Form::select('loan_option',$loan_options,null, array('class' => 'form-control select','required'=>'required')) }}
         </div>
         <div class="form-group col-md-6">

@@ -2,7 +2,7 @@
     $settings_data = \App\Models\Utility::settingsById($purchase->created_by);
 
 @endphp
-    <!DOCTYPE html>
+        <!DOCTYPE html>
 <html lang="en" dir="{{$settings_data['SITE_RTL'] == 'on'?'rtl':''}}">
 
 <head>
@@ -10,8 +10,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link
-        href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"
-        rel="stylesheet">
+            href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"
+            rel="stylesheet">
 
 
     <style type="text/css">
@@ -150,21 +150,26 @@
         .itm-description td {
             padding-top: 0;
         }
+
         html[dir="rtl"] table tr td,
-        html[dir="rtl"] table tr th{
+        html[dir="rtl"] table tr th {
             text-align: right;
         }
-        html[dir="rtl"]  .text-right{
+
+        html[dir="rtl"] .text-right {
             text-align: left;
         }
-        html[dir="rtl"] .view-qrcode{
+
+        html[dir="rtl"] .view-qrcode {
             margin-left: 0;
             margin-right: auto;
         }
-        p:not(:last-of-type){
+
+        p:not(:last-of-type) {
             margin-bottom: 15px;
         }
-        .pos-footer h6{
+
+        .pos-footer h6 {
             font-size: 45px;
             line-height: 1.2em;
             font-weight: 400;
@@ -172,7 +177,8 @@
             font-style: italic;
             color: var(--theme-color);
         }
-        .pos-summary p{
+
+        .pos-summary p {
             margin-bottom: 0;
         }
     </style>
@@ -191,16 +197,36 @@
                 <td>
                     <h3 style="text-transform: uppercase; font-size: 30px; font-weight: bold; margin-bottom: 10px; color: {{ $color }};">{{ __('POS') }}</h3>
                     <p>
-                        @if($settings['company_name']){{$settings['company_name']}}@endif<br>
-                        @if($settings['company_email']){{$settings['company_email']}}@endif<br>
-                        @if($settings['company_telephone']){{$settings['company_telephone']}}@endif<br>
-                        @if($settings['company_address']){{$settings['company_address']}}@endif
-                        @if($settings['company_city']) <br> {{$settings['company_city']}}, @endif
-                        @if($settings['company_state']){{$settings['company_state']}}@endif
-                        @if($settings['company_country']) <br>{{$settings['company_country']}}@endif
-                        @if($settings['company_zipcode']) - {{$settings['company_zipcode']}}@endif<br>
-                        @if(!empty($settings['registration_number'])){{__('Registration Number')}} : {{$settings['registration_number']}} @endif
-                        @if(!empty($settings['tax_type']) && !empty($settings['vat_number'])){{$settings['tax_type'].' '. __('Number')}} : {{$settings['vat_number']}} <br>@endif
+                        @if($settings['company_name'])
+                            {{$settings['company_name']}}
+                        @endif<br>
+                        @if($settings['company_email'])
+                            {{$settings['company_email']}}
+                        @endif<br>
+                        @if($settings['company_telephone'])
+                            {{$settings['company_telephone']}}
+                        @endif<br>
+                        @if($settings['company_address'])
+                            {{$settings['company_address']}}
+                        @endif
+                        @if($settings['company_city'])
+                            <br> {{$settings['company_city']}},
+                        @endif
+                        @if($settings['company_state'])
+                            {{$settings['company_state']}}
+                        @endif
+                        @if($settings['company_country'])
+                            <br>{{$settings['company_country']}}
+                        @endif
+                        @if($settings['company_zipcode'])
+                            - {{$settings['company_zipcode']}}
+                        @endif<br>
+                        @if(!empty($settings['registration_number']))
+                            {{__('Registration Number')}} : {{$settings['registration_number']}}
+                        @endif
+                        @if(!empty($settings['tax_type']) && !empty($settings['vat_number']))
+                            {{$settings['tax_type'].' '. __('Number')}} : {{$settings['vat_number']}} <br>
+                        @endif
                     </p>
                 </td>
 
@@ -317,8 +343,8 @@
             @endif
 
             </tbody>
-            <tfoot >
-                <tr>
+            <tfoot>
+            <tr>
                 <td colspan="4"></td>
                 <td colspan="2" class="sub-total">
                     <table class="total-table">

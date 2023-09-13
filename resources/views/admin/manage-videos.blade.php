@@ -14,19 +14,25 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="m-3">
-                    <form action="{{route('add-video')}}" method="POST">
+                    <form action="{{route('add-video')}}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="row">
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 <div class="mb-3">
                                     <label for="title" class="form-label">Title</label>
                                     <input type="text" class="form-control" name="title" placeholder="Enter title">
                                 </div>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 <div class="mb-3">
                                     <label for="url" class="form-label">URL</label>
                                     <input type="url" class="form-control" name="url" placeholder="Enter URL">
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="mb-3">
+                                    <label for="thumbnail" class="form-label">Thumbnail</label>
+                                    <input type="file" class="form-control" name="thumbnail" placeholder="Select File">
                                 </div>
                             </div>
                             <div class="col-md-2">
@@ -44,6 +50,7 @@
                             <tr>
                                 <th scope="col">ID</th>
                                 <th scope="col">Title</th>
+                                <th scope="col">Thumbnail</th>
                                 <th scope="col">URL</th>
                                 <th scope="col">Delete</th>
                             </tr>
@@ -53,6 +60,7 @@
                                 <tr>
                                     <td>{{$video->id}}</td>
                                     <td>{{$video->title}}</td>
+                                    <td><img width="80px" src="{{$video->thumbnail}}" alt=""></td>
                                     <td>{{$video->url}}</td>
                                     <td>
                                         <a href="{{route('delete-video', ['id'=>$video->id])}}"><i class="ti ti-trash" style="color: red"></i></a>

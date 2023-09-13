@@ -1,7 +1,7 @@
 @php
     $settings = Utility::settings();
 @endphp
-    <!DOCTYPE html>
+        <!DOCTYPE html>
 <html lang="en" dir="{{$settings == 'on'?'rtl':''}}">
 <head>
     <meta charset="UTF-8">
@@ -32,7 +32,9 @@
             @for($i=1;$i<=$quantity;$i++)
                 <div class="col-auto mb-2">
                     <small class="">{{$product->name}}</small>
-                    <div data-id="{{$product->id}}" class="product_barcode product_barcode_hight_de product_barcode_{{$product->id}} mt-2" data-skucode="{{ $product->sku }}"></div>
+                    <div data-id="{{$product->id}}"
+                         class="product_barcode product_barcode_hight_de product_barcode_{{$product->id}} mt-2"
+                         data-skucode="{{ $product->sku }}"></div>
                 </div>
             @endfor
         @endforeach
@@ -51,13 +53,14 @@
 <script src="{{ asset('public/js/jquery-barcode.min.js') }}"></script>
 <script src="{{ asset('public/js/jquery-barcode.js') }}"></script>
 <script>
-    $(document).ready(function() {
-        $(".product_barcode").each(function() {
+    $(document).ready(function () {
+        $(".product_barcode").each(function () {
             var id = $(this).data("id");
             var sku = $(this).data('skucode');
             generateBarcode(sku, id);
         });
     });
+
     function generateBarcode(val, id) {
         var value = val;
         var btype = '{{ $barcode['barcodeType'] }}';

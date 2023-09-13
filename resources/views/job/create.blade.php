@@ -61,7 +61,8 @@
                             {!! Form::date('end_date', old('end_date'), ['class' => 'form-control ']) !!}
                         </div>
                         <div class="form-group col-md-12">
-                            <input type="text" class="form-control" value="" data-toggle="tags" name="skill" placeholder="Skill"/>
+                            <input type="text" class="form-control" value="" data-toggle="tags" name="skill"
+                                   placeholder="Skill"/>
                         </div>
                     </div>
                 </div>
@@ -76,50 +77,62 @@
                                 <h6>{{__('Need to ask ?')}}</h6>
                                 <div class="my-4">
                                     <div class="form-check custom-checkbox">
-                                        <input type="checkbox" class="form-check-input" name="applicant[]" value="gender" id="check-gender">
+                                        <input type="checkbox" class="form-check-input" name="applicant[]"
+                                               value="gender" id="check-gender">
                                         <label class="form-check-label" for="check-gender">{{__('Gender')}} </label>
                                     </div>
                                     <div class="form-check custom-checkbox">
-                                        <input type="checkbox" class="form-check-input" name="applicant[]" value="dob" id="check-dob">
+                                        <input type="checkbox" class="form-check-input" name="applicant[]" value="dob"
+                                               id="check-dob">
                                         <label class="form-check-label" for="check-dob">{{__('Date Of Birth')}}</label>
                                     </div>
                                     <div class="form-check custom-checkbox">
-                                        <input type="checkbox" class="form-check-input" name="applicant[]" value="country" id="check-country">
+                                        <input type="checkbox" class="form-check-input" name="applicant[]"
+                                               value="country" id="check-country">
                                         <label class="form-check-label" for="check-country">{{__('Country')}}</label>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                       <div class="col-md-6">
-                           <div class="form-group">
-                               <h6>{{__('Need to show option ?')}}</h6>
-                               <div class="my-4">
-                                   <div class="form-check custom-checkbox">
-                                       <input type="checkbox" class="form-check-input" name="visibility[]" value="profile" id="check-profile">
-                                       <label class="form-check-label" for="check-profile">{{__('Profile Image')}} </label>
-                                   </div>
-                                   <div class="form-check custom-checkbox">
-                                       <input type="checkbox" class="form-check-input" name="visibility[]" value="resume" id="check-resume">
-                                       <label class="form-check-label" for="check-resume">{{__('Resume')}}</label>
-                                   </div>
-                                   <div class="form-check custom-checkbox">
-                                       <input type="checkbox" class="form-check-input" name="visibility[]" value="letter" id="check-letter">
-                                       <label class="form-check-label" for="check-letter">{{__('Cover Letter')}}</label>
-                                   </div>
-                                   <div class="form-check custom-checkbox">
-                                       <input type="checkbox" class="form-check-input" name="visibility[]" value="terms" id="check-terms">
-                                       <label class="form-check-label" for="check-terms">{{__('Terms And Conditions')}}</label>
-                                   </div>
-                               </div>
-                           </div>
-                       </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <h6>{{__('Need to show option ?')}}</h6>
+                                <div class="my-4">
+                                    <div class="form-check custom-checkbox">
+                                        <input type="checkbox" class="form-check-input" name="visibility[]"
+                                               value="profile" id="check-profile">
+                                        <label class="form-check-label"
+                                               for="check-profile">{{__('Profile Image')}} </label>
+                                    </div>
+                                    <div class="form-check custom-checkbox">
+                                        <input type="checkbox" class="form-check-input" name="visibility[]"
+                                               value="resume" id="check-resume">
+                                        <label class="form-check-label" for="check-resume">{{__('Resume')}}</label>
+                                    </div>
+                                    <div class="form-check custom-checkbox">
+                                        <input type="checkbox" class="form-check-input" name="visibility[]"
+                                               value="letter" id="check-letter">
+                                        <label class="form-check-label"
+                                               for="check-letter">{{__('Cover Letter')}}</label>
+                                    </div>
+                                    <div class="form-check custom-checkbox">
+                                        <input type="checkbox" class="form-check-input" name="visibility[]"
+                                               value="terms" id="check-terms">
+                                        <label class="form-check-label"
+                                               for="check-terms">{{__('Terms And Conditions')}}</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <div class="form-group col-md-12">
                             <h6>{{__('Custom Question')}}</h6>
                             <div class="my-4">
                                 @foreach($customQuestion as $question)
                                     <div class="form-check custom-checkbox">
-                                        <input type="checkbox" class="form-check-input" name="custom_question[]" value="{{$question->id}}" id="custom_question_{{$question->id}}">
-                                        <label class="form-check-label" for="custom_question_{{$question->id}}">{{$question->question}} </label>
+                                        <input type="checkbox" class="form-check-input" name="custom_question[]"
+                                               value="{{$question->id}}" id="custom_question_{{$question->id}}">
+                                        <label class="form-check-label"
+                                               for="custom_question_{{$question->id}}">{{$question->question}} </label>
                                     </div>
                                 @endforeach
                             </div>
@@ -134,7 +147,8 @@
                     <div class="row">
                         <div class="form-group col-md-12">
                             {!! Form::label('sescription', __('Job Description'),['class'=>'form-label']) !!}
-                            <textarea class="form-control summernote-simple" name="description" id="exampleFormControlTextarea1" rows="15"></textarea>
+                            <textarea class="form-control summernote-simple" name="description"
+                                      id="exampleFormControlTextarea1" rows="15"></textarea>
                         </div>
                     </div>
                 </div>
@@ -146,7 +160,8 @@
                     <div class="row">
                         <div class="form-group col-md-12">
                             {!! Form::label('requirement', __('Job Requirement'),['class'=>'form-label']) !!}
-                            <textarea class="form-control summernote-simple" name="requirement" id="exampleFormControlTextarea2" rows="8"></textarea>
+                            <textarea class="form-control summernote-simple" name="requirement"
+                                      id="exampleFormControlTextarea2" rows="8"></textarea>
                         </div>
                     </div>
                 </div>
