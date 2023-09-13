@@ -407,7 +407,12 @@
                                             <span class="dash-micon"><i class="ti ti-template"></i></span>
                                             <span class="dash-mtext">{{ __('Email Template') }}</span></a>
                                     </li>
-
+                                    <li class="dash-item dash-hasmenu {{ Request::segment(1) == 'video-library' ? ' active dash-trigger' : 'collapsed' }}">
+                                        <a href="{{ route('video-library') }}"
+                                           class="dash-link">
+                                            <span class="dash-micon"><i class="ti ti-list"></i></span>
+                                            <span class="dash-mtext">{{ __('Video Library') }}</span></a>
+                                    </li>
                                     @if(Gate::check('manage system settings'))
                                         <li class="dash-item dash-hasmenu {{ (Request::route()->getName() == 'systems.index') ? ' active' : '' }}">
                                             <a href="{{ route('systems.index') }}" class="dash-link">
@@ -416,10 +421,9 @@
                                             </a>
                                         </li>
                                     @endif
-
                                 </ul>
                             @endif
-                            @if(\Auth::user()->type != 'client')
+                            @if(\Auth::user()->type != 'client' && \Auth::user()->type != 'super admin')
                                 <ul class="dash-navbar">
                                     <!--------------------- Start Dashboard ----------------------------------->
                                     @if( Gate::check('show hrm dashboard') || Gate::check('show project dashboard') || Gate::check('show account dashboard'))

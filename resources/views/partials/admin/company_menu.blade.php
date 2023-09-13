@@ -246,5 +246,13 @@
                 </li>
             </ul>
         </li>
+        <li class="sidebar-item">
+            <a class="sidebar-link" href="{{route('mwl')}}" aria-expanded="false">
+                <span>
+                    <i class="ti ti-mood-smile" style="font-size: 22px"></i>
+                </span>
+                <span class="hide-menu">Mental Wellness Library</span>
+            </a>
+        </li>
     </ul>
 </nav>

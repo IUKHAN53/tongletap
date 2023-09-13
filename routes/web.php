@@ -249,10 +249,16 @@ Route::prefix('employee')->middleware(['auth', 'XSS', 'is_employee'])->as('emplo
     Route::post('tasks/update/{tid}', [App\Http\Controllers\Employee\TaskController::class, 'update'])->name('tasks.update');
     Route::delete('tasks/{tid}', [App\Http\Controllers\Employee\TaskController::class, 'destroy'])->name('tasks.destroy');
     Route::get('task-board-view', [App\Http\Controllers\Employee\TaskController::class, 'taskBoardView'])->name('tasks.task-board.view');
+
+    Route::get('/mwl', [\App\Http\Controllers\Employee\MentalWellnessController::class, 'employee'])->name('mwl');
 });
 
 
-//Route::get('/', ['as' => 'home','uses' =>'HomeController@index'])->middleware(['XSS']);
+Route::get('/mwl', [\App\Http\Controllers\Employee\MentalWellnessController::class, 'company'])->name('mwl');
+Route::get('/video-library', [\App\Http\Controllers\Employee\MentalWellnessController::class, 'manageVideos'])->name('video-library');
+Route::post('/add-video', [\App\Http\Controllers\Employee\MentalWellnessController::class, 'addVideo'])->name('add-video');
+Route::get('/delete-video/{id}', [\App\Http\Controllers\Employee\MentalWellnessController::class, 'deleteVideo'])->name('delete-video');
+
 //Route::get('/home', ['as' => 'home','uses' =>'HomeController@index'])->middleware(['auth','XSS']);
 
 Route::get('/', [DashboardController::class, 'account_dashboard_index'])->name('home')->middleware(['XSS', 'revalidate',]);
