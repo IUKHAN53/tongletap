@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\MeetingLinkMail;
 use App\Models\Employee;
 use App\Models\Ticket;
 use App\Models\User;
@@ -10,6 +11,7 @@ use App\Notifications\ConsellerRequested;
 use App\Notifications\CounsellorRequested;
 use App\Notifications\CounsellorStatusChanged;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Notification;
 use IlluminateAuth\Events\Registered;
 use Illuminate\Http\Request;
@@ -68,7 +70,7 @@ class TicketController extends Controller
     {
         if (Auth::user()->type == 'super admin') {
             $employees = Employee::all()->pluck('name', 'id');
-            $company = User::where('type', 'company')->get()->pluck('name','id');
+            $company = User::where('type', 'company')->get()->pluck('name', 'id');
         } else if (strtolower(Auth::user()->type) == 'employee') {
             $employees = User::where('id', Auth::user()->id)->get()->pluck('name', 'id');
             $company = null;
@@ -265,6 +267,38 @@ class TicketController extends Controller
 //        ])->notify(new CounsellorStatusChanged($request->status, $ticket->ticket_code));
 
         return redirect()->route('ticket.index')->with('success', __('Ticket status successfully updated.'));
+    }
+
+    public function sendMeetingLink($id)
+    {
+        $ticket = Ticket::find($id);
+        return view('ticket.send-meeting-link', compact('ticket'));
+    }
+
+    public function updateMeetingLink(Request $request, $id)
+    {
+        $validator = Validator::make(
+            $request->all(),
+            [
+                'meeting_link' => 'required',
+            ]
+        );
+        if ($validator->fails()) {
+            $messages = $validator->getMessageBag();
+            return redirect()->back()->with('error', $messages->first());
+        }
+
+        $ticket = Ticket::find($id);
+        $ticket->meeting_link = $request->meeting_link;
+        $ticket->save();
+
+        $user = User::find($ticket->employee_id);
+        if ($user)
+            Mail::to($user->email)->send(new MeetingLinkMail($ticket->meeting_link));
+        else
+            return redirect()->route('ticket.index')->with('info', __('Meeting link successfully updated but email failed to send because of no employee.'));
+
+        return redirect()->route('ticket.index')->with('success', __('Meeting link successfully sent.'));
     }
 
     public function reply($ticket)

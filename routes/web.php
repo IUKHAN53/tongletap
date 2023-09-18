@@ -4,6 +4,7 @@ use App\Http\Controllers\CommissionController;
 use App\Http\Controllers\Employee\ProfileController;
 use App\Models\User;
 use App\Notifications\CounsellorStatusChanged;
+use App\Notifications\WhatsAppNotification;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Route;
@@ -158,7 +159,16 @@ use App\Http\Controllers\ProjectReportController;
 
 require __DIR__ . '/auth.php';
 
+Route::get('/test-whatsapp-notification', function () {
+    sendWhatsappMessage('+923013441991', "Testing Whatsapp Message");
+});
 
+Route::get('/test-zoom-meeting', function (){
+    createZoomMeeting();
+});
+
+Route::get('zoom/redirect', 'ZoomOAuthController@redirectToProvider');
+Route::get('zoom/callback', 'ZoomOAuthController@handleProviderCallback');
 
 Route::get('/test-email', function () {
     Notification::route('mail', [
@@ -320,8 +330,11 @@ Route::resource('ticket', TicketController::class)->middleware(
 
 
 Route::get('ticket/{id}/edit-status', [TicketController::class, 'editStatus'])->name('ticket.edit-status')->middleware(['auth', 'XSS']);
-
 Route::put('ticket/{id}/update-status', [TicketController::class, 'updateStatus'])->name('ticket.update-status')->middleware(['auth', 'XSS']);
+
+Route::get('ticket/{id}/send-meeting-link', [TicketController::class, 'sendMeetingLink'])->name('ticket.send-meeting-link')->middleware(['auth', 'XSS']);
+Route::put('ticket/{id}/update-meeting-link', [TicketController::class, 'updateMeetingLink'])->name('ticket.update-meeting-link')->middleware(['auth', 'XSS']);
+
 
 Route::get('ticket/{id}/reply', [TicketController::class, 'reply'])->name('ticket.reply')->middleware(['auth', 'XSS']);
 
