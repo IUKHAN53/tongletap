@@ -190,6 +190,17 @@
                                                         <i class="ti ti-link text-white"></i>
                                                     </a>
                                                 </div>
+                                                <div class="action-btn bg-info ms-2">
+                                                    <a href="#"
+                                                       data-url="{{ URL::to('ticket/' . $ticket->id . '/submit-report') }}"
+                                                       data-ajax-popup="true" data-title="{{ __('Submit Report') }}"
+                                                       data-size="lg"
+                                                       data-bs-toggle="tooltip" title=""
+                                                       class="mx-3 btn btn-sm align-items-center"
+                                                       data-bs-original-title="{{ __('Submit Report') }}">
+                                                        <i class="ti ti-report text-white"></i>
+                                                    </a>
+                                                </div>
                                             @endif
                                             <div class="action-btn bg-warning ms-2">
                                                 <a href="#"

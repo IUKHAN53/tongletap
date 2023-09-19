@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::table('tickets', function (Blueprint $table) {
             $table->string('meeting_link')->nullable()->after('status');
+            $table->string('meeting_report')->nullable()->after('meeting_link');
         });
     }
 
@@ -27,6 +28,7 @@ return new class extends Migration
     {
         Schema::table('tickets', function (Blueprint $table) {
             $table->dropColumn('meeting_link');
+            $table->dropColumn('meeting_report');
         });
     }
 };

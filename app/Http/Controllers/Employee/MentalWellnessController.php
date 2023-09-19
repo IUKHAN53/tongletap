@@ -90,5 +90,10 @@ class MentalWellnessController extends Controller
         }
     }
 
+    public function getChecklists()
+    {
+
+    }
+
 
 }

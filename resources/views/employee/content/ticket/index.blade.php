@@ -171,6 +171,15 @@
                                             text-overflow: ellipsis;">{{ $ticket->description }}</span>
                                     </td>
                                     <td class="Action d-flex flex-column flex-sm-row gap-2">
+                                        @if($ticket->status == 'approved' && !empty($ticket->meeting_report))
+                                            <div class="action-btn bg-secondary rounded">
+                                                <a href="{{ route('ticket.download-report', $ticket->id) }}"
+                                                   data-bs-toggle="tooltip" title=""
+                                                   data-title="{{ __('Download Report') }}"
+                                                   data-bs-original-title="{{ __('Download Report') }}"
+                                                   class="mx-3 btn btn-sm align-items-center"><i class="ti ti-download text-white"></i></a>
+                                            </div>
+                                        @endif
                                         <div class="action-btn bg-primary rounded">
                                             <a href="{{ route('employee.ticket.reply', $ticket->id) }}"
                                                class="mx-3 btn btn-sm align-items-center" data-bs-toggle="tooltip"

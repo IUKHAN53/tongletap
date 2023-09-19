@@ -270,6 +270,7 @@ Route::post('/add-video', [\App\Http\Controllers\Employee\MentalWellnessControll
 Route::get('/delete-video/{id}', [\App\Http\Controllers\Employee\MentalWellnessController::class, 'deleteVideo'])->name('delete-video');
 
 //Route::get('/home', ['as' => 'home','uses' =>'HomeController@index'])->middleware(['auth','XSS']);
+Route::get('/hr-checklists', [\App\Http\Controllers\Employee\MentalWellnessController::class, 'getChecklists'])->name('hr-checklists');
 
 Route::get('/', [DashboardController::class, 'account_dashboard_index'])->name('home')->middleware(['XSS', 'revalidate',]);
 
@@ -334,6 +335,10 @@ Route::put('ticket/{id}/update-status', [TicketController::class, 'updateStatus'
 
 Route::get('ticket/{id}/send-meeting-link', [TicketController::class, 'sendMeetingLink'])->name('ticket.send-meeting-link')->middleware(['auth', 'XSS']);
 Route::put('ticket/{id}/update-meeting-link', [TicketController::class, 'updateMeetingLink'])->name('ticket.update-meeting-link')->middleware(['auth', 'XSS']);
+
+Route::get('ticket/{id}/submit-report', [TicketController::class, 'submitReport'])->name('ticket.submit-report')->middleware(['auth', 'XSS']);
+Route::put('ticket/{id}/store-report', [TicketController::class, 'storeReport'])->name('ticket.store-report')->middleware(['auth', 'XSS']);
+Route::get('ticket/{id}/download-report', [TicketController::class, 'downloadReport'])->name('ticket.download-report')->middleware(['auth', 'XSS']);
 
 
 Route::get('ticket/{id}/reply', [TicketController::class, 'reply'])->name('ticket.reply')->middleware(['auth', 'XSS']);

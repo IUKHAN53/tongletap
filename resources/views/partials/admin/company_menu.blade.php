@@ -4,6 +4,7 @@
     .sidebar-nav {
         padding: 0px 24px;
     }
+
     .sidebar-nav ul .sidebar-item .sidebar-link {
         color: #2a3547;
         display: flex;
@@ -19,20 +20,24 @@
         text-decoration: none;
         font-weight: 600;
     }
+
     .sidebar-nav ul .sidebar-item .sidebar-link:hover {
         color: #fff !important;
         background: linear-gradient(135deg, #FD7E30 0%, #FDBF18 77.08%) !important;
         box-shadow: 0px 6px 12px 0px rgba(253, 126, 48, 0.40) !important;
     }
+
     .sidebar-nav ul .sidebar-item.active {
         border-radius: 7px;
         background: linear-gradient(135deg, #FD7E30 0%, #FDBF18 77.08%) !important;
         box-shadow: 0px 6px 12px 0px rgba(253, 126, 48, 0.40) !important;
     }
+
     .sidebar-nav ul .sidebar-item.active .sidebar-link {
         font-size: 14px;
         color: #fff !important;
     }
+
     .sidebar-nav ul .sidebar-item.selected > .sidebar-link.active, .sidebar-nav ul .sidebar-item > .sidebar-link.active {
         color: #fff !important;
         background: linear-gradient(135deg, #FD7E30 0%, #FDBF18 77.08%) !important;
@@ -89,7 +94,6 @@
     }
 
 
-
     .sidebar-nav #sidebarnav > .sidebar-item .first-level .sidebar-item > .sidebar-link .sidebar-icon {
         margin-right: 0;
         margin-left: 0;
@@ -133,6 +137,7 @@
         vertical-align: top;
         width: 50%
     }
+
     .sidebar-nav ul .sidebar-item .two-level .sidebar-item .sidebar-link {
         padding: 8px 10px 8px 45px
     }
@@ -228,30 +233,38 @@
             </a>
         </li>
 
-        <li class="sidebar-item">
-            <a class="sidebar-link has-arrow" href="#" aria-expanded="false">
-                <span>
-                    <i class="ti ti-settings" style="font-size: 22px"></i>
-                </span>
-                <span class="hide-menu">Setting</span>
-            </a>
-            <ul aria-expanded="false" class="collapse first-level">
-                <li class="sidebar-item">
-                    <a href="{{ route('settings') }}" class="sidebar-link">
-                        <div class="round-16 d-flex align-items-center justify-content-center">
-                            <i class="ti ti-circle"></i>
-                        </div>
-                        <span class="hide-menu">System Settings</span>
-                    </a>
-                </li>
-            </ul>
-        </li>
+        {{--        <li class="sidebar-item">--}}
+        {{--            <a class="sidebar-link has-arrow" href="#" aria-expanded="false">--}}
+        {{--                <span>--}}
+        {{--                    <i class="ti ti-settings" style="font-size: 22px"></i>--}}
+        {{--                </span>--}}
+        {{--                <span class="hide-menu">Setting</span>--}}
+        {{--            </a>--}}
+        {{--            <ul aria-expanded="false" class="collapse first-level">--}}
+        {{--                <li class="sidebar-item">--}}
+        {{--                    <a href="{{ route('settings') }}" class="sidebar-link">--}}
+        {{--                        <div class="round-16 d-flex align-items-center justify-content-center">--}}
+        {{--                            <i class="ti ti-circle"></i>--}}
+        {{--                        </div>--}}
+        {{--                        <span class="hide-menu">System Settings</span>--}}
+        {{--                    </a>--}}
+        {{--                </li>--}}
+        {{--            </ul>--}}
+        {{--        </li>--}}
         <li class="sidebar-item">
             <a class="sidebar-link" href="{{route('mwl')}}" aria-expanded="false">
                 <span>
                     <i class="ti ti-mood-smile" style="font-size: 22px"></i>
                 </span>
                 <span class="hide-menu">Mental Wellness Library</span>
+            </a>
+        </li>
+        <li class="sidebar-item">
+            <a class="sidebar-link" href="{{ route('hr-checklists') }}" aria-expanded="false">
+                <span>
+                    <i class="ti ti-checkbox" style="font-size: 22px"></i>
+                </span>
+                <span class="hide-menu">HR Checklists</span>
             </a>
         </li>
     </ul>

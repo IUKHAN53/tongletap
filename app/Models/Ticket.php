@@ -18,7 +18,14 @@ class Ticket extends Model
         'company_name',
         'employee_phone',
         'status',
+        'meeting_link',
+        'meeting_report',
     ];
+
+    public function getMeetingReportAttribute($value)
+    {
+        return ($value) ? storage_path($value) : '';
+    }
 
     public function ticketUnread()
     {

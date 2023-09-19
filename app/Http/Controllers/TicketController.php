@@ -301,6 +301,58 @@ class TicketController extends Controller
         return redirect()->route('ticket.index')->with('success', __('Meeting link successfully sent.'));
     }
 
+    public function submitReport($id)
+    {
+        $ticket = Ticket::find($id);
+        return view('ticket.submit-report', compact('ticket'));
+    }
+
+    public function storeReport(Request $request, $id)
+    {
+        $validator = Validator::make(
+            $request->all(),
+            [
+                'meeting_report' => 'required|file|max:10240', // 10 MB max size
+            ]
+        );
+
+        if ($validator->fails()) {
+            $messages = $validator->getMessageBag();
+            return redirect()->back()->with('error', $messages->first());
+        }
+
+        $ticket = Ticket::find($id);
+
+        // Store the uploaded file
+        if ($request->hasFile('meeting_report')) {
+            $file = $request->file('meeting_report');
+
+            $timestamp = now()->timestamp;
+            $originalName = $file->getClientOriginalName();
+            $filename = pathinfo($originalName, PATHINFO_FILENAME);
+            $extension = pathinfo($originalName, PATHINFO_EXTENSION);
+            $newFileName = "{$filename}_{$timestamp}.{$extension}";
+
+            $path = $file->storeAs('uploads/meeting_reports', $newFileName);
+
+            $ticket->meeting_report = $path;
+            $ticket->save();
+        }
+
+        return redirect()->route('ticket.index')->with('success', __('Meeting report created.'));
+    }
+
+    public function downloadReport($id)
+    {
+        $ticket = Ticket::find($id);
+
+        if ($ticket && !empty($ticket->meeting_report)) {
+            return response()->download($ticket->meeting_report);
+        }
+
+        return redirect()->back()->with('error', 'File does not exist.');
+    }
+
     public function reply($ticket)
     {
         $ticketreply = TicketReply::where('ticket_id', '=', $ticket)->orderBy('id', 'DESC')->get();
