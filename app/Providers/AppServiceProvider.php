@@ -27,9 +27,9 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Schema::defaultStringLength(191);
-        Socialite::extend('zoom', function ($app) {
-            $config = $app['config']['services.zoom'];
-            return Socialite::buildProvider(ZoomProvider::class, $config);
-        });
+//        Socialite::extend('zoom', function ($app) {
+//            $config = $app['config']['services.zoom'];
+//            return Socialite::buildProvider(ZoomProvider::class, $config);
+//        });
     }
 }
