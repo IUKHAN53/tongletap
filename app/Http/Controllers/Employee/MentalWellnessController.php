@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Employee;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
+use PhpOffice\PhpWord\IOFactory;
 
 class MentalWellnessController extends Controller
 {
@@ -92,7 +94,23 @@ class MentalWellnessController extends Controller
 
     public function getChecklists()
     {
+        $directory = public_path('hr_checklists');
+        $files = File::allFiles($directory);
+        $htmlFiles = [];
 
+        foreach ($files as $file) {
+            if (pathinfo($file)['extension'] === 'docx') {
+                $phpWord = IOFactory::load($file);
+                $xmlWriter = IOFactory::createWriter($phpWord, 'HTML');
+                $htmlFile = public_path('hr_checklists_html/' . pathinfo($file)['filename'] . '.html');
+                if (!File::exists($htmlFile)) {
+                    $xmlWriter->save($htmlFile);
+                }
+                $htmlFiles[pathinfo($file)['filename']] = $htmlFile;
+            }
+        }
+
+        return view('hr.checklists', ['files' => $files, 'htmlFiles' => $htmlFiles]);
     }
 
 
