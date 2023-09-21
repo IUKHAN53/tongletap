@@ -138,9 +138,7 @@
                                 <th width="200px">{{ __('Action') }}</th>
                             </tr>
                             </thead>
-
                             <tbody class="list">
-
                             @foreach ($tickets as $ticket)
                                 <tr>
                                     <td>
@@ -171,14 +169,28 @@
                                             text-overflow: ellipsis;">{{ $ticket->description }}</span>
                                     </td>
                                     <td class="Action d-flex flex-column flex-sm-row gap-2">
-                                        @if($ticket->status == 'approved' && !empty($ticket->meeting_report))
-                                            <div class="action-btn bg-secondary rounded">
-                                                <a href="{{ route('ticket.download-report', $ticket->id) }}"
-                                                   data-bs-toggle="tooltip" title=""
-                                                   data-title="{{ __('Download Report') }}"
-                                                   data-bs-original-title="{{ __('Download Report') }}"
-                                                   class="mx-3 btn btn-sm align-items-center"><i class="ti ti-download text-white"></i></a>
-                                            </div>
+                                        @if($ticket->status == 'approved' )
+                                            @if(!empty($ticket->meeting_link))
+                                                <div class="action-btn bg-info rounded">
+                                                    <a href="{{ $ticket->meeting_link }}"
+                                                       data-bs-toggle="tooltip" title=""
+                                                       data-title="{{ __('Meeting Link') }}"
+                                                       data-bs-original-title="{{ __('Meeting Link') }}"
+                                                       class="mx-3 btn btn-sm align-items-center">
+                                                        <i class="ti ti-link text-white"></i>
+                                                    </a>
+                                                </div>
+                                            @endif
+                                            @if(!empty($ticket->meeting_report))
+                                                <div class="action-btn bg-secondary rounded">
+                                                    <a href="{{ route('ticket.download-report', $ticket->id) }}"
+                                                       data-bs-toggle="tooltip" title=""
+                                                       data-title="{{ __('Download Report') }}"
+                                                       data-bs-original-title="{{ __('Download Report') }}"
+                                                       class="mx-3 btn btn-sm align-items-center"><i
+                                                                class="ti ti-download text-white"></i></a>
+                                                </div>
+                                            @endif
                                         @endif
                                         <div class="action-btn bg-primary rounded">
                                             <a href="{{ route('employee.ticket.reply', $ticket->id) }}"

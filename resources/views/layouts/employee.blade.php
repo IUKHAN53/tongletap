@@ -539,7 +539,7 @@
 
 <script>
     $(document).ready(function () {
-        $('.table').DataTable();
+        $('.table').DataTable({"order": []});
     });
     $(document).ready(function () {
         const sidebarLink = $('.sidebar-link');

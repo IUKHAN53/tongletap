@@ -265,8 +265,7 @@ class TicketController extends Controller
         $user = User::find($ticket->employee_id);
         if ($user) {
             $user->notify(new CounsellorStatusChanged($request->status, $ticket->ticket_code));
-        }
-        else
+        } else
             return redirect()->route('ticket.index')->with('info', __('Ticket status successfully updated but email failed to send because of no employee.'));
 
         sendWhatsappMessage($ticket->employee_phone, 'Your ticket status has been changed to ' . $request->status . '.');
@@ -282,26 +281,16 @@ class TicketController extends Controller
 
     public function updateMeetingLink(Request $request, $id)
     {
-        $validator = Validator::make(
-            $request->all(),
-            [
-                'meeting_link' => 'required',
-            ]
-        );
-        if ($validator->fails()) {
-            $messages = $validator->getMessageBag();
-            return redirect()->back()->with('error', $messages->first());
-        }
-
         $ticket = Ticket::find($id);
         $ticket->meeting_link = $request->meeting_link;
         $ticket->save();
 
         $user = User::find($ticket->employee_id);
-        if ($user)
+        if ($user) {
             Mail::to($user->email)->send(new MeetingLinkMail($ticket->meeting_link));
-        else
+        } else {
             return redirect()->route('ticket.index')->with('info', __('Meeting link successfully updated but email failed to send because of no employee.'));
+        }
 
         return redirect()->route('ticket.index')->with('success', __('Meeting link successfully sent.'));
     }
