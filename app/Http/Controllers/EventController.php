@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\EventNotification;
 use App\Models\Branch;
 use App\Models\Department;
 use App\Models\Employee;
@@ -11,9 +12,11 @@ use App\Models\Projects;
 use App\Models\Ticket;
 use App\Models\Tasks;
 use App\Models\Timemodule;
+use App\Models\User;
 use App\Models\Utility;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 
 class EventController extends Controller
@@ -24,7 +27,7 @@ class EventController extends Controller
             $todaydate = date('Y-m-d');
             $expired_events = Event::where('start_date', '<', $todaydate)
                 ->orderBy('start_date', 'desc');
-            $expired_events = $expired_events->when(\auth()->user()->type != 'super admin', function ($query){
+            $expired_events = $expired_events->when(\auth()->user()->type != 'super admin', function ($query) {
                 $query->where(function ($query) {
                     $query->where('company_name', '=', Auth::user()->name)
                         ->orWhere('company_name', '=', Auth::user()->ownerDetails()->name);
@@ -33,7 +36,7 @@ class EventController extends Controller
 
             $employees = Employee::where('created_by', '=', Auth::user()->creatorId())->get();
             $events = Event::query();
-            $events = $events->when(\auth()->user()->type != 'super admin', function ($query){
+            $events = $events->when(\auth()->user()->type != 'super admin', function ($query) {
                 $query->where(function ($query) {
                     $query->where('company_name', '=', Auth::user()->name)
                         ->orWhere('company_name', '=', Auth::user()->ownerDetails()->name);
@@ -45,7 +48,7 @@ class EventController extends Controller
             $current_month_event = Event::select('id', 'start_date', 'end_date', 'title', 'created_at', 'color')
                 ->whereRaw('MONTH(start_date)=' . $today_date)
                 ->whereRaw('MONTH(end_date)=' . $today_date);
-            $current_month_event = $current_month_event->when(\auth()->user()->type != 'super admin', function ($query){
+            $current_month_event = $current_month_event->when(\auth()->user()->type != 'super admin', function ($query) {
                 $query->where(function ($query) {
                     $query->where('company_name', '=', Auth::user()->name)
                         ->orWhere('company_name', '=', Auth::user()->ownerDetails()->name);
@@ -87,7 +90,6 @@ class EventController extends Controller
     public function store(Request $request)
     {
         if (Auth::user()->can('create event')) {
-
             $validator = Validator::make(
                 $request->all(),
                 [
@@ -103,11 +105,9 @@ class EventController extends Controller
             );
             if ($validator->fails()) {
                 $messages = $validator->getMessageBag();
-
                 return redirect()->back()->with('error', $messages->first());
             }
             $companyname = Timemodule::where('id', $request->company_name)->first();
-            // dd($request->all());
             $event = new Event();
             $event->branch_id = $request->branch_id;
             $event->department_id = json_encode($request->department_id);
@@ -121,37 +121,13 @@ class EventController extends Controller
             $event->created_by = Auth::user()->creatorId();
             $event->save();
 
-            //  slack
-            $setting = Utility::settings(\Auth::user()->creatorId());
             $branch = Branch::find($request->branch_id);
-            if (isset($setting['event_notification']) && $setting['event_notification'] == 1) {
-                $msg = $request->title . ' ' . __("for branch") . ' ' . $branch->name . ' ' . ("from") . ' ' . $request->start_date . ' ' . __("to") . ' ' . $request->end_date . '.';
-                Utility::send_slack_msg($msg);
+            $msg = $request->title . ' ' . __("for branch") . ' ' .
+                $branch->name . ' ' . ("from") . ' ' . $request->start_date . ' ' . __("to") . ' ' . $request->end_date . '.';
+            $company = User::query()->where('name', $companyname->company_name)->first();
+            if ($company) {
+                Mail::to($company->email)->send(new EventNotification($msg));
             }
-
-            //telegram
-            $setting = Utility::settings(\Auth::user()->creatorId());
-            $branch = Branch::find($request->branch_id);
-            if (isset($setting['telegram_ticket_notification']) && $setting['telegram_ticket_notification'] == 1) {
-                $msg = $request->title . ' ' . __("for branch") . ' ' . $branch->name . ' ' . ("from") . ' ' . $request->start_date . ' ' . __("to") . ' ' . $request->end_date . '.';
-                Utility::send_telegram_msg($msg);
-            }
-
-
-            //twilio
-            $setting = Utility::settings(\Auth::user()->creatorId());
-            $branch = Branch::find($request->branch_id);
-            $departments = Department::where('branch_id', $request->branch_id)->first();
-            $employee = Employee::where('branch_id', $request->branch_id)->first();
-
-            if (isset($setting['twilio_event_notification']) && $setting['twilio_event_notification'] == 1) {
-                $employeess = Employee::whereIn('branch_id', $request->employee_id)->get();
-                foreach ($employeess as $key => $employee) {
-                    $msg = $request->title . ' ' . __("for branch") . ' ' . $branch->name . ' ' . ("from") . ' ' . $request->start_date . ' ' . __("to") . ' ' . $request->end_date . '.';
-                    Utility::send_twilio_msg($employee->phone, $msg);
-                }
-            }
-
 
             if (in_array('0', $request->employee_id)) {
                 $departmentEmployee = Employee::whereIn('department_id', $request->department_id)->get()->pluck('id');
@@ -165,7 +141,15 @@ class EventController extends Controller
                 $eventEmployee->employee_id = $employee;
                 $eventEmployee->created_by = \Auth::user()->creatorId();
                 $eventEmployee->save();
+
+                // Fetch employee email
+                $employeeData = Employee::find($employee);
+                $to_email = $employeeData->user;
+                // Send email
+                if ($to_email)
+                    Mail::to($to_email->email)->send(new EventNotification($msg));
             }
+
 
             return redirect()->route('event.index')->with('success', __('Event  successfully created.'));
         } else {

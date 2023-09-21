@@ -56,6 +56,7 @@ class ProfileController extends Controller
         $user['activity'] = $request['activity'];
         $user['location'] = $request['location'];
         $user['biography'] = $request['biography'];
+        $user['whatsapp_number'] = $request['whatsapp_number'];
         $user->save();
         CustomField::saveData($user, $request->customField);
 

@@ -119,6 +119,18 @@
 
                         <div class="col-lg-6 col-sm-6">
                             <div class="form-group">
+                                <label class="col-form-label text-dark" for="whatsapp_number">{{__('Whatsapp Number')}}</label>
+                                <input class="form-control @error('whatsapp_number') is-invalid @enderror" name="whatsapp_number" type="text"
+                                       value="{{ $userDetail->whatsapp_number }}"
+                                       id="whatsapp_number" placeholder="{{ __('Enter Your Whatsapp Number') }}" required>
+                                @error('whatsapp_number')
+                                <span class="invalid-feedback text-danger text-xs" role="alert">{{ $message }}</span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6 col-sm-6">
+                            <div class="form-group">
                                 <label class="col-form-label text-dark">{{__('Biography')}}</label>
                                 <textarea class="form-control @error('biography') is-invalid @enderror" name="biography" id="biography"
                                           placeholder="{{ __('Enter Your Biography') }}" required>{{$userDetail->biography}}</textarea>
@@ -142,7 +154,6 @@
                                 @error('avatar')
                                 <span class="invalid-feedback text-danger text-xs" role="alert">{{ $message }}</span>
                                 @enderror
-
                             </div>
                         </div>
                         <div class="col-lg-12 text-end">

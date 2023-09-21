@@ -15,6 +15,8 @@ use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Traits\HasRoles;
+use Twilio\Exceptions\ConfigurationException;
+use Twilio\Exceptions\TwilioException;
 
 
 class User extends Authenticatable
@@ -44,6 +46,7 @@ class User extends Authenticatable
         'activity',
         'location',
         'biography',
+        'whatsapp_number',
     ];
 
     protected $hidden = [
@@ -106,7 +109,7 @@ class User extends Authenticatable
         $moods = ['Tired', 'Fine', 'Normal'];
         if (($key = array_search($this->mood, $moods)) !== false) {
             unset($moods[$key]);
-        }else{
+        } else {
             unset($moods['Fine']);
         }
         $moods = array_values($moods);
@@ -2838,8 +2841,18 @@ class User extends Authenticatable
         $newRole->givePermissionTo($permissions);
     }
 
-    public function sendMentalHealthAssessmentReminders(){
+    /**
+     * @throws ConfigurationException
+     * @throws TwilioException
+     */
+    public function sendMentalHealthAssessmentReminders()
+    {
         Mail::to($this->email)->send(new MentalHealthAssessmentReminder());
-//        send whatsapp
+        if ($this->whatsapp_number) {
+            $message = "*Hello,*\n\nThis is your monthly reminder to complete your mental health assessment test.
+        \n\nTaking a few minutes to assess your mental health can make a significant difference in your well-being.
+        \n\nStart Assessment: http://MHC.tongle.space\n\n*Best regards,*\nTongle Team";
+            sendWhatsappMessage($this->whatsapp_number, $message);
+        }
     }
 }

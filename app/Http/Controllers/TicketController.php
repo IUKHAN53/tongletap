@@ -17,6 +17,8 @@ use IlluminateAuth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\FacadesAuth;
 use Illuminate\Support\Facades\Validator;
+use Twilio\Exceptions\ConfigurationException;
+use Twilio\Exceptions\TwilioException;
 
 class TicketController extends Controller
 {
@@ -237,6 +239,10 @@ class TicketController extends Controller
         }
     }
 
+    /**
+     * @throws ConfigurationException
+     * @throws TwilioException
+     */
     public function updateStatus(Request $request, $id)
     {
         $validator = Validator::make(
@@ -257,14 +263,13 @@ class TicketController extends Controller
 
 //        send notification to user for status change
         $user = User::find($ticket->employee_id);
-        if ($user) $user->notify(new CounsellorStatusChanged($request->status, $ticket->ticket_code));
+        if ($user) {
+            $user->notify(new CounsellorStatusChanged($request->status, $ticket->ticket_code));
+        }
         else
             return redirect()->route('ticket.index')->with('info', __('Ticket status successfully updated but email failed to send because of no employee.'));
 
-
-//        Notification::route('mail', [
-//            'iu.khan53@gmail.com' => 'IU Khan',
-//        ])->notify(new CounsellorStatusChanged($request->status, $ticket->ticket_code));
+        sendWhatsappMessage($ticket->employee_phone, 'Your ticket status has been changed to ' . $request->status . '.');
 
         return redirect()->route('ticket.index')->with('success', __('Ticket status successfully updated.'));
     }
