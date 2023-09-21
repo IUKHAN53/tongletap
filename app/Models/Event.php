@@ -19,4 +19,9 @@ class Event extends Model
     {
         return $this->belongsTo('App\Models\User', 'created_by', 'id');
     }
+
+    public function employees()
+    {
+        return $this->belongsToMany('App\Models\User', 'event_employees', 'event_id', 'employee_id');
+    }
 }
