@@ -15,7 +15,13 @@ class GeneralController extends Controller
         $validator = Validator::make($request->all(), [
             'email' => 'required|exists:users,email',
             'depressionScore' => 'required',
+            'depressionPercentage' => 'required',
+            'depressionStatus' => 'required',
+            'anxietyPercentage' => 'required',
+            'anxietyStatus' => 'required',
             'anxietyScore' => 'required',
+            'stressPercentage' => 'required',
+            'stressStatus' => 'required',
             'stressScore' => 'required',
         ]);
         if ($validator->fails()) {
@@ -27,16 +33,30 @@ class GeneralController extends Controller
                 'message' => 'Not Allowed to access',
             ], 401);
         } else {
-            $hs = HealthStat::create([
-                'user_id' => User::where('email', $request->email)->first()->id,
-                'depression' => $request->depressionScore,
-                'anxiety' => $request->anxietyScore,
-                'stress' => $request->stressScore,
-            ]);
-            return response()->json([
-                'message' => 'Health Stats Added Successfully',
-                'result' => $hs,
-            ], 200);
+            $user = User::where('email', $request->email)->first();
+            if($user){
+                $hs = HealthStat::create([
+                    'user_id' => User::where('email', $request->email)->first()->id,
+                    'depressionScore' => $request->depressionScore,
+                    'anxietyScore' => $request->anxietyScore,
+                    'stressScore' => $request->stressScore,
+                    'depressionPercentage' => $request->depressionPercentage,
+                    'depressionStatus' => $request->depressionStatus,
+                    'anxietyPercentage' => $request->anxietyPercentage,
+                    'anxietyStatus' => $request->anxietyStatus,
+                    'stressPercentage' => $request->stressPercentage,
+                    'stressStatus' => $request->stressStatus,
+                ]);
+                return response()->json([
+                    'message' => 'Health Stats Added Successfully',
+                    'result' => $hs,
+                ], 200);
+            }else{
+                return response()->json([
+                    'message' => 'User Not Found with email entered',
+                ], 404);
+            }
+
         }
     }
 }

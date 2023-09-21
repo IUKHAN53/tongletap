@@ -21,19 +21,6 @@ class HealthStat extends Model
         return $this->calculateStats($this);
     }
 
-    public function getStatsByPercentage($stat, $score)
-    {
-        $maxDepression = 14;
-        $maxAnxiety = 10;
-        $maxStress = 17;
-        $percentage = match ($stat) {
-            'depression' => ($score / $maxDepression) * 100,
-            'anxiety' => ($score / $maxAnxiety) * 100,
-            'stress' => ($score / $maxStress) * 100,
-        };
-        return floor(min($percentage, 100));
-    }
-
     public function calculateStats($stat)
     {
         $depressionStatus = $depressionIcon = $depressionColor = '';
@@ -41,24 +28,19 @@ class HealthStat extends Model
         $stressStatus = $stressIcon = $stressColor = '';
 
         if ($stat->depression) {
-            if ($stat->depression <= 4) {
-                $depressionStatus = "Healthy";
+            if ($stat->depressionScore <= 4) {
                 $depressionIcon = asset('assets/emp/images/svgs/chart/outline/happy-80.svg');
                 $depressionColor = '#81c984';
-            } elseif ($stat->depression <= 6) {
-                $depressionStatus = "Mild";
+            } elseif ($stat->depressionScore <= 6) {
                 $depressionIcon = asset('assets/emp/images/svgs/chart/outline/happy-60.svg');
                 $depressionColor = '#fbbe18';
-            } elseif ($stat->depression <= 10) {
-                $depressionStatus = "Moderate";
+            } elseif ($stat->depressionScore <= 10) {
                 $depressionIcon = asset('assets/emp/images/svgs/chart/outline/happy-40.svg');
                 $depressionColor = '#fb822e';
-            } elseif ($stat->depression <= 13) {
-                $depressionStatus = "Unhealthy";
+            } elseif ($stat->depressionScore <= 13) {
                 $depressionIcon = asset('assets/emp/images/svgs/chart/outline/happy-20.svg');
                 $depressionColor = '#c34b20';
-            } elseif ($stat->depression >= 14) {
-                $depressionStatus = "Concerning";
+            } elseif ($stat->depressionScore >= 14) {
                 $depressionIcon = asset('assets/emp/images/svgs/chart/outline/happy-0.svg');
                 $depressionColor = '#b61f1c';
             }
@@ -66,28 +48,22 @@ class HealthStat extends Model
                 $depressionStatus = "N/A";
                 $depressionIcon = asset('assets/emp/images/svgs/chart/outline/happy-0.svg');
                 $depressionColor = '#000';
-
         }
 
-        if ($stat->anxiety) {
-            if ($stat->anxiety <= 3) {
-                $anxietyStatus = "Healthy";
+        if ($stat->anxietyScore) {
+            if ($stat->anxietyScore <= 3) {
                 $anxietyIcon = asset('assets/emp/images/svgs/chart/outline/happy-80.svg');
                 $anxietyColor = '#81c984';
-            } elseif ($stat->anxiety <= 5) {
-                $anxietyStatus = "Mild";
+            } elseif ($stat->anxietyScore <= 5) {
                 $anxietyIcon = asset('assets/emp/images/svgs/chart/outline/happy-60.svg');
                 $anxietyColor = '#fbbe18';
-            } elseif ($stat->anxiety <= 7) {
-                $anxietyStatus = "Moderate";
+            } elseif ($stat->anxietyScore <= 7) {
                 $anxietyIcon = asset('assets/emp/images/svgs/chart/outline/happy-40.svg');
                 $anxietyColor = '#fb822e';
-            } elseif ($stat->anxiety <= 9) {
-                $anxietyStatus = "Unhealthy";
+            } elseif ($stat->anxietyScore <= 9) {
                 $anxietyIcon = asset('assets/emp/images/svgs/chart/outline/happy-20.svg');
                 $anxietyColor = '#c34b20';
-            } elseif ($stat->anxiety >= 10) {
-                $anxietyStatus = "Concerning";
+            } elseif ($stat->anxietyScore >= 10) {
                 $anxietyIcon = asset('assets/emp/images/svgs/chart/outline/happy-0.svg');
                 $anxietyColor = '#b61f1c';
             }
@@ -95,28 +71,22 @@ class HealthStat extends Model
                 $anxietyStatus = "N/A";
                 $anxietyIcon = asset('assets/emp/images/svgs/chart/outline/happy-0.svg');
                 $anxietyColor = '#000';
-
         }
 
-        if ($stat->stress) {
-            if ($stat->stress <= 7) {
-                $stressStatus = "Healthy";
+        if ($stat->stressScore) {
+            if ($stat->stressScore <= 7) {
                 $stressIcon = asset('assets/emp/images/svgs/chart/outline/happy-80.svg');
                 $stressColor = '#81c984';
-            } elseif ($stat->stress <= 9) {
-                $stressStatus = "Mild";
+            } elseif ($stat->stressScore <= 9) {
                 $stressIcon = asset('assets/emp/images/svgs/chart/outline/happy-60.svg');
                 $stressColor = '#fbbe18';
-            } elseif ($stat->stress <= 12) {
-                $stressStatus = "Moderate";
+            } elseif ($stat->stressScore <= 12) {
                 $stressIcon = asset('assets/emp/images/svgs/chart/outline/happy-40.svg');
                 $stressColor = '#fb822e';
-            } elseif ($stat->stress <= 16) {
-                $stressStatus = "Unhealthy";
+            } elseif ($stat->stressScore <= 16) {
                 $stressIcon = asset('assets/emp/images/svgs/chart/outline/happy-20.svg');
                 $stressColor = '#c34b20';
-            } elseif ($stat->stress >= 17) {
-                $stressStatus = "Concerning";
+            } elseif ($stat->stressScore >= 17) {
                 $stressIcon = asset('assets/emp/images/svgs/chart/outline/happy-0.svg');
                 $stressColor = '#b61f1c';
             }
@@ -124,29 +94,27 @@ class HealthStat extends Model
                 $stressStatus = "N/A";
                 $stressIcon = asset('assets/emp/images/svgs/chart/outline/happy-0.svg');
                 $stressColor = '#000';
-
         }
 
         return [
             'depression' => [
                 'status' => $depressionStatus,
-                'percentage' => $this->getStatsByPercentage('depression', $stat->depression),
-                'score' => $stat->depression ?? 0,
+                'percentage' => $stat->depressionPercentage ?? 0,
+                'score' => $stat->depressionScore ?? 0,
                 'icon' => $depressionIcon,
                 'color' => $depressionColor,
             ],
             'anxiety' => [
                 'status' => $anxietyStatus,
-                'percentage' => $this->getStatsByPercentage('anxiety', $stat->anxiety),
-                'score' => $stat->anxiety ?? 0,
+                'percentage' => $stat->anxietyPercentage ?? 0,
+                'score' => $stat->anxietyScore ?? 0,
                 'icon' => $anxietyIcon,
                 'color' => $anxietyColor,
             ],
-
             'stress' => [
                 'status' => $stressStatus,
-                'percentage' => $this->getStatsByPercentage('stress', $stat->stress),
-                'score' => min($stat->stress ?? 0, 20),
+                'percentage' => $stat->stressPercentage ?? 0,
+                'score' => min($stat->stressScore ?? 0, 20),
                 'icon' => $stressIcon,
                 'color' => $stressColor,
             ],

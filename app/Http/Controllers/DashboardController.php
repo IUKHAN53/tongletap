@@ -706,30 +706,48 @@ class DashboardController extends Controller
 
         $depression_avg = DB::table('users as u')
             ->join('health_stats as hs', 'u.id', '=', 'hs.user_id')
-            ->select('u.created_by', DB::raw('AVG(hs.depression) as avg'))
+            ->select('u.created_by', DB::raw('AVG(hs.depressionScore) as avg'))
             ->where('u.created_by', auth()->id() ?? $request->user_id)
             ->whereBetween('hs.created_at', [$startDate, $endDate])  // Filter by date
             ->groupBy('u.created_by')
             ->first()->avg ?? 0;
-        $depression_percentage = $hs->getStatsByPercentage('depression', $depression_avg);
+        $depression_percentage = DB::table('users as u')
+            ->join('health_stats as hs', 'u.id', '=', 'hs.user_id')
+            ->select('u.created_by', DB::raw('AVG(hs.depressionPercentage) as avg'))
+            ->where('u.created_by', auth()->id() ?? $request->user_id)
+            ->whereBetween('hs.created_at', [$startDate, $endDate])  // Filter by date
+            ->groupBy('u.created_by')
+            ->first()->avg ?? 0;
 
         $anxiety_avg = DB::table('users as u')
             ->join('health_stats as hs', 'u.id', '=', 'hs.user_id')
-            ->select('u.created_by', DB::raw('AVG(hs.anxiety) as avg'))
+            ->select('u.created_by', DB::raw('AVG(hs.anxietyScore) as avg'))
             ->where('u.created_by', auth()->id() ?? $request->user_id)
             ->whereBetween('hs.created_at', [$startDate, $endDate])  // Filter by date
             ->groupBy('u.created_by')
             ->first()->avg ?? 0;
-        $anxiety_percentage = $hs->getStatsByPercentage('anxiety', $anxiety_avg);
+        $anxiety_percentage = DB::table('users as u')
+            ->join('health_stats as hs', 'u.id', '=', 'hs.user_id')
+            ->select('u.created_by', DB::raw('AVG(hs.anxietyPercentage) as avg'))
+            ->where('u.created_by', auth()->id() ?? $request->user_id)
+            ->whereBetween('hs.created_at', [$startDate, $endDate])  // Filter by date
+            ->groupBy('u.created_by')
+            ->first()->avg ?? 0;
 
         $stress_avg = DB::table('users as u')
             ->join('health_stats as hs', 'u.id', '=', 'hs.user_id')
-            ->select('u.created_by', DB::raw('AVG(hs.stress) as avg'))
+            ->select('u.created_by', DB::raw('AVG(hs.stressScore) as avg'))
             ->where('u.created_by', auth()->id() ?? $request->user_id)
             ->whereBetween('hs.created_at', [$startDate, $endDate])  // Filter by date
             ->groupBy('u.created_by')
             ->first()->avg ?? 0;
-        $stress_percentage = $hs->getStatsByPercentage('stress', $stress_avg);
+        $stress_percentage = DB::table('users as u')
+            ->join('health_stats as hs', 'u.id', '=', 'hs.user_id')
+            ->select('u.created_by', DB::raw('AVG(hs.stressPercentage) as avg'))
+            ->where('u.created_by', auth()->id() ?? $request->user_id)
+            ->whereBetween('hs.created_at', [$startDate, $endDate])  // Filter by date
+            ->groupBy('u.created_by')
+            ->first()->avg ?? 0;
 
         return [
             'depression_percentage' => $depression_percentage,
@@ -758,32 +776,50 @@ class DashboardController extends Controller
             // Depression
             $depression_avg = DB::table('users as u')
                 ->join('health_stats as hs', 'u.id', '=', 'hs.user_id')
-                ->select(DB::raw('AVG(hs.depression) as avg'))
+                ->select(DB::raw('AVG(hs.depressionScore) as avg'))
                 ->where('u.created_by', auth()->id() ?? $request->user_id)
                 ->whereBetween('hs.created_at', [$startDate, $endDate])
                 ->groupBy(DB::raw('MONTH(hs.created_at)'))
                 ->first()->avg ?? 0;
-            $depression_data[] = $hs->getStatsByPercentage('depression', $depression_avg);
+            $depression_data[] = DB::table('users as u')
+                ->join('health_stats as hs', 'u.id', '=', 'hs.user_id')
+                ->select(DB::raw('AVG(hs.depressionPercentage) as avg'))
+                ->where('u.created_by', auth()->id() ?? $request->user_id)
+                ->whereBetween('hs.created_at', [$startDate, $endDate])
+                ->groupBy(DB::raw('MONTH(hs.created_at)'))
+                ->first()->avg ?? 0;
 
             // Anxiety
             $anxiety_avg = DB::table('users as u')
                 ->join('health_stats as hs', 'u.id', '=', 'hs.user_id')
-                ->select(DB::raw('AVG(hs.anxiety) as avg'))
+                ->select(DB::raw('AVG(hs.anxietyScore) as avg'))
                 ->where('u.created_by', auth()->id() ?? $request->user_id)
                 ->whereBetween('hs.created_at', [$startDate, $endDate])
                 ->groupBy(DB::raw('MONTH(hs.created_at)'))
                 ->first()->avg ?? 0;
-            $anxiety_data[] = $hs->getStatsByPercentage('anxiety', $anxiety_avg);
+            $anxiety_data[] = DB::table('users as u')
+                ->join('health_stats as hs', 'u.id', '=', 'hs.user_id')
+                ->select(DB::raw('AVG(hs.anxietyPercentage) as avg'))
+                ->where('u.created_by', auth()->id() ?? $request->user_id)
+                ->whereBetween('hs.created_at', [$startDate, $endDate])
+                ->groupBy(DB::raw('MONTH(hs.created_at)'))
+                ->first()->avg ?? 0;
 
             // Stress
             $stress_avg = DB::table('users as u')
                 ->join('health_stats as hs', 'u.id', '=', 'hs.user_id')
-                ->select(DB::raw('AVG(hs.stress) as avg'))
+                ->select(DB::raw('AVG(hs.stressScore) as avg'))
                 ->where('u.created_by', auth()->id() ?? $request->user_id)
                 ->whereBetween('hs.created_at', [$startDate, $endDate])
                 ->groupBy(DB::raw('MONTH(hs.created_at)'))
                 ->first()->avg ?? 0;
-            $stress_data[] = $hs->getStatsByPercentage('stress', $stress_avg);
+            $stress_data[] = DB::table('users as u')
+                ->join('health_stats as hs', 'u.id', '=', 'hs.user_id')
+                ->select(DB::raw('AVG(hs.stressPercentage) as avg'))
+                ->where('u.created_by', auth()->id() ?? $request->user_id)
+                ->whereBetween('hs.created_at', [$startDate, $endDate])
+                ->groupBy(DB::raw('MONTH(hs.created_at)'))
+                ->first()->avg ?? 0;
         }
         return [
             'depression_percentage' => $depression_data,

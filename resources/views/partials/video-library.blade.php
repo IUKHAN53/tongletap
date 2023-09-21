@@ -1,6 +1,8 @@
 <style>
     .video-card-container {
         position: relative;
+        min-height: 200px;
+        max-height: 200px;
     }
     .play-icon {
         position: absolute;
@@ -24,7 +26,7 @@
                 <a href="javascript:void(0);" class="text-decoration-none video" data-video-url="{{$video->url}}">
                     <div class="card" style="width: 100%;">
                         <figure class="card-img-top video-card-container">
-                            <img src="{{$video->thumbnail}}" class="img-fluid" alt="{{$video->title}}">
+                            <img src="{{$video->thumbnail}}" class="img-fluid" style="object-fit: contain !important;" alt="{{$video->title}}">
                             <span class="play-icon">
                                 <i class="fas fa-3x fa-play-circle" style="color: #fbaa1f"></i> <!-- Font Awesome Play Icon -->
                             </span>
