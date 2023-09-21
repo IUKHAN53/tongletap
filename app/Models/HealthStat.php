@@ -45,7 +45,6 @@ class HealthStat extends Model
                 $depressionColor = '#b61f1c';
             }
         } else {
-                $depressionStatus = "N/A";
                 $depressionIcon = asset('assets/emp/images/svgs/chart/outline/happy-0.svg');
                 $depressionColor = '#000';
         }
@@ -68,7 +67,6 @@ class HealthStat extends Model
                 $anxietyColor = '#b61f1c';
             }
         } else {
-                $anxietyStatus = "N/A";
                 $anxietyIcon = asset('assets/emp/images/svgs/chart/outline/happy-0.svg');
                 $anxietyColor = '#000';
         }
@@ -91,28 +89,27 @@ class HealthStat extends Model
                 $stressColor = '#b61f1c';
             }
         } else {
-                $stressStatus = "N/A";
                 $stressIcon = asset('assets/emp/images/svgs/chart/outline/happy-0.svg');
                 $stressColor = '#000';
         }
 
         return [
             'depression' => [
-                'status' => $depressionStatus,
+                'status' => $stat->depressionStatus ?? '',
                 'percentage' => $stat->depressionPercentage ?? 0,
                 'score' => $stat->depressionScore ?? 0,
                 'icon' => $depressionIcon,
                 'color' => $depressionColor,
             ],
             'anxiety' => [
-                'status' => $anxietyStatus,
+                'status' => $stat->anxietyStatus ?? '',
                 'percentage' => $stat->anxietyPercentage ?? 0,
                 'score' => $stat->anxietyScore ?? 0,
                 'icon' => $anxietyIcon,
                 'color' => $anxietyColor,
             ],
             'stress' => [
-                'status' => $stressStatus,
+                'status' => $stat->stressStatus ?? '',
                 'percentage' => $stat->stressPercentage ?? 0,
                 'score' => min($stat->stressScore ?? 0, 20),
                 'icon' => $stressIcon,

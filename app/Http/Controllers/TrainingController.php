@@ -15,17 +15,17 @@ class TrainingController extends Controller
 
     public function index()
     {
-        if(\Auth::user()->can('manage training'))
-        {
+//        if(\Auth::user()->can('manage training'))
+//        {
             $trainings = Training::where('created_by', '=', \Auth::user()->creatorId())->get();
             $status    = Training::$Status;
 
             return view('training.index', compact('trainings', 'status'));
-        }
-        else
-        {
-            return redirect()->back()->with('error', __('Permission denied.'));
-        }
+//        }
+//        else
+//        {
+//            return redirect()->back()->with('error', __('Permission denied.'));
+//        }
     }
 
 
