@@ -96,21 +96,21 @@ class HealthStat extends Model
         return [
             'depression' => [
                 'status' => $stat->depressionStatus ?? '',
-                'percentage' => number_format($stat->depressionPercentage ?? 0, 2),
+                'percentage' => number_format($stat->depressionPercentage ?? 0),
                 'score' => $stat->depressionScore ?? 0,
                 'icon' => $depressionIcon,
                 'color' => $depressionColor,
             ],
             'anxiety' => [
                 'status' => $stat->anxietyStatus ?? '',
-                'percentage' => number_format($stat->anxietyPercentage ?? 0, 2),
+                'percentage' => number_format($stat->anxietyPercentage ?? 0),
                 'score' => $stat->anxietyScore ?? 0,
                 'icon' => $anxietyIcon,
                 'color' => $anxietyColor,
             ],
             'stress' => [
                 'status' => $stat->stressStatus ?? '',
-                'percentage' => number_format($stat->stressPercentage ?? 0, 2),
+                'percentage' => number_format($stat->stressPercentage ?? 0),
                 'score' => min($stat->stressScore ?? 0, 20),
                 'icon' => $stressIcon,
                 'color' => $stressColor,
