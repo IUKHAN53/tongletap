@@ -232,25 +232,6 @@
                 <span class="hide-menu">Workshop and Team bounding</span>
             </a>
         </li>
-
-        {{--        <li class="sidebar-item">--}}
-        {{--            <a class="sidebar-link has-arrow" href="#" aria-expanded="false">--}}
-        {{--                <span>--}}
-        {{--                    <i class="ti ti-settings" style="font-size: 22px"></i>--}}
-        {{--                </span>--}}
-        {{--                <span class="hide-menu">Setting</span>--}}
-        {{--            </a>--}}
-        {{--            <ul aria-expanded="false" class="collapse first-level">--}}
-        {{--                <li class="sidebar-item">--}}
-        {{--                    <a href="{{ route('settings') }}" class="sidebar-link">--}}
-        {{--                        <div class="round-16 d-flex align-items-center justify-content-center">--}}
-        {{--                            <i class="ti ti-circle"></i>--}}
-        {{--                        </div>--}}
-        {{--                        <span class="hide-menu">System Settings</span>--}}
-        {{--                    </a>--}}
-        {{--                </li>--}}
-        {{--            </ul>--}}
-        {{--        </li>--}}
         <li class="sidebar-item">
             <a class="sidebar-link" href="{{route('mwl')}}" aria-expanded="false">
                 <span>
@@ -265,6 +246,14 @@
                     <i class="ti ti-checkbox" style="font-size: 22px"></i>
                 </span>
                 <span class="hide-menu">HR Checklists</span>
+            </a>
+        </li>
+        <li class="sidebar-item">
+            <a class="sidebar-link" href="{{ route('assessments') }}" aria-expanded="false">
+                <span>
+                    <i class="ti ti-chart-area" style="font-size: 22px"></i>
+                </span>
+                <span class="hide-menu">Assessments</span>
             </a>
         </li>
     </ul>

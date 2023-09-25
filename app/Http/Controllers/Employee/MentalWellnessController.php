@@ -33,7 +33,6 @@ class MentalWellnessController extends Controller
         } else {
             return redirect()->back()->with('error', __('Permission denied.'));
         }
-
     }
 
     public function addVideo(Request $request)
