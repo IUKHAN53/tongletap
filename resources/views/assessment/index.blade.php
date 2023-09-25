@@ -47,7 +47,7 @@
                 <div>
                     <h3>{{$assessment['title']}}</h3>
                     <p>{{$assessment['description']}}</p>
-                    <a href="{{$assessment['url']}}" style="color: #fb9229">View More >> </a>
+                    <a href="{{$assessment['url']}}" style="color: #fb9229" target="_blank">View More >> </a>
                 </div>
             </div>
         @endforeach

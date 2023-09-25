@@ -41,19 +41,48 @@
     </style>
     <div class="container">
         <div class="row">
-            @foreach($files as $file)
-                <div class="col-md-6 file-preview">
-                    <h3 class="file-title">{{ pathinfo($file)['basename'] }}</h3>
-                    <div class="file-container">
-                        @if(pathinfo($file)['extension'] === 'pdf')
-                            <embed src="{{ asset('hr_checklists/' . pathinfo($file)['basename']) }}" type="application/pdf" class="file-embed"></embed>
-                        @elseif(pathinfo($file)['extension'] === 'docx')
-                            <iframe src="{{ asset(str_replace(public_path(), '', $htmlFiles[pathinfo($file)['filename']])) }}" class="file-iframe"></iframe>
-                        @endif
-                    </div>
-                    <a href="{{ asset('hr_checklists/' . pathinfo($file)['basename']) }}" download class="btn btn-primary mt-2">Download</a>
-                </div>
-            @endforeach
+
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>File Name</th>
+                        <th>File Type</th>
+                        <th>Download</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach($files as $file)
+                        <tr>
+                            <td>{{ $loop->iteration }}</td>
+                            <td>{{ pathinfo($file)['basename'] }}</td>
+                            <td>{{pathinfo($file)['extension']}}</td>
+                            <td>
+                                <a href="{{ asset('hr_checklists/' . pathinfo($file)['basename']) }}" download class="btn"
+                                   style="background: linear-gradient(135deg, #FD7E30 0%, #FDBF18 77.08%) !important; box-shadow: 0px 6px 12px 0px rgba(253, 126, 48, 0.40) !important">Download</a>
+                            </td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+            </div>
+{{--            @foreach($files as $file)--}}
+{{--                <div class="col-md-6 file-preview">--}}
+{{--                    <h3 class="file-title">{{ pathinfo($file)['basename'] }}</h3>--}}
+{{--                    <div class="file-container">--}}
+{{--                        @if(pathinfo($file)['extension'] === 'pdf')--}}
+{{--                            <embed src="{{ asset('hr_checklists/' . pathinfo($file)['basename']) }}"--}}
+{{--                                   type="application/pdf" class="file-embed"></embed>--}}
+{{--                        @elseif(pathinfo($file)['extension'] === 'docx')--}}
+{{--                            <iframe src="{{ asset(str_replace(public_path(), '', $htmlFiles[pathinfo($file)['filename']])) }}"--}}
+{{--                                    class="file-iframe"></iframe>--}}
+{{--                        @endif--}}
+{{--                    </div>--}}
+{{--                    <a href="{{ asset('hr_checklists/' . pathinfo($file)['basename']) }}" download--}}
+{{--                       class="btn btn-primary mt-2">Download</a>--}}
+{{--                </div>--}}
+{{--            @endforeach--}}
         </div>
     </div>
 @endsection
