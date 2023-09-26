@@ -2855,4 +2855,9 @@ class User extends Authenticatable
             sendWhatsappMessage($this->whatsapp_number, $message);
         }
     }
+
+    public function health_stats()
+    {
+        return $this->hasMany(HealthStat::class);
+    }
 }

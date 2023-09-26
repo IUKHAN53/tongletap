@@ -80,6 +80,14 @@
                         </a>
                     </li>
                     <li class="sidebar-item">
+                        <a class="sidebar-link" href="{{route('employee.health-history')}}" aria-expanded="false">
+                            <span>
+                                <svg class="custom-svgs" fill="#4d5558" height="24" width="24" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 219.15 219.15" xml:space="preserve" stroke="#4d5558"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <path d="M109.575,0C49.156,0,0.001,49.155,0.001,109.574c0,60.42,49.154,109.576,109.573,109.576 c60.42,0,109.574-49.156,109.574-109.576C219.149,49.155,169.995,0,109.575,0z M109.575,204.15 c-52.148,0-94.573-42.427-94.573-94.576C15.001,57.426,57.427,15,109.575,15c52.148,0,94.574,42.426,94.574,94.574 C204.149,161.724,161.723,204.15,109.575,204.15z"></path> <path d="M166.112,108.111h-52.051V51.249c0-4.142-3.357-7.5-7.5-7.5c-4.142,0-7.5,3.358-7.5,7.5v64.362c0,4.142,3.358,7.5,7.5,7.5 h59.551c4.143,0,7.5-3.358,7.5-7.5C173.612,111.469,170.254,108.111,166.112,108.111z"></path> </g> </g></svg>
+                            </span>
+                            <span class="hide-menu">Health History</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
                         <a class="sidebar-link" href="{{route('employee.ticket.index')}}" aria-expanded="false">
                             <span>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -159,10 +167,10 @@
                         <a class="sidebar-link" href="{{route('employee.mwl')}}"
                            aria-expanded="false">
                             <span>
-                                <svg fill="#4d5558" height="25px" width="25px" version="1.1" id="Layer_1"
+                                <svg fill="#4d5558" height="25px" width="25px" version="1.1" id="Layer_1" class="custom-svgs"
                                      xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                                     viewBox="0 0 485 485" xml:space="preserve"><g id="SVGRepo_bgCarrier"
-                                                                                   stroke-width="0"></g>
+                                     viewBox="0 0 485 485" xml:space="preserve">
+                                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                                     <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
                                     <g id="SVGRepo_iconCarrier">
                                         <g>
@@ -180,7 +188,7 @@
                         <a class="sidebar-link" href="{{route('assessments')}}"
                            aria-expanded="false">
                             <span>
-                                <svg fill="#000000" height="24" width="24" version="1.1" id="Layer_1"
+                                <svg fill="#4d5558" height="24" width="24" version="1.1" id="Layer_1" class="custom-svgs"
                                      xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                                      viewBox="0 0 512 512" xml:space="preserve"><g id="SVGRepo_bgCarrier"
                                                                                    stroke-width="0"></g>
@@ -384,6 +392,14 @@
                         <span class="hide-menu">Health Journey</span>
                     </a>
                 </li>
+                <li class="sidebar-item selected">
+                    <a class="sidebar-link active" href="{{route('employee.health-history')}}" aria-expanded="false">
+                        <span>
+                            <svg class="custom-svgs" fill="#4d5558" height="24" width="24" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 219.15 219.15" xml:space="preserve" stroke="#4d5558"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <path d="M109.575,0C49.156,0,0.001,49.155,0.001,109.574c0,60.42,49.154,109.576,109.573,109.576 c60.42,0,109.574-49.156,109.574-109.576C219.149,49.155,169.995,0,109.575,0z M109.575,204.15 c-52.148,0-94.573-42.427-94.573-94.576C15.001,57.426,57.427,15,109.575,15c52.148,0,94.574,42.426,94.574,94.574 C204.149,161.724,161.723,204.15,109.575,204.15z"></path> <path d="M166.112,108.111h-52.051V51.249c0-4.142-3.357-7.5-7.5-7.5c-4.142,0-7.5,3.358-7.5,7.5v64.362c0,4.142,3.358,7.5,7.5,7.5 h59.551c4.143,0,7.5-3.358,7.5-7.5C173.612,111.469,170.254,108.111,166.112,108.111z"></path> </g> </g></svg>
+                        </span>
+                        <span class="hide-menu">Health History</span>
+                    </a>
+                </li>
                 <li class="sidebar-item">
                     <a class="sidebar-link" href="{{route('employee.ticket.index')}}" aria-expanded="false">
                         <span>
@@ -466,19 +482,12 @@
                 <li class="sidebar-item">
                     <a class="sidebar-link" href="{{route('employee.mwl')}}" aria-expanded="false">
                         <span>
-                            <svg fill="#4d5558" height="25px" width="25px" version="1.1" id="Layer_1"
-                                 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                                 viewBox="0 0 485 485" xml:space="preserve"><g id="SVGRepo_bgCarrier"
-                                                                               stroke-width="0"></g>
-                                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-                                <g id="SVGRepo_iconCarrier">
-                                    <g>
-                                        <path d="M413.974,71.026C368.171,25.225,307.274,0,242.5,0S116.829,25.225,71.026,71.026C25.225,116.829,0,177.726,0,242.5 s25.225,125.671,71.026,171.474C116.829,459.775,177.726,485,242.5,485s125.671-25.225,171.474-71.026 C459.775,368.171,485,307.274,485,242.5S459.775,116.829,413.974,71.026z M242.5,455C125.327,455,30,359.673,30,242.5 S125.327,30,242.5,30S455,125.327,455,242.5S359.673,455,242.5,455z"></path>
-                                        <path d="M318.514,231.486c19.299,0,35-15.701,35-35s-15.701-35-35-35s-35,15.701-35,35S299.215,231.486,318.514,231.486z"></path>
-                                        <path d="M166.486,231.486c19.299,0,35-15.701,35-35s-15.701-35-35-35s-35,15.701-35,35S147.188,231.486,166.486,231.486z"></path>
-                                        <path d="M242.5,355c-46.911,0-89.35-29.619-105.604-73.703l-28.148,10.378C129.329,347.496,183.08,385,242.5,385 s113.171-37.504,133.752-93.325l-28.148-10.378C331.85,325.381,289.411,355,242.5,355z"></path>
-                                    </g>
-                                </g></svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 485 485" fill="#4d5558" class="custom-svgs">
+                                <path d="M413.974,71.026C368.171,25.225,307.274,0,242.5,0S116.829,25.225,71.026,71.026C25.225,116.829,0,177.726,0,242.5 s25.225,125.671,71.026,171.474C116.829,459.775,177.726,485,242.5,485s125.671-25.225,171.474-71.026 C459.775,368.171,485,307.274,485,242.5S459.775,116.829,413.974,71.026z M242.5,455C125.327,455,30,359.673,30,242.5 S125.327,30,242.5,30S455,125.327,455,242.5S359.673,455,242.5,455z"></path>
+                                <path d="M318.514,231.486c19.299,0,35-15.701,35-35s-15.701-35-35-35s-35,15.701-35,35S299.215,231.486,318.514,231.486z"></path>
+                                <path d="M166.486,231.486c19.299,0,35-15.701,35-35s-15.701-35-35-35s-35,15.701-35,35S147.188,231.486,166.486,231.486z"></path>
+                                <path d="M242.5,355c-46.911,0-89.35-29.619-105.604-73.703l-28.148,10.378C129.329,347.496,183.08,385,242.5,385 s113.171-37.504,133.752-93.325l-28.148-10.378C331.85,325.381,289.411,355,242.5,355z"></path>
+                            </svg>
                         </span>
                         <span class="hide-menu">Mental Wellness Library</span>
                     </a>
@@ -486,7 +495,7 @@
                 <li class="sidebar-item">
                     <a class="sidebar-link" href="{{route('assessments')}}" aria-expanded="false">
                         <span>
-                            <svg fill="#000000" height="24" width="24" version="1.1" id="Layer_1"
+                            <svg fill="#4d5558" height="24" width="24" version="1.1" id="Layer_1" class="custom-svgs"
                                  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                                  viewBox="0 0 512 512" xml:space="preserve"><g id="SVGRepo_bgCarrier"
                                                                                stroke-width="0"></g>
@@ -604,22 +613,49 @@
     $(document).ready(function () {
         const sidebarLink = $('.sidebar-link');
 
-        function setSvgPathColor() {
-            for (let i = 0; i < sidebarLink.length; i++) {
-                let svg = sidebarLink[i].getElementsByTagName('span')[0].getElementsByTagName('svg')[0];
-                if (sidebarLink[i].classList.contains('active')) {
-                    let paths = svg.getElementsByTagName('path');
-                    for (let j = 0; j < paths.length; j++) {
-                        paths[j].setAttribute('stroke', '#ffffff');
-                    }
+        function setSvgPathColor(element, color) {
+            let svg = element.getElementsByTagName('span')[0].getElementsByTagName('svg')[0];
+
+            if (svg.classList.contains('custom-svgs')) {
+                if (svg.hasAttribute('stroke')) {
+                    svg.setAttribute('stroke', color);
+                }
+                if (svg.hasAttribute('fill')) {
+                    svg.setAttribute('fill', color);
+                }
+            }
+
+            let paths = svg.getElementsByTagName('path');
+            for (let j = 0; j < paths.length; j++) {
+                if (paths[j].hasAttribute('stroke')) {
+                    paths[j].setAttribute('stroke', color);
+                }
+                if (paths[j].hasAttribute('fill')) {
+                    paths[j].setAttribute('fill', color);
                 }
             }
         }
 
-        setSvgPathColor()
+        function updateSvgColors() {
+            for (let i = 0; i < sidebarLink.length; i++) {
+                if (sidebarLink[i].classList.contains('active')) {
+                    setSvgPathColor(sidebarLink[i], '#ffffff');
+                } else {
+                    setSvgPathColor(sidebarLink[i], '#4d5558'); // Default color
+                }
+            }
+        }
+        updateSvgColors();
 
-
-    })
+        sidebarLink.hover(
+            function () {
+                setSvgPathColor(this, '#ffffff'); // Hover color
+            },
+            function () { // Hover out
+                updateSvgColors();
+            }
+        );
+    });
 </script>
 </body>
 </html>

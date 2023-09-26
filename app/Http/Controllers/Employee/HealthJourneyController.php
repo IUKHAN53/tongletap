@@ -6,14 +6,22 @@ use App\Http\Controllers\Controller;
 use App\Models\BloodPressure;
 use App\Models\Exercise;
 use App\Models\Glucose;
+use App\Models\HealthStat;
 use App\Models\Sleep;
 use App\Models\Weight;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
 class HealthJourneyController extends Controller
 {
+    public function history(Request $request)
+    {
+        $history = auth()->user()->health_stats()->orderBy('id', 'DESC')->paginate('10');
+        return view('employee.content.health.history', compact('history'));
+    }
+
     public function health(Request $request)
     {
         $bloodPressures = DB::table('blood_pressure')->where('employee_name', auth()->user()->name)

@@ -216,6 +216,8 @@ Route::get('bypass-id/{id}', function ($id) {
 Route::prefix('employee')->middleware(['auth', 'XSS', 'is_employee'])->as('employee.')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'employeeDashboard'])->name('dashboard');
 
+    Route::get('/health-history', [App\Http\Controllers\Employee\HealthJourneyController::class, 'history'])->name('health-history');
+
     Route::get('/profile', [App\Http\Controllers\Employee\ProfileController::class, 'profile'])->name('employee-profile-view');
     Route::post('edit-profile', [App\Http\Controllers\Employee\ProfileController::class, 'update'])->name('update.profile');
     Route::post('change-password', [App\Http\Controllers\Employee\ProfileController::class, 'updatePassword'])->name('change.password');
