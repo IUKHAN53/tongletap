@@ -7,6 +7,19 @@
     <li class="breadcrumb-item">{{__('Assessments')}}</li>
 @endsection
 
+@section('action-btn')
+    @if(auth()->user()->type=='super admin')
+        <div class="float-end">
+            <div class="float-end">
+                <a href="#" data-url="{{ route('assessments.create') }}" data-ajax-popup="true"
+                   data-title="{{__('Create Assessment')}}" data-bs-toggle="tooltip" title="{{__('Create Assessment')}}"
+                   class="btn btn-sm btn-primary">
+                    <i class="ti ti-plus"></i>
+                </a>
+            </div>
+        </div>
+    @endif
+@endsection
 @section('content')
     <style>
         .placeholder-image {
@@ -41,7 +54,7 @@
         @foreach($assessments as $assessment)
             <div class="card d-flex p-3 shadow flex-row gap-3 justify-content-start align-items-center">
                 <div class="placeholder-image rounded">
-                    <img src="{{$assessment['image']}}"  class="rounded" alt="" style="position:absolute; opacity: .4">
+                    <img src="{{$assessment['image']}}" class="rounded" alt="" style="position:absolute; opacity: .4">
                     <span style="color: black; z-index: 4">{{$assessment['title']}}</span>
                 </div>
                 <div>

@@ -263,6 +263,8 @@ Route::prefix('employee')->middleware(['auth', 'XSS', 'is_employee'])->as('emplo
 });
 
 Route::get('/assessments', [\App\Http\Controllers\AssessmentController::class, 'index'])->name('assessments');
+Route::get('/assessments/create', [\App\Http\Controllers\AssessmentController::class, 'create'])->name('assessments.create');
+Route::post('/assessments/store', [\App\Http\Controllers\AssessmentController::class, 'store'])->name('assessments.store');
 
 Route::get('/mwl', [\App\Http\Controllers\Employee\MentalWellnessController::class, 'company'])->name('mwl');
 Route::get('/video-library', [\App\Http\Controllers\Employee\MentalWellnessController::class, 'manageVideos'])->name('video-library');

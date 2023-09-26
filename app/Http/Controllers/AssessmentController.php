@@ -2,40 +2,54 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Assessments;
+use App\Models\Utility;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 
 class AssessmentController extends Controller
 {
     public function index()
     {
-        $assessments = [
-            [
-                'title' => 'Burnout Scale Assessment',
-                'description' => 'Take our Burnout Self-Assessment Quiz to gain insights into your current well-being.',
-                'image' => 'https://picsum.photos/150?random=1',
-                'url' => 'https://ik5dz7zx2sr.typeform.com/to/S1insKbw'
-            ],
-            [
-                'title' => 'Kessler Psychological Distress Scale (K10)',
-                'description' => 'Measure your psychological distress.',
-                'image' => 'https://picsum.photos/150?random=2',
-                'url' => 'https://ik5dz7zx2sr.typeform.com/to/Kf7tHTpY'
-            ],
-            [
-                'title' => 'Patient Health Questionnaire-9 (PHQ-9)',
-                'description' => 'Take our Patient Health Questionnaire to gain insights into your current well-being.',
-                'image' => 'https://picsum.photos/150?random=3',
-                'url' => 'https://ik5dz7zx2sr.typeform.com/to/M3Re1bCo'
-            ],
-            [
-                'title' => 'Generalised Anxiety Disorder-7 Scale (GAD-7)',
-                'description' => 'Take our Anxiety Self-Assessment Quiz to gain insights into your current well-being.',
-                'image' => 'https://picsum.photos/150?random=4',
-                'url' => 'https://ik5dz7zx2sr.typeform.com/to/uNt4U4Sp'
-            ]
-        ];
+        $assessments = Assessments::query()->get();
         $layout = strtolower(auth()->user()->type) === 'employee' ? 'layouts.employee' : 'layouts.admin';
         return view('assessment.index', compact('assessments', 'layout'));
     }
 
+    public function create()
+    {
+        return view('assessment.create');
+    }
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            'title' => 'required',
+//            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'url' => 'required',
+            'description' => 'nullable'
+        ]);
+//        if ($request->hasFile('image')) {
+//            $filenameWithExt = $request->file('image')->getClientOriginalName();
+//            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+//            $extension = $request->file('image')->getClientOriginalExtension();
+//            $fileNameToStore = 'assessment_' . $filename . '_' . time() . '.' . $extension;
+//
+//            $dir = 'uploads/assessments/';
+//            $path = Utility::upload_file($request, 'image', $fileNameToStore, $dir, []);
+//            if ($path['flag'] != 1) {
+//                return redirect()->route('assessments')->with('error', __($path['msg']));
+//            }
+//        } else {
+        $count = Assessments::query()->count();
+        $request->merge([
+            'image' => 'https://picsum.photos/150?random=' . $count + 1,
+        ]);
+//        }
+
+        Assessments::create($request->all());
+
+        return redirect()->route('assessments')
+            ->with('success', 'Assessment created successfully.');
+    }
 }

@@ -421,6 +421,12 @@
                                             </a>
                                         </li>
                                     @endif
+                                    <li class="dash-item dash-hasmenu {{ (Request::route()->getName() == 'assessments') ? ' active' : '' }}">
+                                        <a href="{{ route('assessments') }}" class="dash-link">
+                                            <span class="dash-micon"><i class="ti ti-chart-area"></i></span><span
+                                                    class="dash-mtext">{{__('Assessments')}}</span>
+                                        </a>
+                                    </li>
                                 </ul>
                             @endif
                             @if(\Auth::user()->type != 'client' && \Auth::user()->type != 'super admin')
