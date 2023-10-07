@@ -28,27 +28,17 @@ class ProfileController extends Controller
                 'email' => 'required|email|unique:users,email,' . $user->id,
             ]
         );
+
         if ($request->hasFile('profile')) {
-            $filenameWithExt = $request->file('profile')->getClientOriginalName();
-            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
-            $extension = $request->file('profile')->getClientOriginalExtension();
-            $fileNameToStore = $filename . '_' . time() . '.' . $extension;
-
-            $dir = 'uploads/avatar/';
-            $image_path = $dir . $user->avatar;
-
-            if (File::exists($image_path)) {
-                File::delete($image_path);
-            }
-
-            $path = Utility::upload_file($request, 'profile', $fileNameToStore, $dir, []);
-            if ($path['flag'] != 1) {
-                return redirect()->route('employee.employee-profile-view', auth()->id())->with('error', __($path['msg']));
-            }
+            $avatar = $request->file('profile');
+            $avatar_name = 'profile-' . time() . '.' . $avatar->getClientOriginalExtension();
+            $avatar->move(public_path('uploads/avatar'), $avatar_name);
+        } else {
+            $avatar_name = null;
         }
 
         if (!empty($request->profile)) {
-            $user['avatar'] = $fileNameToStore;
+            $user['avatar'] = $avatar_name;
         }
         $user['name'] = $request['name'];
         $user['email'] = $request['email'];
