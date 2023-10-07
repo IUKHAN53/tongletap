@@ -63,8 +63,8 @@ class User extends Authenticatable
 
     public function getProfileAttribute()
     {
-        if (!empty($this->avatar) && \Storage::exists($this->avatar)) {
-            return $this->attributes['avatar'] = asset(\Storage::url($this->avatar));
+        if (!empty($this->avatar)) {
+            return $this->attributes['avatar'] = asset('uploads/avatar/' . $this->avatar);
         } else {
             if ($this->type == 'company') {
                 return $this->attributes['avatar'] = asset('assets/images/company.png');
@@ -76,7 +76,7 @@ class User extends Authenticatable
     public function getImageAttribute()
     {
         if (!empty($this->avatar)) {
-            return Utility::get_file('uploads/avatar/' . $this->avatar);
+            return asset('uploads/avatar/' . $this->avatar);
         } else {
             if ($this->type == 'company') {
                 return asset('assets/images/company.png');
