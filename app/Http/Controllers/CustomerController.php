@@ -348,33 +348,17 @@ class CustomerController extends Controller
                     ]
         );
 
-        if($request->hasFile('profile'))
-        {
-            $filenameWithExt = $request->file('profile')->getClientOriginalName();
-            $filename        = pathinfo($filenameWithExt, PATHINFO_FILENAME);
-            $extension       = $request->file('profile')->getClientOriginalExtension();
-            $fileNameToStore = $filename . '_' . time() . '.' . $extension;
-
-            $dir        = storage_path('uploads/avatar/');
-            $image_path = $dir . $userDetail['avatar'];
-
-            if(File::exists($image_path))
-            {
-                File::delete($image_path);
-            }
-
-            if(!file_exists($dir))
-            {
-                mkdir($dir, 0777, true);
-            }
-
-            $path = $request->file('profile')->storeAs('uploads/avatar/', $fileNameToStore);
-
+        if ($request->hasFile('profile')) {
+            $avatar = $request->file('profile');
+            $avatar_name = 'profile-' . time() . '.' . $avatar->getClientOriginalExtension();
+            $avatar->move(public_path('uploads/avatar'), $avatar_name);
+        } else {
+            $avatar_name = null;
         }
 
         if(!empty($request->profile))
         {
-            $user['avatar'] = $fileNameToStore;
+            $user['avatar'] = $avatar_name;
         }
         $user['name']    = $request['name'];
         $user['email']   = $request['email'];
