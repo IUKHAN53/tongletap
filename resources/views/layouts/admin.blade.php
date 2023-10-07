@@ -31,12 +31,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="url" content="{{ url('').'/'.config('chatify.path') }}" data-user="{{ Auth::user()->id }}">
-    <link rel="icon"
-          href="{{$logo.'/'.(isset($company_favicon) && !empty($company_favicon)?$company_favicon:'favicon.png')}}"
-          type="image" sizes="16x16">
+    {{--    <link rel="icon"--}}
+    {{--          href="{{$logo.'/'.(isset($company_favicon) && !empty($company_favicon)?$company_favicon:'favicon.png')}}"--}}
+    {{--          type="image" sizes="16x16">--}}
 
     <!-- Favicon icon -->
-    {{--    <link rel="icon" href="{{ asset('assets/images/favicon.svg') }}" type="image/x-icon"/>--}}
+    <link rel="icon" href="{{ asset('assets/images/favicon.ico') }}" type="image/x-icon"/>
     <!-- Calendar-->
     <link rel="stylesheet" href="{{ asset('assets/css/plugins/main.css') }}">
 
