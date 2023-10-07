@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('tickets', function (Blueprint $table) {
-            $table->string('employee_phone', 15)->change();
+            $table->string('employee_phone', 15);
         });
     }
 
@@ -26,7 +26,7 @@ return new class extends Migration
     public function down()
     {
         Schema::table('tickets', function (Blueprint $table) {
-            $table->integer('employee_phone')->change();
+            $table->dropColumn(['employee_phone']);
         });
     }
 };

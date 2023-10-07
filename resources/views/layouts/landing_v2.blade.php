@@ -13,7 +13,7 @@ function getLandingLink(){
 
         <h1 class="logo me-auto">
             <a href="{{route('home')}}">
-                <img width="350" height="336" src="{{asset('assets/landing/img/Tongle_Logo.png')}}" alt="">
+                <img width="380" height="380" src="{{asset('assets/landing/img/new_logo.png')}}" alt="">
             </a>
         </h1>
         <!-- Uncomment below if you prefer to use an image logo -->
